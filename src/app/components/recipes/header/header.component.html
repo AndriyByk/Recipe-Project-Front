@@ -1,0 +1,11 @@
+<div class="header">
+  <div class="header-left">
+    <div class="title">Recipe-HUB</div>
+  </div>
+  <div class="header-right">
+    <div class="header-buttons">
+      <div class="header-button-signIn" *ngIf="signIn; else signOut"><a [routerLink]="['sign-in']">Sign In</a></div>
+      <ng-template class="header-button-signOut" #signOut><a>Sign Out</a></ng-template>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<p>recipe works!</p>
+<div class="recipe">
+  <div class="recipe-photo">{{recipe.image}}</div>
+  <div class="recipe-title">{{recipe.title}}</div>
+  <div class="recipe-category">{{recipe.recipeCategoryDto.name}}</div>
+  <div class="recipe-description">{{recipe.description}}</div>
+  <div class="recipe-ingredients" *ngFor="let ingredient of recipe.ingredients">
+    <div class="recipe-ingredient-name">{{ingredient.name}}</div>
+    <div class="recipe-ingredient-about">{{ingredient.about}}</div>
+    <div class="recipe-ingredient-weight">{{ingredient.weight}}</div>
+    <div class="recipe-ingredient-ingredientCategory">{{ingredient.ingredientCategoryDto.name}}</div>
+  </div>
+  <div class="recipe-nutrients" *ngFor="let quantity of recipe.quantities">
+    <div class="recipe-nutrient-name">{{quantity.nutrientDto.name}}</div>
+    <div class="recipe-nutrient-about">{{quantity.nutrientDto.about}}</div>
+    <div class="recipe-nutrient-category">{{quantity.nutrientDto.categoryDto.name}}</div>
+    <div class="recipe-nutrient-category">{{quantity.nutrientDto.quantity}}</div>
+  </div>
+</div>

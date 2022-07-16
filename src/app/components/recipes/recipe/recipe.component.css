@@ -1,0 +1,6 @@
+.recipe {
+  border: black solid 1px;
+  width: 750px;
+  height: fit-content;
+  padding: 10px;
+}

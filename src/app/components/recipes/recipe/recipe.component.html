@@ -1,0 +1,8 @@
+<!--<p>recipe works!</p>-->
+<div class="recipe">
+  <div class="recipe-photo">{{recipe.image}}</div>
+  <div class="recipe-title">{{recipe.title}}</div>
+  <div class="recipe-category">{{recipe.recipeCategoryDto.name}}</div>
+  <div class="recipe-description">{{recipe.description}}</div>
+  <a [routerLink]="['recipe', recipe.id]" [state]="{data: recipe}">Details</a>
+</div>
