@@ -2,19 +2,16 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {baseURL, recipeUrl} from "../../urls/urls";
-import {IUser} from "../../interfaces/entities/user/IUser";
+import {IRecipeCategory} from "../../interfaces/categories/IRecipeCategory";
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthorisationService {
+export class RecipeCategoryService {
 
   constructor(private httpClient: HttpClient) { }
 
-  register(user: FormData):Observable<IUser> {
-
-
-    return this.httpClient.post<IUser>(`${baseURL}${recipeUrl.users}`, user)
+  getAll(): Observable<IRecipeCategory[]> {
+    return this.httpClient.get<IRecipeCategory[]>(`${baseURL}${recipeUrl.recipeCategories}`);
   }
-
 }

@@ -2,19 +2,16 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {baseURL, recipeUrl} from "../../urls/urls";
-import {IUser} from "../../interfaces/entities/user/IUser";
+import {IActivityType} from "../../interfaces/categories/IActivityType";
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthorisationService {
+export class UserActivityTypeService {
 
   constructor(private httpClient: HttpClient) { }
 
-  register(user: FormData):Observable<IUser> {
-
-
-    return this.httpClient.post<IUser>(`${baseURL}${recipeUrl.users}`, user)
+  getAll(): Observable<IActivityType[]> {
+    return this.httpClient.get<IActivityType[]>(`${baseURL}${recipeUrl.userActivityTypes}`);
   }
-
 }

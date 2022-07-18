@@ -43,10 +43,10 @@ export class SignUpPageComponent implements OnInit {
       lastname: new FormControl(null),
       email: new FormControl(null),
       dayOfBirth: new FormControl(null),
-      typeOfActivity: new FormControl(null),
+      activityTypeId: new FormControl(null),
       height: new FormControl(null),
       weight: new FormControl(null),
-      gender: new FormControl(null),
+      genderId: new FormControl(null),
       username: new FormControl(null,[
         Validators.pattern('^[a-z]{1}[a-z0-9_-]{1,19}$'),
         Validators.required]),
@@ -63,8 +63,15 @@ export class SignUpPageComponent implements OnInit {
 
     let rawValue = this.form.getRawValue();
     delete rawValue.confirmPassword;
-
-    this.authorisationService.register(rawValue).subscribe((value) =>
+    rawValue.dateOfRegistration = new Date().toDateString();
+    let uploadData = new FormData();
+    uploadData.append('avatar', this.form.get('avatar')?.value);
+    uploadData.append('pageNumber', '1');
+    uploadData.append('pageSize', '5');
+    delete rawValue.avatar;
+    console.log(rawValue);
+    uploadData.append('user', rawValue);
+    this.authorisationService.register(uploadData).subscribe((value) =>
 
       // на контролері на беку - змінити метод пост на войд. повертати шось не обов'язково
       this.router.navigate(['sign-in']),
@@ -72,9 +79,29 @@ export class SignUpPageComponent implements OnInit {
     );
   }
 
+  // перевірка чи збігаються password і confirmPassword
   checkPassword(form: AbstractControl): ValidationErrors | null {
     const password = form.get('password');
     const confirmPassword = form.get('confirmPassword');
     return password?.value === confirmPassword?.value ? null : {different: "паролі не співпадають!"};
   }
+
+  // перевірка картинки: формат, розмір (можна без неї)
+  //
+  // onChange(e: any) {
+  //   let extensionAllowed: any = { "png": true, "jpeg": true };
+  //   let file = e.target.files[0];
+  //   if (file.size / 1024 / 1024 > 20) {
+  //     alert("File size should be less than 20MB")
+  //     return;
+  //   }
+  //   if (extensionAllowed) {
+  //     let nam = file.name.split('.').pop();
+  //     if (!extensionAllowed[nam]) {
+  //       alert("Please upload " + Object.keys(extensionAllowed) + " file.")
+  //       return;
+  //     }
+  //   }
+  //   this.form.controls["avatar"].setValue(file);
+  // }
 }
