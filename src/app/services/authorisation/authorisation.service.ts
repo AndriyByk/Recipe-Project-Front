@@ -12,7 +12,7 @@ export class AuthorisationService {
   constructor(private httpClient: HttpClient) { }
 
   register(user: FormData):Observable<IUser> {
-
+    console.log(user.get('pageNumber'));
 
     return this.httpClient.post<IUser>(`${baseURL}${recipeUrl.users}`, user)
   }

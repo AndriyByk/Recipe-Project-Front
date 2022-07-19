@@ -40,7 +40,7 @@ export class SignUpPageComponent implements OnInit {
     this.form = new FormGroup({
       avatar: new FormControl(null),
       name: new FormControl(null),
-      lastname: new FormControl(null),
+      lastName: new FormControl(null),
       email: new FormControl(null),
       dayOfBirth: new FormControl(null),
       activityTypeId: new FormControl(null),
@@ -64,17 +64,18 @@ export class SignUpPageComponent implements OnInit {
     let rawValue = this.form.getRawValue();
     delete rawValue.confirmPassword;
     rawValue.dateOfRegistration = new Date().toDateString();
-    let uploadData = new FormData();
-    uploadData.append('avatar', this.form.get('avatar')?.value);
-    uploadData.append('pageNumber', '1');
-    uploadData.append('pageSize', '5');
+    let formData = new FormData();
+    formData.append('avatar', this.form.get('avatar')?.value);
+    formData.append('pageNumber', '1');
+    formData.append('pageSize', '5');
     delete rawValue.avatar;
     console.log(rawValue);
-    uploadData.append('user', rawValue);
-    this.authorisationService.register(uploadData).subscribe((value) =>
+    let ourUser = JSON.stringify(rawValue);
 
-      // на контролері на беку - змінити метод пост на войд. повертати шось не обов'язково
-      this.router.navigate(['sign-in']),
+    formData.append('user', ourUser);
+    this.authorisationService.register(formData).subscribe(
+      // на контролері на беку можна змінити метод пост на войд: повертати шось не обов'язково
+      value => this.router.navigate(['sign-in']),
       error => this.userNameError = error.error.username[0]
     );
   }
@@ -86,22 +87,22 @@ export class SignUpPageComponent implements OnInit {
     return password?.value === confirmPassword?.value ? null : {different: "паролі не співпадають!"};
   }
 
-  // перевірка картинки: формат, розмір (можна без неї)
-  //
-  // onChange(e: any) {
-  //   let extensionAllowed: any = { "png": true, "jpeg": true };
-  //   let file = e.target.files[0];
-  //   if (file.size / 1024 / 1024 > 20) {
-  //     alert("File size should be less than 20MB")
-  //     return;
-  //   }
-  //   if (extensionAllowed) {
-  //     let nam = file.name.split('.').pop();
-  //     if (!extensionAllowed[nam]) {
-  //       alert("Please upload " + Object.keys(extensionAllowed) + " file.")
-  //       return;
-  //     }
-  //   }
-  //   this.form.controls["avatar"].setValue(file);
-  // }
+  // перевірка картинки: формат, розмір
+  // завантажування картинки у форму
+  onChange(e: any) {
+    let extensionAllowed: any = { "png": true, "jpeg": true };
+    let file = e.target.files[0];
+    if (file.size / 1024 / 1024 > 20) {
+      alert("File size should be less than 20MB")
+      return;
+    }
+    if (extensionAllowed) {
+      let nam = file.name.split('.').pop();
+      if (!extensionAllowed[nam]) {
+        alert("Please upload " + Object.keys(extensionAllowed) + " file.")
+        return;
+      }
+    }
+    this.form.controls["avatar"].setValue(file);
+  }
 }

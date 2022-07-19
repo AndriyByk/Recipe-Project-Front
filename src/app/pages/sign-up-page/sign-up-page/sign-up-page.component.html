@@ -1,10 +1,9 @@
 <div class="sign-up">
   <form class="sign-up-form" [formGroup]="form">
-    <!--(change)="onChange($event)"-->
-    <div class="sign-up-form-avatar"><label>avatar<input placeholder="Pictures" required type="file" formControlName="avatar"></label></div>
+    <div class="sign-up-form-avatar"><label>avatar<input (change)="onChange($event)" placeholder="Pictures" required type="file" formControlName="avatar"></label></div>
 
     <div class="sign-up-form-name"><label>name<input type="text" formControlName="name"></label></div>
-    <div class="sign-up-form-lastname"><label>lastname<input type="text" formControlName="lastname"></label></div>
+    <div class="sign-up-form-lastname"><label>lastname<input type="text" formControlName="lastName"></label></div>
     <div class="sign-up-form-email"><label>email<input type="text" formControlName="email"></label></div>
     <div class="sign-up-form-day-of-birth"><label>age<input type="date" formControlName="dayOfBirth"></label></div>
 
