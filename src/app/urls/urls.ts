@@ -11,5 +11,10 @@ export const recipeUrl = {
   userActivityTypes: '/users/activity-types',
   userGenders: '/users/genders',
   ingredients: '/ingredients',
-  ingredientCategories: '/ingredients/categories'
+  ingredientCategories: '/ingredients/categories',
+
+  signIn: '/sign-in',
+  signUp: '/sign-up',
+  cabinet: '/cabinet',
+  wild: '/**'
 }

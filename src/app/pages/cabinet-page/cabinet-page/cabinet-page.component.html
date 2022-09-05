@@ -1,22 +1,26 @@
-<p>cabinet works!</p>
+<!--<p>cabinet works!</p>-->
 
 <div class="cabinet">
   <div class="cabinet-user-info">
-    <div class="cabinet-user-info-avatar"></div>
-    <div class="cabinet-user-info-name"></div>
-    <div class="cabinet-user-info-lastname"></div>
-    <div class="cabinet-user-info-email"></div>
-    <div class="cabinet-user-info-age"></div>
-    <div class="cabinet-user-info-type-of-activity"></div>
-    <div class="cabinet-user-info-height"></div>
-    <div class="cabinet-user-info-weight"></div>
-    <div class="cabinet-user-info-gender"></div>
+    <div class="cabinet-user-info-avatar">{{user.avatar}}</div>
+    <div class="cabinet-user-info-name">{{user.name}}</div>
+    <div class="cabinet-user-info-lastname">{{user.lastName}}</div>
+    <div class="cabinet-user-info-email">{{user.email}}</div>
+    <div class="cabinet-user-info-dayOfBirth">{{user.dayOfBirth}}</div>
+    <div class="cabinet-user-info-type-of-activity">{{user.activityTypeDto.name}}</div>
+    <div class="cabinet-user-info-height">{{user.height}}</div>
+    <div class="cabinet-user-info-weight">{{user.weight}}</div>
+    <div class="cabinet-user-info-gender">{{user.genderDto.gender}}</div>
   </div>
   <div class="cabinet-favourite-recipes">
     <div class="cabinet-favourite-recipes-all">
+<!--      [recipes]="user.getFavoriteRecipes()"-->
       <app-favorite-recipes></app-favorite-recipes>
     </div>
     <div class="cabinet-menu">.........</div>
     <div class="cabinet-rda">.........</div>
+  </div>
+  <div class="cabinet-link-to-add-recipe">
+    <a [routerLink]="['/add-recipe']">Add new recipe</a>
   </div>
 </div>

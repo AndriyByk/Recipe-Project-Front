@@ -1,5 +1,6 @@
 import {IGender} from "../../categories/IGender";
 import {IActivityType} from "../../categories/IActivityType";
+import {IRecipe} from "../recipe/IRecipe";
 
 export interface IUser {
 
@@ -18,4 +19,6 @@ export interface IUser {
   name: string;
   lastName: string;
   dateOfRegistration: string;
+  favoriteRecipes: IRecipe[];
+  createdRecipes: IRecipe[];
 }

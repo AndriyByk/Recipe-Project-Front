@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {BehaviorSubject} from "rxjs";
 import {IRecipe} from "../../interfaces/entities/recipe/IRecipe";
 
@@ -33,5 +33,8 @@ export class StoreService {
     quantities: []
   }]);
 
-  constructor() { }
+  isUserSignedIn = new BehaviorSubject<boolean>(false);
+
+  constructor() {
+  }
 }

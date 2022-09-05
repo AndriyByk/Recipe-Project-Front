@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {IRecipe} from "../../../interfaces/entities/recipe/IRecipe";
 
 @Component({
   selector: 'app-favorite-recipes',
@@ -6,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./favorite-recipes.component.css']
 })
 export class FavoriteRecipesComponent implements OnInit {
+  @Input()
+  recipes: IRecipe[];
 
-
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

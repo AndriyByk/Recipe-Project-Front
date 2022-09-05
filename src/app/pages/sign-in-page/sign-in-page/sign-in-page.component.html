@@ -1,9 +1,18 @@
-<p>sign-in works!</p>
+<!--<p>sign-in works!</p>-->
 <div class="sign-in">
-  <form class="sign-in-form">
-    <input class="sign-in-form-username"><label>username</label>
-    <input class="sign-in-form-password"><label>password</label>
+  <form class="sign-in-form" [formGroup]="form">
+
+    <div class="sign-in-form-username">
+      <label>username<input class="sign-in-form-username" type="text" formControlName="username">andyandy</label>
+    </div>
+
+    <div class="sign-in-form-password">
+      <label>password<input class="sign-in-form-password" type="password" formControlName="password"></label>
+    </div>
+
     <a class="sign-in-to-sign-up" [routerLink]="['/sign-up']">не зареєстровані?</a>
-    <button>submit</button>
+
+    <button type="submit" (click)="signIn()">submit</button>
+<!--    type="submit"-->
   </form>
 </div>

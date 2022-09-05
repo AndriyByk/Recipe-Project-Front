@@ -3,6 +3,8 @@ import {BrowserModule} from "@angular/platform-browser";
 import {AppComponent} from "./app.component";
 import {ContentPageModule} from "./pages/content-page/content-page.module";
 import {AppRoutingModule} from "./app-routing.module";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {MainInterceptor} from "./main.interceptor";
 
 
 @NgModule({
@@ -14,8 +16,15 @@ import {AppRoutingModule} from "./app-routing.module";
     ContentPageModule,
     AppRoutingModule
   ],
-  providers: [],
-    exports: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      multi: true,
+      useClass: MainInterceptor
+    }
+  ],
+  exports: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

@@ -5,7 +5,6 @@ import { CabinetPageRoutingModule } from './cabinet-page-routing.module';
 import { CabinetPageComponent } from './cabinet-page/cabinet-page.component';
 import {UserInfoComponent} from "../../components/cabinet/user-info/user-info.component";
 import {FavoriteRecipesComponent} from "../../components/cabinet/favorite-recipes/favorite-recipes.component";
-import {AppModule} from "../../app.module";
 import {FavoriteRecipeComponent} from "../../components/cabinet/favorite-recipe/favorite-recipe.component";
 
 
@@ -18,8 +17,7 @@ import {FavoriteRecipeComponent} from "../../components/cabinet/favorite-recipe/
   ],
     imports: [
         CommonModule,
-        CabinetPageRoutingModule,
-        AppModule
+        CabinetPageRoutingModule
     ]
 })
 export class CabinetPageModule { }

@@ -4,8 +4,14 @@
   </div>
   <div class="header-right">
     <div class="header-buttons">
-      <div class="header-button-signIn" *ngIf="signIn; else signOut"><a [routerLink]="['sign-in']">Sign In</a></div>
-      <ng-template class="header-button-signOut" #signOut><a>Sign Out</a></ng-template>
+      <div class="header-button-signIn" *ngIf="signedIn; else signedOut">
+        <a (click)="logOut()">Sign Out</a>
+      </div>
+<!--      <a (click)="logOut()">Sign Out</a>-->
+<!--      <a [routerLink]="['sign-in']">Sign In</a>-->
+      <ng-template class="header-button-signOut" #signedOut>
+        <a [routerLink]="['sign-in']">Sign In</a>
+      </ng-template>
     </div>
   </div>
 </div>

@@ -23,17 +23,11 @@ export class SignUpPageComponent implements OnInit {
               private authorisationService: AuthorisationService,
               private router: Router) {
     this.createForm();
-
   }
 
   ngOnInit(): void {
-    this.userActivityTypeService.getAll().subscribe(value => {
-      this.types = value;
-    })
-
-    this.userGenderService.getAll().subscribe(value => {
-      this.genders = value;
-    })
+    this.userActivityTypeService.getAll().subscribe(value => this.types = value)
+    this.userGenderService.getAll().subscribe(value => this.genders = value)
   }
 
   createForm(): void {
@@ -60,7 +54,6 @@ export class SignUpPageComponent implements OnInit {
   }
 
   register():void {
-
     let rawValue = this.form.getRawValue();
     delete rawValue.confirmPassword;
     rawValue.dateOfRegistration = new Date().toDateString();
@@ -90,10 +83,10 @@ export class SignUpPageComponent implements OnInit {
   // перевірка картинки: формат, розмір
   // завантажування картинки у форму
   onChange(e: any) {
-    let extensionAllowed: any = { "png": true, "jpeg": true };
+    let extensionAllowed: any = { "png": true, "jpeg": true, "jpg": true };
     let file = e.target.files[0];
-    if (file.size / 1024 / 1024 > 20) {
-      alert("File size should be less than 20MB")
+    if (file.size / 1024 / 1024 > 10) {
+      alert("File size should be less than 10MB")
       return;
     }
     if (extensionAllowed) {

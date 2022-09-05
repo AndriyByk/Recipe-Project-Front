@@ -1,1 +1,92 @@
 <p>add-recipe works!</p>
+
+<div class="add-recipe">
+  <form class="add-recipe-form" [formGroup]="form">
+    <div class="add-recipe-form-title"><label>Title<input type="text" formControlName="title"></label></div>
+    <div class="add-recipe-form-cooking"><label>Cooking<input type="text" formControlName="cooking"></label></div>
+    <div class="add-recipe-form-category">
+      <div class="add-recipe-form-category-title">Category:</div>
+      <select formControlName="categoryId">
+        <option disabled>Choose category of recipe</option>
+        <option *ngFor="let category of categories" [ngValue]="category.id">{{category.name}}</option>
+      </select>
+    </div>
+    <div class="add-recipe-form-ingredients">
+      <div class="add-recipe-form-ingredients-title">Ingredients:</div>
+      <div>
+        <select formControlName="ingredientId1">
+          <option *ngFor="let ingredient of ingredients" [ngValue]="ingredient.id">{{ingredient.name}}</option>
+        </select>
+        <label>weight<input type="number" formControlName="ingredientWeight1"></label>
+      </div>
+
+      <div>
+        <select formControlName="ingredientId2">
+          <option *ngFor="let ingredient of ingredients" [ngValue]="ingredient.id">{{ingredient.name}}</option>
+        </select>
+        <label>weight<input type="number" formControlName="ingredientWeight2"></label>
+      </div>
+
+      <div>
+        <select formControlName="ingredientId3">
+          <option *ngFor="let ingredient of ingredients" [ngValue]="ingredient.id">{{ingredient.name}}</option>
+        </select>
+        <label>weight<input type="number" formControlName="ingredientWeight3"></label>
+      </div>
+
+      <div>
+        <select formControlName="ingredientId4">
+          <option *ngFor="let ingredient of ingredients" [ngValue]="ingredient.id">{{ingredient.name}}</option>
+        </select>
+        <label>weight<input type="number" formControlName="ingredientWeight4"></label>
+      </div>
+
+      <div>
+        <select formControlName="ingredientId5">
+          <option *ngFor="let ingredient of ingredients" [ngValue]="ingredient.id">{{ingredient.name}}</option>
+        </select>
+        <label>weight<input type="number" formControlName="ingredientWeight5"></label>
+      </div>
+
+      <div>
+        <select formControlName="ingredientId6">
+          <option *ngFor="let ingredient of ingredients" [ngValue]="ingredient.id">{{ingredient.name}}</option>
+        </select>
+        <label>weight<input type="number" formControlName="ingredientWeight6"></label>
+      </div>
+
+      <div>
+        <select formControlName="ingredientId7">
+          <option *ngFor="let ingredient of ingredients" [ngValue]="ingredient.id">{{ingredient.name}}</option>
+        </select>
+        <label>weight<input type="number" formControlName="ingredientWeight7"></label>
+      </div>
+
+      <div>
+        <select formControlName="ingredientId8">
+          <option *ngFor="let ingredient of ingredients" [ngValue]="ingredient.id">{{ingredient.name}}</option>
+        </select>
+        <label>weight<input type="number" formControlName="ingredientWeight8"></label>
+      </div>
+
+      <div>
+        <select formControlName="ingredientId9">
+          <option *ngFor="let ingredient of ingredients" [ngValue]="ingredient.id">{{ingredient.name}}</option>
+        </select>
+        <label>weight<input type="number" formControlName="ingredientWeight9"></label>
+      </div>
+
+      <div>
+        <select formControlName="ingredientId10">
+          <option *ngFor="let ingredient of ingredients" [ngValue]="ingredient.id">{{ingredient.name}}</option>
+        </select>
+        <label>weight<input type="number" formControlName="ingredientWeight10"></label>
+      </div>
+    </div>
+    <div class="add-recipe-form-image">
+      <label>avatar<input (change)="onChange($event)" placeholder="Picture" type="file" formControlName="picture"></label>
+    </div>
+  </form>
+
+  <button [disabled]="form.invalid" (click)="submit()" type="submit">submit</button>
+</div>
