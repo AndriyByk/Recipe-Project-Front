@@ -1,0 +1,71 @@
+.add-recipe {
+  padding-top: 20px;
+}
+
+.add-recipe-form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.add-recipe-form-title,
+.add-recipe-form-cooking,
+.add-recipe-form-category,
+.add-recipe-form-ingredients {
+  border-bottom: solid black 1px;
+  padding-bottom: 10px;
+}
+
+.add-recipe-form-ingredients {
+  display: flex;
+}
+
+.add-recipe-form-ingredients-list {
+  width: 800px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.add-recipe-form-ingredients-list > div {
+  display: flex;
+  justify-content: space-around;
+  padding: 5px 0;
+  align-items: center;
+}
+
+.add-recipe-form-image label,
+.add-recipe-form-title label,
+.add-recipe-form-cooking label,
+.add-recipe-form-category label,
+.add-recipe-form-ingredients {
+  display: flex;
+}
+
+.add-recipe-form-title-name,
+.add-recipe-form-cooking-name,
+.add-recipe-form-category-title,
+.add-recipe-form-ingredients-title,
+.add-recipe-form-image-title {
+  width: 100px;
+}
+
+.add-recipe-form-cooking input {
+  height: 50px;
+  width: fit-content;
+  min-width: 200px;
+}
+/*-------------------------*/
+.add-recipe-form-button {
+  height: 100px;
+  width: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-recipe-form-button button {
+  height: 50px;
+  width: 250px;
+  border-radius: 20px;
+}

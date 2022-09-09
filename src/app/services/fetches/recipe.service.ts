@@ -14,14 +14,13 @@ export class RecipeService {
 
   getAll(): Observable<IRecipe[]> {
     return this.httpClient.get<IRecipe[]>(`${baseURL}${recipeUrl.recipes}?pageSize=8&pageNumber=5`)
-    // return this.httpClient.get<IRecipe[]>(`${baseURL}${recipeUrl.recipes}`)
   }
 
   getById(id: number) : Observable<IRecipe> {
     return this.httpClient.get<IRecipe>(`${baseURL}${recipeUrl.recipes}/${id}?`)
   }
 
-  save(recipe: FormData) : void {
-    this.httpClient.post(`${baseURL}${recipeUrl.recipes}`, recipe);
+  save(recipe: FormData, username: string) : Observable<IRecipe[]> {
+    return this.httpClient.post<IRecipe[]>(`${baseURL}${recipeUrl.recipes}/${username}`, recipe);
   }
 }

@@ -1,0 +1,25 @@
+.sign-in form {
+  width: 600px;
+}
+
+.sign-in {
+  display: flex;
+  justify-content: center;
+  border-bottom: black solid 2px;
+}
+.sign-in-form-links {
+  display: flex;
+}
+
+.sign-in-form-link-to-sign-up {
+  margin: 10px 2px;
+}
+
+.sign-in-form-submit-button {
+  display: flex;
+}
+
+.sign-in-form-submit-button button {
+  padding: 5px 50px;
+  margin: 5px 50px 5px 0;
+}

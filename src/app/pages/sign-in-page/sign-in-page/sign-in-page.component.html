@@ -1,18 +1,33 @@
 <!--<p>sign-in works!</p>-->
 <div class="sign-in">
+
   <form class="sign-in-form" [formGroup]="form">
 
     <div class="sign-in-form-username">
-      <label>username<input class="sign-in-form-username" type="text" formControlName="username">andyandy</label>
+      <label>
+        <div>username</div>
+        <input class="sign-in-form-username" type="text" formControlName="username">andyandy
+      </label>
     </div>
 
     <div class="sign-in-form-password">
-      <label>password<input class="sign-in-form-password" type="password" formControlName="password"></label>
+      <label>
+        <div>password</div>
+        <input class="sign-in-form-password" type="password" formControlName="password">veniam
+      </label>
     </div>
 
-    <a class="sign-in-to-sign-up" [routerLink]="['/sign-up']">не зареєстровані?</a>
+    <div *ngIf="userNameOrPasswordError">{{userNameOrPasswordError}}</div>
 
-    <button type="submit" (click)="signIn()">submit</button>
-<!--    type="submit"-->
+    <div class="sign-in-form-links">
+      <div class="sign-in-form-submit-button">
+        <button [disabled]="form.invalid" type="submit" (click)="signIn()">submit</button>
+      </div>
+
+      <div class="sign-in-form-link-to-sign-up">
+        <a class="sign-in-to-sign-up" [routerLink]="['/sign-up']">не зареєстровані?</a>
+      </div>
+    </div>
+
   </form>
 </div>

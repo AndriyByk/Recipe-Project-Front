@@ -23,7 +23,9 @@ import {MainInterceptor} from "./main.interceptor";
       useClass: MainInterceptor
     }
   ],
-  exports: [],
+    exports: [
+
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

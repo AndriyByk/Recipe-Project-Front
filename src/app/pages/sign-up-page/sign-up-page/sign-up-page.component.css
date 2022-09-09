@@ -1,0 +1,37 @@
+.sign-up-form-type-of-activity,
+.sign-up-form-gender {
+  /*display: flex;*/
+  /*align-items: center;*/
+}
+
+.sign-up form {
+  width: 600px;
+}
+
+.sign-up {
+  display: flex;
+  justify-content: center;
+  border-bottom: black solid 2px;
+}
+
+.sign-up-form > div {
+  display: flex;
+  padding-left: 150px;
+}
+
+label {
+  margin: 10px;
+}
+
+form input, form select {
+  width: 150px;
+}
+
+.sign-up-form-submit-button {
+  display: flex;
+}
+.sign-up-form-submit-button button {
+  padding: 5px 50px;
+  margin: 5px 50px;
+}
+

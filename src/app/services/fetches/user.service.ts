@@ -25,11 +25,18 @@ export class UserService {
   }
 
   deleteById(id: string): Observable<void> {
-    return this.httpClient.delete<void>(`${baseURL}${recipeUrl.cabinet}/${id}`)
+    return this.httpClient.delete<void>(`${baseURL}${recipeUrl.users}/${id}`)
   }
 
   updateById(id: string, userForUpdate: Partial<IUser>): Observable<IUser> {
-    return this.httpClient.patch<IUser>(`${baseURL}${id}`, userForUpdate);
+    return this.httpClient.patch<IUser>(`${baseURL}${recipeUrl.users}/${id}`, userForUpdate);
   }
 
+  // updateByUsername(username: string, userForUpdate: Partial<IUser>): Observable<IUser> {
+  //   return this.httpClient.patch<IUser>(`${baseURL}${username}`, userForUpdate);
+  // }
+
+  updateFavoriteRecipes(username: string, recipeId: string): Observable<IUser> {
+    return this.httpClient.patch<IUser>(`${baseURL}${recipeUrl.users}/update/${username}`, recipeId);
+  }
 }

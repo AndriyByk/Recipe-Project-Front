@@ -1,0 +1,17 @@
+.cabinet-user-info > div {
+  display: flex;
+}
+
+.cabinet-user-info-name-title,
+.cabinet-user-info-lastname-title,
+.cabinet-user-info-email-title,
+.cabinet-user-info-dayOfBirth-title,
+.cabinet-user-info-type-of-activity-title,
+.cabinet-user-info-height-title,
+.cabinet-user-info-weight-title,
+.cabinet-user-info-gender-title {
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  width: 200px;
+}

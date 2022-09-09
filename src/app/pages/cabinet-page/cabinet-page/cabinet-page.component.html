@@ -1,26 +1,105 @@
-<!--<p>cabinet works!</p>-->
-
 <div class="cabinet">
   <div class="cabinet-user-info">
-    <div class="cabinet-user-info-avatar">{{user.avatar}}</div>
-    <div class="cabinet-user-info-name">{{user.name}}</div>
-    <div class="cabinet-user-info-lastname">{{user.lastName}}</div>
-    <div class="cabinet-user-info-email">{{user.email}}</div>
-    <div class="cabinet-user-info-dayOfBirth">{{user.dayOfBirth}}</div>
-    <div class="cabinet-user-info-type-of-activity">{{user.activityTypeDto.name}}</div>
-    <div class="cabinet-user-info-height">{{user.height}}</div>
-    <div class="cabinet-user-info-weight">{{user.weight}}</div>
-    <div class="cabinet-user-info-gender">{{user.genderDto.gender}}</div>
+
+    <div class="cabinet-user-info-avatar">
+      <div class="cabinet-user-info-avatar-content">
+        <img src="{{url + '/' + user.username + '/' + user.avatar}}" alt="avatar">
+      </div>
+    </div>
+
+    <div class="cabinet-user-info-name">
+      <div class="cabinet-user-info-name-title">
+        Your name:
+      </div>
+      <div class="cabinet-user-info-name-content">
+        {{user.name}}
+      </div>
+    </div>
+
+    <div class="cabinet-user-info-lastname">
+      <div class="cabinet-user-info-lastname-title">
+        Your lastname:
+      </div>
+      <div class="cabinet-user-info-lastname-content">
+        {{user.lastName}}
+      </div>
+    </div>
+
+    <div class="cabinet-user-info-email">
+      <div class="cabinet-user-info-email-title">
+        Email:
+      </div>
+      <div class="cabinet-user-info-email-content">
+        {{user.email}}
+      </div>
+    </div>
+
+    <div class="cabinet-user-info-dayOfBirth">
+      <div class="cabinet-user-info-dayOfBirth-title">
+        You were born in:
+      </div>
+      <div class="cabinet-user-info-dayOfBirth-content">
+        {{user.dayOfBirth}}
+      </div>
+    </div>
+
+    <div class="cabinet-user-info-type-of-activity">
+      <div class="cabinet-user-info-type-of-activity-title">
+        Your type of activity:
+      </div>
+      <div class="cabinet-user-info-type-of-activity-content">
+        {{user.activityTypeDto.name}}
+      </div>
+    </div>
+
+    <div class="cabinet-user-info-height">
+      <div class="cabinet-user-info-height-title">
+        Your height:
+      </div>
+      <div class="cabinet-user-info-height">
+        {{user.height}}
+      </div>
+    </div>
+
+    <div class="cabinet-user-info-weight">
+      <div class="cabinet-user-info-weight-title">
+        Your weight:
+      </div>
+      <div class="cabinet-user-info-weight-content">
+        {{user.weight}}
+      </div>
+    </div>
+
+    <div class="cabinet-user-info-gender">
+      <div class="cabinet-user-info-gender-title">
+        Your gender:
+      </div>
+      <div class="cabinet-user-info-gender-content">
+        {{user.genderDto.gender}}
+      </div>
+    </div>
   </div>
+
   <div class="cabinet-favourite-recipes">
     <div class="cabinet-favourite-recipes-all">
-<!--      [recipes]="user.getFavoriteRecipes()"-->
-      <app-favorite-recipes></app-favorite-recipes>
+      <app-favorite-recipes [recipesFavorite]="user.favoriteRecipes"></app-favorite-recipes>
     </div>
-    <div class="cabinet-menu">.........</div>
-    <div class="cabinet-rda">.........</div>
   </div>
+
+  <div class="cabinet-created-recipes">
+    <div class="cabinet-created-recipes-all">
+      <app-created-recipes [recipesCreated]="user.createdRecipes"></app-created-recipes>
+    </div>
+  </div>
+
+  <div class="cabinet-menu">.........</div>
+  <div class="cabinet-rda">.........</div>
+
   <div class="cabinet-link-to-add-recipe">
     <a [routerLink]="['/add-recipe']">Add new recipe</a>
+  </div>
+
+  <div class="cabinet-link-to-delete-account">
+    <a (click)="deleteAccount()">Delete your account</a>
   </div>
 </div>

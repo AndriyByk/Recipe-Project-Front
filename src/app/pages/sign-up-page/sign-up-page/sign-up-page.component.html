@@ -1,39 +1,102 @@
 <div class="sign-up">
   <form class="sign-up-form" [formGroup]="form">
-    <div class="sign-up-form-avatar"><label>avatar<input (change)="onChange($event)" placeholder="Pictures" type="file" formControlName="avatar"></label></div>
+    <div class="sign-up-form-avatar">
+      <label>
+        <div>avatar</div>
+        <input (change)="onChange($event)" placeholder="Pictures" type="file" formControlName="avatar">
+      </label>
+    </div>
 
-    <div class="sign-up-form-name"><label>name<input type="text" formControlName="name"></label></div>
-    <div class="sign-up-form-lastname"><label>lastname<input type="text" formControlName="lastName"></label></div>
-    <div class="sign-up-form-email"><label>email<input type="text" formControlName="email"></label></div>
-    <div class="sign-up-form-day-of-birth"><label>age<input type="date" formControlName="dayOfBirth"></label></div>
+    <div class="sign-up-form-name">
+      <label>
+        <div>name</div>
+        <input type="text" formControlName="name">
+      </label>
+    </div>
+
+    <div class="sign-up-form-lastname">
+      <label>
+        <div>lastname</div>
+        <input type="text" formControlName="lastName">
+      </label>
+    </div>
+
+    <div class="sign-up-form-email">
+      <label>
+        <div>email</div>
+        <input type="text" formControlName="email">
+      </label>
+    </div>
+
+    <div class="sign-up-form-day-of-birth">
+      <label>
+        <div>day of birth</div>
+        <input type="date" formControlName="dayOfBirth">
+      </label>
+    </div>
 
     <div class="sign-up-form-type-of-activity">
-      <div class="sign-up-form-type-of-activity-title">Type of activity:</div>
-      <select formControlName="activityTypeId">
-        <option disabled>Choose your activityType</option>
-        <option *ngFor="let typeOfActivity of types" [ngValue]="typeOfActivity.id">{{typeOfActivity.name}}</option>
-      </select>
+      <label>
+        <div class="sign-up-form-type-of-activity-title">type of activity</div>
+        <select formControlName="activityTypeId">
+          <option disabled>Choose your activityType</option>
+          <option *ngFor="let typeOfActivity of types" [ngValue]="typeOfActivity.id">{{typeOfActivity.name}}</option>
+        </select>
+      </label>
     </div>
 
-    <div class="sign-up-form-height"><label>height<input type="number" formControlName="height"></label></div>
-    <div class="sign-up-form-weight"><label>weight<input type="number" formControlName="weight"></label></div>
+    <div class="sign-up-form-height">
+      <label>
+        <div>height</div>
+        <input type="number" formControlName="height">
+      </label>
+    </div>
+
+    <div class="sign-up-form-weight">
+      <label>
+        <div>weight</div>
+        <input type="number" formControlName="weight">
+      </label>
+    </div>
 
     <div class="sign-up-form-gender">
-      <div class="sign-up-form-gender">Gender:</div>
-      <select formControlName="genderId">
-        <option disabled>Choose your gender</option>
-        <option *ngFor="let gender of genders" [ngValue]="gender.id">{{gender.gender}}</option>
-      </select>
+      <label>
+        <div class="sign-up-form-gender">gender</div>
+        <select formControlName="genderId">
+          <option disabled>Choose your gender</option>
+          <option *ngFor="let gender of genders" [ngValue]="gender.id">{{gender.gender}}</option>
+        </select>
+      </label>
     </div>
 
-    <div class="sign-up-form-username"><label>username<input type="text" formControlName="username"></label></div>
+    <div class="sign-up-form-username">
+      <label>
+        <div>username</div>
+        <input type="text" formControlName="username">
+      </label>
+    </div>
+
     <div *ngIf="userNameError">{{userNameError}}</div>
-    <div class="sign-up-form-password"><label>password<input type="password" formControlName="password"></label></div>
-    <div class="sign-up-form-confirm-password"><label>confirm password<input type="password"
-                                                                             formControlName="confirmPassword"></label>
+
+    <div class="sign-up-form-password">
+      <label>
+        <div>password</div>
+        <input type="password" formControlName="password">
+      </label>
+    </div>
+
+    <div class="sign-up-form-confirm-password">
+      <label>
+        <div>confirm password</div>
+        <input type="password" formControlName="confirmPassword">
+      </label>
     </div>
 
     <div *ngIf="form.errors">{{form.errors['notSame']}}</div>
-    <button [disabled]="form.invalid" (click)="register()" type="submit">submit</button>
+
+    <div class="sign-up-form-submit-button">
+      <button [disabled]="form.invalid" (click)="register()" type="submit">submit</button>
+    </div>
+
   </form>
 </div>

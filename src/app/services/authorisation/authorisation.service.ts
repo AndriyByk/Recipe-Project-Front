@@ -19,7 +19,7 @@ export class AuthorisationService {
     return this.httpClient.post<IUser>(`${baseURL}${recipeUrl.signUp}`, user);
   }
 
-  signIn(user: any, username: string): Observable<HttpResponse<IToken>> {
+  signIn(user: any): Observable<HttpResponse<IToken>> {
     return this.httpClient.post<IToken>(`${baseURL}${recipeUrl.signIn}`, user, {observe: 'response'});
   }
 
@@ -42,7 +42,6 @@ export class AuthorisationService {
   }
 
   deleteTokenFromDB(access: string): Observable<void> {
-    console.log(access + " is signed oooooooooout");
     return this.httpClient.delete<void>(`${baseURL}${recipeUrl.cabinet}/${access}`)
   }
 }

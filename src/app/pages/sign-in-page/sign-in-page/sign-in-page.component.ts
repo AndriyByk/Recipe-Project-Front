@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthorisationService} from "../../../services/authorisation/authorisation.service";
 import {Router} from "@angular/router";
 import {StoreService} from "../../../services/store/store.service";
@@ -11,6 +11,7 @@ import {StoreService} from "../../../services/store/store.service";
 })
 export class SignInPageComponent implements OnInit {
   form: FormGroup;
+  userNameOrPasswordError: string;
 
   constructor(private authorisationService: AuthorisationService,
               private router: Router,
@@ -23,19 +24,24 @@ export class SignInPageComponent implements OnInit {
 
   createForm(): void {
     this.form = new FormGroup({
-      username: new FormControl(null),
-      password: new FormControl(null)
+      username: new FormControl(null,[Validators.required]),
+      password: new FormControl(null,[Validators.required])
     })
   }
 
   signIn(): void {
     let username = this.form.getRawValue().username;
-    this.authorisationService.signIn(this.form.getRawValue(), username).subscribe((value) => {
-      localStorage.setItem("actualUser", username)
-      this.storeService.isUserSignedIn.next(true);
-      this.authorisationService.setToken(value.headers.get("authorization"));
-      this.router.navigate(['cabinet'])
-    })
+    this.authorisationService.signIn(this.form.getRawValue()).subscribe((value) => {
+      let error = value.headers.get("error");
+      if (error == null) {
+        localStorage.setItem("actualUser", username);
+        this.storeService.isUserSignedIn.next(true);
+        this.authorisationService.setToken(value.headers.get("authorization"));
+        this.router.navigate(['cabinet']);
+      } else {
+        this.userNameOrPasswordError = error;
+      }
+    });
   }
 }
 

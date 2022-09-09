@@ -13,14 +13,13 @@ export class HeaderComponent implements OnInit {
   private actualUser = 'actualUser';
   signedIn: boolean;
 
-  constructor(private router:Router,
+  constructor(private router: Router,
               private authorisationService: AuthorisationService,
               private storeService: StoreService) {
 
   }
 
   ngOnInit(): void {
-
     this.storeService.isUserSignedIn.next(this.authorisationService.isAuthorizedUser());
     this.storeService.isUserSignedIn.subscribe(value => this.signedIn = value);
   }
@@ -34,8 +33,10 @@ export class HeaderComponent implements OnInit {
     }
     this.storeService.isUserSignedIn.next(false);
     localStorage.removeItem(this.actualUser);
+
     this.signedIn = false;
 
     this.router.navigate(['sign-in'])
   }
+
 }

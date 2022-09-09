@@ -1,7 +1,5 @@
 export const baseURL = "http://localhost:8080";
 
-// export const baseImgURL = "";
-
 export const recipeUrl = {
   recipes: '/recipes',
   recipeCategories: '/recipes/categories',
@@ -12,9 +10,9 @@ export const recipeUrl = {
   userGenders: '/users/genders',
   ingredients: '/ingredients',
   ingredientCategories: '/ingredients/categories',
+  pictures: '/pictures',
 
   signIn: '/sign-in',
   signUp: '/sign-up',
-  cabinet: '/cabinet',
-  wild: '/**'
+  cabinet: '/cabinet'
 }

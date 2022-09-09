@@ -7,7 +7,7 @@ export interface IUser {
   // об'єкт який відображається на фронті з бази
 
   id: number;
-  login: string;
+  username: string;
   password: string;
   avatar: string;
   email:string;
