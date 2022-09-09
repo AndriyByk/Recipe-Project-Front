@@ -1,9 +1,44 @@
 <div class="recipe">
   <div class="recipe-id">{{recipe.id}}</div>
-  <div class="recipe-photo">{{recipe.image}}</div>
-  <div class="recipe-title">{{recipe.title}}</div>
-  <div class="recipe-category">{{recipe.recipeCategoryDto.name}}</div>
-  <div class="recipe-description">{{recipe.description}}</div>
-  <a [routerLink]="['/recipe', recipe.id]" [state]="{data: recipe}">Details</a>
-  <a (click)="saveToFavorites()">Подобається!</a>
+
+
+  <div class="recipe-photo">
+    <div class="recipe-photo-content">
+      <img src="{{url + '/' + recipe.title + '/' + recipe.image}}" alt="photo">
+    </div>
+  </div>
+
+
+  <div class="recipe-title">
+    <div class="recipe-title-content">
+      {{recipe.title}}
+    </div>
+  </div>
+
+  <div class="recipe-category">
+    <div class="recipe-category-title">
+      Категорія:
+    </div>
+    <div class="recipe-category-content">
+      {{recipe.recipeCategoryDto.name}}
+    </div>
+  </div>
+
+  <div class="recipe-description">
+    <div class="recipe-description-title">
+      Спосіб приготування:
+    </div>
+    <div class="recipe-description-content">
+      {{recipe.description}}
+    </div>
+  </div>
+
+  <div>
+    <a [routerLink]="['/recipe', recipe.id]" [state]="{data: recipe}">Details</a>
+  </div>
+
+  <div>
+    <a (click)="saveToFavorites()">Подобається!</a>
+  </div>
+
 </div>

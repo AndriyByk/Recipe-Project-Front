@@ -13,7 +13,7 @@ export class RecipeService {
   }
 
   getAll(): Observable<IRecipe[]> {
-    return this.httpClient.get<IRecipe[]>(`${baseURL}${recipeUrl.recipes}?pageSize=8&pageNumber=5`)
+    return this.httpClient.get<IRecipe[]>(`${baseURL}${recipeUrl.recipes}?pageSize=20&pageNumber=0`)
   }
 
   getById(id: number) : Observable<IRecipe> {
