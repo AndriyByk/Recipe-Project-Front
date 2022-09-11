@@ -1,1 +1,6 @@
-<app-favorite-recipe *ngFor="let recipeFavorite of recipesFavorite" [recipeFavorite]="recipeFavorite"></app-favorite-recipe>
+<div class="cabinet-favourite-recipes-list-title">
+  Улюблені рецепти
+</div>
+<div class="cabinet-favourite-recipes-list-content">
+  <app-favorite-recipe class="cabinet-favourite-recipe-app" *ngFor="let recipeFavorite of recipesFavorite" [recipeFavorite]="recipeFavorite"></app-favorite-recipe>
+</div>

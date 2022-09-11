@@ -1,6 +1,58 @@
 .recipe {
   border: black solid 1px;
-  width: 750px;
-  height: fit-content;
-  padding: 10px;
+  border-radius: 50%;
+  box-shadow: 0 0 9px gray;
+  width: 100%;
+  /*height: fit-content;*/
+  padding: 30px 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.recipe > div {
+  width: 80%;
+  display: flex;
+}
+
+.recipe-title-content {
+  font: 23px "Bookman Old Style";
+  font-weight: bold;
+  text-shadow: 5px 0 5px gray;
+  padding-bottom: 10px;
+}
+
+.recipe-title {
+  display: flex;
+  justify-content: center;
+}
+
+.recipe-description {
+  display: flex;
+  flex-direction: column;
+}
+
+.recipe-photo > div,
+.recipe-category > div,
+.recipe-description > div {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  font-family: "Calibri", sans-serif;
+}
+
+.recipe-details-button > a,
+.recipe-like-button > a {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  text-decoration: none;
+  color: blueviolet;
+  font-family: "Comic Sans MS", sans-serif;
+}
+
+.recipe-photo-content img {
+  max-width: 300px;
+  border-radius: 30%;
 }

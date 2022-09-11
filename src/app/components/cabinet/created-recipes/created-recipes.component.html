@@ -1,1 +1,6 @@
-<app-created-recipe *ngFor="let recipeCreated of recipesCreated" [recipeCreated]="recipeCreated"></app-created-recipe>
+<div class="cabinet-created-recipes-list-title">
+  Створені рецепти
+</div>
+<div class="cabinet-created-recipes-list-content">
+  <app-created-recipe class="cabinet-created-recipe-app" *ngFor="let recipeCreated of recipesCreated" [recipeCreated]="recipeCreated"></app-created-recipe>
+</div>

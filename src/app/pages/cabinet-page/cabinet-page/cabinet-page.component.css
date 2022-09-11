@@ -1,4 +1,8 @@
-.cabinet-user-info > div {
+.cabinet-user-info {
+  display: flex;
+}
+
+.cabinet-user-info-details > div {
   display: flex;
 }
 
@@ -14,4 +18,18 @@
   display: flex;
   justify-content: center;
   width: 200px;
+}
+
+.cabinet-user-info-avatar-content img {
+  max-width: 400px;
+}
+
+.cabinet-favourite-recipes-list {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  column-gap: 10px;
+  row-gap: 10px;
+  /*box-sizing: border-box;*/
+  /*padding: 10px;*/
 }

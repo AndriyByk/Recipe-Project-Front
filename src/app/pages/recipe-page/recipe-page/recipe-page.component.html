@@ -1,5 +1,10 @@
 <div class="recipe">
-  <div class="recipe-photo">{{recipe.image}}</div>
+  <div class="recipe-photo">
+    <div class="recipe-photo-content">
+      <img src="{{url + '/' + recipe.title + '/' + recipe.image}}" alt="photo">
+    </div>
+  </div>
+
   <div class="recipe-title">{{recipe.title}}</div>
   <div class="recipe-category">{{recipe.recipeCategoryDto.name}}</div>
   <div class="recipe-description">{{recipe.description}}</div>

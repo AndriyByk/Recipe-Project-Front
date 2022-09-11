@@ -1,17 +1,15 @@
 <div class="recipe">
-  <div class="recipe-id">{{recipe.id}}</div>
-
-
-  <div class="recipe-photo">
-    <div class="recipe-photo-content">
-      <img src="{{url + '/' + recipe.title + '/' + recipe.image}}" alt="photo">
-    </div>
-  </div>
-
+<!--  <div class="recipe-id">{{recipe.id}}</div>-->
 
   <div class="recipe-title">
     <div class="recipe-title-content">
       {{recipe.title}}
+    </div>
+  </div>
+
+  <div class="recipe-photo">
+    <div class="recipe-photo-content">
+      <img src="{{url + '/' + recipe.title + '/' + recipe.image}}" alt="photo">
     </div>
   </div>
 
@@ -33,11 +31,11 @@
     </div>
   </div>
 
-  <div>
-    <a [routerLink]="['/recipe', recipe.id]" [state]="{data: recipe}">Details</a>
+  <div class="recipe-details-button">
+    <a [routerLink]="['/recipe', recipe.id]" [state]="{data: recipe}">Деталі</a>
   </div>
 
-  <div>
+  <div class="recipe-like-button">
     <a (click)="saveToFavorites()">Подобається!</a>
   </div>
 

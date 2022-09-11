@@ -1,6 +1,22 @@
 <div class="cabinet-favourite-recipe">
-  <div class="cabinet-favourite-recipe-photo">{{recipeFavorite.image}}</div>
-  <div class="cabinet-favourite-recipe-title">{{recipeFavorite.title}}</div>
-  <div class="cabinet-favourite-recipe-category">{{recipeFavorite.recipeCategoryDto.name}}</div>
+
+  <div class="cabinet-favourite-recipe-photo">
+
+    <div class="cabinet-favourite-recipe-photo-content">
+      <img src="{{url + '/' + recipeFavorite.title + '/' + recipeFavorite.image}}" alt="photo">
+    </div>
+  </div>
+
+  <div class="cabinet-favourite-recipe-title">
+    <div>
+      {{recipeFavorite.title}}
+    </div>
+  </div>
+
+  <div class="cabinet-favourite-recipe-category">
+    <div>
+      {{recipeFavorite.recipeCategoryDto.name}}</div>
+    </div>
   <link>
+
 </div>
