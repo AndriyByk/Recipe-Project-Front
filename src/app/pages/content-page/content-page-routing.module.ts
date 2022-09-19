@@ -13,6 +13,12 @@ const routes: Routes = [
   },
   {
     path: 'add-recipe', loadChildren:() => import('./../add-recipe-page/add-recipe-page.module').then(value => value.AddRecipePageModule)
+  },
+  {
+    path: 'user', loadChildren:() => import('./../user-page/user-page.module').then(value => {
+      console.log("user-page.module loaded")
+      return value.UserPageModule
+    })
   }
 ];
 

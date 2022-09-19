@@ -6,6 +6,7 @@ export const recipeUrl = {
   nutrients: '/nutrients',
   nutrientCategories: '/nutrients/categories',
   users: '/users',
+  user: '/user',
   userActivityTypes: '/users/activity-types',
   userGenders: '/users/genders',
   ingredients: '/ingredients',

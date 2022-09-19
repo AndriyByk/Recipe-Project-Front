@@ -1,23 +1,136 @@
 <div class="recipe">
-  <div class="recipe-photo">
-    <div class="recipe-photo-content">
-      <img src="{{url + '/' + recipe.title + '/' + recipe.image}}" alt="photo">
+  <div class="recipe-body-top">
+    <div class="recipe-photo">
+      <div class="recipe-photo-content">
+        <img src="{{url + '/' + recipe.title + '/' + recipe.image}}" alt="photo">
+      </div>
+    </div>
+    <div class="recipe-info-with-ingredients">
+
+      <div class="recipe-title">
+        <div class="recipe-title-content">
+          {{recipe.title}}
+        </div>
+      </div>
+
+      <div class="recipe-author">
+        <div class="recipe-author-link">
+          <span>{{"Автор: "}}</span><a [routerLink]="['/user', recipe.author.id]" [state]="{data: recipe}">{{recipe.author.username}}</a>
+        </div>
+      </div>
+
+      <div class="recipe-category">
+        <div class="recipe-category-content">
+          {{recipe.recipeCategoryDto.name}}
+        </div>
+      </div>
+
+      <div class="recipe-ingredients">
+<!--        <div class="recipe-ingredients-title">-->
+<!--          Інгредієнти:-->
+<!--        </div>-->
+        <div class="recipe-ingredients-titles">
+          <div class="recipe-ingredients-titles-ingredient">
+            Інгредієнт
+          </div>
+          <div class="recipe-ingredients-titles-weight">
+            Вага
+          </div>
+          <div class="recipe-ingredients-titles-category">
+            Категорія
+          </div>
+        </div>
+        <div class="recipe-ingredient" *ngFor="let ingredient of recipe.ingredients">
+          <div class="recipe-ingredient-name">
+            <div class="recipe-ingredient-name-content">
+              {{ingredient.name}}
+            </div>
+          </div>
+
+          <!--    треба щоб при кліку відображалась -->
+
+          <!--    <div class="recipe-ingredient-about">-->
+          <!--      <div class="recipe-ingredient-about-title">-->
+          <!--        Інформація про інгредієнт:-->
+          <!--      </div>-->
+          <!--      <div class="recipe-ingredient-about-content">-->
+          <!--        {{ingredient.about}}-->
+          <!--      </div>-->
+          <!--    </div>-->
+
+          <div class="recipe-ingredient-weight">
+            <div class="recipe-ingredient-weight-content">
+              {{ingredient.weight}}
+            </div>
+          </div>
+
+          <div class="recipe-ingredient-category">
+            <div class="recipe-ingredient-category-content">
+              {{ingredient.ingredientCategoryDto.name}}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="recipe-title">{{recipe.title}}</div>
-  <div class="recipe-category">{{recipe.recipeCategoryDto.name}}</div>
-  <div class="recipe-description">{{recipe.description}}</div>
-  <div class="recipe-ingredients" *ngFor="let ingredient of recipe.ingredients">
-    <div class="recipe-ingredient-name">{{ingredient.name}}</div>
-    <div class="recipe-ingredient-about">{{ingredient.about}}</div>
-    <div class="recipe-ingredient-weight">{{ingredient.weight}}</div>
-    <div class="recipe-ingredient-ingredientCategory">{{ingredient.ingredientCategoryDto.name}}</div>
+  <div class="recipe-body-middle">
+    <div class="recipe-description">
+      <div class="recipe-description-content" *ngFor="let stage of stages">
+        <div>{{'- ' + stage}}</div>
+      </div>
+    </div>
   </div>
-  <div class="recipe-nutrients" *ngFor="let quantity of recipe.quantities">
-    <div class="recipe-nutrient-name">{{quantity.nutrientDto.name}}</div>
-    <div class="recipe-nutrient-about">{{quantity.nutrientDto.about}}</div>
-    <div class="recipe-nutrient-category">{{quantity.nutrientDto.categoryDto.name}}</div>
-    <div class="recipe-nutrient-category">{{quantity.nutrientDto.quantity}}</div>
+
+  <div class="recipe-body-bottom">
+    <div class="recipe-nutrients">
+      <div class="recipe-nutrients-title">
+        Нутрієнти:
+      </div>
+
+      <div class="recipe-nutrients-titles">
+        <div class="recipe-nutrients-titles-nutrient">
+          Нутрієнт
+        </div>
+        <div class="recipe-nutrients-titles-category">
+          Категорія
+        </div>
+        <div class="recipe-nutrients-titles-quantity">
+          Кількість
+        </div>
+      </div>
+
+
+      <div class="recipe-nutrient" *ngFor="let quantity of recipe.quantities">
+
+        <div class="recipe-nutrient-name">
+          <div class="recipe-nutrient-name-content">
+            {{quantity.nutrientDto.name}}
+          </div>
+        </div>
+
+<!--        <div class="recipe-nutrient-about">-->
+<!--          <div class="recipe-nutrient-about-title">-->
+<!--            Інформація про нутрієнт:-->
+<!--          </div>-->
+<!--          <div class="recipe-nutrient-about-content">-->
+<!--            {{quantity.nutrientDto.about}}-->
+<!--          </div>-->
+<!--        </div>-->
+
+        <div class="recipe-nutrient-category">
+          <div class="recipe-nutrient-category-content">
+            {{quantity.nutrientDto.categoryDto.name}}
+          </div>
+        </div>
+
+        <div class="recipe-nutrient-quantity">
+          <div class="recipe-nutrient-quantity-content">
+            {{quantity.nutrientDto.quantity}}
+          </div>
+        </div>
+
+      </div>
+    </div>
   </div>
 </div>

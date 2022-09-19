@@ -17,7 +17,7 @@ export class RecipeService {
   }
 
   getById(id: number) : Observable<IRecipe> {
-    return this.httpClient.get<IRecipe>(`${baseURL}${recipeUrl.recipes}/${id}?`)
+    return this.httpClient.get<IRecipe>(`${baseURL}${recipeUrl.recipes}/${id}`)
   }
 
   save(recipe: FormData, username: string) : Observable<IRecipe[]> {

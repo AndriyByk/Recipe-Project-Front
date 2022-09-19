@@ -94,6 +94,31 @@
     </div>
   </div>
 
+  <div>
+    <div *ngIf="user.userNorms.length > 0 else elseBlock1">
+      <div *ngFor="let norm of user.userNorms">
+        <div>
+          <span>{{norm.nameOfNutrient + "  "}}</span><span>{{norm.quantity}}</span>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #elseBlock1>
+      <div *ngIf="norms; else elseBlock2">
+        <div *ngFor="let norm of norms">
+          <div>
+            <span>{{norm.nameOfNutrient + "  "}}</span><span>{{norm.quantity}}</span>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template #elseBlock2>
+      <div (click)="calculateNorm()">
+        Calculate norms
+      </div>
+    </ng-template>
+  </div>
+
   <!--  <div class="cabinet-menu">.........</div>-->
   <!--  <div class="cabinet-rda">.........</div>-->
 

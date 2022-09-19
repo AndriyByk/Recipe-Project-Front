@@ -17,7 +17,7 @@ export class UserService {
   }
 
   getById(id: number): Observable<IUser> {
-    return this.httpClient.get<IUser>(`${baseURL}${recipeUrl.users}/${id}`)
+    return this.httpClient.get<IUser>(`${baseURL}${recipeUrl.user}/${id}`)
   }
 
   getByUsername(username: string): Observable<IUser> {
@@ -38,5 +38,9 @@ export class UserService {
 
   updateFavoriteRecipes(username: string, recipeId: string): Observable<IUser> {
     return this.httpClient.patch<IUser>(`${baseURL}${recipeUrl.users}/update/${username}`, recipeId);
+  }
+
+  calculateNorms(user: IUser): Observable<IUser> {
+    return this.httpClient.patch<IUser>(`${baseURL}${recipeUrl.users}/${user.username}`, user);
   }
 }

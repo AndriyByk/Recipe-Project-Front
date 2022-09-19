@@ -1,0 +1,118 @@
+/* жирний  "Franklin Gothic Medium"*/
+/* писаний акуратний "Gabriola"       */
+/* писаний незрозумілий "Mistral"*/
+/* писаний широкий "Monotype Corsiva"*/
+/* писаний "Segoe Print"*/
+
+
+.recipe-photo img {
+  max-width: 50vw;
+}
+
+.recipe-ingredients {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+  padding: 5px 10px;
+
+}
+
+.recipe-ingredients-titles {
+  font-family: "Segoe Print", sans-serif;
+  font-weight: bold;
+}
+
+.recipe-ingredient {
+  font-family: "Segoe Print", sans-serif;
+  font-weight: lighter;
+}
+
+.recipe-title {
+  font: 30px "Gabriola";
+  font-weight: bold;
+  text-shadow: 5px 0 5px gray;
+  display: flex;
+  justify-content: center;
+}
+
+.recipe-category {
+  background-color: #ade59d;
+  font: 15px "Segoe Print";
+  font-style: normal;
+  font-weight: bold;
+  color: white;
+  padding: 5px 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.recipe-ingredients-titles-ingredient,
+.recipe-ingredient-name {
+  width: 150px;
+}
+
+.recipe-ingredients-titles-weight,
+.recipe-ingredient-weight {
+  width: 70px;
+}
+
+.recipe-ingredients-titles-category,
+.recipe-ingredient-category {
+  width: 100px;
+}
+
+.recipe-ingredients-titles {
+  display: flex;
+  column-gap: 10px;
+}
+
+.recipe-ingredient {
+  display: flex;
+  column-gap: 10px;
+}
+
+.recipe-body-top {
+  display: flex;
+}
+
+.recipe-description {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+  padding: 40px 80px;
+  font-size: 18px;
+  font-family: "Segoe Script", sans-serif;
+
+}
+
+.recipe-nutrients {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+  padding: 5px 10px;
+}
+
+.recipe-nutrients-titles {
+  display: flex;
+  column-gap: 10px;
+}
+
+.recipe-nutrients-titles-nutrient,
+.recipe-nutrient-name {
+  width: 200px;
+}
+
+.recipe-nutrients-titles-category,
+.recipe-nutrient-category {
+  width: 100px;
+}
+
+.recipe-nutrients-titles-quantity,
+.recipe-nutrient-quantity {
+  width: 100px;
+}
+
+.recipe-nutrient {
+  display: flex;
+  column-gap: 10px;
+}

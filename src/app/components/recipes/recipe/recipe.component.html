@@ -1,5 +1,5 @@
 <div class="recipe">
-<!--  <div class="recipe-id">{{recipe.id}}</div>-->
+  <!--  <div class="recipe-id">{{recipe.id}}</div>-->
 
   <div class="recipe-title">
     <div class="recipe-title-content">
@@ -14,20 +14,18 @@
   </div>
 
   <div class="recipe-category">
-    <div class="recipe-category-title">
-      Категорія:
-    </div>
     <div class="recipe-category-content">
       {{recipe.recipeCategoryDto.name}}
     </div>
   </div>
 
-  <div class="recipe-description">
-    <div class="recipe-description-title">
-      Спосіб приготування:
-    </div>
-    <div class="recipe-description-content">
-      {{recipe.description}}
+  <div class="recipe-ingredients">
+    <div class="recipe-ingredient" *ngFor="let ingredient of recipe.ingredients">
+      <div class="recipe-ingredient-name">
+        <div class="recipe-ingredient-name-content">
+          {{ingredient.name}}
+        </div>
+      </div>
     </div>
   </div>
 

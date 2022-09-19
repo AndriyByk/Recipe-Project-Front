@@ -4,6 +4,7 @@ import {IUser} from "../../../interfaces/entities/user/IUser";
 import {baseURL, recipeUrl} from "../../../urls/urls";
 import {Router} from "@angular/router";
 import {StoreService} from "../../../services/store/store.service";
+import {INorm} from "../../../interfaces/entities/user/INorm";
 
 @Component({
   selector: 'app-cabinet',
@@ -15,6 +16,7 @@ export class CabinetPageComponent implements OnInit {
   url: string;
   private actualUser = 'actualUser';
   private accessTokenKey = 'access';
+  norms: INorm[];
 
   constructor(private userService: UserService,
               private router: Router,
@@ -39,5 +41,13 @@ export class CabinetPageComponent implements OnInit {
     localStorage.removeItem(this.accessTokenKey);
 
     this.router.navigate(['recipes'])
+  }
+
+  calculateNorm() {
+    this.userService.calculateNorms(this.user).subscribe(value => {
+      this.user = value;
+      this.storeService.norms.next(value.userNorms);
+      this.storeService.norms.subscribe(value1 => this.norms = value1);
+    });
   }
 }

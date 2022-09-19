@@ -13,6 +13,8 @@ export class RecipePageComponent implements OnInit {
 
   recipe: IRecipe;
   url: string;
+  stages: string[];
+
 
   constructor(private activatedRoute: ActivatedRoute,
               private recipeService: RecipeService) {
@@ -25,13 +27,17 @@ export class RecipePageComponent implements OnInit {
       let {state: {data}} = history;
       console.log(data);
       if (data != null) {
-        console.log(data);
+        this.stages = data.description.split(".");
         this.recipe = data as IRecipe;
       } else {
         // якщо нема - то запит до бази:
-        this.recipeService.getById(id).subscribe(recipe => this.recipe = recipe);
+        this.recipeService.getById(id).subscribe(recipe => {
+          this.recipe = recipe;
+          this.stages = recipe.description.split(".");
+        });
       }
-    })
+    });
+
   }
 
 }

@@ -1,6 +1,6 @@
 .recipe {
   border: black solid 1px;
-  border-radius: 50%;
+  border-radius: 30px;
   box-shadow: 0 0 9px gray;
   width: 100%;
   /*height: fit-content;*/
@@ -28,9 +28,32 @@
   justify-content: center;
 }
 
-.recipe-description {
+.recipe-ingredients {
   display: flex;
-  flex-direction: column;
+  column-gap: 6px;
+  row-gap: 3px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 5px;
+}
+
+.recipe-ingredient {
+  display: flex;
+  column-gap: 10px;
+  border-radius: 5px;
+  background-color: #b4eaff;
+  padding: 5px 8px;
+}
+
+.recipe-category {
+  background-color: #ade59d;
+  font: 15px "Segoe Print";
+  font-style: normal;
+  font-weight: bold;
+  color: white;
+  padding: 5px 10px;
+  display: flex;
+  justify-content: center;
 }
 
 .recipe-photo > div,
