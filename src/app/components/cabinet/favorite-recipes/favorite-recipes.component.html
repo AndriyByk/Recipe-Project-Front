@@ -1,6 +1,14 @@
-<div class="cabinet-favourite-recipes-list-title">
-  Улюблені рецепти
+<div *ngIf="recipesFavorite.length == 0" class="cabinet-favourite-recipes-list-title">
+  <div>
+    Ви ще не вподобали жодного рецепта:(
+  </div>
 </div>
+
 <div class="cabinet-favourite-recipes-list-content">
   <app-favorite-recipe class="cabinet-favourite-recipe-app" *ngFor="let recipeFavorite of recipesFavorite" [recipeFavorite]="recipeFavorite"></app-favorite-recipe>
 </div>
+
+<div>
+  <a [routerLink]="['/recipes']">Перейти до загального списку рецептів</a>
+</div>
+

@@ -1,0 +1,287 @@
+<div class="update-recipe">
+  <form class="update-recipe-form" [formGroup]="form">
+
+<!--    <div class="update-recipe-form-title">-->
+<!--      <label>-->
+<!--&lt;!&ndash;        <div class="update-recipe-form-title-name">Назва рецепта</div>&ndash;&gt;-->
+<!--        <div>-->
+<!--          <input type="text" formControlName="title" placeholder="Назва рецепта">-->
+<!--        </div>-->
+<!--      </label>-->
+<!--    </div>-->
+
+    <div class="update-recipe-form-cooking">
+      <label>
+<!--        <div class="update-recipe-form-cooking-name">Спосіб приготування</div>-->
+        <div>
+          <input  type="text" formControlName="description" placeholder="Спосіб приготування">
+        </div>
+      </label>
+    </div>
+
+    <div class="update-recipe-form-category">
+      <label>
+        <div class="update-recipe-form-category-title">Категорія рецепта</div>
+        <div>
+          <select formControlName="recipeCategoryId">
+            <option disabled>Виберіть категорію рецепта</option>
+            <option *ngFor="let category of categories" [ngValue]="category.id">{{category.name}}</option>
+          </select>
+        </div>
+      </label>
+    </div>
+
+
+    <div class="update-recipe-form-ingredients">
+      <div class="update-recipe-form-ingredients-title">Ingredients:</div>
+      <div class="update-recipe-form-ingredients-list">
+
+        <div class="update-recipe-form-ingredients-list-first">
+          <div class="update-recipe-form-ingredients-list-first-number">1)</div>
+          <div class="update-recipe-form-ingredients-list-first-ingredient">
+            <label>
+              <select formControlName="ingredientId1" required>
+                <option *ngFor="let ingredient of ingredients" [ngValue]="ingredient.id">{{ingredient.name}}</option>
+              </select>
+            </label>
+          </div>
+          <div class="update-recipe-form-ingredients-list-weight">
+            <label>
+              <div>
+                Вага
+              </div>
+              <div>
+                <input type="number" formControlName="ingredientWeight1">
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="update-recipe-form-ingredients-list-second">
+          <div class="update-recipe-form-ingredients-list-second-number">2)</div>
+          <div class="update-recipe-form-ingredients-list-second-ingredient">
+            <label>
+              <select formControlName="ingredientId2">
+                <option *ngFor="let ingredient of ingredients" [ngValue]="ingredient.id">{{ingredient.name}}</option>
+              </select>
+            </label>
+          </div>
+          <div class="update-recipe-form-ingredients-list-weight">
+            <label>
+              <div>
+                Вага
+              </div>
+              <div>
+                <input type="number" formControlName="ingredientWeight2">
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="update-recipe-form-ingredients-list-third">
+          <div class="update-recipe-form-ingredients-list-third-number">3)</div>
+          <div class="update-recipe-form-ingredients-list-third-ingredient">
+            <label>
+              <select formControlName="ingredientId3">
+                <option *ngFor="let ingredient of ingredients" [ngValue]="ingredient.id">{{ingredient.name}}</option>
+              </select>
+            </label>
+          </div>
+          <div class="update-recipe-form-ingredients-list-weight">
+            <label>
+              <div>
+                Вага
+              </div>
+              <div>
+                <input type="number" formControlName="ingredientWeight3">
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="update-recipe-form-ingredients-list-fourth">
+          <div class="update-recipe-form-ingredients-list-fourth-number">4)</div>
+          <div class="update-recipe-form-ingredients-list-fourth-ingredient">
+            <label>
+              <select formControlName="ingredientId4">
+                <option *ngFor="let ingredient of ingredients" [ngValue]="ingredient.id">{{ingredient.name}}</option>
+              </select>
+            </label>
+          </div>
+          <div class="update-recipe-form-ingredients-list-weight">
+            <label>
+              <div>
+                Вага
+              </div>
+              <div>
+                <input type="number" formControlName="ingredientWeight4">
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="update-recipe-form-ingredients-list-fifth">
+          <div class="update-recipe-form-ingredients-list-fifth-number">5)</div>
+          <div class="update-recipe-form-ingredients-list-fifth-ingredient">
+            <label>
+              <select formControlName="ingredientId5">
+                <option *ngFor="let ingredient of ingredients" [ngValue]="ingredient.id">{{ingredient.name}}</option>
+              </select>
+            </label>
+          </div>
+          <div class="update-recipe-form-ingredients-list-weight">
+            <label>
+              <div>
+                Вага
+              </div>
+              <div>
+                <input type="number" formControlName="ingredientWeight5">
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="update-recipe-form-ingredients-list-sixth">
+          <div class="update-recipe-form-ingredients-list-sixth-number">6)</div>
+          <div class="update-recipe-form-ingredients-list-sixth-ingredient">
+            <label>
+              <select formControlName="ingredientId6">
+                <option *ngFor="let ingredient of ingredients" [ngValue]="ingredient.id">{{ingredient.name}}</option>
+              </select>
+            </label>
+          </div>
+          <div class="update-recipe-form-ingredients-list-weight">
+            <label>
+              <div>
+                Вага
+              </div>
+              <div>
+                <input type="number" formControlName="ingredientWeight6">
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="update-recipe-form-ingredients-list-seventh">
+          <div class="update-recipe-form-ingredients-list-seventh-number">7)</div>
+          <div class="update-recipe-form-ingredients-list-seventh-ingredient">
+            <label>
+              <select formControlName="ingredientId7">
+                <option *ngFor="let ingredient of ingredients" [ngValue]="ingredient.id">{{ingredient.name}}</option>
+              </select>
+            </label>
+          </div>
+          <div class="update-recipe-form-ingredients-list-weight">
+            <label>
+              <div>
+                Вага
+              </div>
+              <div>
+                <input type="number" formControlName="ingredientWeight7">
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="update-recipe-form-ingredients-list-eight">
+          <div class="update-recipe-form-ingredients-list-eight-number">8)</div>
+          <div class="update-recipe-form-ingredients-list-eight-ingredient">
+            <label>
+              <select formControlName="ingredientId8">
+                <option *ngFor="let ingredient of ingredients" [ngValue]="ingredient.id">{{ingredient.name}}</option>
+              </select>
+            </label>
+          </div>
+          <div class="update-recipe-form-ingredients-list-weight">
+            <label>
+              <div>
+                Вага
+              </div>
+              <div>
+                <input type="number" formControlName="ingredientWeight8">
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="update-recipe-form-ingredients-list-ninth">
+          <div class="update-recipe-form-ingredients-list-ninth-number">9)</div>
+          <div class="update-recipe-form-ingredients-list-ninth-ingredient">
+            <label>
+              <select formControlName="ingredientId9">
+                <option *ngFor="let ingredient of ingredients" [ngValue]="ingredient.id">{{ingredient.name}}</option>
+              </select>
+            </label>
+          </div>
+          <div class="update-recipe-form-ingredients-list-weight">
+            <label>
+              <div>
+                Вага
+              </div>
+              <div>
+                <input type="number" formControlName="ingredientWeight9">
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="update-recipe-form-ingredients-list-tenth">
+          <div class="update-recipe-form-ingredients-list-tenth-number">10)</div>
+          <div class="update-recipe-form-ingredients-list-tenth-ingredient">
+            <label>
+              <select formControlName="ingredientId10">
+                <option *ngFor="let ingredient of ingredients" [ngValue]="ingredient.id">{{ingredient.name}}</option>
+              </select>
+            </label>
+          </div>
+          <div class="update-recipe-form-ingredients-list-weight">
+            <label>
+              <div>
+                Вага
+              </div>
+              <div>
+                <input type="number" formControlName="ingredientWeight10">
+              </div>
+            </label>
+          </div>
+        </div>
+
+<!--        <div *ngFor="let ingredient of recipeIngredients">-->
+<!--          <div class="update-recipe-form-ingredients-list-number">{{ingredient.id}}</div>-->
+<!--          <div class="add-recipe-form-ingredients-list-ingredient">-->
+<!--            <label>-->
+<!--              <select formControlName="{{'ingredientId' + ingredient.id}}" required>-->
+<!--                <option *ngFor="let ingredient of ingredients" [ngValue]="ingredient.id">{{ingredient.name}}</option>-->
+<!--              </select>-->
+<!--            </label>-->
+<!--          </div>-->
+<!--          <div class="add-recipe-form-ingredients-list-weight">-->
+<!--            <label>-->
+<!--              <div>-->
+<!--                Вага-->
+<!--              </div>-->
+<!--              <div>-->
+<!--                <input type="number" formControlName="{{'ingredientWeight' + ingredient.id}}">-->
+<!--              </div>-->
+<!--            </label>-->
+<!--          </div>-->
+<!--        </div>-->
+
+        <div class="update-recipe-form-image">
+          <label>
+            <div class="update-recipe-form-image-title">Photo</div>
+            <div>
+              <input (change)="onChange($event)" placeholder="Picture" type="file"
+                     formControlName="picture">
+            </div>
+          </label>
+        </div>
+
+      </div>
+    </div>
+  </form>
+
+  <div class="update-recipe-form-button">
+    <button [disabled]="form.invalid" (click)="submit()" type="submit">submit</button>
+  </div>
+</div>

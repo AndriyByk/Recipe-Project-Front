@@ -1,6 +1,21 @@
 <div class="cabinet-created-recipe">
-  <div class="cabinet-created-recipe-photo">{{recipeCreated.image}}</div>
-  <div class="cabinet-created-recipe-title">{{recipeCreated.title}}</div>
-  <div class="cabinet-created-recipe-category">{{recipeCreated.recipeCategoryDto.name}}</div>
-  <link>
+  <a [routerLink]="['/recipe', recipeCreated.id]">
+    <div class="cabinet-created-recipe-photo">
+      <div class="cabinet-created-recipe-photo-content">
+        <img src="{{url + '/' + recipeCreated.title + '/' + recipeCreated.image}}" alt="photo">
+      </div>
+    </div>
+
+    <div class="cabinet-created-recipe-title">
+      <div>
+        {{recipeCreated.title}}
+      </div>
+    </div>
+
+    <div class="cabinet-created-recipe-category">
+      <div>
+        {{recipeCreated.recipeCategoryDto.name}}
+      </div>
+    </div>
+  </a>
 </div>

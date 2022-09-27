@@ -1,0 +1,45 @@
+<div class="user-page">
+
+  <div class="user-page-avatar">
+    <img src="{{url + '/' + user.username + '/' + user.avatar}}" alt="avatar">
+  </div>
+
+  <div class="user-page-date-of-registration">
+    <div>
+      {{'З нами з ' + user.dateOfRegistration}}
+    </div>
+  </div>
+
+  <div class="user-page-created-recipes">
+    <a *ngFor="let recipe of user.createdRecipes" [routerLink]="['/recipe', recipe.id]">
+      <div class="user-page-created-recipe">
+        <div class="user-page-created-recipe-left">
+          <div class="user-page-created-recipe-photo">
+            <div class="user-page-created-recipe-photo-content">
+              <img src="{{url + '/' + recipe.title + '/' + recipe.image}}" alt="photo">
+            </div>
+          </div>
+        </div>
+
+        <div class="user-page-created-recipe-right">
+          <div class="user-page-created-recipe-title">
+            <div class="user-page-created-recipe-title-content">{{recipe.title}}</div>
+          </div>
+          <div class="user-page-created-recipe-category">
+            <div class="user-page-created-recipe-category-content">{{recipe.recipeCategoryDto.name}}</div>
+          </div>
+          <div class="user-page-created-recipe-ingredients">
+            <div class="user-page-created-recipe-ingredient" *ngFor="let ingredient of recipe.ingredients">
+              <div class="user-page-created-recipe-ingredient-name">
+                <div class="user-page-created-recipe-ingredient-name-content">
+                  {{ingredient.name}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</div>

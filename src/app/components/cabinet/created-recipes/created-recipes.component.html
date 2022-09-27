@@ -1,6 +1,9 @@
-<div class="cabinet-created-recipes-list-title">
-  Створені рецепти
+<div *ngIf="recipesCreated.length == 0"  class="cabinet-created-recipes-list-title">
+  <div>
+    Ви ще створили жодного рецепта:(
+  </div>
 </div>
+
 <div class="cabinet-created-recipes-list-content">
   <app-created-recipe class="cabinet-created-recipe-app" *ngFor="let recipeCreated of recipesCreated" [recipeCreated]="recipeCreated"></app-created-recipe>
 </div>

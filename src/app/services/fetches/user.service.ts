@@ -32,15 +32,15 @@ export class UserService {
     return this.httpClient.patch<IUser>(`${baseURL}${recipeUrl.users}/${id}`, userForUpdate);
   }
 
-  // updateByUsername(username: string, userForUpdate: Partial<IUser>): Observable<IUser> {
-  //   return this.httpClient.patch<IUser>(`${baseURL}${username}`, userForUpdate);
-  // }
+  updateByUsername(username: string, user: FormData): Observable<IUser> {
+    return this.httpClient.patch<IUser>(`${baseURL}${recipeUrl.user}/${username}`, user);
+  }
 
   updateFavoriteRecipes(username: string, recipeId: string): Observable<IUser> {
     return this.httpClient.patch<IUser>(`${baseURL}${recipeUrl.users}/update/${username}`, recipeId);
   }
 
   calculateNorms(user: IUser): Observable<IUser> {
-    return this.httpClient.patch<IUser>(`${baseURL}${recipeUrl.users}/${user.username}`, user);
+    return this.httpClient.patch<IUser>(`${baseURL}${recipeUrl.users}/norms/${user.username}`, user);
   }
 }

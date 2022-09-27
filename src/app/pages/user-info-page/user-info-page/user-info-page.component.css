@@ -1,0 +1,56 @@
+.cabinet-user-info {
+  display: flex;
+}
+
+.cabinet-user-info-avatar-content img {
+  max-width: 400px;
+}
+
+.cabinet-user-info-details > div {
+  display: flex;
+}
+
+.cabinet-user-info-name-title,
+.cabinet-user-info-lastname-title,
+.cabinet-user-info-email-title,
+.cabinet-user-info-dayOfBirth-title,
+.cabinet-user-info-type-of-activity-title,
+.cabinet-user-info-height-title,
+.cabinet-user-info-weight-title,
+.cabinet-user-info-gender-title {
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  width: 200px;
+}
+
+.cabinet-user-info-type-of-activity-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.cabinet-user-info-link-to-update-account a,
+.cabinet-user-info-link-to-delete-account a {
+  color: blue;
+  font-weight: bold;
+}
+
+.cabinet-user-info-link-to-update-account,
+.cabinet-user-info-link-to-delete-account {
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.cabinet-user-info-links {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.cabinet-user-info-link-to-update-account:hover,
+.cabinet-user-info-link-to-delete-account:hover {
+  box-shadow: red 1px 1px 5px;
+  background-color: #ffeded;
+  cursor: pointer;
+}
+

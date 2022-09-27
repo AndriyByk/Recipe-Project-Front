@@ -2,9 +2,7 @@
   <!--  <div class="recipe-id">{{recipe.id}}</div>-->
 
   <div class="recipe-title">
-    <div class="recipe-title-content">
-      {{recipe.title}}
-    </div>
+    <div class="recipe-title-content">{{recipe.title}}</div>
   </div>
 
   <div class="recipe-photo">
@@ -14,9 +12,7 @@
   </div>
 
   <div class="recipe-category">
-    <div class="recipe-category-content">
-      {{recipe.recipeCategoryDto.name}}
-    </div>
+    <div class="recipe-category-content">{{recipe.recipeCategoryDto.name}}</div>
   </div>
 
   <div class="recipe-ingredients">
@@ -33,7 +29,7 @@
     <a [routerLink]="['/recipe', recipe.id]" [state]="{data: recipe}">Деталі</a>
   </div>
 
-  <div class="recipe-like-button">
+  <div *ngIf="username" class="recipe-like-button">
     <a (click)="saveToFavorites()">Подобається!</a>
   </div>
 

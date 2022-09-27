@@ -2,76 +2,72 @@
   <form class="sign-up-form" [formGroup]="form">
     <div class="sign-up-form-avatar">
       <label>
-        <div>avatar</div>
+        <div>Фото профілю</div>
         <input (change)="onChange($event)" placeholder="Pictures" type="file" formControlName="avatar">
       </label>
     </div>
 
     <div class="sign-up-form-name">
       <label>
-        <div>name</div>
+        <div>Ім'я</div>
         <input type="text" formControlName="name">
       </label>
     </div>
 
     <div class="sign-up-form-lastname">
       <label>
-        <div>lastname</div>
+        <div>Прізвище</div>
         <input type="text" formControlName="lastName">
       </label>
     </div>
 
     <div class="sign-up-form-email">
       <label>
-        <div>email</div>
+        <div>Електронна скринька</div>
         <input type="text" formControlName="email">
       </label>
     </div>
 
     <div class="sign-up-form-day-of-birth">
       <label>
-        <div>day of birth</div>
+        <div>День Вашого народження</div>
         <input type="date" formControlName="dayOfBirth">
       </label>
     </div>
 
     <div class="sign-up-form-type-of-activity">
       <label>
-        <div class="sign-up-form-type-of-activity-title">type of activity</div>
+        <div class="sign-up-form-type-of-activity-title">Тип занятості</div>
         <select formControlName="activityTypeId">
-          <option disabled>Choose your activityType</option>
+          <option disabled>Виберіть Ваш тип занятості</option>
           <option *ngFor="let typeOfActivity of types" [ngValue]="typeOfActivity.id">{{typeOfActivity.name}}</option>
         </select>
       </label>
-    1. Робітники переважно розумової праці, дуже легка фізична активність
-      Науковці, студенти гуманітарного фаху, оператори ЕОМ, контролери, педагоги, диспетчери, робітники пультів управління тощо
-    2. Робітники, зайняті легкою працею, легка фізична активність
-      Водії трамваїв, тролейбусів, робітники конвеєрів, ваговики, швейники, пакувальники, робітники радіоелектронної промисловості, агрономи, медсестри, робітники зв’язку, сфери обслуговування, продавці промтоварів тощо
-    3. Робітники праці середньої важкості, середня фізична активність
-      Робітники праці середньої важкості, середня фізична активність
-    4. Робітники важкої і особливо важкої фізичної праці, висока і дуже висока фізична активність
-      Будівельники, помічники буровиків, прохідники, основна маса робітників сільського господарства, механізатори, доярки, овочівники, деревообробники, металурги, ливарники, робітники сільського господарства в посівний та збиральний періоди, доменщики, вальники лісу, каменярі, землекопи, вантажники немеханізованої праці тощо
+      <div>
+        <div *ngFor="let typeOfActivity of types">{{typeOfActivity.id + ". "}}{{typeOfActivity.about}}</div>
+      </div>
+
     </div>
 
     <div class="sign-up-form-height">
       <label>
-        <div>height</div>
+        <div>Висота</div>
         <input type="number" formControlName="height">
       </label>
     </div>
 
     <div class="sign-up-form-weight">
       <label>
-        <div>weight</div>
+        <div>Вага</div>
         <input type="number" formControlName="weight">
       </label>
     </div>
 
     <div class="sign-up-form-gender">
       <label>
-        <div class="sign-up-form-gender">gender</div>
+        <div class="sign-up-form-gender">Стать</div>
         <select formControlName="genderId">
-          <option disabled>Choose your gender</option>
+          <option disabled>Виберіть фізіологічну стать</option>
           <option *ngFor="let gender of genders" [ngValue]="gender.id">{{gender.gender}}</option>
         </select>
       </label>
@@ -79,7 +75,7 @@
 
     <div class="sign-up-form-username">
       <label>
-        <div>username</div>
+        <div>Логін</div>
         <input type="text" formControlName="username">
       </label>
     </div>
@@ -88,14 +84,14 @@
 
     <div class="sign-up-form-password">
       <label>
-        <div>password</div>
+        <div>Пароль</div>
         <input type="password" formControlName="password">
       </label>
     </div>
 
     <div class="sign-up-form-confirm-password">
       <label>
-        <div>confirm password</div>
+        <div>Підтвердіть ваш пароль</div>
         <input type="password" formControlName="confirmPassword">
       </label>
     </div>
@@ -103,7 +99,7 @@
     <div *ngIf="form.errors">{{form.errors['notSame']}}</div>
 
     <div class="sign-up-form-submit-button">
-      <button [disabled]="form.invalid" (click)="register()" type="submit">submit</button>
+      <button [disabled]="form.invalid" (click)="register()" type="submit">Зареєструватись</button>
     </div>
 
   </form>

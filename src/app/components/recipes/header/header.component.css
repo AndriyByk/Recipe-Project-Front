@@ -6,3 +6,13 @@
   padding: 10px;
   justify-content: center;
 }
+
+.header a {
+  box-shadow: indianred 0 0 5px;
+  text-decoration: none;
+  color: black;
+  font-size: 30px;
+  font-weight: bold;
+  font-family: Gabriola, serif;
+  padding: 10px;
+}

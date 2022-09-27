@@ -28,11 +28,9 @@ export class AddRecipePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.recipeCategoryService.getAll().subscribe(value => {
-      console.log(value);
       this.categories = value
     });
     this.ingredientService.getAll().subscribe(value => {
-      console.log(value);
       this.ingredients = value
     });
   }

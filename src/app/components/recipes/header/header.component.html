@@ -6,16 +6,16 @@
   </div>
 
   <div class="header-cabinet-link" *ngIf="signedIn">
-    <a [routerLink]="['cabinet']">Cabinet</a>
+    <a [routerLink]="['cabinet/info']">Кабінет</a>
   </div>
 
   <div class="header-right">
     <div class="header-buttons">
       <div class="header-button-signIn" *ngIf="signedIn; else signedOut">
-        <a (click)="logOut()">Sign Out</a>
+        <a (click)="logOut()">Вийти з профілю</a>
       </div>
       <ng-template class="header-button-signOut" #signedOut>
-        <a [routerLink]="['sign-in']">Sign In</a>
+        <a [routerLink]="['sign-in']">Ввійти в профіль</a>
       </ng-template>
     </div>
   </div>

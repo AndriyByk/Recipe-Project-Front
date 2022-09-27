@@ -37,7 +37,7 @@ export class SignInPageComponent implements OnInit {
         localStorage.setItem("actualUser", username);
         this.storeService.isUserSignedIn.next(true);
         this.authorisationService.setToken(value.headers.get("authorization"));
-        this.router.navigate(['cabinet']);
+        this.router.navigate(['cabinet/info']);
       } else {
         this.userNameOrPasswordError = error;
       }

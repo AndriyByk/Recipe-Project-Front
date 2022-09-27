@@ -1,35 +1,21 @@
-.cabinet-user-info {
+.cabinet-links {
   display: flex;
+  padding: 10px;
+  justify-content: space-evenly;
 }
 
-.cabinet-user-info-details > div {
-  display: flex;
-}
-
-.cabinet-user-info-name-title,
-.cabinet-user-info-lastname-title,
-.cabinet-user-info-email-title,
-.cabinet-user-info-dayOfBirth-title,
-.cabinet-user-info-type-of-activity-title,
-.cabinet-user-info-height-title,
-.cabinet-user-info-weight-title,
-.cabinet-user-info-gender-title {
-  height: 20px;
-  display: flex;
-  justify-content: center;
-  width: 200px;
-}
-
-.cabinet-user-info-avatar-content img {
-  max-width: 400px;
-}
-
-.cabinet-favourite-recipes-list {
+.cabinet {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  column-gap: 10px;
-  row-gap: 10px;
-  /*box-sizing: border-box;*/
-  /*padding: 10px;*/
+  row-gap: 20px;
+}
+
+.cabinet-links a {
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 26px;
+  font-family: Gabriola, serif;
+  border-radius: 10px;
+  box-shadow: blue 0 0 5px;
+  padding: 3px;
 }

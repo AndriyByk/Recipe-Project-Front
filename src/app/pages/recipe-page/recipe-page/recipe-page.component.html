@@ -15,7 +15,18 @@
 
       <div class="recipe-author">
         <div class="recipe-author-link">
-          <span>{{"Автор: "}}</span><a [routerLink]="['/user', recipe.author.id]" [state]="{data: recipe}">{{recipe.author.username}}</a>
+          <span>{{"Автор: "}}</span>
+
+          <div *ngIf="user.id != recipe.author.id else toCabinet">
+            <a [routerLink]="['/user', recipe.author.id]" [state]="{data: recipe}">{{recipe.author.username}}</a>
+          </div>
+          <ng-template #toCabinet>
+            <a [routerLink]="['/cabinet/created-recipes']">{{recipe.author.username}}</a>
+            <div class="link-to-update-recipe">
+              <a [routerLink]="['/update-recipe', recipe.id]" [state]="{data: recipe}">Редагувати рецепт</a>
+            </div>
+          </ng-template>
+
         </div>
       </div>
 
@@ -26,9 +37,9 @@
       </div>
 
       <div class="recipe-ingredients">
-<!--        <div class="recipe-ingredients-title">-->
-<!--          Інгредієнти:-->
-<!--        </div>-->
+        <!--        <div class="recipe-ingredients-title">-->
+        <!--          Інгредієнти:-->
+        <!--        </div>-->
         <div class="recipe-ingredients-titles">
           <div class="recipe-ingredients-titles-ingredient">
             Інгредієнт
@@ -109,14 +120,14 @@
           </div>
         </div>
 
-<!--        <div class="recipe-nutrient-about">-->
-<!--          <div class="recipe-nutrient-about-title">-->
-<!--            Інформація про нутрієнт:-->
-<!--          </div>-->
-<!--          <div class="recipe-nutrient-about-content">-->
-<!--            {{quantity.nutrientDto.about}}-->
-<!--          </div>-->
-<!--        </div>-->
+        <!--        <div class="recipe-nutrient-about">-->
+        <!--          <div class="recipe-nutrient-about-title">-->
+        <!--            Інформація про нутрієнт:-->
+        <!--          </div>-->
+        <!--          <div class="recipe-nutrient-about-content">-->
+        <!--            {{quantity.nutrientDto.about}}-->
+        <!--          </div>-->
+        <!--        </div>-->
 
         <div class="recipe-nutrient-category">
           <div class="recipe-nutrient-category-content">

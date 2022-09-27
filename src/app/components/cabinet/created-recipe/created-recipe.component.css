@@ -1,0 +1,17 @@
+.cabinet-created-recipe {
+  display: flex;
+  flex-direction: column;
+  border: black solid 1px;
+  border-radius: 2%;
+  box-shadow: 0 0 9px gray;
+  padding: 5px;
+  max-width: 200px;
+}
+
+.cabinet-created-recipe-photo-content {
+  width: 100%;
+}
+
+.cabinet-created-recipe-photo-content img {
+  width: 100%;
+}
