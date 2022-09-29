@@ -91,9 +91,25 @@ export class AddRecipePageComponent implements OnInit {
     formData.append('picture', this.form.get('picture')?.value);
     console.log(rawValue);
 
+    let date1 = new Date();
+    const date: string = [
+      date1.getDate().toString().padStart(2, '0'),
+      (date1.getMonth()+1).toString().padStart(2, '0'),
+      date1.getFullYear()
+    ].join('-');
+
+    const time: string = [
+      date1.getHours().toString().padStart(2, '0'),
+      date1.getMinutes().toString().padStart(2, '0'),
+      date1.getSeconds().toString().padStart(2, '0')
+    ].join('-');
+
+    const fullDate: string = [date, time].join('_');
+
     let recipe : IRecipeForPost = {
       title: rawValue.title,
       description: rawValue.description,
+      dateOfCreation: fullDate,
       recipeCategoryId: rawValue.recipeCategoryId,
       rawIngredientWithWeights: [
         {
@@ -145,7 +161,7 @@ export class AddRecipePageComponent implements OnInit {
     let user = localStorage.getItem(this.actualUser);
     if (user) {
       this.recipeService.save(formData, user).subscribe();
-      this.router.navigate(['cabinet']);
+      this.router.navigate(['/cabinet/created-recipes']);
     }
   }
 }

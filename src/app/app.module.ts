@@ -9,7 +9,7 @@ import {MainInterceptor} from "./main.interceptor";
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,

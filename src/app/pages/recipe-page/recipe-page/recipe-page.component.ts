@@ -5,6 +5,9 @@ import {RecipeService} from "../../../services/fetches/recipe.service";
 import {baseURL, recipeUrl} from "../../../urls/urls";
 import {IUser} from "../../../interfaces/entities/user/IUser";
 import {UserService} from "../../../services/fetches/user.service";
+import {INorm} from "../../../interfaces/entities/user/INorm";
+import {INutrientDto} from "../../../interfaces/entities/nutrient/INutrientDto";
+import {IProportion} from "../../../interfaces/entities/nutrient/IProportion";
 
 @Component({
   selector: 'app-recipe',
@@ -18,6 +21,9 @@ export class RecipePageComponent implements OnInit {
   stages: string[];
   user: IUser;
   private actualUser = 'actualUser';
+  norms: INorm[];
+  quantities: INutrientDto[];
+  proportions: IProportion[] = [];
 
   constructor(private activatedRoute: ActivatedRoute,
               private recipeService: RecipeService,
@@ -26,26 +32,59 @@ export class RecipePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.url = baseURL + recipeUrl.pictures;
+
+    // юзер
     let username = localStorage.getItem(this.actualUser);
-    if (username)
-      this.userService.getByUsername(username).subscribe(value => this.user = value);
+    if (username) {
+      this.userService.getByUsername(username).subscribe(user => {
+        this.user = user;
 
-    this.activatedRoute.params.subscribe(({id}) => {
-      // інфа з історії
-      let {state: {data}} = history;
-      console.log(data);
-      if (data != null) {
-        this.stages = data.description.split(".");
-        this.recipe = data as IRecipe;
-      } else {
-        // якщо нема - то запит до бази:
-        this.recipeService.getById(id).subscribe(recipe => {
-          this.recipe = recipe;
-          this.stages = recipe.description.split(".");
+
+        // рецепт
+        this.activatedRoute.params.subscribe(({id}) => {
+          // інфа з історії
+          let {state: {data}} = history;
+          console.log(data);
+          if (data != null) {
+            // опис рецепта
+            this.stages = data.description.split(".");
+            this.recipe = data as IRecipe;
+
+            // пропорції
+            for (let i = 0; i < user.userNorms.length; i++) {
+              for (let j = 0; j < data.quantities.length; j++) {
+                if (user.userNorms[i].idOfNutrient == data.quantities[j].nutrientDto.idOfNutrient) {
+                  this.proportions.push({
+                    idOfNutrient: user.userNorms[i].idOfNutrient,
+                    nutrient: user.userNorms[i].nameOfNutrient,
+                    percentage: (user.userNorms[i].quantity / data.quantities[j].nutrientDto.quantity)
+                  })
+                }
+              }
+            }
+          } else {
+            // якщо нема - то запит до бази:
+            this.recipeService.getById(id).subscribe(recipe => {
+              this.recipe = recipe;
+              // опис рецепта
+              this.stages = recipe.description.split(".");
+
+              // пропорції
+              for (let i = 0; i < user.userNorms.length; i++) {
+                for (let j = 0; j < recipe.quantities.length; j++) {
+                  if (user.userNorms[i].idOfNutrient == recipe.quantities[j].nutrientDto.idOfNutrient) {
+                    this.proportions.push({
+                      idOfNutrient: user.userNorms[i].idOfNutrient,
+                      nutrient: user.userNorms[i].nameOfNutrient,
+                      percentage: (Math.round(user.userNorms[i].quantity) / Math.round(recipe.quantities[j].nutrientDto.quantity))
+                    })
+                  }
+                }
+              }
+            });
+          }
         });
-      }
-    });
-
+      });
+    }
   }
-
 }

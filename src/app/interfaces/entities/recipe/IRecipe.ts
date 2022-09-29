@@ -8,6 +8,7 @@ export interface IRecipe {
   image: string;
   title: string;
   description: string;
+  dateOfCreation: string;
   recipeCategoryDto: IRecipeCategory;
   author: IUserAuthor;
   ingredients: IIngredient[];

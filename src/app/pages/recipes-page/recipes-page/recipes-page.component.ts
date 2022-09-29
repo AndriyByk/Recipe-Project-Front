@@ -20,7 +20,7 @@ export class RecipesPageComponent implements OnInit {
   ngOnInit(): void {
     this.recipeService.getAll().subscribe(value => {
       this.storeService.recipes.next(value);
-      this.recipes = value;
+      // this.recipes = value;
     })
   }
 }

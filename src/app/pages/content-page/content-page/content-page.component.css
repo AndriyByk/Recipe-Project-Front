@@ -1,4 +1,3 @@
-.recipes-page {
-  display: flex;
-  flex-wrap: wrap;
+.content-page {
+  margin: 100px 0 100px 0;
 }

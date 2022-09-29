@@ -30,13 +30,15 @@ export class StoreService {
 
   norms = new BehaviorSubject<INorm[]>([{
     quantity: 0,
-    nameOfNutrient: ""
+    nameOfNutrient: "",
+    idOfNutrient: 0
   }])
 
   recipes = new BehaviorSubject<IRecipe[]>([{
     id: 0,
     image: "",
     description: "",
+    dateOfCreation: "",
     ingredients: [],
     recipeCategoryDto: {
       id: 0,
@@ -54,6 +56,7 @@ export class StoreService {
     id: 0,
     image: "",
     description: "",
+    dateOfCreation: "",
     ingredients: [],
     recipeCategoryDto: {
       id: 0,

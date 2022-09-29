@@ -1,6 +1,12 @@
 <div class="add-recipe">
   <form class="add-recipe-form" [formGroup]="form">
 
+    <div>
+      Важливо не додавати інгредієнтів, які повторюються! Бо буде валити
+<!--      javax.persistence.EntityExistsException:-->
+<!--      A different object with the same identifier value was already associated with the session :-->
+<!--      [com.example.recipe_project.models.entity.entities.Weight#com.example.recipe_project.models.entity.ids.WeightId@706737b3]-->
+    </div>
     <div class="add-recipe-form-title">
       <label>
         <div class="add-recipe-form-title-name">Назва рецепта</div>
@@ -32,7 +38,7 @@
     </div>
 
     <div class="add-recipe-form-ingredients">
-      <div class="add-recipe-form-ingredients-title">Ingredients:</div>
+      <div class="add-recipe-form-ingredients-title">Інгредієнти:</div>
 
       <div class="add-recipe-form-ingredients-list">
 
@@ -250,7 +256,7 @@
 
     <div class="add-recipe-form-image">
       <label>
-        <div class="add-recipe-form-image-title">Photo</div>
+        <div class="add-recipe-form-image-title">Фото</div>
         <div>
           <input (change)="onChange($event)" placeholder="Picture" type="file"
                  formControlName="picture">
@@ -260,6 +266,6 @@
   </form>
 
   <div class="add-recipe-form-button">
-    <button [disabled]="form.invalid" (click)="submit()" type="submit">submit</button>
+    <button [disabled]="form.invalid" (click)="submit()" type="submit">Додати новий рецепт</button>
   </div>
 </div>

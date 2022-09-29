@@ -56,7 +56,10 @@ export class SignUpPageComponent implements OnInit {
   register():void {
     let rawValue = this.form.getRawValue();
     delete rawValue.confirmPassword;
-    rawValue.dateOfRegistration = new Date().toDateString();
+
+    let date : string = new Date().toLocaleDateString();
+    rawValue.dateOfRegistration = date.replace('/', '-');
+
     let formData = new FormData();
     formData.append('avatar', this.form.get('avatar')?.value);
     formData.append('pageNumber', '1');
@@ -68,7 +71,7 @@ export class SignUpPageComponent implements OnInit {
     formData.append('user', ourUser);
     this.authorisationService.register(formData).subscribe(
       // на контролері на беку можна змінити метод пост на войд: повертати шось не обов'язково
-      value => this.router.navigate(['sign-in']),
+      () => this.router.navigate(['sign-in']),
       error => this.userNameError = error.error.username[0]
     );
   }

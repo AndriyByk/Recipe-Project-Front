@@ -4,16 +4,17 @@ import {CommonModule} from '@angular/common';
 import {RecipesPageRoutingModule} from './recipes-page-routing.module';
 import {RecipesPageComponent} from './recipes-page/recipes-page.component';
 import {RecipeComponent} from "../../components/recipes/recipe/recipe.component";
-import {FilterComponent} from "../../components/recipes/filter/filter.component";
 import {HttpClientModule} from "@angular/common/http";
 import {RecipeService} from "../../services/fetches/recipe.service";
+import {FooterComponent} from "../../components/recipes/footer/footer.component";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
   declarations: [
     RecipesPageComponent,
     RecipeComponent,
-    FilterComponent
+    FooterComponent
   ],
   exports: [
     RecipesPageComponent
@@ -21,7 +22,8 @@ import {RecipeService} from "../../services/fetches/recipe.service";
   imports: [
     CommonModule,
     RecipesPageRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [
     RecipeService

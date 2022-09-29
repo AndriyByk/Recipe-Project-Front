@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../../services/fetches/user.service";
 import {IUser} from "../../../interfaces/entities/user/IUser";
-import {INorm} from "../../../interfaces/entities/user/INorm";
 
 @Component({
   selector: 'app-cabinet',
@@ -10,9 +9,7 @@ import {INorm} from "../../../interfaces/entities/user/INorm";
 })
 export class CabinetPageComponent implements OnInit {
   user: IUser;
-  url: string;
-  private actualUser = 'actualUser';
-  norms: INorm[];
+  // norms: INorm[];
 
   constructor(private userService: UserService
   ) { }

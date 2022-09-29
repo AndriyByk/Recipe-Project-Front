@@ -1,16 +1,20 @@
 .header {
-  border-bottom: black solid 2px;
   display: flex;
   height: 50px;
   column-gap: 30px;
   padding: 10px;
   justify-content: center;
+  position: fixed;
+  top: 0;
+  background-color: transparent;
+  width: 100%;
 }
 
 .header a {
   box-shadow: indianred 0 0 5px;
   text-decoration: none;
   color: black;
+  background-color: white;
   font-size: 30px;
   font-weight: bold;
   font-family: Gabriola, serif;

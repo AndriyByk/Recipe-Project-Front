@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {AuthorisationService} from "../../../services/authorisation/authorisation.service";
 import {StoreService} from "../../../services/store/store.service";
+import {RecipeService} from "../../../services/fetches/recipe.service";
 
 @Component({
   selector: 'app-header',
@@ -15,7 +16,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(private router: Router,
               private authorisationService: AuthorisationService,
-              private storeService: StoreService) {
+              private storeService: StoreService,
+              private recipeService: RecipeService) {
 
   }
 
@@ -39,4 +41,10 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['sign-in'])
   }
 
+  toMainPage() {
+    if (this.router.url == "/recipes") {
+      this.recipeService.getAll().subscribe(value => this.storeService.recipes.next(value))
+    }
+    this.router.navigate(['recipes']);
+  }
 }

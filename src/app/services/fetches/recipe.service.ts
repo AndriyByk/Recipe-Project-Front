@@ -27,4 +27,28 @@ export class RecipeService {
   updateRecipe(formData: FormData, id: number) {
     return this.httpClient.patch<IRecipe>(`${baseURL}${recipeUrl.recipes}/${id}`, formData)
   }
+
+  getFiltered(recipeCategoryId: number, title: string): Observable<IRecipe[]> | null {
+    if (recipeCategoryId != null && recipeCategoryId != 0) {
+      if (title != null) {
+        console.log("recipeCategoryId != null ======== title != null")
+        return this.httpClient.get<IRecipe[]>(`${baseURL}${recipeUrl.recipes}/find?categoryId=${recipeCategoryId}&title=${title}`);
+      } else {
+        console.log("recipeCategoryId != null ======== title == null")
+        return this.httpClient.get<IRecipe[]>(`${baseURL}${recipeUrl.recipes}/find?categoryId=${recipeCategoryId}`);
+      }
+    } else {
+      if (title != null) {
+        console.log("recipeCategoryId == null ======== title != null")
+        return this.httpClient.get<IRecipe[]>(`${baseURL}${recipeUrl.recipes}/find?title=${title}`);
+      } else {
+        console.log("recipeCategoryId == null ======== title == null")
+        return this.getAll();
+      }
+    }
+  }
+
+  getSortedByNutrient(nutrientId: number) {
+    return this.httpClient.get<IRecipe[]>(`${baseURL}${recipeUrl.recipes}/find-by-nutrient/${nutrientId}`)
+  }
 }
