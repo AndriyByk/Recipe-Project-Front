@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {IRecipeCategory} from "../../../interfaces/categories/IRecipeCategory";
-import {RecipeCategoryService} from "../../../services/fetches/recipe-category.service";
+import {RecipeCategoryService} from "../../../services/fetches/recipes/recipe-category.service";
 import {IIngredient} from "../../../interfaces/entities/ingredient/IIngredient";
-import {IngredientService} from "../../../services/fetches/ingredient.service";
-import {RecipeService} from "../../../services/fetches/recipe.service";
+import {IngredientService} from "../../../services/fetches/ingredients/ingredient.service";
+import {RecipeService} from "../../../services/fetches/recipes/recipe.service";
 import {Router} from "@angular/router";
 import {IRecipeForPost} from "../../../interfaces/entities/recipe/IRecipeForPost";
 

@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
-import {UserActivityTypeService} from "../../../services/fetches/user-activity-type.service";
+import {UserActivityTypeService} from "../../../services/fetches/users/user-activity-type.service";
 import {IActivityType} from "../../../interfaces/categories/IActivityType";
-import {UserGenderService} from "../../../services/fetches/user-gender.service";
+import {UserGenderService} from "../../../services/fetches/users/user-gender.service";
 import {IGender} from "../../../interfaces/categories/IGender";
 import {AuthorisationService} from "../../../services/authorisation/authorisation.service";
 import {Router} from "@angular/router";
@@ -41,23 +41,23 @@ export class SignUpPageComponent implements OnInit {
       height: new FormControl(null),
       weight: new FormControl(null),
       genderId: new FormControl(null),
-      username: new FormControl(null,[
+      username: new FormControl(null, [
         Validators.pattern('^[a-zA-Z]{1}[a-z0-9_-]{1,19}$'),
         Validators.required]),
-      password: new FormControl(null,[
+      password: new FormControl(null, [
         Validators.pattern('[a-zA-Z0-9_-]{2,20}'),
         Validators.required]),
-      confirmPassword: new FormControl(null,[
+      confirmPassword: new FormControl(null, [
         Validators.pattern('[a-zA-Z0-9_-]{2,20}'),
-          Validators.required])
+        Validators.required])
     }, [this.checkPassword])
   }
 
-  register():void {
+  register(): void {
     let rawValue = this.form.getRawValue();
     delete rawValue.confirmPassword;
 
-    let date : string = new Date().toLocaleDateString();
+    let date: string = new Date().toLocaleDateString();
     rawValue.dateOfRegistration = date.replace('/', '-');
 
     let formData = new FormData();
@@ -69,11 +69,11 @@ export class SignUpPageComponent implements OnInit {
     let ourUser = JSON.stringify(rawValue);
 
     formData.append('user', ourUser);
-    this.authorisationService.register(formData).subscribe(
+    this.authorisationService.register(formData).subscribe({
       // на контролері на беку можна змінити метод пост на войд: повертати шось не обов'язково
-      () => this.router.navigate(['sign-in']),
-      error => this.userNameError = error.error.username[0]
-    );
+      next: () => this.router.navigate(['sign-in']),
+      error: error => this.userNameError = error.error.username[0]
+    });
   }
 
   // перевірка чи збігаються password і confirmPassword
@@ -86,7 +86,7 @@ export class SignUpPageComponent implements OnInit {
   // перевірка картинки: формат, розмір
   // завантажування картинки у форму
   onChange(e: any) {
-    let extensionAllowed: any = { "png": true, "jpeg": true, "jpg": true };
+    let extensionAllowed: any = {"png": true, "jpeg": true, "jpg": true};
     let file = e.target.files[0];
     if (file.size / 1024 / 1024 > 10) {
       alert("File size should be less than 10MB")

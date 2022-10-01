@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {StoreService} from "../../../services/store/store.service";
-import {UserService} from "../../../services/fetches/user.service";
+import {UserService} from "../../../services/fetches/users/user.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {IUser} from "../../../interfaces/entities/user/IUser";
 import {baseURL, recipeUrl} from "../../../urls/urls";
@@ -20,6 +20,7 @@ export class UserInfoPageComponent implements OnInit {
     private storeService: StoreService,
     private userService: UserService,
     private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {
   }
 
@@ -37,14 +38,16 @@ export class UserInfoPageComponent implements OnInit {
     //   this.user = data;
     //   this.storeService.user.next(data)
     // } else {
-      let username = localStorage.getItem("actualUser");
-      if (username != null) {
-        this.userService.getByUsername(username).subscribe(value => {
-          this.user = value;
-          this.storeService.user.next(value)
-        })
-      // }
-    }
+    //   let username = localStorage.getItem("actualUser");
+    //   if (username != null) {
+    //     this.userService.getByUsername(username).subscribe(value => {
+    //       this.user = value;
+    //       this.storeService.user.next(value)
+    //     })
+    //   }
+
+      this.activatedRoute.data.subscribe(({user}) => this.user = user)
+    // }
   }
 
   deleteAccount() {

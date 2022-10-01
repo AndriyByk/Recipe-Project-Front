@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {AuthorisationService} from "../../../services/authorisation/authorisation.service";
 import {StoreService} from "../../../services/store/store.service";
-import {RecipeService} from "../../../services/fetches/recipe.service";
+import {RecipeService} from "../../../services/fetches/recipes/recipe.service";
 
 @Component({
   selector: 'app-header',

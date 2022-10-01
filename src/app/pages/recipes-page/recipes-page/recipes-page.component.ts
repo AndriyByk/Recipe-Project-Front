@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {IRecipe} from "../../../interfaces/entities/recipe/IRecipe";
-import {RecipeService} from "../../../services/fetches/recipe.service";
+import {RecipeService} from "../../../services/fetches/recipes/recipe.service";
 import {StoreService} from "../../../services/store/store.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-recipes',
@@ -12,15 +13,17 @@ export class RecipesPageComponent implements OnInit {
   recipes: IRecipe[];
 
   constructor(private recipeService: RecipeService,
-              private storeService: StoreService
+              private storeService: StoreService,
+              private activatedRoute: ActivatedRoute
   ) {
     this.storeService.recipes.subscribe(recipes => this.recipes = recipes);
   }
 
   ngOnInit(): void {
-    this.recipeService.getAll().subscribe(value => {
-      this.storeService.recipes.next(value);
-      // this.recipes = value;
-    })
+    this.activatedRoute.data.subscribe(({recipes}) => this.storeService.recipes.next(recipes))
+    // this.recipeService.getAll().subscribe(value => {
+    //   this.storeService.recipes.next(value);
+    //   // this.recipes = value;
+    // })
   }
 }

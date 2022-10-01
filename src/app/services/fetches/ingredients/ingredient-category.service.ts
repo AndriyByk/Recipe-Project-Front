@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
-import {baseURL, recipeUrl} from "../../urls/urls";
+import {baseURL, recipeUrl} from "../../../urls/urls";
 import {HttpClient} from "@angular/common/http";
-import {IIngredientCategory} from "../../interfaces/categories/IIngredientCategory";
+import {IIngredientCategory} from "../../../interfaces/categories/IIngredientCategory";
 
 @Injectable({
   providedIn: 'root'

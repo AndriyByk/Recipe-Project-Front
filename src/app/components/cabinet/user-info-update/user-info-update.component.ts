@@ -2,10 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {IActivityType} from "../../../interfaces/categories/IActivityType";
 import {IGender} from "../../../interfaces/categories/IGender";
-import {UserActivityTypeService} from "../../../services/fetches/user-activity-type.service";
-import {UserGenderService} from "../../../services/fetches/user-gender.service";
+import {UserActivityTypeService} from "../../../services/fetches/users/user-activity-type.service";
+import {UserGenderService} from "../../../services/fetches/users/user-gender.service";
 import {IUser} from "../../../interfaces/entities/user/IUser";
-import {UserService} from "../../../services/fetches/user.service";
+import {UserService} from "../../../services/fetches/users/user.service";
 import {Router} from "@angular/router";
 import {StoreService} from "../../../services/store/store.service";
 

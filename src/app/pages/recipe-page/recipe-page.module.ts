@@ -3,7 +3,9 @@ import {CommonModule} from '@angular/common';
 
 import {RecipePageRoutingModule} from './recipe-page-routing.module';
 import {RecipePageComponent} from './recipe-page/recipe-page.component';
-import {RecipeService} from "../../services/fetches/recipe.service";
+import {RecipeService} from "../../services/fetches/recipes/recipe.service";
+import {UserByUsernameResolver} from "../../services/fetches/users/user-by-username.resolver";
+import {RecipeByIdResolver} from "../../services/fetches/recipes/recipe-by-id.resolver";
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import {RecipeService} from "../../services/fetches/recipe.service";
     RecipePageRoutingModule
   ],
   providers: [
-    RecipeService
+    RecipeService,
+    UserByUsernameResolver,
+    RecipeByIdResolver
   ]
 })
 export class RecipePageModule {

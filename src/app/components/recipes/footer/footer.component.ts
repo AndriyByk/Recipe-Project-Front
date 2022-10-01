@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {StoreService} from "../../../services/store/store.service";
-import {RecipeCategoryService} from "../../../services/fetches/recipe-category.service";
-import {IngredientService} from "../../../services/fetches/ingredient.service";
-import {RecipeService} from "../../../services/fetches/recipe.service";
+import {RecipeCategoryService} from "../../../services/fetches/recipes/recipe-category.service";
+import {IngredientService} from "../../../services/fetches/ingredients/ingredient.service";
+import {RecipeService} from "../../../services/fetches/recipes/recipe.service";
 import {IRecipeCategory} from "../../../interfaces/categories/IRecipeCategory";
 import {IIngredient} from "../../../interfaces/entities/ingredient/IIngredient";
 import {FormControl, FormGroup} from "@angular/forms";
 import {INutrient} from "../../../interfaces/entities/nutrient/INutrient";
-import {NutrientService} from "../../../services/fetches/nutrient.service";
+import {NutrientService} from "../../../services/fetches/nutrients/nutrient.service";
 
 @Component({
   selector: 'app-footer',

@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {IRecipe} from "../../../interfaces/entities/recipe/IRecipe";
-import {UserService} from "../../../services/fetches/user.service";
+import {UserService} from "../../../services/fetches/users/user.service";
 import {baseURL, recipeUrl} from "../../../urls/urls";
 
 @Component({

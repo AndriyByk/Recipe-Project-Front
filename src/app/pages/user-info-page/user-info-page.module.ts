@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { UserInfoPageRoutingModule } from './user-info-page-routing.module';
 import { UserInfoPageComponent } from './user-info-page/user-info-page.component';
+import {UserByUsernameResolver} from "../../services/fetches/users/user-by-username.resolver";
 
 
 @NgModule({
@@ -12,6 +13,9 @@ import { UserInfoPageComponent } from './user-info-page/user-info-page.component
   imports: [
     CommonModule,
     UserInfoPageRoutingModule
+  ],
+  providers: [
+    UserByUsernameResolver
   ]
 })
 export class UserInfoPageModule { }

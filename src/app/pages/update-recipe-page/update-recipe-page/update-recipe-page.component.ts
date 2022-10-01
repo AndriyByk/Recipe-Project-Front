@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {IRecipe} from "../../../interfaces/entities/recipe/IRecipe";
-import {RecipeService} from "../../../services/fetches/recipe.service";
+import {RecipeService} from "../../../services/fetches/recipes/recipe.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {IRecipeCategory} from "../../../interfaces/categories/IRecipeCategory";
 import {IIngredient} from "../../../interfaces/entities/ingredient/IIngredient";
-import {RecipeCategoryService} from "../../../services/fetches/recipe-category.service";
-import {IngredientService} from "../../../services/fetches/ingredient.service";
+import {RecipeCategoryService} from "../../../services/fetches/recipes/recipe-category.service";
+import {IngredientService} from "../../../services/fetches/ingredients/ingredient.service";
 import {IRecipeForUpdate} from "../../../interfaces/entities/recipe/IRecipeForUpdate";
 
 @Component({
@@ -26,6 +26,10 @@ export class UpdateRecipePageComponent implements OnInit {
               private activatedRoute: ActivatedRoute,
               private recipeService: RecipeService,
               private router: Router) {
+    // this.createForm();
+  }
+
+  ngOnInit(): void {
     this.recipeCategoryService.getAll().subscribe(value => this.categories = value);
     this.ingredientService.getAll().subscribe(value => this.ingredients = value);
     this.activatedRoute.params.subscribe(({id}) => {
@@ -36,14 +40,14 @@ export class UpdateRecipePageComponent implements OnInit {
         this.recipe = data as IRecipe;
       } else {
         // якщо нема - то запит до бази:
-        this.recipeService.getById(id).subscribe(recipe => {
-          this.recipe = recipe;
-        })
+        this.activatedRoute.data.subscribe(({recipe}) => this.recipe = recipe)
+
+
+        // this.recipeService.getById(id).subscribe(recipe => {
+        //   this.recipe = recipe;
+        // })
       }
     })
-  }
-
-  ngOnInit(): void {
     this.createForm();
   }
 
@@ -73,7 +77,8 @@ export class UpdateRecipePageComponent implements OnInit {
       ingredientId9: new FormControl(this.recipe.ingredients[8].id),
       ingredientWeight9: new FormControl(this.recipe.ingredients[8].weight),
       ingredientId10: new FormControl(this.recipe.ingredients[9].id),
-      ingredientWeight10: new FormControl(this.recipe.ingredients[9].weight)
+      ingredientWeight10: new FormControl(this.recipe.ingredients[9].weight),
+      picture: new FormControl(null)
     })
   }
 
