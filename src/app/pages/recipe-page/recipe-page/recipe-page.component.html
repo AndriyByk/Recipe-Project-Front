@@ -2,7 +2,7 @@
   <div class="recipe-body-top">
     <div class="recipe-photo">
       <div class="recipe-photo-content">
-<!--      http://localhost:8080/pictures/[recipe.title]/[recipe.image]  -->
+        <!--      http://localhost:8080/pictures/[recipe.title]/[recipe.image]  -->
         <img src="{{url + '/' + recipe.dateOfCreation + '/' + recipe.image}}" alt="photo">
       </div>
     </div>
@@ -18,7 +18,7 @@
         <div class="recipe-author-link">
           <span>{{"Автор: "}}</span>
 
-          <div *ngIf="user.id != recipe.author.id else toCabinet">
+          <div *ngIf="user && user.id != recipe.author.id else toCabinet">
             <a [routerLink]="['/user', recipe.author.id]" [state]="{data: recipe}">{{recipe.author.username}}</a>
           </div>
           <ng-template #toCabinet>
@@ -48,14 +48,14 @@
           <div class="recipe-ingredients-titles-weight">
             Вага
           </div>
-          <div class="recipe-ingredients-titles-category">
-            Категорія
-          </div>
+          <!--          <div class="recipe-ingredients-titles-category">-->
+          <!--            Категорія-->
+          <!--          </div>-->
         </div>
         <div class="recipe-ingredient" *ngFor="let ingredient of recipe.ingredients">
           <div class="recipe-ingredient-name">
             <div class="recipe-ingredient-name-content">
-              {{ingredient.name}}
+              {{ingredient.name_ukr}}
             </div>
           </div>
 
@@ -72,15 +72,15 @@
 
           <div class="recipe-ingredient-weight">
             <div class="recipe-ingredient-weight-content">
-              {{ingredient.weight}}
+              {{ingredient.weight}}{{' г'}}
             </div>
           </div>
 
-          <div class="recipe-ingredient-category">
-            <div class="recipe-ingredient-category-content">
-              {{ingredient.ingredientCategoryDto.name}}
-            </div>
-          </div>
+          <!--          <div class="recipe-ingredient-category">-->
+          <!--            <div class="recipe-ingredient-category-content">-->
+          <!--              {{ingredient.ingredientCategoryDto.name}}-->
+          <!--            </div>-->
+          <!--          </div>-->
         </div>
       </div>
     </div>
@@ -101,6 +101,9 @@
       </div>
 
       <div class="recipe-nutrients-titles">
+        <div class="recipe-nutrients-titles-no">
+          №
+        </div>
         <div class="recipe-nutrients-titles-nutrient">
           Нутрієнт
         </div>
@@ -108,49 +111,58 @@
           Категорія
         </div>
         <div class="recipe-nutrients-titles-quantity">
-          Кількість
+          Кількість в 100 грамах
+        </div>
+        <div *ngIf="user" class="recipe-nutrients-titles-norm">
+          Ваша норма
+        </div>
+        <div *ngIf="user" class="recipe-nutrients-titles-percentage">
+          Відсотків від Вашої денної норми
         </div>
       </div>
 
+      <div class="recipe-user-proportions">
 
-      <div class="recipe-nutrient" *ngFor="let quantity of recipe.quantities">
-
-        <div class="recipe-nutrient-name">
-          <div class="recipe-nutrient-name-content">
-            {{quantity.nutrientDto.name}}
-          </div>
+        <div>energy</div>
+        <div class="recipe-user-proportion-energy" *ngFor="let energy of proportions.energy">
+          <div class="recipe-user-proportions-id">{{energy.idOfNutrient}}</div>
+          <div class="recipe-user-proportions-name">{{energy.nutrient}}</div>
+          <div class="recipe-user-proportions-category">{{energy.category}}</div>
+          <div class="recipe-user-proportions-recipe-quantity">{{energy.nutrientQuantity}}</div>
+          <div *ngIf="user" class="recipe-user-proportions-norm">{{energy.userNorm}}</div>
+          <div *ngIf="user" class="recipe-user-proportions-percentage">{{energy.percentage}}%</div>
         </div>
 
-        <!--        <div class="recipe-nutrient-about">-->
-        <!--          <div class="recipe-nutrient-about-title">-->
-        <!--            Інформація про нутрієнт:-->
-        <!--          </div>-->
-        <!--          <div class="recipe-nutrient-about-content">-->
-        <!--            {{quantity.nutrientDto.about}}-->
-        <!--          </div>-->
-        <!--        </div>-->
-
-        <div class="recipe-nutrient-category">
-          <div class="recipe-nutrient-category-content">
-            {{quantity.nutrientDto.categoryDto.name}}
-          </div>
+        <div>organics</div>
+        <div class="recipe-user-proportion-organics" *ngFor="let organic of proportions.organics">
+          <div class="recipe-user-proportions-id">{{organic.idOfNutrient}}</div>
+          <div class="recipe-user-proportions-name">{{organic.nutrient}}</div>
+          <div class="recipe-user-proportions-category">{{organic.category}}</div>
+          <div class="recipe-user-proportions-recipe-quantity">{{organic.nutrientQuantity}}</div>
+          <div *ngIf="user" class="recipe-user-proportions-norm">{{organic?.userNorm}}</div>
+          <div *ngIf="organic.percentage" class="recipe-user-proportions-percentage">{{organic?.percentage}}%</div>
         </div>
 
-        <div class="recipe-nutrient-quantity">
-          <div class="recipe-nutrient-quantity-content">
-            {{quantity.nutrientDto.quantity}}
-          </div>
+        <div>vitamins</div>
+        <div class="recipe-user-proportion-vitamins" *ngFor="let vitamin of proportions.vitamins">
+          <div class="recipe-user-proportions-id">{{vitamin.idOfNutrient}}</div>
+          <div class="recipe-user-proportions-name">{{vitamin.nutrient}}</div>
+          <div class="recipe-user-proportions-category">{{vitamin.category}}</div>
+          <div class="recipe-user-proportions-recipe-quantity">{{vitamin.nutrientQuantity}}</div>
+          <div *ngIf="user" class="recipe-user-proportions-norm">{{vitamin?.userNorm}}</div>
+          <div *ngIf="vitamin.percentage" class="recipe-user-proportions-percentage">{{vitamin?.percentage}}%</div>
         </div>
 
+        <div>minerals</div>
+        <div class="recipe-user-proportion-minerals" *ngFor="let mineral of proportions.minerals">
+          <div class="recipe-user-proportions-id">{{mineral.idOfNutrient}}</div>
+          <div class="recipe-user-proportions-name">{{mineral.nutrient}}</div>
+          <div class="recipe-user-proportions-category">{{mineral.category}}</div>
+          <div class="recipe-user-proportions-recipe-quantity">{{mineral.nutrientQuantity}}</div>
+          <div *ngIf="user" class="recipe-user-proportions-norm">{{mineral?.userNorm}}</div>
+          <div *ngIf="mineral.percentage" class="recipe-user-proportions-percentage">{{mineral?.percentage}}%</div>
+        </div>
       </div>
-
-
-      <div *ngFor="let proportion of proportions">
-        <div>{{proportion.idOfNutrient}}</div>
-        <div>{{proportion.nutrient}}</div>
-        <div>{{proportion.percentage}}</div>
-      </div>
-
     </div>
   </div>
 </div>

@@ -101,4 +101,11 @@ export class SignUpPageComponent implements OnInit {
     }
     this.form.controls["avatar"].setValue(file);
   }
+
+  openPopUp() {
+    let popup = document.getElementById('myPopup');
+    if (popup) {
+      popup.classList.toggle('show');
+    }
+  }
 }

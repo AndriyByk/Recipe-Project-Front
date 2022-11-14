@@ -1,12 +1,19 @@
 .recipes-page {
   display: flex;
-  flex-wrap: wrap;
+  flex-flow: column wrap;
+  max-height: 3500px;
+  /*flex-direction: column;*/
   column-gap: 10px;
   row-gap: 10px;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-content: center;
   padding: 30px 20px;
 }
 
+
 .recipe-component {
-  width: 500px;
+  width: 400px;
+  display: flex;
+  max-height: 700px;
+  flex: 1 1 0;
 }

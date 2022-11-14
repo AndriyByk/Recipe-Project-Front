@@ -5,23 +5,21 @@
 
     <div class="sign-in-form-username">
       <label>
-        <div>username</div>
-        <input class="sign-in-form-username" type="text" formControlName="username">andyandy
+        <input class="sign-in-form-username" placeholder="Ім'я користувача" type="text" formControlName="username">
       </label>
     </div>
 
     <div class="sign-in-form-password">
       <label>
-        <div>password</div>
-        <input class="sign-in-form-password" type="password" formControlName="password">veniam
+        <input class="sign-in-form-password" placeholder="Пароль" type="password" formControlName="password">
       </label>
     </div>
 
     <div *ngIf="userNameOrPasswordError">{{userNameOrPasswordError}}</div>
 
     <div class="sign-in-form-links">
-      <div class="sign-in-form-submit-button">
-        <button [disabled]="form.invalid" type="submit" (click)="signIn()">submit</button>
+      <div class="sign-in-form-links-submit-button">
+        <button [disabled]="form.invalid"  type="submit" (click)="signIn()">Увійти</button>
       </div>
 
       <div class="sign-in-form-link-to-sign-up">

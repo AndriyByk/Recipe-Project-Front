@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormControl, FormGroup, Validators, FormArray, FormBuilder} from "@angular/forms";
 import {IRecipeCategory} from "../../../interfaces/categories/IRecipeCategory";
 import {RecipeCategoryService} from "../../../services/fetches/recipes/recipe-category.service";
 import {IIngredient} from "../../../interfaces/entities/ingredient/IIngredient";
@@ -22,7 +22,8 @@ export class AddRecipePageComponent implements OnInit {
   constructor(private recipeCategoryService: RecipeCategoryService,
               private ingredientService: IngredientService,
               private recipeService: RecipeService,
-              private router: Router) {
+              private router: Router,
+              private formBuilder: FormBuilder) {
     this.createForm();
   }
 
@@ -31,7 +32,7 @@ export class AddRecipePageComponent implements OnInit {
       this.categories = value
     });
     this.ingredientService.getAll().subscribe(value => {
-      this.ingredients = value
+      this.ingredients = value;
     });
   }
 
@@ -40,30 +41,31 @@ export class AddRecipePageComponent implements OnInit {
       title: new FormControl(null, [Validators.required]),
       description: new FormControl(null, [Validators.required]),
       recipeCategoryId: new FormControl(null, [Validators.required]),
-
-      ingredientId1: new FormControl(null),
-      ingredientWeight1: new FormControl(null),
-      ingredientId2: new FormControl(null),
-      ingredientWeight2: new FormControl(null),
-      ingredientId3: new FormControl(null),
-      ingredientWeight3: new FormControl(null),
-      ingredientId4: new FormControl(null),
-      ingredientWeight4: new FormControl(null),
-      ingredientId5: new FormControl(null),
-      ingredientWeight5: new FormControl(null),
-      ingredientId6: new FormControl(null),
-      ingredientWeight6: new FormControl(null),
-      ingredientId7: new FormControl(null),
-      ingredientWeight7: new FormControl(null),
-      ingredientId8: new FormControl(null),
-      ingredientWeight8: new FormControl(null),
-      ingredientId9: new FormControl(null),
-      ingredientWeight9: new FormControl(null),
-      ingredientId10: new FormControl(null),
-      ingredientWeight10: new FormControl(null),
-
+      rawIngredientWithWeights: new FormArray([
+        new FormGroup({
+          id: new FormControl(null),
+          weight: new FormControl(null)
+        })
+      ]),
       picture: new FormControl(null, [Validators.required])
     })
+  }
+
+  getIngredients() {
+    return this.form.get('rawIngredientWithWeights') as FormArray;
+  }
+
+  addIngredient() {
+    this.getIngredients().push(this.formBuilder.group({
+      id: new FormControl(null),
+      weight: new FormControl(null)
+    }))
+  }
+
+  removeIngredient(id: number) {
+    if (this.getIngredients().length>1) {
+      this.getIngredients().removeAt(id)
+    }
   }
 
   onChange(e: any) {
@@ -85,25 +87,23 @@ export class AddRecipePageComponent implements OnInit {
 
   submit(): void {
     let rawValue = this.form.getRawValue();
+
     // час створення рецепта
-    // rawValue.dateOfCreation = new Date().toDateString();
     let formData = new FormData();
     formData.append('picture', this.form.get('picture')?.value);
-    console.log(rawValue);
-
+    // дата
     let date1 = new Date();
     const date: string = [
       date1.getDate().toString().padStart(2, '0'),
       (date1.getMonth()+1).toString().padStart(2, '0'),
       date1.getFullYear()
     ].join('-');
-
+    // час
     const time: string = [
       date1.getHours().toString().padStart(2, '0'),
       date1.getMinutes().toString().padStart(2, '0'),
       date1.getSeconds().toString().padStart(2, '0')
     ].join('-');
-
     const fullDate: string = [date, time].join('_');
 
     let recipe : IRecipeForPost = {
@@ -111,51 +111,9 @@ export class AddRecipePageComponent implements OnInit {
       description: rawValue.description,
       dateOfCreation: fullDate,
       recipeCategoryId: rawValue.recipeCategoryId,
-      rawIngredientWithWeights: [
-        {
-          weight: rawValue.ingredientWeight1,
-          id: rawValue.ingredientId1
-        },
-        {
-          weight: rawValue.ingredientWeight2,
-          id: rawValue.ingredientId2
-        },
-        {
-          weight: rawValue.ingredientWeight3,
-          id: rawValue.ingredientId3
-        },
-        {
-          weight: rawValue.ingredientWeight4,
-          id: rawValue.ingredientId4
-        },
-        {
-          weight: rawValue.ingredientWeight5,
-          id: rawValue.ingredientId5
-        },
-        {
-          weight: rawValue.ingredientWeight6,
-          id: rawValue.ingredientId6
-        },
-        {
-          weight: rawValue.ingredientWeight7,
-          id: rawValue.ingredientId7
-        },
-        {
-          weight: rawValue.ingredientWeight8,
-          id: rawValue.ingredientId8
-        },
-        {
-          weight: rawValue.ingredientWeight9,
-          id: rawValue.ingredientId9
-        },
-        {
-          weight: rawValue.ingredientWeight10,
-          id: rawValue.ingredientId10
-        }
-      ]
+      rawIngredientWithWeights: rawValue.rawIngredientWithWeights
     };
 
-    delete rawValue.picture;
     let ourRecipe = JSON.stringify(recipe);
     formData.append('recipe', ourRecipe);
     let user = localStorage.getItem(this.actualUser);

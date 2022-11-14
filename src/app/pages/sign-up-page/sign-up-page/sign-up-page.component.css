@@ -1,37 +1,166 @@
-.sign-up-form-type-of-activity,
-.sign-up-form-gender {
-  /*display: flex;*/
-  /*align-items: center;*/
+.sign-up {
+  display: flex;
+  justify-content: center;
 }
 
 .sign-up form {
   width: 600px;
 }
 
-.sign-up {
-  display: flex;
-  justify-content: center;
-  border-bottom: black solid 2px;
-}
-
 .sign-up-form > div {
   display: flex;
-  padding-left: 150px;
+  flex-direction: column;
+  align-items: center;
 }
 
+/*---------------*/
 label {
   margin: 10px;
 }
 
-form input, form select {
-  width: 150px;
+.sign-up-form-submit-button-label {
+  margin: 20px;
+}
+/*---------------*/
+
+form select {
+  width: 370px;
+  height: 75px;
+  border-radius: 15px;
+  padding: 20px;
+  font-size: 15px;
+  background-color: white;
+  color: #c8c8c8;
+  box-shadow: #555555 0 0 15px;
+  border: 0;
+  font-family: "Lucida Grande", sans-serif;
 }
 
-.sign-up-form-submit-button {
-  display: flex;
+form input {
+  width: 330px;
+  height: 35px;
+  border-radius: 15px;
+  padding: 20px;
+  font-size: 15px;
+  box-shadow: #555555 0 0 15px;
+  border: 0;
+  color: #9a9a9a;
+  font-family: "Lucida Grande", sans-serif;
 }
+
+.sign-up-form-type-of-activity select {
+  padding: 5px 20px 35px 20px;
+}
+
+.sign-up-form-avatar label {
+  position: relative;
+}
+
+.sign-up-form-avatar-title {
+  position: absolute;
+  top: 25px;
+  left: 20px;
+  /*font: lighter 15px Arial;*/
+  color: #c8c8c8;
+  font-family: "Lucida Grande", sans-serif;
+  font-size: 15px;
+}
+
+.sign-up-form-avatar > input {
+  border: 0;
+}
+
+.sign-up-form-avatar input {
+  padding: 20px 0 20px 150px;
+  width: 220px;
+}
+
 .sign-up-form-submit-button button {
-  padding: 5px 50px;
-  margin: 5px 50px;
+  background-color: #ade59d;
+  padding: 20px;
+  width: 350px;
+  height: 55px;
+  border-radius: 20px;
+  font-size: 15px;
+  border: 0;
+  box-shadow: #555555 0 0 15px;
+  color: black;
 }
 
+.sign-up-form-submit-button button:disabled {
+  background-color: #f5b0a8;
+  color: #9a9a9a;
+}
+
+/*----------pop up-----------------*/
+
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.popup-title {
+  position: absolute;
+  left: -347px;
+  top: 12px;
+  color: #c8c8c8;
+  font: lighter 15px Arial;
+}
+
+.popup-title:hover {
+  color: black;
+}
+
+/* The actual popup */
+.popup .popuptext {
+  visibility: hidden;
+  width: 300px;
+  background-color: #555;
+  color: #fff;
+  text-align: left;
+  border-radius: 6px;
+  padding: 8px 8px;
+  position: absolute;
+  z-index: 1;
+  bottom: -300px;
+  left: 20px;
+  margin-left: 0;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  /*top: 100%;*/
+  /*left: 50%;*/
+  top: 200px;
+  left: -2%;
+  margin-left: -20px;
+  border-width: 15px;
+  border-style: solid;
+  border-color: transparent #555 transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+ /*Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+/*----------------------*/

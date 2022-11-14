@@ -26,7 +26,10 @@
   </div>
 
   <div class="recipe-details-button">
-    <a [routerLink]="['/recipe', recipe.id]" [state]="{data: recipe}">Деталі</a>
+    <a *ngIf="username!=null && username!=''; else elseBlock" [routerLink]="['/recipe/username', recipe.id]" [state]="{data: recipe}">Деталі</a>
+    <ng-template #elseBlock>
+      <a [routerLink]="['/recipe', recipe.id]" [state]="{data: recipe}">Деталі</a>
+    </ng-template>
   </div>
 
   <div *ngIf="username" class="recipe-like-button">

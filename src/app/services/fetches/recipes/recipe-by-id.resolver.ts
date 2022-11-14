@@ -18,7 +18,10 @@ export class RecipeByIdResolver implements Resolve<IRecipe> {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IRecipe> | Promise<IRecipe> | IRecipe {
+    console.log(route.params['id'])
+
     return this.recipeService.getById(route.params['id']);
+
   }
 
 }

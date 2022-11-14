@@ -16,15 +16,18 @@ export class UserCreatedRecipesPageComponent implements OnInit {
               private userService: UserService) { }
 
   ngOnInit(): void {
-    let {data} = history.state;
-    if (data != undefined) {
-      this.user = data;
-    } else {
-      let username = localStorage.getItem(this.actualUser);
-      if (username != null) {
-        this.userService.getByUsername(username).subscribe(value => this.user = value)
-      }
+    // let {data} = history.state;
+    // if (data != undefined) {
+    //   this.user = data;
+    // } else {
+    //   let username = localStorage.getItem(this.actualUser);
+    //   if (username != null) {
+    //     this.userService.getByUsername(username).subscribe(value => this.user = value)
+    //   }
+    // }
+    let username = localStorage.getItem(this.actualUser);
+    if (username != null) {
+      this.userService.getByUsername(username).subscribe(value => this.user = value)
     }
   }
-
 }

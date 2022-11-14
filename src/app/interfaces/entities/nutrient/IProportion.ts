@@ -1,5 +1,8 @@
+import {IMacroelement} from "./IMacroelement";
+
 export interface IProportion {
-  idOfNutrient: number;
-  nutrient: string;
-  percentage: number;
+  energy: IMacroelement[];
+  organics: IMacroelement[];
+  vitamins: IMacroelement[];
+  minerals: IMacroelement[];
 }
