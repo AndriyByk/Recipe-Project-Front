@@ -37,18 +37,13 @@ export class AddRecipePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe((
-      {categories, ingredients, ingredientCategories}) => {
-      console.log(categories);
-      console.log(ingredients);
-      console.log(ingredientCategories);
-      this.categories = categories;
+    this.activatedRoute.data.subscribe(({categories, ingredients, ingredientCategories}) => {
       this.ingredients = ingredients;
       this.ingredientCategories = ingredientCategories;
+      this.categories = categories;
       this.selectedIngredients.push({
         listOfIngredients: this.ingredients
       })
-      console.log(this.selectedIngredients);
     });
   }
 
@@ -145,7 +140,6 @@ export class AddRecipePageComponent implements OnInit {
   }
 
   select(category: string, i: number) {
-
     let strings = category.split(":");
     this.selectedIngredients[i] = {
       listOfIngredients: this.ingredients.filter(value => value.ingredientCategoryDto.name == strings[1].trim())

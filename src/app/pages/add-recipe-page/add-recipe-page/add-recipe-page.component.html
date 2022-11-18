@@ -1,34 +1,35 @@
 <div class="add-recipe">
+  <div>
+    Важливо не додавати інгредієнтів, які повторюються! Бо буде валити
+    <!--      javax.persistence.EntityExistsException:-->
+    <!--      A different object with the same identifier value was already associated with the session :-->
+    <!--      [com.example.recipe_project.models.entity.entities.Weight#com.example.recipe_project.models.entity.ids.WeightId@706737b3]-->
+  </div>
+
   <form class="add-recipe-form" [formGroup]="form">
-    <div>
-      Важливо не додавати інгредієнтів, які повторюються! Бо буде валити
-      <!--      javax.persistence.EntityExistsException:-->
-      <!--      A different object with the same identifier value was already associated with the session :-->
-      <!--      [com.example.recipe_project.models.entity.entities.Weight#com.example.recipe_project.models.entity.ids.WeightId@706737b3]-->
-    </div>
 
     <div class="add-recipe-form-title">
       <label>
-        <div class="add-recipe-form-title-name">Назва рецепта</div>
-        <div>
-          <input type="text" formControlName="title">
+        <div class="add-recipe-form-title-input">
+          <input type="text" formControlName="title" placeholder="Назва рецепта">
         </div>
       </label>
     </div>
 
+
     <div class="add-recipe-form-cooking">
-      <label for="title">
-        <div class="add-recipe-form-cooking-name">Спосіб приготування</div>
-        <div>
-          <input id="title" type="text" formControlName="description">
+      <label>
+        <div class="add-recipe-form-cooking-input">
+          <textarea rows="5" formControlName="description" placeholder="Спосіб приготування"></textarea>
+<!--          <input type="text" formControlName="description" placeholder="Спосіб приготування">-->
         </div>
       </label>
     </div>
+
 
     <div class="add-recipe-form-category">
       <label>
-        <div class="add-recipe-form-category-title">Категорія рецепта</div>
-        <div>
+        <div class="add-recipe-form-category-select">
           <select formControlName="recipeCategoryId">
             <option [ngValue]="null" disabled>Виберіть категорію рецепта</option>
             <option *ngFor="let category of categories" [ngValue]="category.id">{{category.name}}</option>
@@ -38,64 +39,68 @@
     </div>
 
 
-<!---->
     <div class="add-recipe-form-ingredients">
-      <div class="add-recipe-form-ingredients-title">Інгредієнти:</div>
-
       <div class="add-recipe-form-ingredients-list" formArrayName="rawIngredientWithWeights">
 
+        <div class="add-recipe-form-ingredient" *ngFor="let ingredient of getIngredients().controls; let i=index"
+             [formGroupName]="i">
 
-        <div *ngFor="let ingredient of getIngredients().controls; let i=index" [formGroupName]="i" class="add-recipe-form-ingredients-list-first">
-          <div class="add-recipe-form-ingredients-list-first-number">{{i+1}})</div>
-          <div class="add-recipe-form-ingredients-list-first-ingredient">
+          <div class="add-recipe-form-ingredient-number">{{i + 1}}</div>
+
+          <div class="add-recipe-form-ingredient-category">
             <label>
               <select #mySelect formControlName="category" (change)="select(mySelect.value, i)">
                 <option [ngValue]="null" disabled>Виберіть категорію інгредієнта</option>
-                <option  *ngFor="let category of ingredientCategories"
-                         [ngValue]="category.name">{{category.name}}</option>
+                <option *ngFor="let category of ingredientCategories"
+                        [ngValue]="category.name">{{category.name}}</option>
               </select>
             </label>
+          </div>
+
+          <div class="add-recipe-form-ingredient-ingredient">
             <label>
               <select formControlName="id">
                 <option [ngValue]="null" disabled>Виберіть інгредієнт</option>
-                <option  *ngFor="let ingredient of selectedIngredients[i].listOfIngredients"
+                <option *ngFor="let ingredient of selectedIngredients[i].listOfIngredients"
                         [ngValue]="ingredient.id">{{ingredient.name_ukr}}</option>
               </select>
             </label>
           </div>
-          <div class="add-recipe-form-ingredients-list-weight">
+
+          <div class="add-recipe-form-ingredient-weight">
             <label>
-              <div>
-                Вага
-              </div>
-              <div>
-                <input type="number" formControlName="weight">
+              <div class="add-recipe-form-ingredient-weight-input">
+                <input type="number" placeholder="Вага" formControlName="weight">
               </div>
             </label>
           </div>
-          <div>
-            <button type="button" (click)="removeIngredient(i)">Видалити</button>
+
+          <div class="add-recipe-form-ingredient-delete-button">
+            <button *ngIf="getIngredients().controls.length > 1" type="button" (click)="removeIngredient(i)">Видалити</button>
           </div>
         </div>
 
-        <button type="button" (click)="addIngredient()">+ Додати інгредієнт</button>
+        <div class="add-recipe-form-ingredient-add-button">
+          <button type="button" (click)="addIngredient()">+ Додати інгредієнт</button>
+        </div>
+
       </div>
     </div>
+
 
     <div class="add-recipe-form-image">
       <label>
         <div class="add-recipe-form-image-title">Фото</div>
-        <div>
+        <div class="add-recipe-form-image-input">
           <input (change)="onChange($event)" placeholder="Picture" type="file"
                  formControlName="picture">
         </div>
       </label>
     </div>
+
+    <div class="add-recipe-form-submit-button">
+      <button (click)="submit()" type="submit">Додати новий рецепт</button>
+      <!--    <button [disabled]="form.invalid" (click)="submit()" type="submit">Додати новий рецепт</button>-->
+    </div>
   </form>
-
-  <div class="add-recipe-form-button">
-    <button (click)="submit()" type="submit">Додати новий рецепт</button>
-
-<!--    <button [disabled]="form.invalid" (click)="submit()" type="submit">Додати новий рецепт</button>-->
-  </div>
 </div>
