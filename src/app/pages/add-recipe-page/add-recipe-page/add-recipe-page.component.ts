@@ -5,8 +5,11 @@ import {RecipeCategoryService} from "../../../services/fetches/recipes/recipe-ca
 import {IIngredient} from "../../../interfaces/entities/ingredient/IIngredient";
 import {IngredientService} from "../../../services/fetches/ingredients/ingredient.service";
 import {RecipeService} from "../../../services/fetches/recipes/recipe.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {IRecipeForPost} from "../../../interfaces/entities/recipe/IRecipeForPost";
+import {IIngredientCategory} from "../../../interfaces/categories/IIngredientCategory";
+import {IngredientCategoryService} from "../../../services/fetches/ingredients/ingredient-category.service";
+import {IListOfIngredientsForNewRecipe} from "../../../interfaces/entities/ingredient/IListOfIngredientsForNewRecipe";
 
 @Component({
   selector: 'app-add-recipe',
@@ -16,23 +19,36 @@ import {IRecipeForPost} from "../../../interfaces/entities/recipe/IRecipeForPost
 export class AddRecipePageComponent implements OnInit {
   form: FormGroup;
   categories: IRecipeCategory[];
+
   ingredients: IIngredient[];
+  selectedIngredients: IListOfIngredientsForNewRecipe[] = [];
+
+  ingredientCategories: IIngredientCategory[];
   private actualUser = 'actualUser';
 
   constructor(private recipeCategoryService: RecipeCategoryService,
               private ingredientService: IngredientService,
+              private ingredientCategoryService: IngredientCategoryService,
               private recipeService: RecipeService,
               private router: Router,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              private activatedRoute: ActivatedRoute) {
     this.createForm();
   }
 
   ngOnInit(): void {
-    this.recipeCategoryService.getAll().subscribe(value => {
-      this.categories = value
-    });
-    this.ingredientService.getAll().subscribe(value => {
-      this.ingredients = value;
+    this.activatedRoute.data.subscribe((
+      {categories, ingredients, ingredientCategories}) => {
+      console.log(categories);
+      console.log(ingredients);
+      console.log(ingredientCategories);
+      this.categories = categories;
+      this.ingredients = ingredients;
+      this.ingredientCategories = ingredientCategories;
+      this.selectedIngredients.push({
+        listOfIngredients: this.ingredients
+      })
+      console.log(this.selectedIngredients);
     });
   }
 
@@ -44,7 +60,8 @@ export class AddRecipePageComponent implements OnInit {
       rawIngredientWithWeights: new FormArray([
         new FormGroup({
           id: new FormControl(null),
-          weight: new FormControl(null)
+          weight: new FormControl(null),
+          category: new FormControl(null)
         })
       ]),
       picture: new FormControl(null, [Validators.required])
@@ -58,13 +75,17 @@ export class AddRecipePageComponent implements OnInit {
   addIngredient() {
     this.getIngredients().push(this.formBuilder.group({
       id: new FormControl(null),
-      weight: new FormControl(null)
+      weight: new FormControl(null),
+      category: new FormControl(null)
     }))
+    this.selectedIngredients.push({listOfIngredients: this.ingredients})
   }
 
-  removeIngredient(id: number) {
-    if (this.getIngredients().length>1) {
-      this.getIngredients().removeAt(id)
+  removeIngredient(i: number) {
+    let length = this.getIngredients().length;
+    if (length > 1) {
+      this.getIngredients().removeAt(i);
+      this.selectedIngredients.splice(i, 1);
     }
   }
 
@@ -120,6 +141,14 @@ export class AddRecipePageComponent implements OnInit {
     if (user) {
       this.recipeService.save(formData, user).subscribe();
       this.router.navigate(['/cabinet/created-recipes']);
+    }
+  }
+
+  select(category: string, i: number) {
+
+    let strings = category.split(":");
+    this.selectedIngredients[i] = {
+      listOfIngredients: this.ingredients.filter(value => value.ingredientCategoryDto.name == strings[1].trim())
     }
   }
 }

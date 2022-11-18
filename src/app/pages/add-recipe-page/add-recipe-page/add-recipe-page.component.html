@@ -1,12 +1,12 @@
 <div class="add-recipe">
   <form class="add-recipe-form" [formGroup]="form">
-
     <div>
       Важливо не додавати інгредієнтів, які повторюються! Бо буде валити
       <!--      javax.persistence.EntityExistsException:-->
       <!--      A different object with the same identifier value was already associated with the session :-->
       <!--      [com.example.recipe_project.models.entity.entities.Weight#com.example.recipe_project.models.entity.ids.WeightId@706737b3]-->
     </div>
+
     <div class="add-recipe-form-title">
       <label>
         <div class="add-recipe-form-title-name">Назва рецепта</div>
@@ -30,7 +30,7 @@
         <div class="add-recipe-form-category-title">Категорія рецепта</div>
         <div>
           <select formControlName="recipeCategoryId">
-            <option disabled>Виберіть категорію рецепта</option>
+            <option [ngValue]="null" disabled>Виберіть категорію рецепта</option>
             <option *ngFor="let category of categories" [ngValue]="category.id">{{category.name}}</option>
           </select>
         </div>
@@ -44,14 +44,21 @@
 
       <div class="add-recipe-form-ingredients-list" formArrayName="rawIngredientWithWeights">
 
-        <button type="button" (click)="addIngredient()">+ Додати інгредієнт</button>
 
         <div *ngFor="let ingredient of getIngredients().controls; let i=index" [formGroupName]="i" class="add-recipe-form-ingredients-list-first">
           <div class="add-recipe-form-ingredients-list-first-number">{{i+1}})</div>
           <div class="add-recipe-form-ingredients-list-first-ingredient">
             <label>
+              <select #mySelect formControlName="category" (change)="select(mySelect.value, i)">
+                <option [ngValue]="null" disabled>Виберіть категорію інгредієнта</option>
+                <option  *ngFor="let category of ingredientCategories"
+                         [ngValue]="category.name">{{category.name}}</option>
+              </select>
+            </label>
+            <label>
               <select formControlName="id">
-                <option *ngFor="let ingredient of ingredients"
+                <option [ngValue]="null" disabled>Виберіть інгредієнт</option>
+                <option  *ngFor="let ingredient of selectedIngredients[i].listOfIngredients"
                         [ngValue]="ingredient.id">{{ingredient.name_ukr}}</option>
               </select>
             </label>
@@ -67,229 +74,13 @@
             </label>
           </div>
           <div>
-            <button type="button" (click)="removeIngredient(i)">Прибрати</button>
+            <button type="button" (click)="removeIngredient(i)">Видалити</button>
           </div>
         </div>
 
+        <button type="button" (click)="addIngredient()">+ Додати інгредієнт</button>
       </div>
     </div>
-
-    <!--    <div class="add-recipe-form-ingredients">-->
-    <!--      <div class="add-recipe-form-ingredients-title">Інгредієнти:</div>-->
-
-    <!--      <div class="add-recipe-form-ingredients-list">-->
-
-    <!--        <div class="add-recipe-form-ingredients-list-first">-->
-    <!--          <div class="add-recipe-form-ingredients-list-first-number">1)</div>-->
-    <!--          <div class="add-recipe-form-ingredients-list-first-ingredient">-->
-    <!--            <label>-->
-    <!--              <select formControlName="ingredientId1" required>-->
-    <!--                <option *ngFor="let ingredient of ingredients" [ngValue]="ingredient.id">{{ingredient.name_ukr}}</option>-->
-    <!--              </select>-->
-    <!--            </label>-->
-    <!--          </div>-->
-    <!--          <div class="add-recipe-form-ingredients-list-weight">-->
-    <!--            <label>-->
-    <!--              <div>-->
-    <!--                Вага-->
-    <!--              </div>-->
-    <!--              <div>-->
-    <!--                <input type="number" formControlName="ingredientWeight1">-->
-    <!--              </div>-->
-    <!--            </label>-->
-    <!--          </div>-->
-    <!--        </div>-->
-
-    <!--        <div class="add-recipe-form-ingredients-list-second">-->
-    <!--          <div class="add-recipe-form-ingredients-list-second-number">2)</div>-->
-    <!--          <div class="add-recipe-form-ingredients-list-second-ingredient">-->
-    <!--            <label>-->
-    <!--              <select formControlName="ingredientId2">-->
-    <!--                <option *ngFor="let ingredient of ingredients" [ngValue]="ingredient.id">{{ingredient.name_ukr}}</option>-->
-    <!--              </select>-->
-    <!--            </label>-->
-    <!--          </div>-->
-    <!--          <div class="add-recipe-form-ingredients-list-weight">-->
-    <!--            <label>-->
-    <!--              <div>-->
-    <!--                Вага-->
-    <!--              </div>-->
-    <!--              <div>-->
-    <!--                <input type="number" formControlName="ingredientWeight2">-->
-    <!--              </div>-->
-    <!--            </label>-->
-    <!--          </div>-->
-    <!--        </div>-->
-
-    <!--        <div class="add-recipe-form-ingredients-list-third">-->
-    <!--          <div class="add-recipe-form-ingredients-list-third-number">3)</div>-->
-    <!--          <div class="add-recipe-form-ingredients-list-third-ingredient">-->
-    <!--            <label>-->
-    <!--              <select formControlName="ingredientId3">-->
-    <!--                <option *ngFor="let ingredient of ingredients" [ngValue]="ingredient.id">{{ingredient.name_ukr}}</option>-->
-    <!--              </select>-->
-    <!--            </label>-->
-    <!--          </div>-->
-    <!--          <div class="add-recipe-form-ingredients-list-weight">-->
-    <!--            <label>-->
-    <!--              <div>-->
-    <!--                Вага-->
-    <!--              </div>-->
-    <!--              <div>-->
-    <!--                <input type="number" formControlName="ingredientWeight3">-->
-    <!--              </div>-->
-    <!--            </label>-->
-    <!--          </div>-->
-    <!--        </div>-->
-
-    <!--        <div class="add-recipe-form-ingredients-list-fourth">-->
-    <!--          <div class="add-recipe-form-ingredients-list-fourth-number">4)</div>-->
-    <!--          <div class="add-recipe-form-ingredients-list-fourth-ingredient">-->
-    <!--            <label>-->
-    <!--              <select formControlName="ingredientId4">-->
-    <!--                <option *ngFor="let ingredient of ingredients" [ngValue]="ingredient.id">{{ingredient.name_ukr}}</option>-->
-    <!--              </select>-->
-    <!--            </label>-->
-    <!--          </div>-->
-    <!--          <div class="add-recipe-form-ingredients-list-weight">-->
-    <!--            <label>-->
-    <!--              <div>-->
-    <!--                Вага-->
-    <!--              </div>-->
-    <!--              <div>-->
-    <!--                <input type="number" formControlName="ingredientWeight4">-->
-    <!--              </div>-->
-    <!--            </label>-->
-    <!--          </div>-->
-    <!--        </div>-->
-
-    <!--        <div class="add-recipe-form-ingredients-list-fifth">-->
-    <!--          <div class="add-recipe-form-ingredients-list-fifth-number">5)</div>-->
-    <!--          <div class="add-recipe-form-ingredients-list-fifth-ingredient">-->
-    <!--            <label>-->
-    <!--              <select formControlName="ingredientId5">-->
-    <!--                <option *ngFor="let ingredient of ingredients" [ngValue]="ingredient.id">{{ingredient.name_ukr}}</option>-->
-    <!--              </select>-->
-    <!--            </label>-->
-    <!--          </div>-->
-    <!--          <div class="add-recipe-form-ingredients-list-weight">-->
-    <!--            <label>-->
-    <!--              <div>-->
-    <!--                Вага-->
-    <!--              </div>-->
-    <!--              <div>-->
-    <!--                <input type="number" formControlName="ingredientWeight5">-->
-    <!--              </div>-->
-    <!--            </label>-->
-    <!--          </div>-->
-    <!--        </div>-->
-
-    <!--        <div class="add-recipe-form-ingredients-list-sixth">-->
-    <!--          <div class="add-recipe-form-ingredients-list-sixth-number">6)</div>-->
-    <!--          <div class="add-recipe-form-ingredients-list-sixth-ingredient">-->
-    <!--            <label>-->
-    <!--              <select formControlName="ingredientId6">-->
-    <!--                <option *ngFor="let ingredient of ingredients" [ngValue]="ingredient.id">{{ingredient.name_ukr}}</option>-->
-    <!--              </select>-->
-    <!--            </label>-->
-    <!--          </div>-->
-    <!--          <div class="add-recipe-form-ingredients-list-weight">-->
-    <!--            <label>-->
-    <!--              <div>-->
-    <!--                Вага-->
-    <!--              </div>-->
-    <!--              <div>-->
-    <!--                <input type="number" formControlName="ingredientWeight6">-->
-    <!--              </div>-->
-    <!--            </label>-->
-    <!--          </div>-->
-    <!--        </div>-->
-
-    <!--        <div class="add-recipe-form-ingredients-list-seventh">-->
-    <!--          <div class="add-recipe-form-ingredients-list-seventh-number">7)</div>-->
-    <!--          <div class="add-recipe-form-ingredients-list-seventh-ingredient">-->
-    <!--            <label>-->
-    <!--              <select formControlName="ingredientId7">-->
-    <!--                <option *ngFor="let ingredient of ingredients" [ngValue]="ingredient.id">{{ingredient.name_ukr}}</option>-->
-    <!--              </select>-->
-    <!--            </label>-->
-    <!--          </div>-->
-    <!--          <div class="add-recipe-form-ingredients-list-weight">-->
-    <!--            <label>-->
-    <!--              <div>-->
-    <!--                Вага-->
-    <!--              </div>-->
-    <!--              <div>-->
-    <!--                <input type="number" formControlName="ingredientWeight7">-->
-    <!--              </div>-->
-    <!--            </label>-->
-    <!--          </div>-->
-    <!--        </div>-->
-
-    <!--        <div class="add-recipe-form-ingredients-list-eight">-->
-    <!--          <div class="add-recipe-form-ingredients-list-eight-number">8)</div>-->
-    <!--          <div class="add-recipe-form-ingredients-list-eight-ingredient">-->
-    <!--            <label>-->
-    <!--              <select formControlName="ingredientId8">-->
-    <!--                <option *ngFor="let ingredient of ingredients" [ngValue]="ingredient.id">{{ingredient.name_ukr}}</option>-->
-    <!--              </select>-->
-    <!--            </label>-->
-    <!--          </div>-->
-    <!--          <div class="add-recipe-form-ingredients-list-weight">-->
-    <!--            <label>-->
-    <!--              <div>-->
-    <!--                Вага-->
-    <!--              </div>-->
-    <!--              <div>-->
-    <!--                <input type="number" formControlName="ingredientWeight8">-->
-    <!--              </div>-->
-    <!--            </label>-->
-    <!--          </div>-->
-    <!--        </div>-->
-
-    <!--        <div class="add-recipe-form-ingredients-list-ninth">-->
-    <!--          <div class="add-recipe-form-ingredients-list-ninth-number">9)</div>-->
-    <!--          <div class="add-recipe-form-ingredients-list-ninth-ingredient">-->
-    <!--            <label>-->
-    <!--              <select formControlName="ingredientId9">-->
-    <!--                <option *ngFor="let ingredient of ingredients" [ngValue]="ingredient.id">{{ingredient.name_ukr}}</option>-->
-    <!--              </select>-->
-    <!--            </label>-->
-    <!--          </div>-->
-    <!--          <div class="add-recipe-form-ingredients-list-weight">-->
-    <!--            <label>-->
-    <!--              <div>-->
-    <!--                Вага-->
-    <!--              </div>-->
-    <!--              <div>-->
-    <!--                <input type="number" formControlName="ingredientWeight9">-->
-    <!--              </div>-->
-    <!--            </label>-->
-    <!--          </div>-->
-    <!--        </div>-->
-
-    <!--        <div class="add-recipe-form-ingredients-list-tenth">-->
-    <!--          <div class="add-recipe-form-ingredients-list-tenth-number">10)</div>-->
-    <!--          <div class="add-recipe-form-ingredients-list-tenth-ingredient">-->
-    <!--            <label>-->
-    <!--              <select formControlName="ingredientId10">-->
-    <!--                <option *ngFor="let ingredient of ingredients" [ngValue]="ingredient.id">{{ingredient.name_ukr}}</option>-->
-    <!--              </select>-->
-    <!--            </label>-->
-    <!--          </div>-->
-    <!--          <div class="add-recipe-form-ingredients-list-weight">-->
-    <!--            <label>-->
-    <!--              <div>-->
-    <!--                Вага-->
-    <!--              </div>-->
-    <!--              <div>-->
-    <!--                <input type="number" formControlName="ingredientWeight10">-->
-    <!--              </div>-->
-    <!--            </label>-->
-    <!--          </div>-->
-    <!--        </div>-->
-    <!--      </div>-->
-    <!--    </div>-->
 
     <div class="add-recipe-form-image">
       <label>

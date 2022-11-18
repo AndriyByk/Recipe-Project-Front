@@ -5,6 +5,7 @@ import { UserCreatedRecipesPageRoutingModule } from './user-created-recipes-page
 import { UserCreatedRecipesPageComponent } from './user-created-recipes-page/user-created-recipes-page.component';
 import {CreatedRecipesComponent} from "../../components/cabinet/created-recipes/created-recipes.component";
 import {CreatedRecipeComponent} from "../../components/cabinet/created-recipe/created-recipe.component";
+import {UserByUsernameResolver} from "../../services/fetches/users/user-by-username.resolver";
 
 
 @NgModule({
@@ -16,6 +17,9 @@ import {CreatedRecipeComponent} from "../../components/cabinet/created-recipe/cr
   imports: [
     CommonModule,
     UserCreatedRecipesPageRoutingModule
+  ],
+  providers: [
+    UserByUsernameResolver
   ]
 })
 export class UserCreatedRecipesPageModule { }

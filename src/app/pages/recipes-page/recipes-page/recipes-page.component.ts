@@ -21,9 +21,5 @@ export class RecipesPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({recipes}) => this.storeService.recipes.next(recipes))
-    // this.recipeService.getAll().subscribe(value => {
-    //   this.storeService.recipes.next(value);
-    //   // this.recipes = value;
-    // })
   }
 }

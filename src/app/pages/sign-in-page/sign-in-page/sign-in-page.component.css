@@ -29,7 +29,7 @@ label {
 form input {
   width: 330px;
   height: 35px;
-  border-radius: 10px;
+  border-radius: 30px;
   padding: 20px;
   font-size: 15px;
   box-shadow: #555555 0 0 15px;
@@ -51,12 +51,12 @@ form input {
 .sign-in-form-links-submit-button button {
   background-color: #ade59d;
   padding: 20px;
-  width: 350px;
+  width: 250px;
   height: 55px;
-  border-radius: 10px;
+  /*border-radius: 10px;*/
   font-size: 15px;
   border: 0;
-  box-shadow: #555555 0 0 15px;
+  box-shadow: #555555 0 0 10px;
   color: black;
 }
 
