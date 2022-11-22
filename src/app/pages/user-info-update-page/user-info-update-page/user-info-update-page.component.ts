@@ -1,42 +1,34 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {IActivityType} from "../../../interfaces/categories/IActivityType";
 import {IGender} from "../../../interfaces/categories/IGender";
-import {UserActivityTypeService} from "../../../services/fetches/users/user-activity-type.service";
-import {UserGenderService} from "../../../services/fetches/users/user-gender.service";
 import {IUser} from "../../../interfaces/entities/user/IUser";
+import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../../services/fetches/users/user.service";
-import {Router} from "@angular/router";
 import {StoreService} from "../../../services/store/store.service";
 
 @Component({
-  selector: 'app-user-info-update',
-  templateUrl: './user-info-update.component.html',
-  styleUrls: ['./user-info-update.component.css']
+  selector: 'app-user-info-update-page',
+  templateUrl: './user-info-update-page.component.html',
+  styleUrls: ['./user-info-update-page.component.css']
 })
-export class UserInfoUpdateComponent implements OnInit {
+export class UserInfoUpdatePageComponent implements OnInit {
   user: IUser;
   form: FormGroup;
   types: IActivityType[];
   genders: IGender[];
   private actualUser = 'actualUser';
+  details: boolean;
 
-  constructor(private userService: UserService,
-              private userActivityTypeService: UserActivityTypeService,
-              private userGenderService: UserGenderService,
+  constructor(private route: ActivatedRoute,
+              private userService: UserService,
               private router: Router,
               private storeService: StoreService) {
-    this.userActivityTypeService.getAll().subscribe(value => this.types = value)
-    this.userGenderService.getAll().subscribe(value => this.genders = value)
-    let {data} = history.state;
-    if (data != undefined) {
-      this.user = data;
-    } else {
-      let username = localStorage.getItem("actualUser");
-      if (username != null) {
-        this.userService.getByUsername(username).subscribe(value => this.user = value)
-      }
-    }
+    this.route.data.subscribe(({user, types, genders}) => {
+      this.types = types;
+      this.genders = genders;
+      this.user = user;
+    })
   }
 
   ngOnInit(): void {
@@ -56,7 +48,6 @@ export class UserInfoUpdateComponent implements OnInit {
       genderId: new FormControl(this.user.genderDto.id)
     })
   }
-
   onChange(e: any) {
     let extensionAllowed: any = { "png": true, "jpeg": true, "jpg": true };
     let file = e.target.files[0];
@@ -91,5 +82,9 @@ export class UserInfoUpdateComponent implements OnInit {
       );
     }
     this.router.navigate(['cabinet/info'])
+  }
+
+  showDetails() {
+    this.details = !this.details;
   }
 }

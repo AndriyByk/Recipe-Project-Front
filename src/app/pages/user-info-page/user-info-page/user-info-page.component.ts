@@ -15,24 +15,21 @@ export class UserInfoPageComponent implements OnInit {
   private accessTokenKey = 'access';
   user: IUser;
   url: string;
+  details: boolean;
 
   constructor(
     private storeService: StoreService,
     private userService: UserService,
     private router: Router,
     private activatedRoute: ActivatedRoute
-  ) {
-  }
+  ) {  }
 
   ngOnInit(): void {
-    this.storeService.user.subscribe(value => {
-      this.user = value;
-    })
+    this.storeService.user.subscribe(value => this.user = value)
     this.url = baseURL + recipeUrl.pictures;
-
+    this.details = false;
     // прийшлось видалити, бо після оновлення даних юзера в юзер-інфо-апдейт дані кешувались
     // і показувало старе, хоча в базі даних оновилось
-
     // let {data} = history.state;
     // if (data != undefined) {
     //   this.user = data;
@@ -78,5 +75,9 @@ export class UserInfoPageComponent implements OnInit {
 
   updateAccount() {
     this.router.navigate(['cabinet/info/update'])
+  }
+
+  showDetails() {
+    this.details = !this.details;
   }
 }

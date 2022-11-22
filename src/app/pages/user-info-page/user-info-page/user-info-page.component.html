@@ -48,10 +48,10 @@
         Рід занятості:
       </div>
       <div class="cabinet-user-info-type-of-activity-content">
-        <div class="cabinet-user-info-type-of-activity-content-name">
-          {{user.activityTypeDto.name + " категорія"}}
+        <div class="cabinet-user-info-type-of-activity-content-name" (click)="showDetails()">
+          {{user.activityTypeDto.name + " категорія"}}<span>{{" "}}?</span>
         </div>
-        <div class="cabinet-user-info-type-of-activity-content-about">
+        <div *ngIf="details" (click)="showDetails()" class="cabinet-user-info-type-of-activity-content-about">
           {{user.activityTypeDto.about}}
         </div>
       </div>
@@ -61,7 +61,7 @@
       <div class="cabinet-user-info-height-title">
         Ваша висота:
       </div>
-      <div class="cabinet-user-info-height">
+      <div class="cabinet-user-info-height-content">
         {{user.height}}
       </div>
     </div>

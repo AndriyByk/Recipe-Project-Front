@@ -1,0 +1,99 @@
+.user-info-update-form {
+  display: flex;
+  justify-content: center;
+  column-gap: 5%;
+  background-color: #b6c9ff;
+  padding: 50px;
+  box-shadow: #b6c9ff 0 0 20px;
+  border-radius: 13%;
+}
+
+.user-info-update-form-avatar {
+  min-width: 15%;
+  max-width: 300px;
+  box-shadow: white 0 0 5px;
+  background-color: white;
+  padding: 10px;
+}
+
+.user-info-update-form-details {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 10px;
+  background-color: white;
+  box-shadow: white 0 0 5px;
+  row-gap: 20px;
+}
+
+.user-info-update-form-details > div > label {
+  display: flex;
+}
+
+.user-info-update-form-details > div > label > div {
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  min-width: 200px;
+  font-style: italic;
+}
+
+.user-info-update-form-details > div > label > input {
+  font-weight: bold;
+  font-style: italic;
+}
+
+.user-info-update-form-details > div > label > select {
+  font-weight: bold;
+  font-style: italic;
+}
+
+.user-info-update-form-type-of-activity {
+  position: relative;
+}
+
+.user-info-update-form-type-of-activity > div {
+  position: absolute;
+  left: 200px;
+  top: 0;
+  background-color: #555555;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  width: 400px;
+  color: white;
+  padding: 10px;
+}
+
+.user-info-update-form-type-of-activity > label > div > span {
+  color: #9a9a9a;
+}
+
+.user-info-update-form-type-of-activity > label > div:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.user-info-update-form-submit-button {
+  display: flex;
+  justify-content: center;
+  padding: 40px 10px;
+  background-color: white;
+  box-shadow: white 0 0 5px;
+  min-width: 15%;
+  max-width: 300px;
+}
+
+.user-info-update-form-submit-button button {
+  height: 10%;
+  width: 40%;
+}
+
+.user-info-update-form-details > div > label > input,
+.user-info-update-form-details > div > label > select {
+  width: 250px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: #555555 0 0 5px;
+  border: none;
+}
