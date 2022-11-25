@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from "../../../services/fetches/users/user.service";
 import {ActivatedRoute} from "@angular/router";
 import {IUser} from "../../../interfaces/entities/user/IUser";
 
@@ -9,7 +8,6 @@ import {IUser} from "../../../interfaces/entities/user/IUser";
   styleUrls: ['./user-created-recipes-page.component.css']
 })
 export class UserCreatedRecipesPageComponent implements OnInit {
-  private actualUser = 'actualUser';
   user: IUser;
 
   constructor(private route: ActivatedRoute) { }

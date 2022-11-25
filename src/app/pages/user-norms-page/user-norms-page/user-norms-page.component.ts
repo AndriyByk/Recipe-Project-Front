@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {IUser} from "../../../interfaces/entities/user/IUser";
 import {StoreService} from "../../../services/store/store.service";
 import {INorm} from "../../../interfaces/entities/user/INorm";
+import {INormSorted} from "../../../interfaces/entities/user/INormSorted";
 
 @Component({
   selector: 'app-user-norms-page',
@@ -11,26 +12,37 @@ import {INorm} from "../../../interfaces/entities/user/INorm";
   styleUrls: ['./user-norms-page.component.css']
 })
 export class UserNormsPageComponent implements OnInit {
-  private actualUser = 'actualUser';
   user: IUser;
   norms: INorm[];
+  normsSorted: INormSorted = {
+    energy: [],
+    minerals: [],
+    vitamins: [],
+    organics: []
+  }
 
   constructor(private route: ActivatedRoute,
               private userService: UserService,
               private storeService: StoreService) { }
 
   ngOnInit(): void {
-    let {data} = history.state;
-    if (data != undefined) {
-      this.user = data;
-    } else {
-      let username = localStorage.getItem(this.actualUser);
-      if (username != null) {
-        this.userService.getByUsername(username).subscribe(value => this.user = value)
+    this.route.data.subscribe(({user}) => {
+      this.user = user;
+      if (user.userNorms) {
+        for (let i = 0; i < user.userNorms.length; i++) {
+          if (i == 0) {
+            this.normsSorted.energy.push(user.userNorms[i])
+          } else if (i >= 1 && i < 4) {
+            this.normsSorted.organics.push(user.userNorms[i])
+          } else if (i >= 4 && i < 16) {
+            this.normsSorted.vitamins.push(user.userNorms[i])
+          } else {
+            this.normsSorted.minerals.push(user.userNorms[i])
+          }
+        }
       }
-    }
+    });
   }
-
 
   calculateNorm() {
     this.userService.calculateNorms(this.user).subscribe(value => {

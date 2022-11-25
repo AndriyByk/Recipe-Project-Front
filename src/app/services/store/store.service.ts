@@ -32,27 +32,9 @@ export class StoreService {
     quantity: 0,
     nameOfNutrient: "",
     idOfNutrient: 0
-  }])
-
-  recipes = new BehaviorSubject<IRecipe[]>([{
-    id: 0,
-    image: "",
-    description: "",
-    dateOfCreation: "",
-    ingredients: [],
-    recipeCategoryDto: {
-      id: 0,
-      name: ""
-    },
-    author: {
-      id:0,
-      username: ""
-    },
-    title: "",
-    quantities: []
   }]);
 
-  favoriteRecipes = new BehaviorSubject<IRecipe[]>([{
+  recipes = new BehaviorSubject<IRecipe[]>([{
     id: 0,
     image: "",
     description: "",

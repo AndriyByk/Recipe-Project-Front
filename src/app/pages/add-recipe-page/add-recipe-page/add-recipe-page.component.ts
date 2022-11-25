@@ -19,11 +19,11 @@ import {IListOfIngredientsForNewRecipe} from "../../../interfaces/entities/ingre
 export class AddRecipePageComponent implements OnInit {
   form: FormGroup;
   categories: IRecipeCategory[];
-
   ingredients: IIngredient[];
-  selectedIngredients: IListOfIngredientsForNewRecipe[] = [];
 
+  selectedIngredients: IListOfIngredientsForNewRecipe[] = [];
   ingredientCategories: IIngredientCategory[];
+
   private actualUser = 'actualUser';
 
   constructor(private recipeCategoryService: RecipeCategoryService,
@@ -103,6 +103,10 @@ export class AddRecipePageComponent implements OnInit {
 
   submit(): void {
     let rawValue = this.form.getRawValue();
+
+    for (let i = 0; i < rawValue.rawIngredientWithWeights.length; i++) {
+      delete rawValue.rawIngredientWithWeights[i].category;
+    }
 
     // час створення рецепта
     let formData = new FormData();

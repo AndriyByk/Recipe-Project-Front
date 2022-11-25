@@ -21,7 +21,6 @@
       <label>
         <div class="add-recipe-form-cooking-input">
           <textarea rows="5" formControlName="description" placeholder="Спосіб приготування"></textarea>
-<!--          <input type="text" formControlName="description" placeholder="Спосіб приготування">-->
         </div>
       </label>
     </div>
@@ -42,11 +41,11 @@
     <div class="add-recipe-form-ingredients">
       <div class="add-recipe-form-ingredients-list" formArrayName="rawIngredientWithWeights">
 
+
+
         <div class="add-recipe-form-ingredient" *ngFor="let ingredient of getIngredients().controls; let i=index"
              [formGroupName]="i">
-
           <div class="add-recipe-form-ingredient-number">{{i + 1}}</div>
-
           <div class="add-recipe-form-ingredient-category">
             <label>
               <select #mySelect formControlName="category" (change)="select(mySelect.value, i)">

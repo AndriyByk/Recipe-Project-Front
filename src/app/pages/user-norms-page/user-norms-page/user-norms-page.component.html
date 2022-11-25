@@ -1,24 +1,57 @@
-<div>
-  <div *ngIf="user.userNorms.length > 0 else elseBlock1">
-    <div *ngFor="let norm of user.userNorms">
-      <div>
-        <span>{{norm.nameOfNutrient + "  "}}</span><span>{{norm.quantity}}</span>
-      </div>
+<div class="user-norms-page">
+  <div class="user-norms-page-content">
+    <div class="user-norms-page-title">
+      Ваші денні норми мікро- і макроелементів:
     </div>
-  </div>
 
-  <ng-template #elseBlock1>
-    <div *ngIf="norms; else elseBlock2">
-      <div *ngFor="let norm of norms">
-        <div>
-          <span>{{norm.nameOfNutrient + "  "}}</span><span>{{norm.quantity}}</span>
+    <div class="user-norms-page-list">
+
+      <div class="user-norms-page-list-have" *ngIf="user.userNorms.length > 0 else elseBlock1">
+        <div class="user-norms-page-norm-category">Енергія:</div>
+        <div class="user-norms-page-norm" *ngFor="let norm of normsSorted.energy">
+          <div>
+            <div class="user-norms-page-norm-name">{{norm.nameOfNutrient}}</div>
+            <div class="user-norm-page-norm-quantity">{{norm.quantity}}</div>
+          </div>
+        </div>
+        <div class="user-norms-page-norm-category">Органічні макроелементи:</div>
+        <div class="user-norms-page-norm" *ngFor="let norm of normsSorted.organics">
+          <div>
+            <div class="user-norms-page-norm-name">{{norm.nameOfNutrient}}</div>
+            <div class="user-norm-page-norm-quantity">{{norm.quantity}}</div>
+          </div>
+        </div>
+        <div class="user-norms-page-norm-category">Вітаміни:</div>
+        <div class="user-norms-page-norm" *ngFor="let norm of normsSorted.vitamins">
+          <div>
+            <div class="user-norms-page-norm-name">{{norm.nameOfNutrient}}</div>
+            <div class="user-norm-page-norm-quantity">{{norm.quantity}}</div>
+          </div>
+        </div>
+        <div class="user-norms-page-norm-category">Мінерали:</div>
+        <div class="user-norms-page-norm" *ngFor="let norm of normsSorted.minerals">
+          <div>
+            <div class="user-norms-page-norm-name">{{norm.nameOfNutrient}}</div>
+            <div class="user-norm-page-norm-quantity">{{norm.quantity}}</div>
+          </div>
         </div>
       </div>
+
+      <ng-template class="user-norms-page-list-already" #elseBlock1>
+        <div class="user-norms-page-list-already-have" *ngIf="norms; else elseBlock2">
+          <div class="user-norms-page-norm" *ngFor="let norm of norms">
+            <div class="user-norms-page-norm-name">{{norm.nameOfNutrient}}</div>
+            <div class="user-norm-page-norm-quantity">{{norm.quantity}}</div>
+          </div>
+        </div>
+      </ng-template>
+
+      <ng-template class="user-norms-page-list-not-yet" #elseBlock2>
+        <div class="user-norms-page-list-not-yet-button" (click)="calculateNorm()">
+          Порахувати!
+        </div>
+      </ng-template>
+
     </div>
-  </ng-template>
-  <ng-template #elseBlock2>
-    <div (click)="calculateNorm()">
-      Calculate norms
-    </div>
-  </ng-template>
+  </div>
 </div>
