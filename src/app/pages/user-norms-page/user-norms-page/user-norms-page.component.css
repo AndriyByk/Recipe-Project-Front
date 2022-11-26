@@ -10,7 +10,7 @@
   padding: 50px 100px;
   justify-content: center;
   border-radius: 60px;
-  background-color: orange;
+  background-color: #fadc9d;
   box-shadow: orange 0 0 15px 1px;
 }
 
@@ -65,15 +65,16 @@
   box-shadow: white 0 0 5px;
   background-color: white;
   font-family: "Segoe Print", sans-serif;
-  font-size: 15px;
+  font-size: 18px;
   border-radius: 5px;
   padding: 5px 0 5px 10px;
 }
 
 .user-norms-page-norm-name {
   font-family: "Segoe Print", sans-serif;
-  font-size: 14px;
-  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  color: #9f653b;
 }
 
 .user-norm-page-norm-quantity {

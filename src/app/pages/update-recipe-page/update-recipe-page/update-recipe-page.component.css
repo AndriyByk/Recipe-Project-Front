@@ -1,3 +1,225 @@
-.update-recipe-form-ingredient {
+.display-flex {
   display: flex;
+}
+
+.update-recipe {
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px 50px;
+  row-gap: 20px;
+  align-items: center;
+}
+
+.update-recipe-title {
+  font-family: "Segoe Print", sans-serif;
+  font-size: 25px;
+  font-weight: bold;
+  color: #9a9a9a;
+  justify-content: center;
+}
+
+.update-recipe-form {
+  flex-direction: column;
+  row-gap: 12px;
+  width: 80%;
+}
+
+.update-recipe-form-title-content {
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: #f6f6f6;
+  font-family: "Segoe Script", sans-serif;
+  font-size: 20px;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.update-recipe-form-title-title,
+.update-recipe-form-cooking-name,
+.update-recipe-form-category-title,
+.update-recipe-form-ingredients-title,
+.update-recipe-form-picture-title {
+  width: 200px;
+  font-family: "Segoe Print", sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: #e3e3e3;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  padding-left: 10px;
+}
+
+.update-recipe-form-cooking-input{
+  flex-grow: 1;
+}
+
+.update-recipe-form-cooking-input > textarea {
+  flex-grow: 1;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border: #f6f6f6 solid medium;
+  box-sizing: border-box;
+}
+
+.update-recipe-form-category-select {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  flex-grow: 1;
+  background-color: #f6f6f6;
+  padding: 5px;
+  justify-content: center;
+}
+
+.update-recipe-form-category-select select {
+  width: 50%;
+  border: none;
+  background-color: #e9e9ed;
+  padding: 0 5px;
+  font-family: "Segoe Script", sans-serif;
+  font-size: 15px;
+}
+
+.update-recipe-form-category-select select:hover {
+  background-color: #c9c9c9;
+  transition-duration: 0.1s;
+
+}
+
+.update-recipe-form-ingredients-list {
+  flex-direction: column;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  flex-grow: 1;
+  background-color: #f6f6f6;
+  padding: 5px;
+  justify-content: center;
+  row-gap: 5px;
+}
+/*--------------------------------------*/
+.update-recipe-form-ingredient-number-title,
+.update-recipe-form-ingredient-number {
+  width: 2%;
+  font-family: "Segoe Print", sans-serif;
+  font-size: 15px;
+}
+
+.update-recipe-form-ingredient-category-title,
+.update-recipe-form-ingredient-category {
+  width: 25%;
+}
+
+.update-recipe-form-ingredient-category select {
+  width: 90%;
+  font-family: "Segoe Print", sans-serif;
+  font-size: 13px;
+  border: none;
+  border-radius: unset;
+
+}
+.update-recipe-form-ingredient-category select:hover {
+  transition-duration: 0.1s;
+  background-color: #c9c9c9;
+}
+
+.update-recipe-form-ingredient-id-title,
+.update-recipe-form-ingredient-id {
+  width: 45%;
+}
+
+.update-recipe-form-ingredient-id select {
+  width: 90%;
+  font-family: "Segoe Print", sans-serif;
+  font-size: 13px;
+  border: none;
+  border-radius: unset;
+
+}
+
+.update-recipe-form-ingredient-id select:hover {
+  background-color: #c9c9c9;
+  transition-duration: 0.1s;
+}
+
+.update-recipe-form-ingredient-weight-title,
+.update-recipe-form-ingredient-weight {
+  width: 15%;
+}
+
+.update-recipe-form-ingredient-delete-button {
+  width: 5%;
+  justify-content: end;
+
+}
+/*-----------------------------------------*/
+.update-recipe-form-ingredient-titles {
+  column-gap: 5px;
+  font-family: "Segoe Print", sans-serif;
+  font-size: 15px;
+}
+
+.update-recipe-form-ingredient {
+  column-gap: 1%;
+  padding-left: 1%;
+  padding-right: 1%;
+}
+
+.update-recipe-form-ingredient-weight-input input {
+  width: 90%;
+  border: none;
+  border-radius: unset;
+  font-family: "Segoe Print", sans-serif;
+}
+
+.update-recipe-form-ingredient-delete-button button {
+  border: none;
+  height: 100%;
+  color: #9a9a9a;
+  width: 30px;
+  font-size: 15px;
+  font-weight: bold;
+  font-family: "Segoe Print", sans-serif;
+}
+
+.update-recipe-form-ingredient-add-button {
+  justify-content: start;
+  height: 25px;
+}
+
+.update-recipe-form-ingredient-add-button button {
+  width: 84%;
+  margin-left: 4%;
+  border: none;
+  border-radius: unset;
+  height: 100%;
+  font-family: "Segoe Print", sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  color: #9a9a9a;
+}
+
+.update-recipe-form-picture-input {
+  padding: 5px;
+  justify-content: center;
+  flex-grow: 1;
+  background-color: #f6f6f6;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.update-recipe-form-picture-input input {
+  font-family: "Segoe Print", sans-serif;
+  font-size: 14px;
+  width: 30%;
+  background-color: #e9e9ed;
+  padding-left: 40px;
+}
+
+
+.update-recipe-form-button button {
+  border-radius: 20px;
+  font-family: "Segoe Print", sans-serif;
+  font-size: 25px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
 }
