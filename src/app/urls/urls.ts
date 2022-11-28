@@ -2,6 +2,7 @@ export const baseURL = "http://localhost:8080";
 
 export const recipeUrl = {
   recipes: '/recipes',
+  recipe: '/recipe',
   recipeCategories: '/recipes/categories',
   nutrients: '/nutrients',
   nutrientCategories: '/nutrients/categories',

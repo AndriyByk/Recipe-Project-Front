@@ -6,6 +6,8 @@ import {IUser} from "../../../interfaces/entities/user/IUser";
 import {INorm} from "../../../interfaces/entities/user/INorm";
 import {INutrientDto} from "../../../interfaces/entities/nutrient/INutrientDto";
 import {IProportion} from "../../../interfaces/entities/nutrient/IProportion";
+import {FormControl, FormGroup} from "@angular/forms";
+import {RecipeService} from "../../../services/fetches/recipes/recipe.service";
 
 @Component({
   selector: 'app-recipe',
@@ -16,6 +18,7 @@ export class RecipePageComponent implements OnInit {
 
   url: string;
   private actualUser = 'actualUser';
+  form: FormGroup;
 
   recipe: IRecipe;
   stages: string[];
@@ -30,7 +33,15 @@ export class RecipePageComponent implements OnInit {
     organics: []
   };
 
-  constructor(private activatedRoute: ActivatedRoute) {
+  constructor(private activatedRoute: ActivatedRoute,
+              private recipeService: RecipeService) {
+    this.createForm();
+  }
+
+  createForm(): void {
+    this.form = new FormGroup({
+      rate: new FormControl(null)
+    });
   }
 
   ngOnInit(): void {
@@ -42,7 +53,6 @@ export class RecipePageComponent implements OnInit {
         this.stages = recipe.description.split(".");
         this.user = user;
 
-        console.log(this.recipe);
         for (let j = 0, i = 0; j < recipe.quantities.length; j++) {
           if (j == 0) {
             this.proportions.energy.push({
@@ -202,5 +212,19 @@ export class RecipePageComponent implements OnInit {
     //     });
     //   });
     // }
+  }
+
+  vote() {
+    let {rate} = this.form.getRawValue();
+    if (rate) {
+      let recipeId = this.recipe.id;
+      let userId = this.user.id;
+      let rateObject = {
+        recipeId: recipeId,
+        userId: userId,
+        rate: rate
+      }
+      this.recipeService.rateRecipe(rateObject).subscribe()
+    }
   }
 }

@@ -6,6 +6,7 @@ import {RecipePageComponent} from './recipe-page/recipe-page.component';
 import {RecipeService} from "../../services/fetches/recipes/recipe.service";
 import {UserByUsernameResolver} from "../../services/fetches/users/user-by-username.resolver";
 import {RecipeByIdResolver} from "../../services/fetches/recipes/recipe-by-id.resolver";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -15,10 +16,11 @@ import {RecipeByIdResolver} from "../../services/fetches/recipes/recipe-by-id.re
   exports: [
     RecipePageComponent
   ],
-  imports: [
-    CommonModule,
-    RecipePageRoutingModule
-  ],
+    imports: [
+        CommonModule,
+        RecipePageRoutingModule,
+        ReactiveFormsModule
+    ],
   providers: [
     RecipeService,
     UserByUsernameResolver,

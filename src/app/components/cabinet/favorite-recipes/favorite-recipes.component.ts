@@ -8,7 +8,7 @@ import {IRecipe} from "../../../interfaces/entities/recipe/IRecipe";
 })
 export class FavoriteRecipesComponent implements OnInit {
   @Input()
-  recipesFavorite: IRecipe[]
+  recipesFavorite: IRecipe[];
 
   constructor() {
   }

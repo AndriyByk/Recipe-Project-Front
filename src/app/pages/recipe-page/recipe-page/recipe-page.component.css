@@ -3,10 +3,69 @@
 /* писаний незрозумілий "Mistral"*/
 /* писаний широкий "Monotype Corsiva"*/
 /* писаний "Segoe Print"*/
+.rating {
+  /*position: absolute;*/
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 150px;
+  height: 30px;
+  padding: 5px 10px;
+  margin: auto;
+  border-radius: 30px;
+  background: #FFF;
+  display: block;
+  overflow: hidden;
+
+  unicode-bidi: bidi-override;
+  direction: rtl;
+}
+.rating:not(:checked) > input {
+  display: none;
+}
+
+#like {
+  bottom: -65px;
+}
+#like:not(:checked) > label {
+  cursor:pointer;
+  float: right;
+  width: 30px;
+  height: 30px;
+  display: block;
+
+  color: rgba(233, 54, 40, .4);
+  line-height: 33px;
+  text-align: center;
+}
+#like:not(:checked) > label:hover,
+#like:not(:checked) > label:hover ~ label {
+  color: rgba(233, 54, 40, .6);
+}
+#like > input:checked + label:hover,
+#like > input:checked + label:hover ~ label,
+#like > input:checked ~ label:hover,
+#like > input:checked ~ label:hover ~ label,
+#like > label:hover ~ input:checked ~ label {
+  color: rgba(233, 54, 40, .8);
+}
+#like > input:checked ~ label {
+  color: rgb(233, 54, 40);
+}
+
+
+.recipe {
+  display: flex;
+  flex-direction: column;
+  row-gap: 60px;
+}
+
 
 .recipe-body-top {
   display: flex;
   justify-content: center;
+
 }
 
 .recipe-photo {
@@ -17,11 +76,19 @@
   align-items: center;
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
+  box-sizing: border-box;
+}
+
+.recipe-photo-content {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
 }
 
 .recipe-photo img {
   max-width: 80vw;
   height: 100%;
+  box-sizing: border-box;
 }
 
 .recipe-info-with-ingredients {
@@ -35,13 +102,19 @@
   border-bottom-right-radius: 25px;
   border-top-right-radius: 25px;
   background-color: #eaf5de;
+  box-sizing: border-box;
 }
+
+
 
 .recipe-ingredients {
   display: flex;
   flex-direction: column;
   row-gap: 5px;
   padding: 5px 10px;
+  box-shadow: white 0 0 8px 3px;
+  border-radius: 15px;
+  background-color: white;
 }
 
 .recipe-ingredients-titles {
@@ -49,6 +122,7 @@
   justify-content: space-evenly;
   font-family: "Segoe Print", sans-serif;
   font-weight: bold;
+
 }
 
 .recipe-ingredient {
@@ -59,11 +133,47 @@
 }
 
 .recipe-title {
-  font: 30px "Gabriola";
+  font: 30px "Segoe Print";
   font-weight: bold;
   text-shadow: 5px 0 5px gray;
   display: flex;
   justify-content: center;
+  background-color: white;
+  box-shadow: white 0 0 8px 3px;
+  border-radius: 15px;
+}
+
+.recipe-author-link span {
+  font: 15px "Segoe Script";
+}
+
+.recipe-author-link-name {
+  font: 17px "Segoe Print";
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+}
+
+.recipe-author-link-name:hover {
+  color: firebrick;
+  cursor: pointer;
+}
+
+.link-to-update-recipe {
+  font: 15px "Segoe Script";
+}
+
+.link-to-update-recipe a {
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 17px;
+  font-family: "Segoe Print", sans-serif;
+}
+
+.link-to-update-recipe a:hover {
+  color: firebrick;
+  cursor: pointer;
 }
 
 .recipe-category {
@@ -72,14 +182,24 @@
   font-style: normal;
   font-weight: bold;
   color: white;
-  padding: 5px 10px;
+  margin: 7px 85px;
   display: flex;
   justify-content: center;
+  box-shadow: #ade59d 0 0 8px 3px;
 }
 
-.recipe-ingredients-titles-ingredient,
+.recipe-ingredients-titles-ingredient {
+  width: 190px;
+  display: flex;
+}
+
 .recipe-ingredient-name {
-  width: 150px;
+  width: 190px;
+  display: flex;
+}
+
+.recipe-ingredient-name-content-sign {
+  width: 10px;
 }
 
 .recipe-ingredients-titles-weight,
@@ -111,14 +231,24 @@
   display: flex;
   flex-direction: column;
   row-gap: 5px;
-  padding: 40px 80px;
+
+  flex-grow: 1;
+  max-width: 1500px;
+
   font-size: 18px;
   font-family: "Segoe Script", sans-serif;
+  background-color: #fadc9d;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: #fadc9d 0 0 10px 3px;
+  box-sizing: border-box;
+
 }
 
 .recipe-body-bottom {
   display: flex;
   justify-content: center;
+
 }
 
 .recipe-nutrients {
@@ -126,10 +256,44 @@
   flex-direction: column;
   row-gap: 5px;
   padding: 5px 10px;
+  width: 90%;
+  justify-content: center;
+  border-radius: 40px;
+  border: black solid thin;
+  align-items: center;
+
+}
+
+.recipe-nutrients-title-short {
+  font-family: "Segoe Print", sans-serif;
+  font-size: 25px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+}
+
+.recipe-nutrients-title-long {
+  font-family: "Segoe Script", sans-serif;
+  font-size: 20px;
+  color: #9a9a9a;
+  display: flex;
+  justify-content: center;
+
 }
 
 .recipe-nutrients-titles {
   display: flex;
+  font: 12px "Segoe Print";
+  padding-left: 5%;
+  border-bottom: black dotted thin;
+  column-gap: 1%;
+  width: 80%;
+  box-sizing: border-box;
+}
+
+.recipe-nutrients-titles > div {
+  display: flex;
+  justify-content: center;
 }
 
 .recipe-nutrient {
@@ -141,6 +305,25 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
+  font: 12px "Segoe Print";
+  width: 80%;
+}
+
+.recipe-user-proportions-id,
+.recipe-user-proportions-name,
+.recipe-user-proportions-category,
+.recipe-user-proportions-recipe-quantity,
+.recipe-user-proportions-norm,
+.recipe-user-proportions-percentage {
+  display: flex;
+  justify-content: center;
+}
+
+
+.recipe-user-proportions-title {
+  padding: 10px 0 10px 0;
+  font-size: 17px;
+  font-weight: bold;
 }
 
 .recipe-user-proportion-energy,
@@ -149,26 +332,29 @@
 .recipe-user-proportion-minerals
 {
   display: flex;
+  padding-left: 5%;
+  column-gap: 1%;
+
 }
 /*______________*/
 .recipe-user-proportions-norm,
 .recipe-nutrients-titles-norm {
-  width: 75px;
+  width: 140px;
 }
 
 .recipe-user-proportions-recipe-quantity,
 .recipe-nutrients-titles-quantity {
-  width: 150px;
+  width: 250px;
 }
 
 .recipe-user-proportions-category,
 .recipe-nutrients-titles-category {
-  width: 80px;
+  width: 150px;
 }
 
 .recipe-user-proportions-id,
 .recipe-nutrients-titles-no {
-  width: 30px;
+  width: 50px;
 }
 
 .recipe-user-proportions-percentage,

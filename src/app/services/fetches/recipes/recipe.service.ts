@@ -51,4 +51,9 @@ export class RecipeService {
   getSortedByNutrient(nutrientId: number) {
     return this.httpClient.get<IRecipe[]>(`${baseURL}${recipeUrl.recipes}/find-by-nutrient/${nutrientId}`)
   }
+
+  rateRecipe(rate : any) {
+    return this.httpClient.patch<IRecipe>(`${baseURL}${recipeUrl.recipe}/rate`, rate)
+  }
+
 }

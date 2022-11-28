@@ -1,13 +1,16 @@
 <div class="recipe">
+
+
   <div class="recipe-body-top">
+
     <div class="recipe-photo">
       <div class="recipe-photo-content">
         <!--      http://localhost:8080/pictures/[recipe.title]/[recipe.image]  -->
         <img src="{{url + '/' + recipe.dateOfCreation + '/' + recipe.image}}" alt="photo">
       </div>
     </div>
-    <div class="recipe-info-with-ingredients">
 
+    <div class="recipe-info-with-ingredients">
       <div class="recipe-title">
         <div class="recipe-title-content">
           {{recipe.title}}
@@ -19,16 +22,35 @@
           <span>{{"Автор: "}}</span>
 
           <div *ngIf="user && user.id != recipe.author.id else toCabinet">
-            <a [routerLink]="['/user', recipe.author.id]" [state]="{data: recipe}">{{recipe.author.username}}</a>
+            <a class="recipe-author-link-name" [routerLink]="['/user', recipe.author.id]"
+               [state]="{data: recipe}">{{recipe.author.username}}</a>
           </div>
           <ng-template #toCabinet>
-            <a [routerLink]="['/cabinet/created-recipes']">{{recipe.author.username}}</a>
-            <div class="link-to-update-recipe">
-              <a [routerLink]="['/update-recipe', recipe.id]" [state]="{data: recipe}">Редагувати рецепт</a>
+            <a class="recipe-author-link-name"
+               [routerLink]="['/cabinet/created-recipes']">{{recipe.author.username}}</a>
+            <div class="link-to-update-recipe">Це ваш рецепт. Ви можете його
+              <a [routerLink]="['/update-recipe', recipe.id]" [state]="{data: recipe}"> редагувати</a>
             </div>
           </ng-template>
 
         </div>
+      </div>
+      <div>
+        <form [formGroup]="form">
+          <section id="like" class="rating">
+            <input type="radio" id="heart_5" name="rate" value="5" formControlName="rate"/>
+            <label for="heart_5" title="Five">&#11088;</label>
+            <input type="radio" id="heart_4" name="rate" value="4" formControlName="rate"/>
+            <label for="heart_4" title="Four">&#11088;</label>
+            <input type="radio" id="heart_3" name="rate" value="3" formControlName="rate"/>
+            <label for="heart_3" title="Three">&#11088;</label>
+            <input type="radio" id="heart_2" name="rate" value="2" formControlName="rate"/>
+            <label for="heart_2" title="Two">&#11088;</label>
+            <input type="radio" id="heart_1" name="rate" value="1" formControlName="rate"/>
+            <label for="heart_1" title="One">&#11088;</label>
+          </section>
+          <button (click)="vote()">Оцінити</button>
+        </form>
       </div>
 
       <div class="recipe-category">
@@ -38,9 +60,6 @@
       </div>
 
       <div class="recipe-ingredients">
-        <!--        <div class="recipe-ingredients-title">-->
-        <!--          Інгредієнти:-->
-        <!--        </div>-->
         <div class="recipe-ingredients-titles">
           <div class="recipe-ingredients-titles-ingredient">
             Інгредієнт
@@ -48,11 +67,11 @@
           <div class="recipe-ingredients-titles-weight">
             Вага
           </div>
-          <!--          <div class="recipe-ingredients-titles-category">-->
-          <!--            Категорія-->
-          <!--          </div>-->
         </div>
         <div class="recipe-ingredient" *ngFor="let ingredient of recipe.ingredients">
+          <div class="recipe-ingredient-name-content-sign">
+            {{' + '}}
+          </div>
           <div class="recipe-ingredient-name">
             <div class="recipe-ingredient-name-content">
               {{ingredient.name_ukr}}
@@ -97,7 +116,12 @@
   <div class="recipe-body-bottom">
     <div class="recipe-nutrients">
       <div class="recipe-nutrients-title">
-        Нутрієнти:
+        <div class="recipe-nutrients-title-short">
+          Деталі
+        </div>
+        <div class="recipe-nutrients-title-long">
+          Детальна інформація про цей рецепт.
+        </div>
       </div>
 
       <div class="recipe-nutrients-titles">
@@ -117,13 +141,13 @@
           Ваша норма
         </div>
         <div *ngIf="user" class="recipe-nutrients-titles-percentage">
-          Відсотків від Вашої денної норми
+          Відсотків від Вашої рекомендованої денної норми
         </div>
       </div>
 
       <div class="recipe-user-proportions">
 
-        <div>energy</div>
+        <div class="recipe-user-proportions-title">Енергія</div>
         <div class="recipe-user-proportion-energy" *ngFor="let energy of proportions.energy">
           <div class="recipe-user-proportions-id">{{energy.idOfNutrient}}</div>
           <div class="recipe-user-proportions-name">{{energy.nutrient}}</div>
@@ -133,7 +157,7 @@
           <div *ngIf="user" class="recipe-user-proportions-percentage">{{energy.percentage}}%</div>
         </div>
 
-        <div>organics</div>
+        <div class="recipe-user-proportions-title">Органічні макроелементи</div>
         <div class="recipe-user-proportion-organics" *ngFor="let organic of proportions.organics">
           <div class="recipe-user-proportions-id">{{organic.idOfNutrient}}</div>
           <div class="recipe-user-proportions-name">{{organic.nutrient}}</div>
@@ -143,7 +167,7 @@
           <div *ngIf="organic.percentage" class="recipe-user-proportions-percentage">{{organic?.percentage}}%</div>
         </div>
 
-        <div>vitamins</div>
+        <div class="recipe-user-proportions-title">Вітаміни</div>
         <div class="recipe-user-proportion-vitamins" *ngFor="let vitamin of proportions.vitamins">
           <div class="recipe-user-proportions-id">{{vitamin.idOfNutrient}}</div>
           <div class="recipe-user-proportions-name">{{vitamin.nutrient}}</div>
@@ -153,7 +177,7 @@
           <div *ngIf="vitamin.percentage" class="recipe-user-proportions-percentage">{{vitamin?.percentage}}%</div>
         </div>
 
-        <div>minerals</div>
+        <div class="recipe-user-proportions-title">Мінерали</div>
         <div class="recipe-user-proportion-minerals" *ngFor="let mineral of proportions.minerals">
           <div class="recipe-user-proportions-id">{{mineral.idOfNutrient}}</div>
           <div class="recipe-user-proportions-name">{{mineral.nutrient}}</div>
