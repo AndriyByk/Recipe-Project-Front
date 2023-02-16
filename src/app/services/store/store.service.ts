@@ -3,6 +3,8 @@ import {BehaviorSubject} from "rxjs";
 import {IRecipe} from "../../interfaces/entities/recipe/IRecipe";
 import {INorm} from "../../interfaces/entities/user/INorm";
 import {IUser} from "../../interfaces/entities/user/IUser";
+import {IPageInfo} from "../../interfaces/pages/IPageInfo";
+import {ISearchDetails} from "../../interfaces/pages/ISearchDetails";
 
 @Injectable({
   providedIn: 'root'
@@ -27,10 +29,11 @@ export class StoreService {
     userNorms: [],
     weight: 0
   })
-
+  isUserSignedIn = new BehaviorSubject<boolean>(false);
   norms = new BehaviorSubject<INorm[]>([{
     quantity: 0,
     nameOfNutrient: "",
+    unit: "",
     idOfNutrient: 0
   }]);
 
@@ -39,6 +42,7 @@ export class StoreService {
     image: "",
     description: "",
     dateOfCreation: "",
+    rating: 0.,
     ingredients: [],
     recipeCategoryDto: {
       id: 0,
@@ -49,11 +53,42 @@ export class StoreService {
       username: ""
     },
     title: "",
-    quantities: []
+    quantities: [],
+    quantitiesPer100: [],
+    ranks: []
   }]);
+  createdRecipes = new BehaviorSubject<IRecipe[]>([{
+    id: 0,
+    image: "",
+    description: "",
+    dateOfCreation: "",
+    rating: 0.,
+    ingredients: [],
+    recipeCategoryDto: {
+      id: 0,
+      name: ""
+    },
+    author: {
+      id:0,
+      username: ""
+    },
+    title: "",
+    quantities: [],
+    quantitiesPer100: [],
+    ranks: []
+  }])
 
-  isUserSignedIn = new BehaviorSubject<boolean>(false);
+  pageInfo = new BehaviorSubject<IPageInfo>({
+    currentPage: 0,
+    totalPages: 0,
+    totalRecipes: 0
+  })
 
-  constructor() {
-  }
+  pageSize = new BehaviorSubject<number>(10)
+
+  searchDetails = new BehaviorSubject<ISearchDetails>({})
+
+  maxHeight = new BehaviorSubject(0);
+
+  constructor() {}
 }

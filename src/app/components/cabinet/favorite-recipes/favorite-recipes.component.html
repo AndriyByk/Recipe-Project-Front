@@ -5,10 +5,12 @@
 </div>
 
 <div class="cabinet-favourite-recipes-list-content">
-  <app-favorite-recipe class="cabinet-favourite-recipe-app" *ngFor="let recipeFavorite of recipesFavorite" [recipeFavorite]="recipeFavorite"></app-favorite-recipe>
-</div>
+  <div class="cabinet-favourite-recipes-list-recipes">
+    <app-favorite-recipe class="cabinet-favourite-recipe-app" *ngFor="let recipeFavorite of recipesFavorite" [recipeFavorite]="recipeFavorite"></app-favorite-recipe>
+  </div>
 
-<div>
-  <a [routerLink]="['/recipes']">Перейти до загального списку рецептів</a>
+  <div class="cabinet-favourite-recipes-list-link" >
+    <a [routerLink]="['/recipes/allRecipes']" [queryParams]="{pageSize: 10, pageNumber:0}">Перейти до загального списку рецептів</a>
+  </div>
 </div>
 

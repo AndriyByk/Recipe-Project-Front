@@ -1,22 +1,61 @@
 .header {
+  z-index: 1;
   display: flex;
-  height: 50px;
-  column-gap: 30px;
-  padding: 10px;
-  justify-content: center;
+  flex-direction: column;
+  padding: 10px 0;
+  align-items: center;
   position: fixed;
   top: 0;
-  background-color: transparent;
   width: 100%;
+  box-shadow: inset #ece1cb 0 120px 30px;
+  border-bottom: white thin solid;
+}
+
+.header-top {
+  display: flex;
+  justify-content: center;
+  column-gap: 40px;
+  padding-bottom: 10px;
+}
+
+.header-top > div {
+  background-color: white;
+}
+
+.header-title,
+.header-cabinet-link,
+.header-button-signIn,
+.header-button-signOut {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.header-title-div,
+.header-cabinet-link-div,
+.header-button-signIn-div,
+.header-button-signOut-div {
+  font-family: "Segoe Print", sans-serif;
+  font-size: 12px;
+  color: #9a9a9a;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
 }
 
 .header a {
-  box-shadow: indianred 0 0 5px;
   text-decoration: none;
   color: black;
-  background-color: white;
-  font-size: 30px;
+  font-size: 25px;
   font-weight: bold;
-  font-family: Gabriola, serif;
-  padding: 10px;
+  font-family: "Segoe Script", sans-serif;
+}
+
+.header a:hover {
+  cursor: pointer;
+  color: firebrick;
 }

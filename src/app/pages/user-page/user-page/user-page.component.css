@@ -1,63 +1,129 @@
 .user-page {
   display: flex;
-  flex-direction: column;
+  background-color: #ece1cb;
+  padding: 100px 20px 60px 20px;
+  border: white thin solid;
 }
 
-.user-page-created-recipe-title {
+.user-page-avatar-and-registration {
+  padding: 30px 10px;
+  height: fit-content;
+  max-width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-page-avatar img {
+  height: auto;
+  max-height: 300px;
+  min-width: 150px;
+  max-width: 100%;
+  box-sizing: border-box;
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+.user-page-date-of-registration {
+  font-family: "Segoe Script", serif;
+  font-style: italic;
+  font-size: 15px;
+}
+
+/*============================*/
+
+.user-page-created-recipes {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  padding: 30px 20px;
+  width: 75%;
+}
+
+.user-page-created-recipes a {
+  display: flex;
+  text-decoration: none;
+  color: black;
 }
 
 .user-page-created-recipe {
-  border: black solid 1px;
-  border-radius: 30px;
-  box-shadow: 0 0 9px gray;
+  border-radius: 15px;
+  box-shadow: 1px 1px 2px #555555;
   width: 100%;
-  /*height: fit-content;*/
   padding: 30px 10px;
   box-sizing: border-box;
   display: flex;
   align-items: center;
+  background-color: white;
 }
 
-.user-page-created-recipes {
-  /*display: flex;*/
-  /*flex-wrap: wrap;*/
-  /*column-gap: 10px;*/
-  /*row-gap: 10px;*/
-  /*justify-content: space-around;*/
-  padding: 30px 20px;
+/*==============================*/
+.user-page-created-recipe-left {
+  min-width: 300px;
+}
+
+.user-page-created-recipe-photo-content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: hidden;
+  max-height: 200px;
+  border-radius: 30%;
+  max-width: 300px;
 }
 
 .user-page-created-recipe-photo-content img {
-  max-width: 300px;
-  border-radius: 30%;
+  max-width: 100%;
+  height: auto;
+  box-sizing: border-box;
 }
 
+/*=================================*/
+
+.user-page-created-recipe-title {
+  display: flex;
+  justify-content: center;
+  font: 20px "Lato Semibold", sans-serif;
+  font-weight: bold;
+  width: 250px;
+
+}
+
+.user-page-created-recipe-category {
+  font-family: Lato, serif;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 5px 10px;
+  display: flex;
+  justify-content: center;
+  border-top: #ece1cb medium dotted;
+}
+/*=====================================*/
+
+.user-page-created-recipe-right {
+
+}
 .user-page-created-recipe-ingredients {
   display: flex;
   column-gap: 6px;
   row-gap: 3px;
   flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
   padding: 5px;
+  max-height: 150px;
+  /*border-left: #555555 thin dotted;*/
 }
 
 .user-page-created-recipe-ingredient {
   display: flex;
   column-gap: 10px;
   border-radius: 5px;
-  background-color: #b4eaff;
+  font-family: Lato Light, serif;
+  font-size: 14px;
   padding: 5px 8px;
-}
-
-.user-page-created-recipe-category {
-  background-color: #ade59d;
-  font: 15px "Segoe Print";
-  font-style: normal;
-  font-weight: bold;
-  color: white;
-  padding: 5px 10px;
-  display: flex;
-  justify-content: center;
+  border-left: #555555 medium solid;
 }

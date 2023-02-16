@@ -28,6 +28,7 @@ export class UserService {
     return this.httpClient.delete<void>(`${baseURL}${recipeUrl.users}/${id}`)
   }
 
+  // не використовується
   updateById(id: string, userForUpdate: Partial<IUser>): Observable<IUser> {
     return this.httpClient.patch<IUser>(`${baseURL}${recipeUrl.users}/${id}`, userForUpdate);
   }
@@ -41,6 +42,6 @@ export class UserService {
   }
 
   calculateNorms(user: IUser): Observable<IUser> {
-    return this.httpClient.patch<IUser>(`${baseURL}${recipeUrl.users}/norms/${user.username}`, user);
+    return this.httpClient.patch<IUser>(`${baseURL}${recipeUrl.users}/norms/${user.username}`, "user");
   }
 }

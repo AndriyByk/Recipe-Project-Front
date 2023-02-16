@@ -1,27 +1,41 @@
 .recipe {
-  /*border: black solid 1px;*/
-  border-radius: 30px;
-  box-shadow: 0 0 9px gray;
+  height: fit-content;
+  border-radius: 10px 10px 35px 35px;
+  border-left: #ece1cb medium solid;
+  /*border-bottom: #ece1cb medium solid;*/
+  border-top: #ece1cb thin solid;
+  /*border-right: #555555 thin solid;*/
+  box-shadow: 0 0 3px #ece1cb;
   width: 100%;
-  /*height: fit-content;*/
   padding: 10px 5px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: white;
+}
+
+.recipe a {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  text-decoration: none;
+  color: black;
 }
 
 .recipe:hover {
-  box-shadow: 0 0 12px black;
+  box-shadow: 3px 3px 2px #9a9a9a ;
 }
 
 .recipe > div {
   width: 90%;
   display: flex;
 }
-
 .recipe-title-content {
-  font: 23px "Bookman Old Style";
+  font: 23px "Lato Semibold", sans-serif;
   font-weight: bold;
   text-shadow: 5px 0 5px gray;
   padding-bottom: 10px;
@@ -32,32 +46,34 @@
   justify-content: center;
 }
 
-.recipe-ingredients {
+.recipe-category {
+  border-top: #ece1cb medium dotted;
+  border-bottom: #ece1cb medium dotted;
+  font-family: Lato, serif;
+  font-size: 17px;
+  padding: 5px 10px;
   display: flex;
-  column-gap: 6px;
-  row-gap: 3px;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 5px;
+  width: 300px;
 }
 
 .recipe-ingredient {
   display: flex;
   column-gap: 10px;
-  border-radius: 5px;
-  background-color: #b4eaff;
-  padding: 5px 8px;
+  border-left: #ece1cb medium solid;
+  border-radius: 9px;
+  padding: 1px 8px;
+  font-family: Lato Light, serif;
+  font-size: 14px;
 }
 
-.recipe-category {
-  background-color: #ade59d;
-  font: 15px "Segoe Print";
-  font-style: normal;
-  font-weight: bold;
-  color: white;
-  padding: 5px 10px;
+.recipe-ingredients {
   display: flex;
+  flex-direction: column;
+  column-gap: 6px;
+  row-gap: 3px;
+  flex-wrap: wrap;
   justify-content: center;
+  padding: 25px 5px 25px 50px;
 }
 
 .recipe-photo > div,
@@ -66,20 +82,29 @@
   display: flex;
   flex-grow: 1;
   justify-content: center;
-  font-family: "Calibri", sans-serif;
 }
 
-.recipe-details-button > a,
-.recipe-like-button > a {
-  display: flex;
-  flex-grow: 1;
-  justify-content: center;
-  text-decoration: none;
-  color: blueviolet;
-  font-family: "Comic Sans MS", sans-serif;
+/*=======================*/
+
+.recipe-photo-content {
+  overflow: hidden;
+  border-radius: 30%;
 }
 
 .recipe-photo-content img {
   max-width: 300px;
-  border-radius: 30%;
+  /*мусить бути абсолютна величина,
+  інакше директива з висотою не працюватиме,
+  бо не хоче сама рахувати висоту картинок*/
+  height: 200px;
+  -webkit-transform: scale(1);
+  transform: rotate(2deg) scale(1);
+  -webkit-transition: .3s ease-in-out;
+  transition: .3s ease-in-out;
 }
+
+.recipe-photo-content img:hover {
+  transform: rotate(0) scale(1.05);
+}
+
+/*========================*/

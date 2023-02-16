@@ -1,0 +1,63 @@
+.header-bottom {
+  z-index: 1;
+  position: fixed;
+  top: 70px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 40px;
+  border-top:  white thin solid;
+  box-shadow: inset #ece1cb 0 50px 30px;
+}
+
+.header-bottom form {
+  display: flex;
+  column-gap: 20px;
+}
+
+.filter-form-inputs {
+  display: flex;
+  column-gap: 10px;
+  justify-content: center;
+}
+
+.filter-form-input-title input {
+  font-family: "Segoe Print", sans-serif;
+  font-size: 11px;
+  border: white thin solid;
+  background-color: white;
+}
+
+.filter-form-input-title input::placeholder {
+  color: black ;
+}
+
+.filter-form-input-category select,
+.filter-form-input-nutrient select {
+  font-family: "Segoe Print", sans-serif;
+  font-size: 11px;
+  border: white thin solid;
+  background-color: white;
+  border-radius: unset;
+  color: dimgrey;
+}
+
+.filter-form-input-category option,
+.filter-form-input-nutrient option {
+  color: black;
+}
+
+.filter-form-button button {
+  width: 95px;
+  font-family: "Segoe Print", sans-serif;
+  font-size: 11px;
+  border: white thin solid;
+  background-color: white;
+  border-radius: unset;
+}
+
+.filter-form-button button:hover {
+  cursor: pointer;
+  color: firebrick;
+}

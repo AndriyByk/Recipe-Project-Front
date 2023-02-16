@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {IActivityType} from "../../../interfaces/categories/IActivityType";
 import {IGender} from "../../../interfaces/categories/IGender";
@@ -19,6 +19,7 @@ export class UserInfoUpdatePageComponent implements OnInit {
   genders: IGender[];
   private actualUser = 'actualUser';
   details: boolean;
+  imgSrc: string | ArrayBuffer | null;
 
   constructor(private route: ActivatedRoute,
               private userService: UserService,
@@ -48,21 +49,41 @@ export class UserInfoUpdatePageComponent implements OnInit {
       genderId: new FormControl(this.user.genderDto.id)
     })
   }
+
   onChange(e: any) {
-    let extensionAllowed: any = { "png": true, "jpeg": true, "jpg": true };
-    let file = e.target.files[0];
-    if (file.size / 1024 / 1024 > 10) {
-      alert("File size should be less than 10MB")
-      return;
-    }
-    if (extensionAllowed) {
-      let nam = file.name.split('.').pop();
-      if (!extensionAllowed[nam]) {
-        alert("Please upload " + Object.keys(extensionAllowed) + " file.")
+    let extensionAllowed: any = {"png": true, "jpeg": true, "jpg": true};
+
+
+    let files = (e.target as HTMLInputElement).files;
+    if (files) {
+    let file = files[0];
+      if (file.size / 1024 / 1024 > 10) {
+        alert("Розмір фото має бути меншим за 10MB")
         return;
       }
+      if (extensionAllowed) {
+        let nam: string | undefined = file.name.split('.').pop();
+        if (nam != undefined) {
+          if (!extensionAllowed[nam]) {
+            alert("Будь ласка, завантажуйте файл типу " + Object.keys(extensionAllowed) + "!")
+            return;
+          }
+        }
+      }
+
+      this.form.controls["avatar"].setValue(file);
+
+      // picture preview - непрацюючий код...
+
+      // if (e.target.files && file) {
+      //   let reader = new FileReader();
+      //   reader.onload = e => {
+      //     console.log(reader.result);
+      //     this.imgSrc = reader.result as string;
+      //   }
+      //   reader.readAsDataURL(file);
+      // }
     }
-    this.form.controls["avatar"].setValue(file);
   }
 
   update() {

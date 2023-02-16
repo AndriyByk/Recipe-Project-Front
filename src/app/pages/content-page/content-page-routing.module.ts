@@ -19,6 +19,9 @@ const routes: Routes = [
   },
   {
     path: 'update-recipe', loadChildren: () => import('./../update-recipe-page/update-recipe-page.module').then(value => value.UpdateRecipePageModule)
+  },
+  {
+    path: '', redirectTo: 'recipes', pathMatch: 'full'
   }
 ];
 

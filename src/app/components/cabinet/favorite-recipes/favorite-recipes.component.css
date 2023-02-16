@@ -1,8 +1,48 @@
-.cabinet-favourite-recipes-list-content {
+:host(app-favorite-recipes) {
+  width: 100%;
   display: flex;
-  flex-wrap: wrap;
-  column-gap: 10px;
-  row-gap: 10px;
-  box-sizing: border-box;
-  padding: 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: fit-content;
 }
+
+.cabinet-favourite-recipes-list-content {
+  background-color: white;
+  border-radius: 30px;
+}
+
+.cabinet-favourite-recipes-list-recipes {
+  display: flex;
+  height: 100%;
+  flex-wrap: wrap;
+  column-gap: 25px;
+  row-gap: 30px;
+  width: fit-content;
+  min-width: 60%;
+  padding: 50px 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.cabinet-favourite-recipes-list-link {
+  display: flex;
+  min-width: 60%;
+  height: 30px;
+  padding: 10px 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.cabinet-favourite-recipes-list-link a {
+  font-family: "Segoe Script", serif;
+  font-size: 15px;
+  text-decoration: none;
+  color: black;
+}
+
+.cabinet-favourite-recipes-list-link a:hover {
+  cursor: pointer;
+  color: firebrick;
+}
+

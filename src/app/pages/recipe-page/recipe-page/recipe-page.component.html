@@ -3,8 +3,8 @@
 
   <div class="recipe-body-top">
 
-    <div class="recipe-photo">
-      <div class="recipe-photo-content">
+    <div class="recipe-page-photo">
+      <div class="recipe-page-photo-content">
         <!--      http://localhost:8080/pictures/[recipe.title]/[recipe.image]  -->
         <img src="{{url + '/' + recipe.dateOfCreation + '/' + recipe.image}}" alt="photo">
       </div>
@@ -29,14 +29,14 @@
             <a class="recipe-author-link-name"
                [routerLink]="['/cabinet/created-recipes']">{{recipe.author.username}}</a>
             <div class="link-to-update-recipe">Це ваш рецепт. Ви можете його
-              <a [routerLink]="['/update-recipe', recipe.id]" [state]="{data: recipe}"> редагувати</a>
+              <a [routerLink]="['/update-recipe', recipe.id]"> редагувати</a>
             </div>
           </ng-template>
 
         </div>
       </div>
       <div>
-        <form [formGroup]="form">
+        <form id="recipe-form" [formGroup]="form">
           <section id="like" class="rating">
             <input type="radio" id="heart_5" name="rate" value="5" formControlName="rate"/>
             <label for="heart_5" title="Five">&#11088;</label>
@@ -50,13 +50,29 @@
             <label for="heart_1" title="One">&#11088;</label>
           </section>
           <button (click)="vote()">Оцінити</button>
+          <div>{{recipe.rating}}/{{recipe.ranks.length}}</div>
         </form>
       </div>
 
-      <div class="recipe-category">
-        <div class="recipe-category-content">
-          {{recipe.recipeCategoryDto.name}}
+      <div *ngIf="username" class="recipe-like-button">
+        <div class="recipe-like-button-true" *ngIf="saveOrDeleteFavorite() else add">
+          <div>
+            Цей рецепт у списку улюблених.
+          </div>
+          <a (click)="saveToFavorites()">
+              Виключити зі списку
+          </a>
         </div>
+        <ng-template #add>
+          <a (click)="saveToFavorites()" class="recipe-like-button-false">Додати до улюблених</a>
+        </ng-template>
+
+      </div>
+
+      <div class="recipe-category">
+          <div (click)="getRecipesByCategoryId(recipe.recipeCategoryDto.id)" class="recipe-category-content">
+            {{recipe.recipeCategoryDto.name}}
+          </div>
       </div>
 
       <div class="recipe-ingredients">
@@ -152,9 +168,9 @@
           <div class="recipe-user-proportions-id">{{energy.idOfNutrient}}</div>
           <div class="recipe-user-proportions-name">{{energy.nutrient}}</div>
           <div class="recipe-user-proportions-category">{{energy.category}}</div>
-          <div class="recipe-user-proportions-recipe-quantity">{{energy.nutrientQuantity}}</div>
-          <div *ngIf="user" class="recipe-user-proportions-norm">{{energy.userNorm}}</div>
-          <div *ngIf="user" class="recipe-user-proportions-percentage">{{energy.percentage}}%</div>
+          <div class="recipe-user-proportions-recipe-quantity">{{energy.nutrientQuantity}}{{' '}}{{energy.unit}}</div>
+          <div class="recipe-user-proportions-norm">{{energy.userNorm}}{{' '}}{{energy.unit}}</div>
+          <div class="recipe-user-proportions-percentage">{{energy.percentage}}%</div>
         </div>
 
         <div class="recipe-user-proportions-title">Органічні макроелементи</div>
@@ -162,9 +178,9 @@
           <div class="recipe-user-proportions-id">{{organic.idOfNutrient}}</div>
           <div class="recipe-user-proportions-name">{{organic.nutrient}}</div>
           <div class="recipe-user-proportions-category">{{organic.category}}</div>
-          <div class="recipe-user-proportions-recipe-quantity">{{organic.nutrientQuantity}}</div>
-          <div *ngIf="user" class="recipe-user-proportions-norm">{{organic?.userNorm}}</div>
-          <div *ngIf="organic.percentage" class="recipe-user-proportions-percentage">{{organic?.percentage}}%</div>
+          <div class="recipe-user-proportions-recipe-quantity">{{organic.nutrientQuantity}}{{' '}}{{organic.unit}}</div>
+          <div *ngIf="organic.userNorm" class="recipe-user-proportions-norm">{{organic.userNorm}}{{' '}}{{organic.unit}}</div>
+          <div *ngIf="organic.percentage" class="recipe-user-proportions-percentage">{{organic.percentage}}%</div>
         </div>
 
         <div class="recipe-user-proportions-title">Вітаміни</div>
@@ -172,9 +188,9 @@
           <div class="recipe-user-proportions-id">{{vitamin.idOfNutrient}}</div>
           <div class="recipe-user-proportions-name">{{vitamin.nutrient}}</div>
           <div class="recipe-user-proportions-category">{{vitamin.category}}</div>
-          <div class="recipe-user-proportions-recipe-quantity">{{vitamin.nutrientQuantity}}</div>
-          <div *ngIf="user" class="recipe-user-proportions-norm">{{vitamin?.userNorm}}</div>
-          <div *ngIf="vitamin.percentage" class="recipe-user-proportions-percentage">{{vitamin?.percentage}}%</div>
+          <div class="recipe-user-proportions-recipe-quantity">{{vitamin.nutrientQuantity}}{{' '}}{{vitamin.unit}}</div>
+          <div *ngIf="vitamin.userNorm" class="recipe-user-proportions-norm">{{vitamin.userNorm}}{{' '}}{{vitamin.unit}}</div>
+          <div *ngIf="vitamin.percentage" class="recipe-user-proportions-percentage">{{vitamin.percentage}}%</div>
         </div>
 
         <div class="recipe-user-proportions-title">Мінерали</div>
@@ -182,9 +198,9 @@
           <div class="recipe-user-proportions-id">{{mineral.idOfNutrient}}</div>
           <div class="recipe-user-proportions-name">{{mineral.nutrient}}</div>
           <div class="recipe-user-proportions-category">{{mineral.category}}</div>
-          <div class="recipe-user-proportions-recipe-quantity">{{mineral.nutrientQuantity}}</div>
-          <div *ngIf="user" class="recipe-user-proportions-norm">{{mineral?.userNorm}}</div>
-          <div *ngIf="mineral.percentage" class="recipe-user-proportions-percentage">{{mineral?.percentage}}%</div>
+          <div class="recipe-user-proportions-recipe-quantity">{{mineral.nutrientQuantity}}{{' '}}{{mineral.unit}}</div>
+          <div *ngIf="mineral.userNorm" class="recipe-user-proportions-norm">{{mineral.userNorm}}{{' '}}{{mineral.unit}}</div>
+          <div *ngIf="mineral.percentage" class="recipe-user-proportions-percentage">{{mineral.percentage}}%</div>
         </div>
       </div>
     </div>

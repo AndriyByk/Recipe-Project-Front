@@ -9,8 +9,11 @@ export interface IRecipe {
   title: string;
   description: string;
   dateOfCreation: string;
+  rating: number;
   recipeCategoryDto: IRecipeCategory;
   author: IUserAuthor;
   ingredients: IIngredient[];
   quantities: INutrientDto[];
+  quantitiesPer100: INutrientDto[];
+  ranks: number[];
 }

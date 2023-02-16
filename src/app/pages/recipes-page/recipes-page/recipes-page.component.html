@@ -1,4 +1,17 @@
-<div class="recipes-page">
-  <app-recipe class="recipe-component" *ngFor="let recipe of recipes" [recipe]="recipe"></app-recipe>
+<app-recipes-header></app-recipes-header>
+<div class="recipes-page" id="recipes-page-id" >
+  <div class="recipes-page-message" *ngIf="recipes.length==0">
+    <div class="recipes-page-message-one">
+      За вашим пошуком жодного рецепта:(
+    </div>
+    <div class="recipes-page-message-two">
+      Розширте пошук, або<span (click)="returnToAll()">{{' '}}поверніться до загального списку</span>
+    </div>
+  </div>
+  <div id="recipes-page-list">
+<!--    помилка: як заставити директиву працювати щоразу (при зміні номеру сторінки) при рірендері дітей але лише один раз, а не в кожній дитині -->
+<!--    директива має коригувати висоту батька залежно від довжин дітей -->
+    <app-recipe appDynamicHeight class="recipe-component" *ngFor="let recipe of recipes" [recipe]="recipe"></app-recipe>
+  </div>
 </div>
 <app-footer></app-footer>

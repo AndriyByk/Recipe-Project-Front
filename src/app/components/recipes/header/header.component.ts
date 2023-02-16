@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {AuthorisationService} from "../../../services/authorisation/authorisation.service";
 import {StoreService} from "../../../services/store/store.service";
-import {RecipeService} from "../../../services/fetches/recipes/recipe.service";
 
 @Component({
   selector: 'app-header',
@@ -14,16 +13,26 @@ export class HeaderComponent implements OnInit {
   private actualUser = 'actualUser';
   signedIn: boolean;
 
+  pageSize: number = 10;
+
   constructor(private router: Router,
               private authorisationService: AuthorisationService,
-              private storeService: StoreService,
-              private recipeService: RecipeService) {
-
-  }
+              private storeService: StoreService
+  ) { }
 
   ngOnInit(): void {
     this.storeService.isUserSignedIn.next(this.authorisationService.isAuthorizedUser());
     this.storeService.isUserSignedIn.subscribe(value => this.signedIn = value);
+  }
+
+  toMainPage() {
+    this.storeService.searchDetails.next({});
+    this.storeService.pageSize.next(10);
+    this.router.navigate(['recipes/allRecipes', 0], {
+      queryParams: {
+        pageSize: this.pageSize
+      }
+    });
   }
 
   logOut() {
@@ -35,16 +44,7 @@ export class HeaderComponent implements OnInit {
     }
     this.storeService.isUserSignedIn.next(false);
     localStorage.removeItem(this.actualUser);
-
     this.signedIn = false;
-
     this.router.navigate(['sign-in'])
-  }
-
-  toMainPage() {
-    if (this.router.url == "/recipes") {
-      this.recipeService.getAll().subscribe(value => this.storeService.recipes.next(value))
-    }
-    this.router.navigate(['recipes']);
   }
 }

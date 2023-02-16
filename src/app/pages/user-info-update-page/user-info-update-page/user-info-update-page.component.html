@@ -1,34 +1,47 @@
 <div class="user-info-update">
   <form class="user-info-update-form" [formGroup]="form">
+
     <div class="user-info-update-form-avatar">
       <label>
-        <div>Фото профілю</div>
-        <input (change)="onChange($event)" placeholder="Pictures" type="file" formControlName="avatar">
+        <div>
+          Фото профілю:
+        </div>
+        <input (change)="onChange($event)" placeholder="Pictures" type="file" id="file" formControlName="avatar">
+<!--        <img [src]="imgSrc " alt="your image" id="user-info-update-form-avatar-preview"/>-->
+
       </label>
     </div>
 
     <div class="user-info-update-form-details">
       <div class="user-info-update-form-name">
         <label>
-          <div>Ваше ім'я:</div>
+          <div>
+            Ваше ім'я:
+          </div>
           <input type="text" formControlName="name">
         </label>
       </div>
       <div class="user-info-update-form-lastname">
         <label>
-          <div>Прізвище:</div>
+          <div>
+            Прізвище:
+          </div>
           <input type="text" formControlName="lastName">
         </label>
       </div>
       <div class="user-info-update-form-email">
         <label>
-          <div>Електронна скринька:</div>
+          <div>
+            Електронна скринька:
+          </div>
           <input type="text" formControlName="email">
         </label>
       </div>
       <div class="user-info-update-form-day-of-birth">
         <label>
-          <div>День Вашого народження:</div>
+          <div>
+            День Вашого народження:
+          </div>
           <input type="date" formControlName="dayOfBirth">
         </label>
       </div>

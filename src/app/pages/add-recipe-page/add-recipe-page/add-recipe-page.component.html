@@ -98,7 +98,7 @@
     </div>
 
     <div class="add-recipe-form-submit-button">
-      <button (click)="submit()" type="submit">Додати новий рецепт</button>
+      <button (click)="submit()" [disabled]="form.invalid" type="submit">Додати новий рецепт</button>
       <!--    <button [disabled]="form.invalid" (click)="submit()" type="submit">Додати новий рецепт</button>-->
     </div>
   </form>

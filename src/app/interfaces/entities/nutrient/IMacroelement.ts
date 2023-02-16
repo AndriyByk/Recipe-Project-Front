@@ -5,4 +5,5 @@ export interface IMacroelement {
   category: string;
   userNorm?: number;
   nutrientQuantity: number;
+  unit: string;
 }

@@ -1,13 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {StoreService} from "../../../services/store/store.service";
-import {RecipeCategoryService} from "../../../services/fetches/recipes/recipe-category.service";
-import {IngredientService} from "../../../services/fetches/ingredients/ingredient.service";
-import {RecipeService} from "../../../services/fetches/recipes/recipe.service";
-import {IRecipeCategory} from "../../../interfaces/categories/IRecipeCategory";
-import {IIngredient} from "../../../interfaces/entities/ingredient/IIngredient";
-import {FormControl, FormGroup} from "@angular/forms";
-import {INutrient} from "../../../interfaces/entities/nutrient/INutrient";
-import {NutrientService} from "../../../services/fetches/nutrients/nutrient.service";
+import {IPageInfo} from "../../../interfaces/pages/IPageInfo";
+import {Router} from "@angular/router";
+import {ISearchDetails} from "../../../interfaces/pages/ISearchDetails";
 
 @Component({
   selector: 'app-footer',
@@ -15,55 +10,72 @@ import {NutrientService} from "../../../services/fetches/nutrients/nutrient.serv
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent implements OnInit {
-  // recipes: IRecipe[];
-  categories: IRecipeCategory[];
-  ingredients: IIngredient[];
-  form: FormGroup;
-  nutrients: INutrient[];
-  formTwo: FormGroup;
+  searchDetails: ISearchDetails;
+  pageInfo: IPageInfo;
+  pageSize: number = 10;
 
   constructor(private storeService: StoreService,
-              private recipeCategoryService: RecipeCategoryService,
-              private ingredientService: IngredientService,
-              private recipeService: RecipeService,
-              private nutrientService: NutrientService) {
-    this.createForm();
-    this.createFormTwo();
+              private router: Router) {
   }
 
   ngOnInit(): void {
-    this.recipeCategoryService.getAll().subscribe(value => this.categories = value);
-    this.ingredientService.getAll().subscribe(value => this.ingredients = value);
-    this.nutrientService.getAll().subscribe(value => this.nutrients = value);
+    this.storeService.pageInfo.subscribe(value => this.pageInfo = value)
   }
 
-  private createForm() {
-    this.form = new FormGroup({
-      title: new FormControl(null),
-      recipeCategoryId: new FormControl(null)
+//======================================================================
+  goFirstPage() {
+    if (this.pageInfo.currentPage != 0) {
+      this.updatePageInfo(0, this.pageInfo.totalPages, this.pageInfo.totalRecipes);
+      this.paginateFilter();
+    }
+  }
+
+  goPreviousPage() {
+    if (this.pageInfo.currentPage > 0) {
+      this.updatePageInfo(this.pageInfo.currentPage - 1, this.pageInfo.totalPages, this.pageInfo.totalRecipes);
+      this.paginateFilter();
+    }
+  }
+
+  goNextPage() {
+    if (this.pageInfo.currentPage < this.pageInfo.totalPages - 1) {
+      this.updatePageInfo(this.pageInfo.currentPage + 1, this.pageInfo.totalPages, this.pageInfo.totalRecipes);
+      this.paginateFilter();
+    }
+  }
+
+  goLastPage() {
+    if (this.pageInfo.currentPage != this.pageInfo.totalPages - 1) {
+      this.updatePageInfo(this.pageInfo.totalPages - 1, this.pageInfo.totalPages, this.pageInfo.totalRecipes);
+      this.paginateFilter();
+    }
+  }
+
+//======================================================================
+
+  paginateFilter() {
+    this.storeService.searchDetails.subscribe(value => {
+      this.searchDetails = value;
+      this.navigate();
     })
   }
 
-  private createFormTwo() {
-    this.formTwo = new FormGroup({
-      nutrientId: new FormControl(null)
+  updatePageInfo(currentPage: number, totalPages: number, totalRecipes: number): void {
+    this.storeService.pageInfo.next({
+      currentPage: currentPage,
+      totalPages: totalPages,
+      totalRecipes: totalRecipes
+    });
+  }
+
+  navigate() {
+    this.router.navigate(['recipes/find-and-sort', this.pageInfo.currentPage], {
+      queryParams: {
+        categoryId: this.searchDetails.recipeCategoryId,
+        title: this.searchDetails.title,
+        nutrientId: this.searchDetails.nutrientId,
+        pageSize: this.pageSize
+      }
     })
-  }
-
-  submit(): void {
-    let rawValue = this.form.getRawValue();
-    console.log(rawValue);
-    this.recipeService.getFiltered(rawValue.recipeCategoryId, rawValue.title)?.subscribe(rawValue => {
-      this.storeService.recipes.next(rawValue);
-      // this.recipes = rawValue
-    });
-  }
-
-  submitTwo() {
-    let rawValue = this.formTwo.getRawValue();
-    console.log(rawValue);
-    this.recipeService.getSortedByNutrient(rawValue.nutrientId).subscribe(value => {
-      this.storeService.recipes.next(value)
-    });
   }
 }

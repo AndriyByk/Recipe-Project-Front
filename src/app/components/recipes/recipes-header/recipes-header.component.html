@@ -1,0 +1,35 @@
+<div class="header-bottom">
+  <form class="filter-form" [formGroup]="form">
+    <div class="filter-form-inputs">
+
+      <div class="filter-form-input-title">
+        <label>
+          <input type="text" placeholder="Введіть назву рецепта" [defaultValue]="''" formControlName="title">
+        </label>
+      </div>
+
+      <div class="filter-form-input-category">
+        <label>
+          <select [(ngModel)]="meme1" formControlName="recipeCategoryId">
+            <option [ngValue]="null" selected disabled hidden>Категорія рецептів</option>
+            <option [ngValue]="category.id" *ngFor="let category of categories">{{category.name}}</option>
+            <option [ngValue]="0">Категорія відсутня</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="filter-form-input-nutrient">
+        <label>
+          <select [(ngModel)]="meme2" formControlName="nutrientId">
+            <option [ngValue]="null" disabled selected hidden>Сортування по нутрієнту</option>
+            <option *ngFor="let nutrient of nutrients" [ngValue]="nutrient.idOfNutrient">{{nutrient.name}}</option>
+            <option [ngValue]="0">Категорія відсутня</option>
+          </select>
+        </label>
+      </div>
+    </div>
+    <div class="filter-form-button">
+      <button (click)="submitFilter()" type="submit">Пошук</button>
+    </div>
+  </form>
+</div>

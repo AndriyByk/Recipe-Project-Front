@@ -1,39 +1,28 @@
-<div class="recipe">
-  <!--  <div class="recipe-id">{{recipe.id}}</div>-->
-
-  <div class="recipe-title">
-    <div class="recipe-title-content">{{recipe.title}}</div>
-  </div>
-
-  <div class="recipe-photo">
-    <div class="recipe-photo-content">
-      <img src="{{url + '/' + recipe.dateOfCreation + '/' + recipe.image}}" alt="photo">
+<div class="recipe" id="recipe">
+  <a [routerLink]="[link, recipe.id]" [state]="{data: recipe}">
+    <div class="recipe-photo">
+      <div class="recipe-photo-content">
+        <img class="recipe-photo-content-img" src="{{url + '/' + recipe.dateOfCreation + '/' + recipe.image}}"
+             alt="photo">
+      </div>
     </div>
-  </div>
 
-  <div class="recipe-category">
-    <div class="recipe-category-content">{{recipe.recipeCategoryDto.name}}</div>
-  </div>
+    <div class="recipe-title">
+      <div class="recipe-title-content">{{recipe.title}}</div>
+    </div>
 
-  <div class="recipe-ingredients">
-    <div class="recipe-ingredient" *ngFor="let ingredient of recipe.ingredients">
-      <div class="recipe-ingredient-name">
-        <div class="recipe-ingredient-name-content">
-          {{ingredient.name}}
+    <div class="recipe-category">
+      <div class="recipe-category-content">{{recipe.recipeCategoryDto.name}}</div>
+    </div>
+
+    <div class="recipe-ingredients">
+      <div class="recipe-ingredient" *ngFor="let ingredient of recipe.ingredients">
+        <div class="recipe-ingredient-name">
+          <div class="recipe-ingredient-name-content">
+            {{ingredient.name}}
+          </div>
         </div>
       </div>
     </div>
-  </div>
-
-  <div class="recipe-details-button">
-    <a *ngIf="username!=null && username!=''; else elseBlock" [routerLink]="['/recipe/username', recipe.id]" [state]="{data: recipe}">Деталі</a>
-    <ng-template #elseBlock>
-      <a [routerLink]="['/recipe', recipe.id]" [state]="{data: recipe}">Деталі</a>
-    </ng-template>
-  </div>
-
-  <div *ngIf="username" class="recipe-like-button">
-    <a (click)="saveToFavorites()">Подобається!</a>
-  </div>
-
+  </a>
 </div>

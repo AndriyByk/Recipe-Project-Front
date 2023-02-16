@@ -42,7 +42,7 @@ export class SignUpPageComponent implements OnInit {
       weight: new FormControl(null),
       genderId: new FormControl(null),
       username: new FormControl(null, [
-        Validators.pattern('^[a-zA-Z]{1}[a-z0-9_-]{1,19}$'),
+        Validators.pattern('^[a-zA-Z]{1}[a-z0-9A-Z_-]{1,19}$'),
         Validators.required]),
       password: new FormControl(null, [
         Validators.pattern('[a-zA-Z0-9_-]{2,20}'),

@@ -3,28 +3,59 @@
   bottom: 0;
   background-color: transparent;
   width: 100%;
+  display: flex;
+  align-items: end;
   height: 70px;
 }
 
-.filter form {
-  width: 50%;
-  box-shadow: mediumseagreen 0 -2px 10px;
+.paging-wrapper {
+  width: 100%;
+  padding: 0 0 10px 0;
+  box-shadow: inset #ece1cb 0 -80px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 57px;
+}
+
+.paging {
+  display: flex;
   background-color: white;
-  border-radius: 20px;
+  column-gap: 20px;
+  width: 30%;
+  height: 40px;
+  min-width: 330px;
+  box-shadow: white 0 10px 12px;
+  /*border-radius: 50%;*/
+  justify-content: space-around;
 }
 
-.filter-form-inputs {
+.paging-first-page,
+.paging-previous-page,
+.paging-next-page,
+.paging-last-page {
+  border: transparent;
+  background-color: transparent;
+  font-size: 25px;
+  font-weight: bold;
+  font-family: "SimSun", serif;
+  padding: 0 10px;
+  /*border-radius: 20px;*/
+  min-width: 50px;
+}
+
+.paging-first-page:hover,
+.paging-previous-page:hover,
+.paging-next-page:hover,
+.paging-last-page:hover {
+  color: firebrick;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.paging-current-page {
   display: flex;
-  column-gap: 30px;
-  justify-content: center;
-  padding: 20px 0 ;
-}
-
-.filter-form-inputs div {
-  box-shadow: #ade59d 0 0 10px;
-}
-
-.filter {
-  display: flex;
-  justify-content: center;
+  align-items: center;
+  font-family: "MV Boli", serif ;
+  font-size: 22px;
 }

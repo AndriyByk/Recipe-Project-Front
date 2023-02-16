@@ -1,22 +1,26 @@
 <div class="header">
-  <div class="header-left">
-    <div class="header-title">
-      <a (click)="toMainPage()">Recipe-HUB</a>
-    </div>
-  </div>
+  <div class="header-top">
 
-  <div class="header-cabinet-link" *ngIf="signedIn">
-    <a [routerLink]="['cabinet/info']">Кабінет</a>
-  </div>
-
-  <div class="header-right">
-    <div class="header-buttons">
-      <div class="header-button-signIn" *ngIf="signedIn; else signedOut">
-        <a (click)="logOut()">Вийти з профілю</a>
+    <div class="header-left">
+      <div class="header-title">
+        <a (click)="toMainPage()">Салат-хаб
+        </a>
       </div>
-      <ng-template class="header-button-signOut" #signedOut>
-        <a [routerLink]="['sign-in']">Ввійти в профіль</a>
-      </ng-template>
+    </div>
+
+    <div class="header-cabinet-link" *ngIf="signedIn">
+      <a [routerLink]="['cabinet/info']">Ваш кабінет</a>
+    </div>
+
+    <div class="header-right">
+      <div class="header-buttons">
+        <div class="header-button-signOut" *ngIf="signedIn; else signedOut">
+          <a (click)="logOut()">Вийти</a>
+        </div>
+        <ng-template class="header-button-signIn" #signedOut>
+          <a [routerLink]="['sign-in']">Ввійти у профіль</a>
+        </ng-template>
+      </div>
     </div>
   </div>
 </div>

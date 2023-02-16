@@ -1,5 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {IRecipe} from "../../../interfaces/entities/recipe/IRecipe";
+import {StoreService} from "../../../services/store/store.service";
 
 @Component({
   selector: 'app-created-recipes',
@@ -8,12 +9,13 @@ import {IRecipe} from "../../../interfaces/entities/recipe/IRecipe";
 })
 export class CreatedRecipesComponent implements OnInit {
 
-  @Input()
+  // @Input()
   recipesCreated: IRecipe[];
 
-  constructor() { }
+  constructor(private storeService: StoreService) { }
 
   ngOnInit(): void {
+    this.storeService.createdRecipes.subscribe(value => this.recipesCreated = value);
   }
 
 }

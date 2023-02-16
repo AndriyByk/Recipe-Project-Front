@@ -10,6 +10,7 @@ import {IRecipeForPost} from "../../../interfaces/entities/recipe/IRecipeForPost
 import {IIngredientCategory} from "../../../interfaces/categories/IIngredientCategory";
 import {IngredientCategoryService} from "../../../services/fetches/ingredients/ingredient-category.service";
 import {IListOfIngredientsForNewRecipe} from "../../../interfaces/entities/ingredient/IListOfIngredientsForNewRecipe";
+import {StoreService} from "../../../services/store/store.service";
 
 @Component({
   selector: 'app-add-recipe',
@@ -32,7 +33,8 @@ export class AddRecipePageComponent implements OnInit {
               private recipeService: RecipeService,
               private router: Router,
               private formBuilder: FormBuilder,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private storeService: StoreService) {
     this.createForm();
   }
 
@@ -54,11 +56,11 @@ export class AddRecipePageComponent implements OnInit {
       recipeCategoryId: new FormControl(null, [Validators.required]),
       rawIngredientWithWeights: new FormArray([
         new FormGroup({
-          id: new FormControl(null),
-          weight: new FormControl(null),
-          category: new FormControl(null)
+          id: new FormControl(null, [Validators.required]),
+          weight: new FormControl(null,[Validators.required]),
+          category: new FormControl(null, [Validators.required])
         })
-      ]),
+      ], [Validators.required] ),
       picture: new FormControl(null, [Validators.required])
     })
   }
@@ -138,7 +140,7 @@ export class AddRecipePageComponent implements OnInit {
     formData.append('recipe', ourRecipe);
     let user = localStorage.getItem(this.actualUser);
     if (user) {
-      this.recipeService.save(formData, user).subscribe();
+      this.recipeService.save(formData, user).subscribe(value => this.storeService.createdRecipes.next(value));
       this.router.navigate(['/cabinet/created-recipes']);
     }
   }

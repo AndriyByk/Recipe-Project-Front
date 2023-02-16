@@ -9,7 +9,6 @@ import {IUser} from "../../../interfaces/entities/user/IUser";
 })
 export class CabinetPageComponent implements OnInit {
   user: IUser;
-  // norms: INorm[];
 
   constructor(private userService: UserService
   ) { }

@@ -1,41 +1,64 @@
-.cabinet-user-info {
+:host(app-user-info-page) {
+  width: 100%;
   display: flex;
-  /*width: 100%;*/
   justify-content: center;
-  column-gap: 5%;
-  background-color: #b6c9ff;
-  padding: 50px;
-  box-shadow: #b6c9ff 0 0 20px;
-  border-radius: 13%;
+  height: 100%;
 }
 
+.cabinet-user-info {
+  display: flex;
+  width: 100%;
+  background-color: #ece1cb;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 160px 20px 60px 20px;
+}
+
+/*==================================*/
+
 .cabinet-user-info-avatar {
-  min-width: 15%;
-  max-width: 300px;
-  box-shadow: white 0 0 5px;
+  border-top-right-radius: 40px;
+  border-top-left-radius: 40px;
+  border-bottom: #ece1cb thin dashed;
+  display: flex;
+  justify-content: center;
+  width: 60%;
+  padding: 40px 10px;
   background-color: white;
+  min-width: 250px;
 }
 
 .cabinet-user-info-avatar-content {
   width: 100%;
+  max-width: 300px;
 }
 
 .cabinet-user-info-avatar-content img {
+  border-radius: 30%;
   width: 100%;
 }
 
+/*==================================*/
+
 .cabinet-user-info-details {
   display: flex;
-  flex-direction: column;
   justify-content: space-around;
   padding: 40px 10px;
+  width: 60%;
   background-color: white;
-  box-shadow: white 0 0 5px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
 }
 
-.cabinet-user-info-details > div {
+.cabinet-user-info-titles,
+.cabinet-user-info-contents {
   display: flex;
+  flex-direction: column;
+  row-gap: 10px;
 }
+
+/*==================================*/
 
 .cabinet-user-info-name-title,
 .cabinet-user-info-lastname-title,
@@ -44,12 +67,15 @@
 .cabinet-user-info-type-of-activity-title,
 .cabinet-user-info-height-title,
 .cabinet-user-info-weight-title,
-.cabinet-user-info-gender-title {
+.cabinet-user-info-gender-title,
+.cabinet-user-info-links-title {
   height: 20px;
   display: flex;
   justify-content: center;
   min-width: 200px;
-  font-style: italic;
+  /*font-style: italic;*/
+  font-size: 15px;
+  font-family: "Segoe Print", serif;
 }
 
 .cabinet-user-info-name-content,
@@ -59,8 +85,13 @@
 .cabinet-user-info-type-of-activity-content-name,
 .cabinet-user-info-height-content,
 .cabinet-user-info-weight-content,
-.cabinet-user-info-gender-content {
+.cabinet-user-info-gender-content,
+.cabinet-user-info-links-content {
   font-weight: bold;
+  font-style: italic;
+  font-size: 15px;
+  font-family: "Segoe Script", serif;
+  height: 20px;
 }
 
 .cabinet-user-info-type-of-activity-content {
@@ -88,31 +119,38 @@
   padding: 10px;
 }
 
-.cabinet-user-info-link-to-update-account a,
-.cabinet-user-info-link-to-delete-account a {
-  color: blue;
-  font-weight: bold;
+/*==================================*/
+
+.cabinet-user-info-links-content {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  background-color: white;
+  height: fit-content;
 }
 
 .cabinet-user-info-link-to-update-account,
 .cabinet-user-info-link-to-delete-account {
-  border-radius: 10px;
-  padding: 5px;
+  /*padding: 10px;*/
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+  border-left: #ece1cb medium solid;
+  border-bottom: #ece1cb thin solid;
+  text-decoration: underline;
 }
 
-.cabinet-user-info-links {
-  display: flex;
-  flex-direction: column;
-  row-gap: 25px;
-  justify-content: center;
-  box-shadow: white 0 0 5px;
-  background-color: white;
+.cabinet-user-info-link-to-update-account a,
+.cabinet-user-info-link-to-delete-account a {
+  color: black;
+  font-weight: bold;
+  font-family: "Segoe Script", serif;
+  text-decoration: none;
+  font-style: italic;
 }
 
-.cabinet-user-info-link-to-update-account:hover,
-.cabinet-user-info-link-to-delete-account:hover {
-  box-shadow: red 1px 1px 5px;
-  background-color: #ffeded;
+.cabinet-user-info-link-to-update-account a:hover,
+.cabinet-user-info-link-to-delete-account a:hover {
+  color: firebrick;
   cursor: pointer;
 }
 

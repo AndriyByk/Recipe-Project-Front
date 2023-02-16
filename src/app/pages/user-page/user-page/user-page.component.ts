@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from "../../../services/fetches/users/user.service";
 import {ActivatedRoute} from "@angular/router";
 import {IUser} from "../../../interfaces/entities/user/IUser";
 import {baseURL, recipeUrl} from "../../../urls/urls";
@@ -13,16 +12,10 @@ export class UserPageComponent implements OnInit {
   user: IUser;
   url: string;
 
-  constructor(private activatedRoute: ActivatedRoute,
-              private userService: UserService) { }
+  constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.url = baseURL + recipeUrl.pictures;
-    this.activatedRoute.params.subscribe(({id}) =>{
-      this.userService.getById(id).subscribe(value => this.user = value);
-    })
+    this.activatedRoute.data.subscribe(({user}) => this.user = user);
   }
-
-
-
 }

@@ -9,13 +9,19 @@ import {RecipeService} from "../../services/fetches/recipes/recipe.service";
 import {FooterComponent} from "../../components/recipes/footer/footer.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {RecipesResolver} from "../../services/fetches/recipes/recipes.resolver";
+import {RecipesByCategoryIdResolver} from "../../services/fetches/recipes/recipes-by-category-id.resolver";
+import {RecipesHeaderComponent} from "../../components/recipes/recipes-header/recipes-header.component";
+import {RecipesByParamsResolver} from "../../services/fetches/recipes/recipes-by-params.resolver";
+import {DynamicHeightDirective} from "../../directives/dynamic-height.directive";
 
 
 @NgModule({
   declarations: [
     RecipesPageComponent,
     RecipeComponent,
-    FooterComponent
+    FooterComponent,
+    RecipesHeaderComponent,
+    DynamicHeightDirective
   ],
   exports: [
     RecipesPageComponent
@@ -26,9 +32,12 @@ import {RecipesResolver} from "../../services/fetches/recipes/recipes.resolver";
     HttpClientModule,
     ReactiveFormsModule
   ],
+  // чи потрібні тут ресолвери? працювало й без них
   providers: [
     RecipeService,
-    RecipesResolver
+    RecipesResolver,
+    RecipesByCategoryIdResolver,
+    RecipesByParamsResolver
   ]
 })
 export class RecipesPageModule {
