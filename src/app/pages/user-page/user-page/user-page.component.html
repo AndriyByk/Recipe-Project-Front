@@ -11,7 +11,8 @@
   </div>
 
   <div class="user-page-created-recipes">
-    <a *ngFor="let recipe of user.createdRecipes" [routerLink]="['/recipe/username', recipe.id]">
+
+    <a *ngFor="let recipe of user.createdRecipes" [routerLink]="[urlToRecipe, recipe.id]">
       <div class="user-page-created-recipe">
 
         <div class="user-page-created-recipe-left">

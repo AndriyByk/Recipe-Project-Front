@@ -13,7 +13,7 @@
             <div class="user-norms-page-norm-category">Енергія:</div>
             <div class="user-norms-page-norm" *ngFor="let norm of normsSorted.energy">
               <div>
-                <div class="user-norms-page-norm-name">{{norm.nameOfNutrient}}</div>
+                <div class="user-norms-page-norm-name">{{norm.ukrNameOfNutrient}}</div>
                 <div class="user-norm-page-norm-quantity">{{norm.quantity}}{{' ' + norm.unit}}</div>
               </div>
             </div>
@@ -22,7 +22,7 @@
             <div class="user-norms-page-norm-category">Органічні макроелементи:</div>
             <div class="user-norms-page-norm" *ngFor="let norm of normsSorted.organics">
               <div>
-                <div class="user-norms-page-norm-name">{{norm.nameOfNutrient}}</div>
+                <div class="user-norms-page-norm-name">{{norm.ukrNameOfNutrient}}</div>
                 <div class="user-norm-page-norm-quantity">{{norm.quantity}}{{' ' + norm.unit}}</div>
               </div>
             </div>
@@ -33,7 +33,7 @@
           <div class="user-norms-page-norm-category">Вітаміни:</div>
           <div class="user-norms-page-norm" *ngFor="let norm of normsSorted.vitamins">
             <div>
-              <div class="user-norms-page-norm-name">{{norm.nameOfNutrient}}</div>
+              <div class="user-norms-page-norm-name">{{norm.ukrNameOfNutrient}}</div>
               <div class="user-norm-page-norm-quantity">{{norm.quantity}}{{' ' + norm.unit}}</div>
             </div>
           </div>
@@ -43,7 +43,7 @@
           <div class="user-norms-page-norm-category">Мінерали:</div>
           <div class="user-norms-page-norm" *ngFor="let norm of normsSorted.minerals">
             <div>
-              <div class="user-norms-page-norm-name">{{norm.nameOfNutrient}}</div>
+              <div class="user-norms-page-norm-name">{{norm.ukrNameOfNutrient}}</div>
               <div class="user-norm-page-norm-quantity">{{norm.quantity}}{{' ' + norm.unit}}</div>
             </div>
           </div>
@@ -53,7 +53,7 @@
       <ng-template class="user-norms-page-list-already" #elseBlock1>
         <div class="user-norms-page-list-already-have" *ngIf="norms; else elseBlock2">
           <div class="user-norms-page-norm" *ngFor="let norm of norms">
-            <div class="user-norms-page-norm-name">{{norm.nameOfNutrient}}</div>
+            <div class="user-norms-page-norm-name">{{norm.ukrNameOfNutrient}}</div>
             <div class="user-norm-page-norm-quantity">{{norm.quantity}}{{' ' + norm.unit}}</div>
           </div>
         </div>

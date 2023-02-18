@@ -1,6 +1,7 @@
 export interface INorm {
   idOfNutrient: number;
-  nameOfNutrient: string;
+  ukrNameOfNutrient: string;
+  engNameOfNutrient: string;
   unit: string;
   quantity: number;
 }

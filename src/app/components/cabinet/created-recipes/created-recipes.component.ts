@@ -17,5 +17,4 @@ export class CreatedRecipesComponent implements OnInit {
   ngOnInit(): void {
     this.storeService.createdRecipes.subscribe(value => this.recipesCreated = value);
   }
-
 }

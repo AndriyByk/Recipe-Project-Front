@@ -1,78 +1,80 @@
-<div class="cabinet-user-info">
+<div class="cabinet-user-info-wrapper">
+  <div class="cabinet-user-info">
 
-  <div class="cabinet-user-info-avatar">
-    <div class="cabinet-user-info-avatar-content">
-      <img src="{{url + '/' + user.username + '/' + user.avatar}}" alt="avatar">
-    </div>
-  </div>
-
-  <div class="cabinet-user-info-details">
-    <div class="cabinet-user-info-titles">
-      <div class="cabinet-user-info-name-title">
-        Ваше ім'я:
-      </div>
-      <div class="cabinet-user-info-lastname-title">
-        Прізвище:
-      </div>
-      <div class="cabinet-user-info-email-title">
-        Електронна скринька:
-      </div>
-      <div class="cabinet-user-info-dayOfBirth-title">
-        День народження:
-      </div>
-      <div class="cabinet-user-info-type-of-activity-title">
-        Рід занятості:
-      </div>
-      <div class="cabinet-user-info-height-title">
-        Ваша висота:
-      </div>
-      <div class="cabinet-user-info-weight-title">
-        Ваша вага:
-      </div>
-      <div class="cabinet-user-info-gender-title">
-        Стать:
-      </div>
-      <div class="cabinet-user-info-links-title">
-        Керування профілем:
+    <div class="cabinet-user-info-avatar">
+      <div class="cabinet-user-info-avatar-content">
+        <img src="{{url + '/' + user.username + '/' + user.avatar}}" alt="avatar">
       </div>
     </div>
 
-    <div class="cabinet-user-info-contents">
-      <div class="cabinet-user-info-name-content">
-        {{user.name}}
-      </div>
-      <div class="cabinet-user-info-lastname-content">
-        {{user.lastName}}
-      </div>
-      <div class="cabinet-user-info-email-content">
-        {{user.email}}
-      </div>
-      <div class="cabinet-user-info-dayOfBirth-content">
-        {{user.dayOfBirth}}
-      </div>
-      <div class="cabinet-user-info-type-of-activity-content">
-        <div class="cabinet-user-info-type-of-activity-content-name" (click)="showDetails()">
-          {{user.activityTypeDto.name + " категорія"}}<span>{{" "}}?</span>
+    <div class="cabinet-user-info-details">
+      <div class="cabinet-user-info-titles">
+        <div class="cabinet-user-info-name-title">
+          Ваше ім'я:
         </div>
-        <div *ngIf="details" (click)="showDetails()" class="cabinet-user-info-type-of-activity-content-about">
-          {{user.activityTypeDto.about}}
+        <div class="cabinet-user-info-lastname-title">
+          Прізвище:
+        </div>
+        <div class="cabinet-user-info-email-title">
+          Електронна скринька:
+        </div>
+        <div class="cabinet-user-info-dayOfBirth-title">
+          День народження:
+        </div>
+        <div class="cabinet-user-info-type-of-activity-title">
+          Рід занятості:
+        </div>
+        <div class="cabinet-user-info-height-title">
+          Ваша висота:
+        </div>
+        <div class="cabinet-user-info-weight-title">
+          Ваша вага:
+        </div>
+        <div class="cabinet-user-info-gender-title">
+          Стать:
+        </div>
+        <div class="cabinet-user-info-links-title">
+          Керування профілем:
         </div>
       </div>
-      <div class="cabinet-user-info-height-content">
-        {{user.height}}
-      </div>
-      <div class="cabinet-user-info-weight-content">
-        {{user.weight}}
-      </div>
-      <div class="cabinet-user-info-gender-content">
-        {{user.genderDto.gender}}
-      </div>
-      <div class="cabinet-user-info-links-content">
-        <div class="cabinet-user-info-link-to-update-account">
-          <a [routerLink]="['/cabinet/info/update']" [state]="{data: user}">Змінити інформацію про себе</a>
+
+      <div class="cabinet-user-info-contents">
+        <div class="cabinet-user-info-name-content">
+          {{user.name}}
         </div>
-        <div class="cabinet-user-info-link-to-delete-account">
-          <a (click)="deleteAccount()">Видалити акаунт і всі персональні дані</a>
+        <div class="cabinet-user-info-lastname-content">
+          {{user.lastName}}
+        </div>
+        <div class="cabinet-user-info-email-content">
+          {{user.email}}
+        </div>
+        <div class="cabinet-user-info-dayOfBirth-content">
+          {{user.dayOfBirth}}
+        </div>
+        <div class="cabinet-user-info-type-of-activity-content">
+          <div class="cabinet-user-info-type-of-activity-content-name" (click)="showDetails()">
+            {{user.activityTypeDto.name + " категорія"}}<span>{{" "}}?</span>
+          </div>
+          <div *ngIf="details" (click)="showDetails()" class="cabinet-user-info-type-of-activity-content-about">
+            {{user.activityTypeDto.about}}
+          </div>
+        </div>
+        <div class="cabinet-user-info-height-content">
+          {{user.height}}
+        </div>
+        <div class="cabinet-user-info-weight-content">
+          {{user.weight}}
+        </div>
+        <div class="cabinet-user-info-gender-content">
+          {{user.genderDto.gender}}
+        </div>
+        <div class="cabinet-user-info-links-content">
+          <div class="cabinet-user-info-link-to-update-account">
+            <a [routerLink]="['/cabinet/info/update']" [state]="{data: user}">Змінити інформацію про себе</a>
+          </div>
+          <div class="cabinet-user-info-link-to-delete-account">
+            <a (click)="deleteAccount()">Видалити акаунт і всі персональні дані</a>
+          </div>
         </div>
       </div>
     </div>

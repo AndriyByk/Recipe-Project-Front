@@ -1,16 +1,23 @@
-<div *ngIf="recipesFavorite.length == 0" class="cabinet-favourite-recipes-list-title">
+<div *ngIf="recipesFavorite.length == 0" class="cabinet-favorite-recipes-list-title">
   <div>
     Ви ще не вподобали жодного рецепта:(
   </div>
 </div>
 
-<div class="cabinet-favourite-recipes-list-content">
-  <div class="cabinet-favourite-recipes-list-recipes">
-    <app-favorite-recipe class="cabinet-favourite-recipe-app" *ngFor="let recipeFavorite of recipesFavorite" [recipeFavorite]="recipeFavorite"></app-favorite-recipe>
+<div class="cabinet-favorite-recipes-list">
+  <div class="cabinet-created-recipes-list-title">
+    УЛЮБЛЕНІ РЕЦЕПТИ
   </div>
+  <div class="cabinet-favorite-recipes-list-content">
+    <div class="cabinet-favorite-recipes-list-recipes">
+      <app-favorite-recipe class="cabinet-favorite-recipe-app" *ngFor="let recipeFavorite of recipesFavorite" [recipeFavorite]="recipeFavorite"></app-favorite-recipe>
+    </div>
 
-  <div class="cabinet-favourite-recipes-list-link" >
-    <a [routerLink]="['/recipes/allRecipes']" [queryParams]="{pageSize: 10, pageNumber:0}">Перейти до загального списку рецептів</a>
+    <div class="cabinet-favorite-recipes-list-link" >
+      <a [routerLink]="['/recipes/allRecipes']" [queryParams]="{pageSize: 10, pageNumber:0}">Перейти до загального списку рецептів</a>
+    </div>
   </div>
 </div>
+
+
 

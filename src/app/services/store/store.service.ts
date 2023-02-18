@@ -32,7 +32,8 @@ export class StoreService {
   isUserSignedIn = new BehaviorSubject<boolean>(false);
   norms = new BehaviorSubject<INorm[]>([{
     quantity: 0,
-    nameOfNutrient: "",
+    engNameOfNutrient: "",
+    ukrNameOfNutrient: "",
     unit: "",
     idOfNutrient: 0
   }]);

@@ -6,46 +6,47 @@
 }
 
 .user-norms-page {
-  padding: 160px 20px 20px 20px;
+  padding: 160px 20px 10px 20px;
   width: 100%;
-  height: 100%;
+  height: fit-content;
+  min-height: 100%;
   background-color: #ece1cb;
   display: flex;
+  box-sizing: border-box;
   justify-content: center;
 }
 
 .user-norms-page-content {
-  width: 100%;
+  width: 70%;
+  min-width: 900px;
+  max-width: 1240px;
+  height: fit-content;
   display: flex;
   flex-direction: column;
-  /*padding: 50px 100px;*/
-  justify-content: center;
   align-items: center;
-  /*background-color: #fadc9d;*/
-  /*box-shadow: orange 0 0 15px 1px;*/
+  box-shadow: inset #ece1cb 0 0 30px;
+  background-color: white;
+  border-left: white medium solid;
+  border-radius: 30px;
 }
 
 .user-norms-page-title {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px 0 10px 0;
-  font-family: "Segoe Print", sans-serif;
+  padding: 20px 0 20px 0;
+  font-family: "Segoe Script", sans-serif;
   font-weight: bold;
-  font-size: 20px;
-  background-color: white;
-  border-radius: 15px;
-  box-shadow: white 0 0 10px 5px;
+  font-size: 25px;
+  border-radius: 5px;
   width: 82%;
 }
 
 .user-norms-page-list {
   display: flex;
   justify-content: center;
-  padding: 50px 0;
   align-items: center;
   width: 85%;
-
 }
 
 .user-norms-page-list-have {
@@ -63,8 +64,9 @@
 .user-norms-page-norm {
   display: flex;
   justify-content: center;
-
+  width: 265px;
 }
+
 .user-norms-page-norms {
   margin-bottom: 30px;
 }
@@ -73,10 +75,10 @@
   display: flex;
   width: 90%;
   justify-content: right;
-  border-left: white solid medium;
+  border-left: #ece1cb solid medium;
   border-radius: 20px;
-  border-right: white solid medium;
-  border-bottom: white solid thin;
+  border-right: #ece1cb solid medium;
+  border-bottom: #ece1cb solid thin;
   /*background-color: white;*/
 }
 
@@ -84,26 +86,8 @@
   display: flex;
   padding: 10px;
   justify-content: center;
-  width: 200px;
-}
-
-.user-norm-page-norm-quantity {
-  display: flex;
-  padding: 10px;
-  justify-content: center;
-  width: 100px;
-}
-
-.user-norms-page-norm-category {
-  box-shadow: white 0 0 5px;
-  background-color: white;
-  font-family: "Segoe Print", sans-serif;
-  font-size: 18px;
-  border-radius: 5px;
-  padding: 5px 0 5px 10px;
-}
-
-.user-norms-page-norm-name {
+  width: 135px;
+  box-sizing: border-box;
   font-family: "Segoe Print", sans-serif;
   font-weight: bold;
   font-size: 15px;
@@ -111,5 +95,20 @@
 }
 
 .user-norm-page-norm-quantity {
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  width: 115px;
+  box-sizing: border-box;
   font-family: "Segoe Script", sans-serif;
+}
+
+.user-norms-page-norm-category {
+  box-shadow: #ece1cb 0 0 5px;
+  background-color: #ece1cb;
+  font-family: "Segoe Print", sans-serif;
+  font-size: 18px;
+  border-radius: 5px;
+  padding: 5px 0 5px 10px;
+  color: white;
 }

@@ -44,4 +44,8 @@ export class UserService {
   calculateNorms(user: IUser): Observable<IUser> {
     return this.httpClient.patch<IUser>(`${baseURL}${recipeUrl.users}/norms/${user.username}`, "user");
   }
+
+  getRateById(userId: number, recipeId: number): Observable<number> {
+    return this.httpClient.get<number>(`${baseURL}${recipeUrl.users}/rates?userId=${userId}&recipeId=${recipeId}`);
+  }
 }

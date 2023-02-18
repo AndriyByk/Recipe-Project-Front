@@ -12,12 +12,8 @@ import {IWrapperForRecipes} from "../../../interfaces/entities/recipe/IWrapperFo
   providedIn: 'root'
 })
 export class RecipesResolver implements Resolve<IWrapperForRecipes> {
-  // private pageSize: number;
-  // private pageInfo: IPageInfo;
 
   constructor(private recipeService: RecipeService) {
-    // storeService.pageInfo.subscribe(value => this.pageInfo = value);
-    // storeService.pageSize.subscribe(value => this.pageSize = value);
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IWrapperForRecipes> | Promise<IWrapperForRecipes> | IWrapperForRecipes {

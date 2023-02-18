@@ -6,13 +6,39 @@
   align-items: center;
   height: fit-content;
 }
+/*===================================*/
 
-.cabinet-favourite-recipes-list-content {
+.cabinet-favorite-recipes-list {
   background-color: white;
   border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+
+  height: 100%;
+  row-gap: 30px;
+
+  width: fit-content;
+  max-width: 70%;
+  min-width: 900px;
+
+  padding: 50px 20px;
+  box-shadow: inset #ece1cb 0 0 30px;
+  border-left: white medium solid;
 }
 
-.cabinet-favourite-recipes-list-recipes {
+.cabinet-created-recipes-list-title {
+  font-family: "Segoe Script", serif;
+  font-size: 20px;
+  padding-left: 20px;
+  font-weight: bold;
+}
+
+.cabinet-favorite-recipes-list-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.cabinet-favorite-recipes-list-recipes {
   display: flex;
   height: 100%;
   flex-wrap: wrap;
@@ -21,11 +47,10 @@
   width: fit-content;
   min-width: 60%;
   padding: 50px 20px;
-  justify-content: center;
   align-items: center;
 }
 
-.cabinet-favourite-recipes-list-link {
+.cabinet-favorite-recipes-list-link {
   display: flex;
   min-width: 60%;
   height: 30px;
@@ -34,14 +59,14 @@
   align-items: center;
 }
 
-.cabinet-favourite-recipes-list-link a {
+.cabinet-favorite-recipes-list-link a {
   font-family: "Segoe Script", serif;
   font-size: 15px;
   text-decoration: none;
   color: black;
 }
 
-.cabinet-favourite-recipes-list-link a:hover {
+.cabinet-favorite-recipes-list-link a:hover {
   cursor: pointer;
   color: firebrick;
 }

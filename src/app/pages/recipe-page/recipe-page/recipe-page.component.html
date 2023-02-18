@@ -1,208 +1,214 @@
 <div class="recipe">
 
+  <div class="recipe-wrapper">
+    <div class="recipe-body-top">
 
-  <div class="recipe-body-top">
-
-    <div class="recipe-page-photo">
-      <div class="recipe-page-photo-content">
-        <!--      http://localhost:8080/pictures/[recipe.title]/[recipe.image]  -->
-        <img src="{{url + '/' + recipe.dateOfCreation + '/' + recipe.image}}" alt="photo">
-      </div>
-    </div>
-
-    <div class="recipe-info-with-ingredients">
-      <div class="recipe-title">
-        <div class="recipe-title-content">
-          {{recipe.title}}
+      <div class="recipe-page-photo">
+        <div class="recipe-page-photo-content">
+          <!--      http://localhost:8080/pictures/[recipe.title]/[recipe.image]  -->
+          <img src="{{url + '/' + recipe.dateOfCreation + '/' + recipe.image}}" alt="photo">
         </div>
       </div>
 
-      <div class="recipe-author">
-        <div class="recipe-author-link">
-          <span>{{"Автор: "}}</span>
-
-          <div *ngIf="user && user.id != recipe.author.id else toCabinet">
-            <a class="recipe-author-link-name" [routerLink]="['/user', recipe.author.id]"
-               [state]="{data: recipe}">{{recipe.author.username}}</a>
+      <div class="recipe-info-with-ingredients">
+        <div class="recipe-title">
+          <div class="recipe-title-content">
+            {{recipe.title}}
           </div>
-          <ng-template #toCabinet>
-            <a class="recipe-author-link-name"
-               [routerLink]="['/cabinet/created-recipes']">{{recipe.author.username}}</a>
-            <div class="link-to-update-recipe">Це ваш рецепт. Ви можете його
-              <a [routerLink]="['/update-recipe', recipe.id]"> редагувати</a>
+        </div>
+
+        <div class="recipe-author">
+          <div class="recipe-author-link">
+            <span>{{"Автор: "}}</span>
+            <div *ngIf="!user || user && (user.id != recipe.author.id) else toCabinet">
+              <a class="recipe-author-link-name" [routerLink]="['/user', recipe.author.id]"
+                 [state]="{data: recipe}">{{recipe.author.username}}</a>
             </div>
-          </ng-template>
 
-        </div>
-      </div>
-      <div>
-        <form id="recipe-form" [formGroup]="form">
-          <section id="like" class="rating">
-            <input type="radio" id="heart_5" name="rate" value="5" formControlName="rate"/>
-            <label for="heart_5" title="Five">&#11088;</label>
-            <input type="radio" id="heart_4" name="rate" value="4" formControlName="rate"/>
-            <label for="heart_4" title="Four">&#11088;</label>
-            <input type="radio" id="heart_3" name="rate" value="3" formControlName="rate"/>
-            <label for="heart_3" title="Three">&#11088;</label>
-            <input type="radio" id="heart_2" name="rate" value="2" formControlName="rate"/>
-            <label for="heart_2" title="Two">&#11088;</label>
-            <input type="radio" id="heart_1" name="rate" value="1" formControlName="rate"/>
-            <label for="heart_1" title="One">&#11088;</label>
-          </section>
-          <button (click)="vote()">Оцінити</button>
-          <div>{{recipe.rating}}/{{recipe.ranks.length}}</div>
-        </form>
-      </div>
+            <ng-template #toCabinet>
+              <a class="recipe-author-link-name"
+                 [routerLink]="['/cabinet/created-recipes']">{{recipe.author.username}}</a>
+              <div class="link-to-update-recipe">Це ваш рецепт. Ви можете його
+                <a [routerLink]="['/update-recipe', recipe.id]"> редагувати</a>
+              </div>
+            </ng-template>
 
-      <div *ngIf="username" class="recipe-like-button">
-        <div class="recipe-like-button-true" *ngIf="saveOrDeleteFavorite() else add">
-          <div>
-            Цей рецепт у списку улюблених.
           </div>
-          <a (click)="saveToFavorites()">
-              Виключити зі списку
-          </a>
         </div>
-        <ng-template #add>
-          <a (click)="saveToFavorites()" class="recipe-like-button-false">Додати до улюблених</a>
+        <div *ngIf="user else guest">
+          <form id="recipe-form" [formGroup]="form">
+            <section id="like" class="rating">
+              <input type="radio" id="heart_5" value="5" [checked]="rate >= 5" (click)="showRateOfRecipe(5)"
+                     formControlName="rate"/>
+              <label for="heart_5" title="Five">&#11088;</label>
+              <input type="radio" id="heart_4" value="4" [checked]="rate >= 4" (click)="showRateOfRecipe(4)"
+                     formControlName="rate"/>
+              <label for="heart_4" title="Four">&#11088;</label>
+              <input type="radio" id="heart_3" value="3" [checked]="rate >= 3" (click)="showRateOfRecipe(3)"
+                     formControlName="rate"/>
+              <label for="heart_3" title="Three">&#11088;</label>
+              <input type="radio" id="heart_2" value="2" [checked]="rate >= 2" (click)="showRateOfRecipe(2)"
+                     formControlName="rate"/>
+              <label for="heart_2" title="Two">&#11088;</label>
+              <input type="radio" id="heart_1" value="1" [checked]="rate >= 1" (click)="showRateOfRecipe(1)"
+                     formControlName="rate"/>
+              <label for="heart_1" title="One">&#11088;</label>
+            </section>
+            <button (click)="vote()">Оцінити</button>
+            <div>&#11088;{{recipe.rating}}/{{recipe.ranks.length}}</div>
+          </form>
+        </div>
+
+        <ng-template #guest>
+          <div id="recipe-ranking">&#11088;{{recipe.rating}}/{{recipe.ranks.length}}</div>
         </ng-template>
 
-      </div>
+        <div *ngIf="username" class="recipe-like-button">
+          <div class="recipe-like-button-true" *ngIf="saveOrDeleteFavorite() else add">
+            <div>
+              Цей рецепт у списку улюблених.
+            </div>
+            <a (click)="saveToFavorites()">
+              Виключити зі списку
+            </a>
+          </div>
+          <ng-template #add>
+            <a (click)="saveToFavorites()" class="recipe-like-button-false">Додати до улюблених</a>
+          </ng-template>
+        </div>
 
-      <div class="recipe-category">
+        <div class="recipe-category">
           <div (click)="getRecipesByCategoryId(recipe.recipeCategoryDto.id)" class="recipe-category-content">
             {{recipe.recipeCategoryDto.name}}
           </div>
-      </div>
-
-      <div class="recipe-ingredients">
-        <div class="recipe-ingredients-titles">
-          <div class="recipe-ingredients-titles-ingredient">
-            Інгредієнт
-          </div>
-          <div class="recipe-ingredients-titles-weight">
-            Вага
-          </div>
         </div>
-        <div class="recipe-ingredient" *ngFor="let ingredient of recipe.ingredients">
-          <div class="recipe-ingredient-name-content-sign">
-            {{' + '}}
-          </div>
-          <div class="recipe-ingredient-name">
-            <div class="recipe-ingredient-name-content">
-              {{ingredient.name_ukr}}
+
+        <div class="recipe-ingredients">
+          <div class="recipe-ingredients-titles">
+            <div class="recipe-ingredients-titles-ingredient">
+              Інгредієнт
+            </div>
+            <div class="recipe-ingredients-titles-weight">
+              Вага
             </div>
           </div>
+          <div class="recipe-ingredient" *ngFor="let ingredient of recipe.ingredients">
+            <div class="recipe-ingredient-name-content-sign">
+              {{' + '}}
+            </div>
+            <div class="recipe-ingredient-name">
+              <div class="recipe-ingredient-name-content">
+                {{ingredient.name_ukr}}
+              </div>
+            </div>
 
-          <!--    треба щоб при кліку відображалась -->
-
-          <!--    <div class="recipe-ingredient-about">-->
-          <!--      <div class="recipe-ingredient-about-title">-->
-          <!--        Інформація про інгредієнт:-->
-          <!--      </div>-->
-          <!--      <div class="recipe-ingredient-about-content">-->
-          <!--        {{ingredient.about}}-->
-          <!--      </div>-->
-          <!--    </div>-->
-
-          <div class="recipe-ingredient-weight">
-            <div class="recipe-ingredient-weight-content">
-              {{ingredient.weight}}{{' г'}}
+            <div class="recipe-ingredient-weight">
+              <div class="recipe-ingredient-weight-content">
+                {{ingredient.weight}}{{' г'}}
+              </div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
 
-          <!--          <div class="recipe-ingredient-category">-->
-          <!--            <div class="recipe-ingredient-category-content">-->
-          <!--              {{ingredient.ingredientCategoryDto.name}}-->
-          <!--            </div>-->
-          <!--          </div>-->
+    <div class="recipe-body-middle">
+      <div class="recipe-description">
+        <div class="recipe-description-content" *ngFor="let stage of stages">
+          <div>{{'- ' + stage}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-body-bottom">
+      <div class="recipe-nutrients">
+        <div class="recipe-nutrients-title">
+          <div class="recipe-nutrients-title-short">
+            Деталі
+          </div>
+          <div class="recipe-nutrients-title-long">
+            Детальна інформація про цей рецепт.
+          </div>
+        </div>
+
+        <div class="recipe-nutrients-titles">
+          <div class="white-space"></div>
+          <div class="recipe-nutrients-titles-no">
+            №
+          </div>
+          <div class="recipe-nutrients-titles-nutrient">
+            Нутрієнт
+          </div>
+          <div class="recipe-nutrients-titles-category">
+            Категорія
+          </div>
+          <div class="recipe-nutrients-titles-quantity">
+            Кількість в 100 грамах
+          </div>
+          <div *ngIf="user" class="recipe-nutrients-titles-norm">
+            Ваша норма
+          </div>
+          <div *ngIf="user" class="recipe-nutrients-titles-percentage">
+            Відсотків від Вашої рекомендованої денної норми
+          </div>
+        </div>
+
+        <div class="recipe-user-proportions">
+
+          <div class="recipe-user-proportions-title">Енергія</div>
+          <div class="recipe-user-proportion-energy" *ngFor="let energy of proportions.energy">
+            <div class="white-space"></div>
+
+            <div class="recipe-user-proportions-id">{{energy.idOfNutrient}}</div>
+            <div class="recipe-user-proportions-name">{{energy.nutrient}}</div>
+            <div class="recipe-user-proportions-category">{{energy.category}}</div>
+            <div class="recipe-user-proportions-recipe-quantity">{{energy.nutrientQuantity}}{{' '}}{{energy.unit}}</div>
+            <div *ngIf="energy.userNorm"
+                 class="recipe-user-proportions-norm">{{energy.userNorm}}{{' '}}{{energy.unit}}</div>
+            <div *ngIf="energy.percentage" class="recipe-user-proportions-percentage">{{energy.percentage}}%</div>
+          </div>
+
+          <div class="recipe-user-proportions-title">Органічні макроелементи</div>
+          <div class="recipe-user-proportion-organics" *ngFor="let organic of proportions.organics">
+            <div class="white-space"></div>
+
+            <div class="recipe-user-proportions-id">{{organic.idOfNutrient}}</div>
+            <div class="recipe-user-proportions-name">{{organic.nutrient}}</div>
+            <div class="recipe-user-proportions-category">{{organic.category}}</div>
+            <div class="recipe-user-proportions-recipe-quantity">{{organic.nutrientQuantity}}{{' '}}{{organic.unit}}</div>
+            <div *ngIf="organic.userNorm"
+                 class="recipe-user-proportions-norm">{{organic.userNorm}}{{' '}}{{organic.unit}}</div>
+            <div *ngIf="organic.percentage" class="recipe-user-proportions-percentage">{{organic.percentage}}%</div>
+          </div>
+
+          <div class="recipe-user-proportions-title">Вітаміни</div>
+          <div class="recipe-user-proportion-vitamins" *ngFor="let vitamin of proportions.vitamins">
+            <div class="white-space"></div>
+
+            <div class="recipe-user-proportions-id">{{vitamin.idOfNutrient}}</div>
+            <div class="recipe-user-proportions-name">{{vitamin.nutrient}}</div>
+            <div class="recipe-user-proportions-category">{{vitamin.category}}</div>
+            <div class="recipe-user-proportions-recipe-quantity">{{vitamin.nutrientQuantity}}{{' '}}{{vitamin.unit}}</div>
+            <div *ngIf="vitamin.userNorm"
+                 class="recipe-user-proportions-norm">{{vitamin.userNorm}}{{' '}}{{vitamin.unit}}</div>
+            <div *ngIf="vitamin.percentage" class="recipe-user-proportions-percentage">{{vitamin.percentage}}%</div>
+          </div>
+
+          <div class="recipe-user-proportions-title">Мінерали</div>
+          <div class="recipe-user-proportion-minerals" *ngFor="let mineral of proportions.minerals">
+            <div class="white-space"></div>
+
+            <div class="recipe-user-proportions-id">{{mineral.idOfNutrient}}</div>
+            <div class="recipe-user-proportions-name">{{mineral.nutrient}}</div>
+            <div class="recipe-user-proportions-category">{{mineral.category}}</div>
+            <div class="recipe-user-proportions-recipe-quantity">{{mineral.nutrientQuantity}}{{' '}}{{mineral.unit}}</div>
+            <div *ngIf="mineral.userNorm"
+                 class="recipe-user-proportions-norm">{{mineral.userNorm}}{{' '}}{{mineral.unit}}</div>
+            <div *ngIf="mineral.percentage" class="recipe-user-proportions-percentage">{{mineral.percentage}}%</div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="recipe-body-middle">
-    <div class="recipe-description">
-      <div class="recipe-description-content" *ngFor="let stage of stages">
-        <div>{{'- ' + stage}}</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="recipe-body-bottom">
-    <div class="recipe-nutrients">
-      <div class="recipe-nutrients-title">
-        <div class="recipe-nutrients-title-short">
-          Деталі
-        </div>
-        <div class="recipe-nutrients-title-long">
-          Детальна інформація про цей рецепт.
-        </div>
-      </div>
-
-      <div class="recipe-nutrients-titles">
-        <div class="recipe-nutrients-titles-no">
-          №
-        </div>
-        <div class="recipe-nutrients-titles-nutrient">
-          Нутрієнт
-        </div>
-        <div class="recipe-nutrients-titles-category">
-          Категорія
-        </div>
-        <div class="recipe-nutrients-titles-quantity">
-          Кількість в 100 грамах
-        </div>
-        <div *ngIf="user" class="recipe-nutrients-titles-norm">
-          Ваша норма
-        </div>
-        <div *ngIf="user" class="recipe-nutrients-titles-percentage">
-          Відсотків від Вашої рекомендованої денної норми
-        </div>
-      </div>
-
-      <div class="recipe-user-proportions">
-
-        <div class="recipe-user-proportions-title">Енергія</div>
-        <div class="recipe-user-proportion-energy" *ngFor="let energy of proportions.energy">
-          <div class="recipe-user-proportions-id">{{energy.idOfNutrient}}</div>
-          <div class="recipe-user-proportions-name">{{energy.nutrient}}</div>
-          <div class="recipe-user-proportions-category">{{energy.category}}</div>
-          <div class="recipe-user-proportions-recipe-quantity">{{energy.nutrientQuantity}}{{' '}}{{energy.unit}}</div>
-          <div class="recipe-user-proportions-norm">{{energy.userNorm}}{{' '}}{{energy.unit}}</div>
-          <div class="recipe-user-proportions-percentage">{{energy.percentage}}%</div>
-        </div>
-
-        <div class="recipe-user-proportions-title">Органічні макроелементи</div>
-        <div class="recipe-user-proportion-organics" *ngFor="let organic of proportions.organics">
-          <div class="recipe-user-proportions-id">{{organic.idOfNutrient}}</div>
-          <div class="recipe-user-proportions-name">{{organic.nutrient}}</div>
-          <div class="recipe-user-proportions-category">{{organic.category}}</div>
-          <div class="recipe-user-proportions-recipe-quantity">{{organic.nutrientQuantity}}{{' '}}{{organic.unit}}</div>
-          <div *ngIf="organic.userNorm" class="recipe-user-proportions-norm">{{organic.userNorm}}{{' '}}{{organic.unit}}</div>
-          <div *ngIf="organic.percentage" class="recipe-user-proportions-percentage">{{organic.percentage}}%</div>
-        </div>
-
-        <div class="recipe-user-proportions-title">Вітаміни</div>
-        <div class="recipe-user-proportion-vitamins" *ngFor="let vitamin of proportions.vitamins">
-          <div class="recipe-user-proportions-id">{{vitamin.idOfNutrient}}</div>
-          <div class="recipe-user-proportions-name">{{vitamin.nutrient}}</div>
-          <div class="recipe-user-proportions-category">{{vitamin.category}}</div>
-          <div class="recipe-user-proportions-recipe-quantity">{{vitamin.nutrientQuantity}}{{' '}}{{vitamin.unit}}</div>
-          <div *ngIf="vitamin.userNorm" class="recipe-user-proportions-norm">{{vitamin.userNorm}}{{' '}}{{vitamin.unit}}</div>
-          <div *ngIf="vitamin.percentage" class="recipe-user-proportions-percentage">{{vitamin.percentage}}%</div>
-        </div>
-
-        <div class="recipe-user-proportions-title">Мінерали</div>
-        <div class="recipe-user-proportion-minerals" *ngFor="let mineral of proportions.minerals">
-          <div class="recipe-user-proportions-id">{{mineral.idOfNutrient}}</div>
-          <div class="recipe-user-proportions-name">{{mineral.nutrient}}</div>
-          <div class="recipe-user-proportions-category">{{mineral.category}}</div>
-          <div class="recipe-user-proportions-recipe-quantity">{{mineral.nutrientQuantity}}{{' '}}{{mineral.unit}}</div>
-          <div *ngIf="mineral.userNorm" class="recipe-user-proportions-norm">{{mineral.userNorm}}{{' '}}{{mineral.unit}}</div>
-          <div *ngIf="mineral.percentage" class="recipe-user-proportions-percentage">{{mineral.percentage}}%</div>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>

@@ -1,3 +1,15 @@
+:host(app-cabinet) {
+  height: 100%;
+}
+
+.cabinet {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  width: 100%;
+}
+
 .cabinet-links-wrapper {
   position: fixed;
   top: 70px;
@@ -9,18 +21,12 @@
 .cabinet-links {
   display: flex;
   padding: 10px;
+  box-sizing: border-box;
   justify-content: center;
   column-gap: 25px;
   background-color: #ece1cb;
   width: 100%;
   border-bottom: white thin solid;
-}
-
-.cabinet {
-  display: flex;
-  flex-direction: column;
-  row-gap: 20px;
-  width: 100%;
 }
 
 .cabinet-links a {
@@ -48,6 +54,7 @@
   width: 100%;
   display: flex;
   /*padding: 50px;*/
-
+  box-sizing: border-box;
   justify-content: center;
+  height: 100%;
 }

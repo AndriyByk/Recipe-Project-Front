@@ -35,6 +35,16 @@ export class RecipePageComponent implements OnInit {
     vitamins: [],
     organics: []
   };
+  rateArray: [boolean, boolean, boolean, boolean, boolean] = [false, false, false, false, false];
+  rateTree: {
+    first: boolean,
+    second: boolean,
+    third: boolean,
+    fourth: boolean,
+    fifth: boolean
+  }
+
+  rate: number;
 
   constructor(private activatedRoute: ActivatedRoute,
               private recipeService: RecipeService,
@@ -59,7 +69,7 @@ export class RecipePageComponent implements OnInit {
         this.recipe = recipe;
         this.stages = recipe.description.split(".");
         this.user = user;
-
+        this.getRateOfRecipe(this.user.id, this.recipe.id);
         for (let j = 0, i = 0; j < recipe.quantitiesPer100.length; j++) {
           if (j == 0) {
             this.proportions.energy.push({
@@ -215,5 +225,14 @@ export class RecipePageComponent implements OnInit {
     if (this.username != null) {
       this.userService.updateFavoriteRecipes(this.username, this.recipe.id.toString()).subscribe(value => this.user = value);
     }
+  }
+
+
+  private getRateOfRecipe(userId: number, recipeId: number) {
+    return this.userService.getRateById(userId, recipeId).subscribe(value => this.rate = value);
+  }
+
+  showRateOfRecipe(value: number) {
+    this.rate = value;
   }
 }
