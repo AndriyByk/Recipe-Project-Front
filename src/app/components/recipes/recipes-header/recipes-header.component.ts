@@ -55,6 +55,7 @@ export class RecipesHeaderComponent implements OnInit {
   submitFilter(): void {
     this.storeService.searchDetails.next({});
     this.searchDetails = this.form.getRawValue();
+    console.log(this.searchDetails);
     this.storeService.searchDetails.next(this.form.getRawValue());
 
     this.storeService.pageInfo.next({
@@ -71,6 +72,7 @@ export class RecipesHeaderComponent implements OnInit {
       this.searchDetails.title && this.searchDetails.nutrientId ||
       this.searchDetails.recipeCategoryId && this.searchDetails.title && this.searchDetails.nutrientId
     ) {
+      console.log("prazue")
       this.router.navigate(['recipes/find-and-sort', this.pageInfo.currentPage], {
         queryParams: {
           categoryId: this.searchDetails.recipeCategoryId,
@@ -80,5 +82,10 @@ export class RecipesHeaderComponent implements OnInit {
         }
       })
     }
+    // для пошуку всіх (нефільтрованих) рецептів - слід скористатись головною кнопкою-логотипом
+    // else if ((this.searchDetails.recipeCategoryId == 0) && (this.searchDetails.nutrientId == 0) ||
+    //   this.searchDetails.recipeCategoryId == 0 || this.searchDetails.nutrientId == 0) {
+    //   this.router.navigate(['recipes/allRecipes', 0])
+    // }
   }
 }

@@ -4,9 +4,6 @@ import {IRecipe} from "../recipe/IRecipe";
 import {INorm} from "./INorm";
 
 export interface IUser {
-
-  // об'єкт який відображається на фронті з бази
-
   id: number;
   username: string;
   password: string;

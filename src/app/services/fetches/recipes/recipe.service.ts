@@ -49,7 +49,6 @@ export class RecipeService {
     return this.httpClient.patch<IRecipe>(`${baseURL}${recipeUrl.recipes}/${id}`, formData)
   }
 
-  // +pagination
   getFiltered(
     recipeCategoryId: number,
     title: string | null,
@@ -77,7 +76,7 @@ export class RecipeService {
     }
   }
 
-  // +pagination
+  // не використовується
   getSortedByNutrient(
     pageNumber: number,
     pageSize: number,
@@ -92,38 +91,16 @@ export class RecipeService {
     pageNumber: number,
     pageSize: number
   ) {
-    // if (recipeCategoryId != null && recipeCategoryId != 0) {
-    //   if (title != null) {
-    //     console.log("recipeCategoryId != null ======== title != null")
-    //     if ()
-    //     return this.httpClient.get<IWrapperForRecipes>(`${baseURL}${recipeUrl.recipes}/find/${pageNumber}?categoryId=${recipeCategoryId}&title=${title}&pageSize=${pageSize}`);
-    //   } else {
-    //     console.log("recipeCategoryId != null ======== title == null")
-    //     return this.httpClient.get<IWrapperForRecipes>(`${baseURL}${recipeUrl.recipes}/find/${pageNumber}?categoryId=${recipeCategoryId}&pageSize=${pageSize}`);
-    //   }
-    // } else {
-    //   if (title != null) {
-    //     console.log("recipeCategoryId == null ======== title != null")
-    //     return this.httpClient.get<IWrapperForRecipes>(`${baseURL}${recipeUrl.recipes}/find/${pageNumber}?title=${title}&pageSize=${pageSize}`);
-    //   } else {
-    //     console.log("recipeCategoryId == null ======== title == null")
-    //     // треба змінити, щоб взагалі не робило за таких умов запиту
-    //     return this.getAll(pageSize, pageNumber);
-    //   }
-    // }
-
     if (recipeCategoryId == undefined) {
       recipeCategoryId = 0;
     }
     if (nutrientId == undefined) {
       nutrientId = 0;
     }
-
     return this.httpClient.get<IWrapperForRecipes>(`${baseURL}${recipeUrl.recipes}/find-and-sort/${pageNumber}?nutrientId=${nutrientId}&categoryId=${recipeCategoryId}&title=${title}&pageSize=${pageSize}`)
   }
 
   rateRecipe(rank: string) {
     return this.httpClient.patch<IRecipe>(`${baseURL}${recipeUrl.recipes}/rate`, rank)
   }
-
 }

@@ -18,8 +18,14 @@ export class UserByUsernameResolver implements Resolve<IUser> {
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IUser> | Promise<IUser> | IUser {
     let username = localStorage.getItem("actualUser");
+
+    // if (!username) {
+    //   this.router.navigate(['forbidden'])
+    // }
+
+    // тимчасова заглушка
     if (!username) {
-      username = "";
+      username = 'username';
     }
 
     return this.userService.getByUsername(username);

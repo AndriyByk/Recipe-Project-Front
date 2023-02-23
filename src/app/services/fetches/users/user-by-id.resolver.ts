@@ -5,20 +5,19 @@ import {
   ActivatedRouteSnapshot
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import {IUser} from "../../../interfaces/entities/user/IUser";
 import {UserService} from "./user.service";
+import {IUserShort} from "../../../interfaces/entities/user/IUserShort";
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserByIdResolver implements Resolve<IUser> {
+export class UserByIdResolver implements Resolve<IUserShort> {
 
   constructor(private userService: UserService) {
   }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IUser> | Promise<IUser> | IUser {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IUserShort> | Promise<IUserShort> | IUserShort {
     let id:number = route.params['id'];
     return this.userService.getById(id);
   }
-
 }

@@ -21,6 +21,9 @@ const routes: Routes = [
         {
           path: 'norms',
           loadChildren: () => import('./../user-norms-page/user-norms-page.module').then(value => value.UserNormsPageModule)
+        },
+        {
+          path: '**', redirectTo: 'info', pathMatch: 'full'
         }
       ]
   }

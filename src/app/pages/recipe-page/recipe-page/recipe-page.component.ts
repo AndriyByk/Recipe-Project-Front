@@ -35,14 +35,6 @@ export class RecipePageComponent implements OnInit {
     vitamins: [],
     organics: []
   };
-  rateArray: [boolean, boolean, boolean, boolean, boolean] = [false, false, false, false, false];
-  rateTree: {
-    first: boolean,
-    second: boolean,
-    third: boolean,
-    fourth: boolean,
-    fifth: boolean
-  }
 
   rate: number;
 

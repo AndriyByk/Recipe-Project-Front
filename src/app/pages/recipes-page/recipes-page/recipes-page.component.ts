@@ -36,7 +36,7 @@ export class RecipesPageComponent implements OnInit {
 
   returnToAll() {
     this.storeService.searchDetails.next({});
-    this.router.navigate(['recipes/allRecipes', 0], {
+    this.router.navigate(['recipes/all-recipes', 0], {
       queryParams: {
         pageSize: 10
       }

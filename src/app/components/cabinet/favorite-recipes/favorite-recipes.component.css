@@ -33,6 +33,13 @@
   font-weight: bold;
 }
 
+.cabinet-favorite-recipes-list-title {
+  font-family: "Segoe Script", serif;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+}
+
 .cabinet-favorite-recipes-list-content {
   display: flex;
   flex-direction: column;

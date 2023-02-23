@@ -3,6 +3,7 @@ import {Observable} from "rxjs";
 import {baseURL, recipeUrl} from "../../../urls/urls";
 import {HttpClient} from "@angular/common/http";
 import {IUser} from "../../../interfaces/entities/user/IUser";
+import {IUserShort} from "../../../interfaces/entities/user/IUserShort";
 
 @Injectable({
   providedIn: 'root'
@@ -12,12 +13,12 @@ export class UserService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getAll(): Observable<IUser[]> {
-    return this.httpClient.get<IUser[]>(`${baseURL}${recipeUrl.users}`)
-  }
+  // getAll(): Observable<IUser[]> {
+  //   return this.httpClient.get<IUser[]>(`${baseURL}${recipeUrl.users}`)
+  // }
 
-  getById(id: number): Observable<IUser> {
-    return this.httpClient.get<IUser>(`${baseURL}${recipeUrl.user}/${id}`)
+  getById(id: number): Observable<IUserShort> {
+    return this.httpClient.get<IUserShort>(`${baseURL}${recipeUrl.user}/${id}`)
   }
 
   getByUsername(username: string): Observable<IUser> {
@@ -28,10 +29,10 @@ export class UserService {
     return this.httpClient.delete<void>(`${baseURL}${recipeUrl.users}/${id}`)
   }
 
-  // не використовується
-  updateById(id: string, userForUpdate: Partial<IUser>): Observable<IUser> {
-    return this.httpClient.patch<IUser>(`${baseURL}${recipeUrl.users}/${id}`, userForUpdate);
-  }
+  // не використовується - якщо розкоментовувати - треба додати до секюріті на беку
+  // updateById(id: string, userForUpdate: Partial<IUser>): Observable<IUser> {
+  //   return this.httpClient.patch<IUser>(`${baseURL}${recipeUrl.users}/${id}`, userForUpdate);
+  // }
 
   updateByUsername(username: string, user: FormData): Observable<IUser> {
     return this.httpClient.patch<IUser>(`${baseURL}${recipeUrl.user}/${username}`, user);

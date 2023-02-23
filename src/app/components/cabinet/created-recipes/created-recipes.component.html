@@ -1,15 +1,18 @@
-<div *ngIf="recipesCreated.length == 0"  class="cabinet-created-recipes-list-message">
-  <div>
-    Ви ще не створили жодного рецепта:(
-  </div>
-</div>
-
 <div class="cabinet-created-recipes-list">
   <div class="cabinet-created-recipes-list-title">
     СТВОРЕНІ РЕЦЕПТИ
   </div>
+  <div class="cabinet-created-recipes-list-message" *ngIf="recipesCreated.length == 0">
+    <div>
+      Ви ще не створили жодного рецепта:(
+    </div>
+  </div>
+
   <div class="cabinet-created-recipes-list-content">
-    <app-created-recipe class="cabinet-created-recipe-app" *ngFor="let recipeCreated of recipesCreated" [recipeCreated]="recipeCreated"></app-created-recipe>
+    <div class="cabinet-created-recipes-list-recipes" *ngIf="recipesCreated.length != 0">
+      <app-created-recipe class="cabinet-created-recipe-app" *ngFor="let recipeCreated of recipesCreated"
+                          [recipeCreated]="recipeCreated"></app-created-recipe>
+    </div>
     <div class="cabinet-link-to-add-recipe">
       <a [routerLink]="['/add-recipe']">+</a>
     </div>

@@ -1,10 +1,30 @@
 .recipes-page {
   display: flex;
   flex-direction: column;
-  padding: 30px 20px;
+  padding: 130px 20px 70px 20px;
   background-color: white;
-  box-shadow: inset #ece1cb 0 -43px 30px;
-  margin: 100px 0 70px 0;
+  box-shadow: inset #ece1cb 0 -15px 45px;
+
+  min-height: 100%;
+  align-items: center;
+  box-sizing: border-box;
+  justify-content: center;
+}
+
+.recipes-page-message-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.recipes-page-message {
+  display: flex;
+  flex-direction: column;
+
+  row-gap: 10px;
+  justify-content: center;
+  align-content: center;
 }
 
 #recipes-page-list {

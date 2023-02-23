@@ -44,6 +44,12 @@ export class UserInfoPageComponent implements OnInit {
     //   }
 
       this.activatedRoute.data.subscribe(({user}) => this.user = user)
+    this.activatedRoute.data.subscribe({
+        next: ({user}) => this.user = user,
+        error: err => {
+          console.log(err)},
+        complete () { }},
+      )
     // }
   }
 

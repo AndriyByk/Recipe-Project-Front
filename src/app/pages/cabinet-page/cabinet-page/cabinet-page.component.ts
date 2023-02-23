@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {UserService} from "../../../services/fetches/users/user.service";
 import {IUser} from "../../../interfaces/entities/user/IUser";
 
 @Component({
@@ -10,13 +9,12 @@ import {IUser} from "../../../interfaces/entities/user/IUser";
 export class CabinetPageComponent implements OnInit {
   user: IUser;
 
-  constructor(private userService: UserService
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {
-    let username = localStorage.getItem("actualUser");
-    if (username != null) {
-      this.userService.getByUsername(username).subscribe(value => this.user = value)
-    }
+    // let username: string|null = localStorage.getItem("actualUser");
+    // if (username != null) {
+    //   this.userService.getByUsername(username).subscribe(value => this.user = value)
+    // }
   }
 }

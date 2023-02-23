@@ -12,6 +12,7 @@ import {StoreService} from "../../../services/store/store.service";
 export class SignInPageComponent implements OnInit {
   form: FormGroup;
   userNameOrPasswordError: string;
+  username: string;
 
   constructor(private authorisationService: AuthorisationService,
               private router: Router,
@@ -20,26 +21,37 @@ export class SignInPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (localStorage.getItem('actualUser')) {
+      this.router.navigate(['cabinet/info']);
+    }
   }
 
   createForm(): void {
     this.form = new FormGroup({
-      username: new FormControl(null,[Validators.required]),
-      password: new FormControl(null,[Validators.required])
+      username: new FormControl(null, [Validators.required]),
+      password: new FormControl(null, [Validators.required])
     })
   }
 
   signIn(): void {
     let username = this.form.getRawValue().username;
+    console.log(this.form.getRawValue());
     this.authorisationService.signIn(this.form.getRawValue()).subscribe((value) => {
+      console.log('response of auth service from backend --------- ' + value.body?.access);
       let error = value.headers.get("error");
       if (error == null) {
         localStorage.setItem("actualUser", username);
         this.storeService.isUserSignedIn.next(true);
-        this.authorisationService.setToken(value.headers.get("authorization"));
+        // можливо треба вирізати слово "беарер" з самого такена і вкладати лише сам шифр???
+        let authorization = value.headers.get("authorization");
+        // if (authorization) {
+        //   authorization = authorization.replace('Bearer ', '');
+        // }
+        this.authorisationService.setToken(authorization);
         this.router.navigate(['cabinet/info']);
       } else {
         this.userNameOrPasswordError = error;
+        console.log(this.userNameOrPasswordError);
       }
     });
   }

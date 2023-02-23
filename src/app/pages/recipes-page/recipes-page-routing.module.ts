@@ -17,13 +17,10 @@ const routes: Routes = [
     path: 'find/:pageNumber', runGuardsAndResolvers: 'always', component: RecipesPageComponent, resolve: {wrapperForRecipes: RecipesByCategoryIdResolver}
   },
   {
-    path: 'allRecipes/:pageNumber', runGuardsAndResolvers: 'always', component: RecipesPageComponent, resolve: {wrapperForRecipes: RecipesResolver}
+    path: 'all-recipes/:pageNumber', runGuardsAndResolvers: 'always', component: RecipesPageComponent, resolve: {wrapperForRecipes: RecipesResolver}
   },
   {
-    path: '', redirectTo: 'allRecipes/0', pathMatch: 'full'
-  },
-  {
-    path: 'allRecipes', redirectTo: 'allRecipes/0', pathMatch: 'full'
+    path: '', redirectTo: '/recipes/all-recipes/0', pathMatch: 'full'
   }
 ];
 

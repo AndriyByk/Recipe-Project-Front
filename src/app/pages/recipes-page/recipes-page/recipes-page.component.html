@@ -1,11 +1,13 @@
 <app-recipes-header></app-recipes-header>
 <div class="recipes-page" id="recipes-page-id" >
-  <div class="recipes-page-message" *ngIf="recipes.length==0">
-    <div class="recipes-page-message-one">
-      За вашим пошуком жодного рецепта:(
-    </div>
-    <div class="recipes-page-message-two">
-      Розширте пошук, або<span (click)="returnToAll()">{{' '}}поверніться до загального списку</span>
+  <div class="recipes-page-message-wrapper" *ngIf="recipes.length==0">
+    <div class="recipes-page-message">
+      <div class="recipes-page-message-one">
+        За вашим пошуком жодного рецепта:(
+      </div>
+      <div class="recipes-page-message-two">
+        Розширте пошук, або<span (click)="returnToAll()">{{' '}}поверніться до загального списку</span>
+      </div>
     </div>
   </div>
   <div id="recipes-page-list">

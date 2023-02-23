@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
   toMainPage() {
     this.storeService.searchDetails.next({});
     this.storeService.pageSize.next(10);
-    this.router.navigate(['recipes/allRecipes', 0], {
+    this.router.navigate(['recipes/all-recipes', 0], {
       queryParams: {
         pageSize: this.pageSize
       }
@@ -37,13 +37,16 @@ export class HeaderComponent implements OnInit {
 
   logOut() {
     let access = localStorage.getItem(this.accessTokenKey);
-    localStorage.removeItem(this.accessTokenKey);
+
     if (access != null) {
       console.log("username != null")
-      this.authorisationService.deleteTokenFromDB(access).subscribe(value => console.log(value));
+      console.log(access);
+      this.authorisationService.deleteTokenFromDB(access).subscribe();
     }
+
     this.storeService.isUserSignedIn.next(false);
     localStorage.removeItem(this.actualUser);
+    localStorage.removeItem(this.accessTokenKey);
     this.signedIn = false;
     this.router.navigate(['sign-in'])
   }
