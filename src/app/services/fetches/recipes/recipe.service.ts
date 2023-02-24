@@ -24,13 +24,6 @@ export class RecipeService {
     storeService.pageSize.subscribe(value => this.pageSize = value);
   }
 
-  // +pagination
-  // pageSize: number, pageNumber: number
-  // getAll(): Observable<IRecipe[]> {
-  //   return this.httpClient.get<IRecipe[]>(`${baseURL}${recipeUrl.recipes}?pageSize=10&pageNumber=0`)
-  // }
-
-
   getAll(
     pageNumber: number,
     pageSize: number): Observable<IWrapperForRecipes> {
@@ -49,41 +42,6 @@ export class RecipeService {
     return this.httpClient.patch<IRecipe>(`${baseURL}${recipeUrl.recipes}/${id}`, formData)
   }
 
-  getFiltered(
-    recipeCategoryId: number,
-    title: string | null,
-    pageNumber: number,
-    pageSize: number
-  ): Observable<IWrapperForRecipes> {
-    // важливо, шоб recipeCategoryId не мав елементів з id==0
-    if (recipeCategoryId != null && recipeCategoryId != 0) {
-      if (title != null) {
-        console.log("recipeCategoryId != null ======== title != null")
-        return this.httpClient.get<IWrapperForRecipes>(`${baseURL}${recipeUrl.recipes}/find/${pageNumber}?categoryId=${recipeCategoryId}&title=${title}&pageSize=${pageSize}`);
-      } else {
-        console.log("recipeCategoryId != null ======== title == null")
-        return this.httpClient.get<IWrapperForRecipes>(`${baseURL}${recipeUrl.recipes}/find/${pageNumber}?categoryId=${recipeCategoryId}&pageSize=${pageSize}`);
-      }
-    } else {
-      if (title != null) {
-        console.log("recipeCategoryId == null ======== title != null")
-        return this.httpClient.get<IWrapperForRecipes>(`${baseURL}${recipeUrl.recipes}/find/${pageNumber}?title=${title}&pageSize=${pageSize}`);
-      } else {
-        console.log("recipeCategoryId == null ======== title == null")
-        // треба змінити, щоб взагалі не робило за таких умов запиту
-        return this.getAll(pageSize, pageNumber);
-      }
-    }
-  }
-
-  // не використовується
-  getSortedByNutrient(
-    pageNumber: number,
-    pageSize: number,
-    nutrientId: number): Observable<IWrapperForRecipes> {
-    return this.httpClient.get<IWrapperForRecipes>(`${baseURL}${recipeUrl.recipes}/find-by-nutrient/${pageNumber}?nutrientId=${nutrientId}&pageSize=${pageSize}`)
-  }
-
   getFilteredAndSorted(
     recipeCategoryId: number,
     title: string | null,
@@ -91,6 +49,7 @@ export class RecipeService {
     pageNumber: number,
     pageSize: number
   ) {
+    // важливо, шоб recipeCategoryId не мав елементів з id==0 (і в базі теж)
     if (recipeCategoryId == undefined) {
       recipeCategoryId = 0;
     }

@@ -9,7 +9,6 @@ import {RecipeService} from "../../services/fetches/recipes/recipe.service";
 import {FooterComponent} from "../../components/recipes/footer/footer.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {RecipesResolver} from "../../services/fetches/recipes/recipes.resolver";
-import {RecipesByCategoryIdResolver} from "../../services/fetches/recipes/recipes-by-category-id.resolver";
 import {RecipesHeaderComponent} from "../../components/recipes/recipes-header/recipes-header.component";
 import {RecipesByParamsResolver} from "../../services/fetches/recipes/recipes-by-params.resolver";
 import {DynamicHeightDirective} from "../../directives/dynamic-height.directive";
@@ -36,7 +35,6 @@ import {DynamicHeightDirective} from "../../directives/dynamic-height.directive"
   providers: [
     RecipeService,
     RecipesResolver,
-    RecipesByCategoryIdResolver,
     RecipesByParamsResolver
   ]
 })
