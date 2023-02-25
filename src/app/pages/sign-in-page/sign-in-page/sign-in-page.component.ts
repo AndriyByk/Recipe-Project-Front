@@ -35,18 +35,12 @@ export class SignInPageComponent implements OnInit {
 
   signIn(): void {
     let username = this.form.getRawValue().username;
-    console.log(this.form.getRawValue());
     this.authorisationService.signIn(this.form.getRawValue()).subscribe((value) => {
-      console.log('response of auth service from backend --------- ' + value.body?.access);
       let error = value.headers.get("error");
       if (error == null) {
         localStorage.setItem("actualUser", username);
         this.storeService.isUserSignedIn.next(true);
-        // можливо треба вирізати слово "беарер" з самого такена і вкладати лише сам шифр???
         let authorization = value.headers.get("authorization");
-        // if (authorization) {
-        //   authorization = authorization.replace('Bearer ', '');
-        // }
         this.authorisationService.setToken(authorization);
         this.router.navigate(['cabinet/info']);
       } else {

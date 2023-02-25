@@ -45,6 +45,7 @@ export class HeaderComponent implements OnInit {
     }
 
     this.storeService.isUserSignedIn.next(false);
+
     localStorage.removeItem(this.actualUser);
     localStorage.removeItem(this.accessTokenKey);
     this.signedIn = false;

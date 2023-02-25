@@ -5,13 +5,13 @@ import {
   ActivatedRouteSnapshot
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import {RecipeService} from "./recipe.service";
 import {IWrapperForRecipes} from "../../../interfaces/entities/recipe/IWrapperForRecipes";
+import {RecipeService} from "./recipe.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class RecipesByParamsResolver implements Resolve<IWrapperForRecipes> {
+export class RecipesCreatedResolver implements Resolve<IWrapperForRecipes> {
 
   constructor(private recipeService: RecipeService) {
   }
@@ -21,12 +21,12 @@ export class RecipesByParamsResolver implements Resolve<IWrapperForRecipes> {
     if (isNaN(pageNumber)) {
       pageNumber = 0;
     }
-    return this.recipeService.getFilteredAndSorted(
-      route.queryParams['categoryId'],
-      route.queryParams['title'],
-      route.queryParams['nutrientId'],
+
+    return this.recipeService.getCreatedAll(
       pageNumber,
-      route.queryParams['pageSize']
-    )
+      route.queryParams['pageSize'],
+      route.queryParams['userId']
+    );
   }
+
 }

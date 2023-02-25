@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {baseURL, recipeUrl} from "../../../urls/urls";
 import {IUserShort} from "../../../interfaces/entities/user/IUserShort";
+import {IRecipe} from "../../../interfaces/entities/recipe/IRecipe";
 
 @Component({
   selector: 'app-user-page',
@@ -10,6 +11,7 @@ import {IUserShort} from "../../../interfaces/entities/user/IUserShort";
 })
 export class UserPageComponent implements OnInit {
   user: IUserShort;
+  createdRecipes: IRecipe[];
   url: string;
   urlToRecipe: string;
 
@@ -20,6 +22,9 @@ export class UserPageComponent implements OnInit {
     localStorage.getItem('username')?this.urlToRecipe = "/recipe/username":this.urlToRecipe = "/recipe";
 
     this.url = baseURL + recipeUrl.pictures;
-    this.activatedRoute.data.subscribe(({user}) => this.user = user);
+    this.activatedRoute.data.subscribe(({user, createdRecipes}) => {
+      this.user = user;
+      this.createdRecipes = createdRecipes;
+    });
   }
 }

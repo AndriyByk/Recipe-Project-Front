@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {IRecipe} from "../../../interfaces/entities/recipe/IRecipe";
 import {StoreService} from "../../../services/store/store.service";
 
@@ -9,7 +9,7 @@ import {StoreService} from "../../../services/store/store.service";
 })
 export class CreatedRecipesComponent implements OnInit {
 
-  // @Input()
+  @Input()
   recipesCreated: IRecipe[];
 
   constructor(private storeService: StoreService) { }

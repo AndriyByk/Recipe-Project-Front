@@ -10,7 +10,7 @@ import {ISearchDetails} from "../../interfaces/pages/ISearchDetails";
   providedIn: 'root'
 })
 export class StoreService {
-
+  //========== user =============================
   user = new BehaviorSubject<IUser>({
     id : 0,
     name : "",
@@ -28,7 +28,7 @@ export class StoreService {
     password: "",
     userNorms: [],
     weight: 0
-  })
+  });
   isUserSignedIn = new BehaviorSubject<boolean>(false);
   norms = new BehaviorSubject<INorm[]>([{
     quantity: 0,
@@ -77,18 +77,38 @@ export class StoreService {
     quantities: [],
     quantitiesPer100: [],
     ranks: []
-  }])
+  }]);
 
+  //========== navigation =======================
+  //---------- allRecipes -----------------------
   pageInfo = new BehaviorSubject<IPageInfo>({
     currentPage: 0,
     totalPages: 0,
     totalRecipes: 0
+  });
+  pageSize = new BehaviorSubject<number>(10);
+  searchDetails = new BehaviorSubject<ISearchDetails>({});
+
+  //---------- cabinet --------------------------
+  pageInfoOfCreated = new BehaviorSubject<IPageInfo>({
+    currentPage: 0,
+    totalPages: 0,
+    totalRecipes: 0
   })
+  pageInfoOfFavorite = new BehaviorSubject<IPageInfo>({
+    currentPage: 0,
+    totalPages: 0,
+    totalRecipes: 0
+  })
+  pageNumberOfCreated = new BehaviorSubject<number>(0);
+  pageNumberOfFavorite = new BehaviorSubject<number>(0);
+  pageSizeOfCreated = new BehaviorSubject<number>(10);
+  pageSizeOfFavorite = new BehaviorSubject<number>(10);
+  searchDetailsOfCreated = new BehaviorSubject<ISearchDetails>({});
+  searchDetailsOfFavorite = new BehaviorSubject<ISearchDetails>({});
 
-  pageSize = new BehaviorSubject<number>(10)
 
-  searchDetails = new BehaviorSubject<ISearchDetails>({})
-
+  //========== dynamic height of recipes-page ===
   maxHeight = new BehaviorSubject(0);
 
   constructor() {}

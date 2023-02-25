@@ -43,13 +43,16 @@ export class UserInfoPageComponent implements OnInit {
     //     })
     //   }
 
-      this.activatedRoute.data.subscribe(({user}) => this.user = user)
-    this.activatedRoute.data.subscribe({
-        next: ({user}) => this.user = user,
-        error: err => {
-          console.log(err)},
-        complete () { }},
-      )
+      this.activatedRoute.data.subscribe(({user}) => {
+        this.user = user;
+
+      })
+    // this.activatedRoute.data.subscribe({
+    //     next: ({user}) => this.user = user,
+    //     error: err => {
+    //       console.log(err)},
+    //     complete () { }},
+    //   )
     // }
   }
 
@@ -79,9 +82,9 @@ export class UserInfoPageComponent implements OnInit {
     this.router.navigate(['recipes'])
   }
 
-  updateAccount() {
-    this.router.navigate(['cabinet/info/update'])
-  }
+  // updateAccount() {
+  //   this.router.navigate(['cabinet/info/update'])
+  // }
 
   showDetails() {
     this.details = !this.details;

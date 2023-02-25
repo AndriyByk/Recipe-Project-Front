@@ -6,6 +6,7 @@ import {UserFavoriteRecipesPageComponent} from './user-favorite-recipes-page/use
 import {FavoriteRecipesComponent} from "../../components/cabinet/favorite-recipes/favorite-recipes.component";
 import {FavoriteRecipeComponent} from "../../components/cabinet/favorite-recipe/favorite-recipe.component";
 import {UserByUsernameResolver} from "../../services/fetches/users/user-by-username.resolver";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -18,10 +19,11 @@ import {UserByUsernameResolver} from "../../services/fetches/users/user-by-usern
     FavoriteRecipesComponent,
     FavoriteRecipeComponent
   ],
-  imports: [
-    CommonModule,
-    UserFavoriteRecipesPageRoutingModule
-  ],
+    imports: [
+        CommonModule,
+        UserFavoriteRecipesPageRoutingModule,
+        ReactiveFormsModule
+    ],
   providers: [
     UserByUsernameResolver
   ]

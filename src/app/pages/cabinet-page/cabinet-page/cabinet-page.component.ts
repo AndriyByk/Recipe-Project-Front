@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {IUser} from "../../../interfaces/entities/user/IUser";
+import {StoreService} from "../../../services/store/store.service";
+import {UserService} from "../../../services/fetches/users/user.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-cabinet',
@@ -9,12 +12,21 @@ import {IUser} from "../../../interfaces/entities/user/IUser";
 export class CabinetPageComponent implements OnInit {
   user: IUser;
 
-  constructor() { }
+  pageNumberOfFavorite: number;
+  pageNumberOfCreated: number;
+  pageSizeOfCreated: number;
+  pageSizeOfFavorite: number;
+
+  constructor(private storeService: StoreService,
+              private userService:UserService,
+              private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    // let username: string|null = localStorage.getItem("actualUser");
-    // if (username != null) {
-    //   this.userService.getByUsername(username).subscribe(value => this.user = value)
-    // }
+    this.storeService.pageNumberOfCreated.subscribe(value => this.pageNumberOfCreated = value);
+    this.storeService.pageNumberOfFavorite.subscribe(value => this.pageNumberOfFavorite = value);
+    this.storeService.pageSizeOfCreated.subscribe(value => this.pageSizeOfCreated = value);
+    this.storeService.pageSizeOfFavorite.subscribe(value => this.pageSizeOfFavorite = value);
+
+    this.activatedRoute.data.subscribe(({user}) => this.user = user);
   }
 }

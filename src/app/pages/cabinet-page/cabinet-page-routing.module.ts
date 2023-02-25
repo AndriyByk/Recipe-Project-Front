@@ -1,10 +1,11 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {CabinetPageComponent} from "./cabinet-page/cabinet-page.component";
+import {UserByUsernameResolver} from "../../services/fetches/users/user-by-username.resolver";
 
 const routes: Routes = [
   {
-    path: '', component: CabinetPageComponent, children:
+    path: '', component: CabinetPageComponent, resolve: {user: UserByUsernameResolver}, children:
       [
         {
           path: 'info',

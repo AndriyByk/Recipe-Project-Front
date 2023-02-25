@@ -210,7 +210,7 @@ export class RecipePageComponent implements OnInit {
   }
 
   saveOrDeleteFavorite(): boolean {
-   return this.user.favoriteRecipes.findIndex(value => value.id == this.recipe.id) >= 0;
+   return this.user.favoriteRecipes.findIndex(value => value == this.recipe.id) >= 0;
   }
 
   saveToFavorites() {

@@ -17,10 +17,7 @@ export class RecipeService {
 
   constructor(private httpClient: HttpClient,
               private storeService: StoreService) {
-    storeService.pageInfo.subscribe(value => {
-      this.pageInfo = value;
-      console.log(this.pageInfo);
-    });
+    storeService.pageInfo.subscribe(value => this.pageInfo = value);
     storeService.pageSize.subscribe(value => this.pageSize = value);
   }
 
@@ -28,6 +25,49 @@ export class RecipeService {
     pageNumber: number,
     pageSize: number): Observable<IWrapperForRecipes> {
     return this.httpClient.get<IWrapperForRecipes>(`${baseURL}${recipeUrl.recipes}/allRecipes/${pageNumber}?pageSize=${pageSize}`)
+  }
+
+  getCreatedAll(pageNumber: number,
+                pageSize: number,
+                userId: number): Observable<IWrapperForRecipes> {
+    return this.httpClient.get<IWrapperForRecipes>(`${baseURL}${recipeUrl.recipes}/created/${pageNumber}?pageSize=${pageSize}&userId=${userId}`)
+  }
+
+  getCreatedFilteredAndSorted(recipeCategoryId: number,
+                              title: string | null,
+                              nutrientId: number,
+                              pageNumber: number,
+                              pageSize: number,
+                              userId: number) {
+    if (recipeCategoryId == undefined) {
+      recipeCategoryId = 0;
+    }
+    if (nutrientId == undefined) {
+      nutrientId = 0;
+    }
+    return this.httpClient.get<IWrapperForRecipes>(`${baseURL}${recipeUrl.recipes}/created/find-and-sort/${pageNumber}?nutrientId=${nutrientId}&categoryId=${recipeCategoryId}&title=${title}&pageSize=${pageSize}&userId=${userId}`)
+  }
+
+  getFavoriteAll(pageNumber: number,
+                 pageSize: number,
+                 userId: number): Observable<IWrapperForRecipes> {
+    return this.httpClient.get<IWrapperForRecipes>(`${baseURL}${recipeUrl.recipes}/favorite/${pageNumber}?pageSize=${pageSize}&userId=${userId}`)
+  }
+
+  getFavoriteFilteredAndSorted(recipeCategoryId: number,
+                               title: string | null,
+                               nutrientId: number,
+                               pageNumber: number,
+                               pageSize: number,
+                               userId: number) {
+    if (recipeCategoryId == undefined) {
+      recipeCategoryId = 0;
+    }
+    if (nutrientId == undefined) {
+      nutrientId = 0;
+    }
+    return this.httpClient.get<IWrapperForRecipes>(`${baseURL}${recipeUrl.recipes}/favorite/find-and-sort/${pageNumber}?nutrientId=${nutrientId}&categoryId=${recipeCategoryId}&title=${title}&pageSize=${pageSize}&userId=${userId}`)
+
   }
 
   getById(id: number): Observable<IRecipe> {

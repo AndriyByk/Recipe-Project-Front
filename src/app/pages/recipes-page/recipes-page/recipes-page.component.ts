@@ -24,7 +24,6 @@ export class RecipesPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({wrapperForRecipes}) => {
-      console.log(wrapperForRecipes);
       this.storeService.pageInfo.next({
         currentPage: wrapperForRecipes.currentPage,
         totalPages: wrapperForRecipes.totalPages,

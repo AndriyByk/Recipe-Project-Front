@@ -1,10 +1,12 @@
 <div class="cabinet">
   <div class="cabinet-links-wrapper">
     <div class="cabinet-links">
-      <a [routerLink]="['info']" [state]="{data: user}">Інформація про Вас</a>
-      <a [routerLink]="['favorite-recipes']" [state]="{data: user}">Ваші улюблені рецепти</a>
-      <a [routerLink]="['created-recipes']" [state]="{data: user}">Створені рецепти</a>
-      <a [routerLink]="['norms']" [state]="{data: user}">Норми споживання</a>
+      <a [routerLink]="['info']">Інформація про Вас</a>
+      <a [routerLink]="['favorite-recipes', pageNumberOfFavorite]"
+         [queryParams]="{pageSize: pageSizeOfFavorite, userId: user.id}">Ваші улюблені рецепти</a>
+      <a [routerLink]="['created-recipes', pageNumberOfCreated]"
+         [queryParams]="{pageSize: pageSizeOfCreated, userId: user.id}">Створені рецепти</a>
+      <a [routerLink]="['norms']">Норми споживання</a>
     </div>
   </div>
   <div class="cabinet-outlet-wrapper">

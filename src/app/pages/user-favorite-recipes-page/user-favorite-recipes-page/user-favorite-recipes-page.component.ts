@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {IUser} from "../../../interfaces/entities/user/IUser";
+import {IRecipe} from "../../../interfaces/entities/recipe/IRecipe";
+import {StoreService} from "../../../services/store/store.service";
 
 @Component({
   selector: 'app-user-favorite-recipes-page',
@@ -10,16 +12,20 @@ import {IUser} from "../../../interfaces/entities/user/IUser";
 export class UserFavoriteRecipesPageComponent implements OnInit {
   private actualUser = 'actualUser';
   user: IUser;
-
-  constructor(private route: ActivatedRoute) { }
+  favoriteRecipes: IRecipe[];
+  constructor(private activatedRoute: ActivatedRoute,
+              private storeService: StoreService) { }
 
   ngOnInit(): void {
-    let {data} = history.state;
-    if (data != undefined) {
-      this.user = data;
-    } else {
-      this.route.data.subscribe(({user}) => this.user = user)
-    }
+      this.activatedRoute.data.subscribe(({user, favoriteRecipes}) => {
+        this.user = user;
+        this.favoriteRecipes = favoriteRecipes.recipes;
+        this.storeService.pageInfoOfFavorite.next({
+          currentPage: favoriteRecipes.currentPage,
+          totalPages: favoriteRecipes.totalPages,
+          totalRecipes: favoriteRecipes.totalRecipes
+        })
+      });
   }
 
 }
