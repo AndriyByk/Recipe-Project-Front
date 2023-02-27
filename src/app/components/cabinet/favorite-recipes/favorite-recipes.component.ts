@@ -48,7 +48,7 @@ export class FavoriteRecipesComponent implements OnInit {
     this.recipeCategoryService.getAll().subscribe(value => this.categories = value);
     this.ingredientService.getAll().subscribe(value => this.ingredients = value);
     this.nutrientService.getAll().subscribe(value => this.nutrients = value);
-    this.storeService.pageInfoOfFavorite.subscribe(value => this.pageInfoOfFavorite = value)
+    this.storeService.pageInfoOfFavorite.subscribe(value => this.pageInfoOfFavorite = value);
   }
 
   private createForm() {

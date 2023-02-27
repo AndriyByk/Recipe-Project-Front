@@ -10,9 +10,9 @@ import {StoreService} from "../../../services/store/store.service";
   styleUrls: ['./user-favorite-recipes-page.component.css']
 })
 export class UserFavoriteRecipesPageComponent implements OnInit {
-  private actualUser = 'actualUser';
   user: IUser;
   favoriteRecipes: IRecipe[];
+
   constructor(private activatedRoute: ActivatedRoute,
               private storeService: StoreService) { }
 

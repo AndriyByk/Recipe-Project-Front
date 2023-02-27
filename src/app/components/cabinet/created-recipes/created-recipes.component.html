@@ -8,13 +8,69 @@
     </div>
   </div>
 
+
+
+
   <div class="cabinet-created-recipes-list-content">
-    <div class="cabinet-created-recipes-list-recipes" *ngIf="recipesCreated.length != 0">
-      <app-created-recipe class="cabinet-created-recipe-app" *ngFor="let recipeCreated of recipesCreated"
-                          [recipeCreated]="recipeCreated"></app-created-recipe>
+    <div class="cabinet-created-recipes-navigation">
+      <div class="cabinet-created-recipes-search">
+        <div class="cabinet-created-recipes-search-form-wrapper">
+          <form class="cabinet-created-recipes-search-form" [formGroup]="searchForm">
+            <div class="cabinet-created-recipes-search-form-inputs">
+
+              <div class="cabinet-created-recipes-search-form-input-title">
+                <label>
+                  <input type="text" placeholder="Введіть назву рецепта" [defaultValue]="''" formControlName="title">
+                </label>
+              </div>
+
+              <div class="cabinet-created-recipes-search-form-input-category">
+                <label>
+                  <select [(ngModel)]="meme1" formControlName="recipeCategoryId">
+                    <option [ngValue]="null" selected disabled hidden>Категорія рецептів</option>
+                    <option [ngValue]="category.id" *ngFor="let category of categories">{{category.name}}</option>
+                    <option [ngValue]="0">Категорія відсутня</option>
+                  </select>
+                </label>
+              </div>
+
+              <div class="cabinet-created-recipes-search-form-input-nutrient">
+                <label>
+                  <select [(ngModel)]="meme2" formControlName="nutrientId">
+                    <option [ngValue]="null" disabled selected hidden>Сортування по нутрієнту</option>
+                    <option *ngFor="let nutrient of nutrients"
+                            [ngValue]="nutrient.idOfNutrient">{{nutrient.name}}</option>
+                    <option [ngValue]="0">Категорія відсутня</option>
+                  </select>
+                </label>
+              </div>
+            </div>
+            <div class="cabinet-created-recipes-search-form-button">
+              <button (click)="submitFilter()" type="submit">Пошук</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
-    <div class="cabinet-link-to-add-recipe">
-      <a [routerLink]="['/add-recipe']">+</a>
+    <div class="cabinet-created-recipes-list-recipes-wrapper">
+      <div class="cabinet-created-recipes-list-recipes" *ngIf="recipesCreated.length != 0">
+        <app-created-recipe class="cabinet-created-recipe-app" *ngFor="let recipeCreated of recipesCreated"
+                            [recipeCreated]="recipeCreated"></app-created-recipe>
+      </div>
+      <div class="cabinet-link-to-add-recipe">
+        <a [routerLink]="['/add-recipe']">+</a>
+      </div>
+    </div>
+    <div class="cabinet-created-recipes-pagination">
+      <div class="cabinet-created-recipes-pagination-wrapper">
+        <div class="cabinet-created-recipes-pagination-paging">
+          <button (click)="goFirstPage()" class="cabinet-created-recipes-pagination-paging-first-page">|<<</button>
+          <button (click)="goPreviousPage()" class="cabinet-created-recipes-pagination-paging-previous-page"><</button>
+          <div class="cabinet-created-recipes-pagination-current-page">{{pageInfoOfCreated.currentPage + 1}}/{{pageInfoOfCreated.totalPages}}</div>
+          <button (click)="goNextPage()" class="cabinet-created-recipes-pagination-paging-next-page">></button>
+          <button (click)="goLastPage()" class="cabinet-created-recipes-pagination-paging-last-page">>>|</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

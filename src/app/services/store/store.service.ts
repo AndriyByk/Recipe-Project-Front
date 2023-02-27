@@ -100,10 +100,13 @@ export class StoreService {
     totalPages: 0,
     totalRecipes: 0
   })
+
   pageNumberOfCreated = new BehaviorSubject<number>(0);
   pageNumberOfFavorite = new BehaviorSubject<number>(0);
+
   pageSizeOfCreated = new BehaviorSubject<number>(10);
   pageSizeOfFavorite = new BehaviorSubject<number>(10);
+
   searchDetailsOfCreated = new BehaviorSubject<ISearchDetails>({});
   searchDetailsOfFavorite = new BehaviorSubject<ISearchDetails>({});
 

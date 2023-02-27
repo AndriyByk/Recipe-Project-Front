@@ -17,11 +17,15 @@ export class UserCreatedRecipesPageComponent implements OnInit {
               private storeService: StoreService) { }
 
   ngOnInit(): void {
-
       this.activatedRoute.data.subscribe(({user, createdRecipes}) => {
         this.user = user;
-        this.createdRecipes = createdRecipes;
+        this.createdRecipes = createdRecipes.recipes;
         this.storeService.createdRecipes.next(createdRecipes.recipes);
+        this.storeService.pageInfoOfCreated.next({
+          currentPage: createdRecipes.currentPage,
+          totalPages: createdRecipes.totalPages,
+          totalRecipes: createdRecipes.totalRecipes
+        })
       })
   }
 }

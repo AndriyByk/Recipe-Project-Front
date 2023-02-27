@@ -6,6 +6,7 @@ import { UserCreatedRecipesPageComponent } from './user-created-recipes-page/use
 import {CreatedRecipesComponent} from "../../components/cabinet/created-recipes/created-recipes.component";
 import {CreatedRecipeComponent} from "../../components/cabinet/created-recipe/created-recipe.component";
 import {UserByUsernameResolver} from "../../services/fetches/users/user-by-username.resolver";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -14,10 +15,11 @@ import {UserByUsernameResolver} from "../../services/fetches/users/user-by-usern
         CreatedRecipesComponent,
         CreatedRecipeComponent
     ],
-  imports: [
-    CommonModule,
-    UserCreatedRecipesPageRoutingModule
-  ],
+    imports: [
+        CommonModule,
+        UserCreatedRecipesPageRoutingModule,
+        ReactiveFormsModule
+    ],
   providers: [
     UserByUsernameResolver
   ]
