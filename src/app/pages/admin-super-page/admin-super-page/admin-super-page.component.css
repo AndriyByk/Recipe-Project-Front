@@ -1,0 +1,253 @@
+:host(app-admin-super-page) {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
+
+.admin-super-page-wrapper {
+  display: flex;
+  width: 100%;
+  padding: 160px 20px 60px 20px;
+  justify-content: center;
+  height: fit-content;
+  background-color: #ece1cb;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.admin-super-page-list-of-users-wrapper {
+  display: flex;
+  max-width: 70%;
+  width: fit-content;
+  min-width: 900px;
+  /*justify-content: center;*/
+  flex-direction: column;
+  height: fit-content;
+
+  background-color: white;
+  border-radius: 30px;
+}
+
+/*========= chosen-user ===========*/
+
+.admin-super-page-chosen-user {
+  display: flex;
+  column-gap: 30px;
+  padding: 20px 30px;
+  border-bottom: #ece1cb medium dotted;
+}
+
+.admin-super-page-chosen-user-left {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  height: 300px;
+  justify-content: center;
+}
+
+.admin-super-page-user-avatar {
+  display: flex;
+  width: 100%;
+  /*height: 100%;*/
+  max-height: 300px;
+  overflow: hidden;
+  max-width: 20vw;
+  justify-content: center;
+  align-items: center;
+}
+
+.admin-super-page-user-avatar img {
+  max-width: 200px;
+  height: 100%;
+  width: auto;
+}
+
+.admin-super-page-chosen-user-right {
+  display: flex;
+  column-gap: 10px;
+}
+
+.admin-super-page-chosen-user-right-titles > div,
+.admin-super-page-chosen-user-right-contents > div {
+  height: 20px;
+}
+
+.admin-super-page-chosen-user-right-titles {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.admin-super-page-chosen-user-right-titles > div {
+  display: flex;
+  width: 200px;
+  justify-content: center;
+}
+
+.admin-super-page-chosen-user-right-contents {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.admin-super-page-chosen-user-right-contents > div {
+  width: 250px;
+}
+
+.admin-super-page-change-role-form-content form {
+  display: flex;
+  row-gap: 10px;
+}
+/*======= search-form =====*/
+
+.admin-super-page-search-form {
+  padding: 20px 50px 50px 50px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.admin-super-page-search-form form {
+  width: 100%;
+  display: flex;
+  column-gap: 30px;
+  justify-content: center;
+
+}
+
+.admin-super-page-search-form-username,
+.admin-super-page-search-form-role {
+  width: 15%;
+}
+
+.admin-super-page-search-form-button {
+  width: 15%;
+}
+
+
+
+.admin-super-page-search-form-username label,
+.admin-super-page-search-form-role label {
+  width: 100%;
+}
+
+#admin-super-page-search-form-role,
+#admin-super-page-search-form-username {
+  width: 100%;
+}
+
+.admin-super-page-search-form-button button {
+  width: 100%;
+}
+
+/*======= list-of-users =====*/
+
+.admin-super-page-list-of-users {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+align-items: center;
+  padding: 0 0 50px 0;
+}
+
+/*----------------*/
+
+.admin-super-page-list-of-users-titles {
+  display: flex;
+  column-gap: 30px;
+  padding: 0 20px;
+}
+
+.admin-super-page-list-of-users-contents {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.admin-super-page-user-wrapper {
+  border-radius: 5px;
+  /*border-left: white medium solid;*/
+  /*border-right: white medium solid;*/
+  padding: 0 20px;
+
+}
+
+.admin-super-page-user-wrapper:hover {
+  text-shadow: firebrick 0 0 5px;
+  cursor: pointer;
+}
+
+.admin-super-page-user {
+  display: flex;
+  column-gap: 30px;
+}
+
+/*--------------*/
+.admin-super-page-user-id-title,
+.admin-super-page-user-id-content {
+  width: 50px;
+}
+
+.admin-super-page-user-username-title,
+.admin-super-page-user-username-content {
+  width: 150px;
+}
+
+.admin-super-page-user-date-of-registration-title,
+.admin-super-page-user-date-of-registration-content {
+  width: 200px;
+}
+/*---------------*/
+/*=========== paging =================*/
+
+.admin-super-page-list-of-users-pagination-wrapper {
+  width: 100%;
+  padding: 0 0 10px 0;
+  /*box-shadow: inset #ece1cb 0 -80px 30px;*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 57px;
+}
+
+.admin-super-page-list-of-users-pagination-paging {
+  display: flex;
+  background-color: white;
+  column-gap: 20px;
+  width: 30%;
+  height: 40px;
+  min-width: 330px;
+  box-shadow: white 0 10px 12px;
+  /*border-radius: 50%;*/
+  justify-content: space-around;
+}
+
+.admin-super-page-list-of-users-pagination-paging-first-page,
+.admin-super-page-list-of-users-pagination-paging-previous-page,
+.admin-super-page-list-of-users-pagination-paging-next-page,
+.admin-super-page-list-of-users-pagination-paging-last-page {
+  border: transparent;
+  background-color: transparent;
+  font-size: 25px;
+  font-weight: bold;
+  font-family: "SimSun", serif;
+  padding: 0 10px;
+  /*border-radius: 20px;*/
+  min-width: 50px;
+}
+
+.admin-super-page-list-of-users-pagination-paging-first-page:hover,
+.admin-super-page-list-of-users-pagination-paging-previous-page:hover,
+.admin-super-page-list-of-users-pagination-paging-next-page:hover,
+.admin-super-page-list-of-users-pagination-paging-last-page:hover {
+  color: firebrick;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.admin-super-page-list-of-users-pagination-current-page {
+  display: flex;
+  align-items: center;
+  font-family: "MV Boli", serif ;
+  font-size: 22px;
+}

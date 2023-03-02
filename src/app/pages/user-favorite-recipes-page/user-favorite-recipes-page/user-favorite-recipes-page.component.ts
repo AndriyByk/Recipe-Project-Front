@@ -23,7 +23,7 @@ export class UserFavoriteRecipesPageComponent implements OnInit {
         this.storeService.pageInfoOfFavorite.next({
           currentPage: favoriteRecipes.currentPage,
           totalPages: favoriteRecipes.totalPages,
-          totalRecipes: favoriteRecipes.totalRecipes
+          totalElements: favoriteRecipes.totalRecipes
         })
       });
   }

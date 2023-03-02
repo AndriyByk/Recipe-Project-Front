@@ -17,6 +17,9 @@ export class CabinetPageComponent implements OnInit {
   pageSizeOfCreated: number;
   pageSizeOfFavorite: number;
 
+  private adminMode = 'admin-mode';
+
+
   constructor(private storeService: StoreService,
               private userService:UserService,
               private activatedRoute: ActivatedRoute) { }
@@ -28,5 +31,9 @@ export class CabinetPageComponent implements OnInit {
     this.storeService.pageSizeOfFavorite.subscribe(value => this.pageSizeOfFavorite = value);
 
     this.activatedRoute.data.subscribe(({user}) => this.user = user);
+    if (this.user.roles[0]== 'ROLE_ADMIN') {
+      localStorage.setItem(this.adminMode, this.adminMode)
+    }
+    this.storeService.user.next(this.user);
   }
 }

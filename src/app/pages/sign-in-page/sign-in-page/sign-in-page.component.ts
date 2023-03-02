@@ -14,6 +14,7 @@ export class SignInPageComponent implements OnInit {
   userNameOrPasswordError: string;
   username: string;
 
+
   constructor(private authorisationService: AuthorisationService,
               private router: Router,
               private storeService: StoreService) {

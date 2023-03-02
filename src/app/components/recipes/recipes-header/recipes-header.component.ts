@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ISearchDetails} from "../../../interfaces/pages/ISearchDetails";
+import {ISearchDetailsOfRecipes} from "../../../interfaces/pages/ISearchDetailsOfRecipes";
 import {IPageInfo} from "../../../interfaces/pages/IPageInfo";
 import {FormControl, FormGroup} from "@angular/forms";
 import {IRecipeCategory} from "../../../interfaces/categories/IRecipeCategory";
@@ -17,7 +17,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./recipes-header.component.css']
 })
 export class RecipesHeaderComponent implements OnInit {
-  searchDetails: ISearchDetails;
+  searchDetails: ISearchDetailsOfRecipes;
   pageInfo: IPageInfo;
   pageSize: number = 10;
 
@@ -25,6 +25,9 @@ export class RecipesHeaderComponent implements OnInit {
   categories: IRecipeCategory[];
   ingredients: IIngredient[];
   nutrients: INutrient[];
+
+  private adminMode = 'admin-mode';
+  url_redirect: string = 'recipes/find-and-sort';
 
   meme1 = null;
   meme2 = null;
@@ -60,8 +63,9 @@ export class RecipesHeaderComponent implements OnInit {
     this.storeService.pageInfo.next({
       currentPage: 0,
       totalPages: this.pageInfo.totalPages,
-      totalRecipes: this.pageInfo.totalRecipes
+      totalElements: this.pageInfo.totalElements
     });
+
     if (
       this.searchDetails.nutrientId ||
       this.searchDetails.recipeCategoryId ||
@@ -71,7 +75,10 @@ export class RecipesHeaderComponent implements OnInit {
       this.searchDetails.title && this.searchDetails.nutrientId ||
       this.searchDetails.recipeCategoryId && this.searchDetails.title && this.searchDetails.nutrientId
     ) {
-      this.router.navigate(['recipes/find-and-sort', this.pageInfo.currentPage], {
+      if (localStorage.getItem(this.adminMode)) {
+        this.url_redirect = 'recipes/find-and-sort/admin-mode';
+      }
+      this.router.navigate([this.url_redirect, this.pageInfo.currentPage], {
         queryParams: {
           categoryId: this.searchDetails.recipeCategoryId,
           title: this.searchDetails.title,

@@ -21,12 +21,21 @@ export class RecipesByParamsResolver implements Resolve<IWrapperForRecipes> {
     if (isNaN(pageNumber)) {
       pageNumber = 0;
     }
-    return this.recipeService.getFilteredAndSorted(
-      route.queryParams['categoryId'],
-      route.queryParams['title'],
-      route.queryParams['nutrientId'],
-      pageNumber,
-      route.queryParams['pageSize']
-    )
+
+    if (localStorage.getItem('admin-mode') != null) {
+      return this.recipeService.getFilteredAndSortedInAdminMode(
+        route.queryParams['categoryId'],
+        route.queryParams['title'],
+        route.queryParams['nutrientId'],
+        pageNumber,
+        route.queryParams['pageSize'])
+    } else {
+      return this.recipeService.getFilteredAndSorted(
+        route.queryParams['categoryId'],
+        route.queryParams['title'],
+        route.queryParams['nutrientId'],
+        pageNumber,
+        route.queryParams['pageSize'])
+    }
   }
 }

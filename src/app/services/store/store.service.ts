@@ -4,7 +4,8 @@ import {IRecipe} from "../../interfaces/entities/recipe/IRecipe";
 import {INorm} from "../../interfaces/entities/user/INorm";
 import {IUser} from "../../interfaces/entities/user/IUser";
 import {IPageInfo} from "../../interfaces/pages/IPageInfo";
-import {ISearchDetails} from "../../interfaces/pages/ISearchDetails";
+import {ISearchDetailsOfRecipes} from "../../interfaces/pages/ISearchDetailsOfRecipes";
+import {ISearchDetailsUsers} from "../../interfaces/pages/ISearchDetailsUsers";
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,7 @@ export class StoreService {
     name : "",
     lastName : "",
     username : "",
+    roles: [],
     activityTypeDto : {id: 0, name: "", about: ""},
     avatar: "",
     createdRecipes: [],
@@ -44,6 +46,7 @@ export class StoreService {
     description: "",
     dateOfCreation: "",
     rating: 0.,
+    status: "",
     ingredients: [],
     recipeCategoryDto: {
       id: 0,
@@ -56,7 +59,8 @@ export class StoreService {
     title: "",
     quantities: [],
     quantitiesPer100: [],
-    ranks: []
+    ranks: [],
+    comments: []
   }]);
   createdRecipes = new BehaviorSubject<IRecipe[]>([{
     id: 0,
@@ -64,6 +68,7 @@ export class StoreService {
     description: "",
     dateOfCreation: "",
     rating: 0.,
+    status: "",
     ingredients: [],
     recipeCategoryDto: {
       id: 0,
@@ -76,39 +81,52 @@ export class StoreService {
     title: "",
     quantities: [],
     quantitiesPer100: [],
-    ranks: []
+    ranks: [],
+    comments: []
   }]);
 
+
   //========== navigation =======================
-  //---------- allRecipes -----------------------
+  //__________ allRecipes _______________________
   pageInfo = new BehaviorSubject<IPageInfo>({
     currentPage: 0,
     totalPages: 0,
-    totalRecipes: 0
+    totalElements: 0
   });
   pageSize = new BehaviorSubject<number>(10);
-  searchDetails = new BehaviorSubject<ISearchDetails>({});
+  searchDetails = new BehaviorSubject<ISearchDetailsOfRecipes>({});
 
-  //---------- cabinet --------------------------
+  //__________ cabinet _______________________
+  //.......... created .......................
   pageInfoOfCreated = new BehaviorSubject<IPageInfo>({
     currentPage: 0,
     totalPages: 0,
-    totalRecipes: 0
+    totalElements: 0
   })
+  pageNumberOfCreated = new BehaviorSubject<number>(0);
+  pageSizeOfCreated = new BehaviorSubject<number>(10);
+  searchDetailsOfCreated = new BehaviorSubject<ISearchDetailsOfRecipes>({});
+
+  //.......... favorite ......................
   pageInfoOfFavorite = new BehaviorSubject<IPageInfo>({
     currentPage: 0,
     totalPages: 0,
-    totalRecipes: 0
+    totalElements: 0
   })
-
-  pageNumberOfCreated = new BehaviorSubject<number>(0);
   pageNumberOfFavorite = new BehaviorSubject<number>(0);
-
-  pageSizeOfCreated = new BehaviorSubject<number>(10);
   pageSizeOfFavorite = new BehaviorSubject<number>(10);
+  searchDetailsOfFavorite = new BehaviorSubject<ISearchDetailsOfRecipes>({});
 
-  searchDetailsOfCreated = new BehaviorSubject<ISearchDetails>({});
-  searchDetailsOfFavorite = new BehaviorSubject<ISearchDetails>({});
+  //.......... users .........................
+  pageInfoUsers = new BehaviorSubject<IPageInfo>({
+    currentPage: 0,
+    totalPages: 0,
+    totalElements: 0
+  });
+  pageNumberUsers = new BehaviorSubject<number>(0);
+  pageSizeUsers = new BehaviorSubject<number>(50);
+  searchDetailsUsers = new BehaviorSubject<ISearchDetailsUsers>({});
+
 
 
   //========== dynamic height of recipes-page ===

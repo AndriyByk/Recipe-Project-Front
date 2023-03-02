@@ -22,6 +22,17 @@
   background-color: white;
 }
 
+.header-admin-mode {
+  position: absolute;
+  z-index: 1000;
+  left: 10px;
+  top: 10px;
+  font-family: Lato, serif;
+  font-weight: bold;
+  font-size: 35px;
+  color: firebrick;
+}
+
 .header-title,
 .header-cabinet-link,
 .header-button-signIn,

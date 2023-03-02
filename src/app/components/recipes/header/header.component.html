@@ -1,6 +1,9 @@
 <div class="header">
   <div class="header-top">
 
+    <div class="header-admin-mode" *ngIf="verifyAdminMode()">
+      ADMIN MODE
+    </div>
     <div class="header-left">
       <div class="header-title">
         <a (click)="toMainPage()">Салат-хаб

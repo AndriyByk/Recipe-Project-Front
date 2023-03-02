@@ -27,6 +27,24 @@ export class RecipeService {
     return this.httpClient.get<IWrapperForRecipes>(`${baseURL}${recipeUrl.recipes}/allRecipes/${pageNumber}?pageSize=${pageSize}`)
   }
 
+  getAllInAdminMode(
+    pageNumber: number,
+    pageSize: number): Observable<IWrapperForRecipes> {
+    return this.httpClient.get<IWrapperForRecipes>(`${baseURL}${recipeUrl.recipes}/allRecipes/admin-mode/${pageNumber}?pageSize=${pageSize}&checked=undefined`)
+  }
+
+  getAllUncheckedInAdminMode(
+    pageNumber: number,
+    pageSize: number): Observable<IWrapperForRecipes> {
+    return this.httpClient.get<IWrapperForRecipes>(`${baseURL}${recipeUrl.recipes}/allRecipes/admin-mode/${pageNumber}?pageSize=${pageSize}&checked=false`)
+  }
+
+  getAllCheckedInAdminMode(
+    pageNumber: number,
+    pageSize: number): Observable<IWrapperForRecipes> {
+    return this.httpClient.get<IWrapperForRecipes>(`${baseURL}${recipeUrl.recipes}/allRecipes/admin-mode/${pageNumber}?pageSize=${pageSize}&checked=true`)
+  }
+
   getCreatedAll(pageNumber: number,
                 pageSize: number,
                 userId: number): Observable<IWrapperForRecipes> {
@@ -97,6 +115,23 @@ export class RecipeService {
       nutrientId = 0;
     }
     return this.httpClient.get<IWrapperForRecipes>(`${baseURL}${recipeUrl.recipes}/find-and-sort/${pageNumber}?nutrientId=${nutrientId}&categoryId=${recipeCategoryId}&title=${title}&pageSize=${pageSize}`)
+  }
+
+  getFilteredAndSortedInAdminMode(
+    recipeCategoryId: number,
+    title: string | null,
+    nutrientId: number,
+    pageNumber: number,
+    pageSize: number
+  ) {
+    // важливо, шоб recipeCategoryId не мав елементів з id==0 (і в базі теж)
+    if (recipeCategoryId == undefined) {
+      recipeCategoryId = 0;
+    }
+    if (nutrientId == undefined) {
+      nutrientId = 0;
+    }
+    return this.httpClient.get<IWrapperForRecipes>(`${baseURL}${recipeUrl.recipes}/find-and-sort/admin-mode/${pageNumber}?nutrientId=${nutrientId}&categoryId=${recipeCategoryId}&title=${title}&pageSize=${pageSize}`)
   }
 
   rateRecipe(rank: string) {

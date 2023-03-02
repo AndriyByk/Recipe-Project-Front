@@ -1,0 +1,46 @@
+<div class="admin-page-wrapper">
+  <div class="admin-page-title">Неперевірені рецепти</div>
+
+<!-------------------------------------->
+  <div class="admin-page-list-of-recipes">
+
+    <a class="admin-page-list-of-recipes-recipe-wrapper" [routerLink]="[urlToRecipe, recipe.id]" *ngFor="let recipe of recipes">
+      <div class="admin-page-list-of-recipes-recipe">
+
+        <div class="admin-page-list-of-recipes-recipe-left">
+          <div class="admin-page-list-of-recipes-recipe-photo">
+            <div class="admin-page-list-of-recipes-recipe-photo-content">
+              <img src="{{url + '/' + recipe.dateOfCreation + '/' + recipe.image}}" alt="photo">
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-page-list-of-recipes-recipe-center">
+          <div class="admin-page-list-of-recipes-recipe-title">
+            <div class="admin-page-list-of-recipes-recipe-title-content">{{recipe.title}}</div>
+          </div>
+          <div class="admin-page-list-of-recipes-recipe-category">
+            <div class="admin-page-list-of-recipes-recipe-category-content">{{recipe.recipeCategoryDto.name}}</div>
+          </div>
+        </div>
+
+        <div class="admin-page-list-of-recipes-recipe-right">
+          <div class="admin-page-list-of-recipes-recipe-ingredients">
+            <div class="admin-page-list-of-recipes-recipe-ingredient" *ngFor="let ingredient of recipe.ingredients">
+              <div class="admin-page-list-of-recipes-recipe-ingredient-name">
+                <div class="admin-page-list-of-recipes-recipe-ingredient-name-content">
+                  {{ingredient.name_ukr}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="admin-page-list-of-recipes-recipe-status-wrapper">
+          <div class="admin-page-list-of-recipes-recipe-status">
+            Неперевірений!
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>

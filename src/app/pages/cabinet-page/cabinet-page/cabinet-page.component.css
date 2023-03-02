@@ -16,6 +16,7 @@
   display: flex;
   width: 100%;
   border-top: white thin solid;
+  z-index: 1;
 }
 
 .cabinet-links {
@@ -26,6 +27,7 @@
   column-gap: 25px;
   background-color: #ece1cb;
   width: 100%;
+  z-index: 1;
   border-bottom: white thin solid;
 }
 

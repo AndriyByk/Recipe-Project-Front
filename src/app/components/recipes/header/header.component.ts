@@ -12,6 +12,9 @@ export class HeaderComponent implements OnInit {
   private accessTokenKey = 'access';
   private actualUser = 'actualUser';
   signedIn: boolean;
+  private adminMode = 'admin-mode';
+  url_redirect: string = 'recipes/all-recipes';
+
 
   pageSize: number = 10;
 
@@ -25,10 +28,21 @@ export class HeaderComponent implements OnInit {
     this.storeService.isUserSignedIn.subscribe(value => this.signedIn = value);
   }
 
+  verifyAdminMode(): boolean {
+    let adminMode = localStorage.getItem(this.adminMode);
+    return adminMode != null;
+  }
+
   toMainPage() {
     this.storeService.searchDetails.next({});
     this.storeService.pageSize.next(10);
-    this.router.navigate(['recipes/all-recipes', 0], {
+
+    if (this.verifyAdminMode()) {
+      console.log(this.verifyAdminMode());
+      this.url_redirect = 'recipes/all-recipes/admin-mode'
+    }
+
+    this.router.navigate([this.url_redirect, 0], {
       queryParams: {
         pageSize: this.pageSize
       }
@@ -48,6 +62,9 @@ export class HeaderComponent implements OnInit {
 
     localStorage.removeItem(this.actualUser);
     localStorage.removeItem(this.accessTokenKey);
+    if (localStorage.getItem(this.adminMode)) {
+      localStorage.removeItem(this.adminMode)
+    }
     this.signedIn = false;
     this.router.navigate(['sign-in'])
   }

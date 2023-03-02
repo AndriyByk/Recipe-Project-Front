@@ -24,6 +24,14 @@ const routes: Routes = [
           loadChildren: () => import('./../user-norms-page/user-norms-page.module').then(value => value.UserNormsPageModule)
         },
         {
+          path: 'admin',
+          loadChildren: () => import('../admin-page/admin-page.module').then(value => value.AdminPageModule)
+        },
+        {
+          path: 'admin-super',
+          loadChildren: () => import('../admin-super-page/admin-super-page.module').then(value => value.AdminSuperPageModule)
+        },
+        {
           path: '**', redirectTo: 'info', pathMatch: 'full'
         }
       ]

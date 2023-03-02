@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {IRecipe} from "../../../interfaces/entities/recipe/IRecipe";
 import {StoreService} from "../../../services/store/store.service";
 import {IUser} from "../../../interfaces/entities/user/IUser";
-import {ISearchDetails} from "../../../interfaces/pages/ISearchDetails";
+import {ISearchDetailsOfRecipes} from "../../../interfaces/pages/ISearchDetailsOfRecipes";
 import {IPageInfo} from "../../../interfaces/pages/IPageInfo";
 import {FormControl, FormGroup} from "@angular/forms";
 import {IRecipeCategory} from "../../../interfaces/categories/IRecipeCategory";
@@ -25,7 +25,7 @@ export class CreatedRecipesComponent implements OnInit {
   @Input()
   user:IUser
 
-  searchDetailsOfCreated: ISearchDetails;
+  searchDetailsOfCreated: ISearchDetailsOfRecipes;
   pageInfoOfCreated:IPageInfo;
   pageSizeOfCreated: number = 10;
 
@@ -70,7 +70,7 @@ export class CreatedRecipesComponent implements OnInit {
     this.storeService.pageInfoOfCreated.next({
       currentPage: 0,
       totalPages: this.pageInfoOfCreated.totalPages,
-      totalRecipes: this.pageInfoOfCreated.totalRecipes
+      totalElements: this.pageInfoOfCreated.totalElements
     });
 
     if (
@@ -98,28 +98,28 @@ export class CreatedRecipesComponent implements OnInit {
 
   goFirstPage() {
     if (this.pageInfoOfCreated.currentPage != 0) {
-      this.updatePageInfo(0, this.pageInfoOfCreated.totalPages, this.pageInfoOfCreated.totalRecipes);
+      this.updatePageInfo(0, this.pageInfoOfCreated.totalPages, this.pageInfoOfCreated.totalElements);
       this.paginateFilter();
     }
   }
 
   goPreviousPage() {
     if (this.pageInfoOfCreated.currentPage > 0) {
-      this.updatePageInfo(this.pageInfoOfCreated.currentPage - 1, this.pageInfoOfCreated.totalPages, this.pageInfoOfCreated.totalRecipes);
+      this.updatePageInfo(this.pageInfoOfCreated.currentPage - 1, this.pageInfoOfCreated.totalPages, this.pageInfoOfCreated.totalElements);
       this.paginateFilter();
     }
   }
 
   goNextPage() {
     if (this.pageInfoOfCreated.currentPage < this.pageInfoOfCreated.totalPages - 1) {
-      this.updatePageInfo(this.pageInfoOfCreated.currentPage + 1, this.pageInfoOfCreated.totalPages, this.pageInfoOfCreated.totalRecipes);
+      this.updatePageInfo(this.pageInfoOfCreated.currentPage + 1, this.pageInfoOfCreated.totalPages, this.pageInfoOfCreated.totalElements);
       this.paginateFilter();
     }
   }
 
   goLastPage() {
     if (this.pageInfoOfCreated.currentPage != this.pageInfoOfCreated.totalPages - 1) {
-      this.updatePageInfo(this.pageInfoOfCreated.totalPages - 1, this.pageInfoOfCreated.totalPages, this.pageInfoOfCreated.totalRecipes);
+      this.updatePageInfo(this.pageInfoOfCreated.totalPages - 1, this.pageInfoOfCreated.totalPages, this.pageInfoOfCreated.totalElements);
       this.paginateFilter();
     }
   }
@@ -137,7 +137,7 @@ export class CreatedRecipesComponent implements OnInit {
     this.storeService.pageInfoOfFavorite.next({
       currentPage: currentPage,
       totalPages: totalPages,
-      totalRecipes: totalRecipes
+      totalElements: totalRecipes
     });
   }
 

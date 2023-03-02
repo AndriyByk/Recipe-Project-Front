@@ -13,6 +13,9 @@ export class RecipesPageComponent implements OnInit {
   recipes: IRecipe[];
   maxHeight: number;
 
+  private adminMode = 'admin-mode';
+  url_redirect: string = 'recipes/all-recipes';
+
   constructor(private recipeService: RecipeService,
               private storeService: StoreService,
               private activatedRoute: ActivatedRoute,
@@ -27,15 +30,19 @@ export class RecipesPageComponent implements OnInit {
       this.storeService.pageInfo.next({
         currentPage: wrapperForRecipes.currentPage,
         totalPages: wrapperForRecipes.totalPages,
-        totalRecipes: wrapperForRecipes.totalRecipes
+        totalElements: wrapperForRecipes.totalRecipes
       })
       this.storeService.recipes.next(wrapperForRecipes.recipes)
     })
   }
 
   returnToAll() {
+    if (localStorage.getItem(this.adminMode)) {
+      this.url_redirect = 'recipes/all-recipes/admin-mode';
+    }
+
     this.storeService.searchDetails.next({});
-    this.router.navigate(['recipes/all-recipes', 0], {
+    this.router.navigate([this.url_redirect, 0], {
       queryParams: {
         pageSize: 10
       }

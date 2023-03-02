@@ -6,6 +6,7 @@ export interface IUser {
   id: number;
   username: string;
   password: string;
+  roles: string[];
   avatar: string;
   email:string;
   weight: number;

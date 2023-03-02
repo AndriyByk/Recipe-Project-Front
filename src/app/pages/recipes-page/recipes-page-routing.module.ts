@@ -6,6 +6,12 @@ import {RecipesByParamsResolver} from "../../services/fetches/recipes/recipes-by
 
 const routes: Routes = [
   {
+    path: 'find-and-sort/admin-mode/:pageNumber', runGuardsAndResolvers: 'always', component: RecipesPageComponent, resolve: {wrapperForRecipes: RecipesByParamsResolver}
+  },
+  {
+    path: 'all-recipes/admin-mode/:pageNumber', runGuardsAndResolvers: 'always', component: RecipesPageComponent, resolve: {wrapperForRecipes: RecipesResolver}
+  },
+  {
     path: 'find-and-sort/:pageNumber', runGuardsAndResolvers: 'always', component: RecipesPageComponent, resolve: {wrapperForRecipes: RecipesByParamsResolver}
   },
   {
@@ -14,6 +20,8 @@ const routes: Routes = [
   {
     path: '', redirectTo: '/recipes/all-recipes/0', pathMatch: 'full'
   }
+
+
 ];
 
 @NgModule({

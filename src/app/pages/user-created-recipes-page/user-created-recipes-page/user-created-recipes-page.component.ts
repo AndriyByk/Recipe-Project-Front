@@ -24,7 +24,7 @@ export class UserCreatedRecipesPageComponent implements OnInit {
         this.storeService.pageInfoOfCreated.next({
           currentPage: createdRecipes.currentPage,
           totalPages: createdRecipes.totalPages,
-          totalRecipes: createdRecipes.totalRecipes
+          totalElements: createdRecipes.totalRecipes
         })
       })
   }

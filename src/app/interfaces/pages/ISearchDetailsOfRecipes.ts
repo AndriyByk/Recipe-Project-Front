@@ -1,4 +1,4 @@
-export interface ISearchDetails {
+export interface ISearchDetailsOfRecipes {
   recipeCategoryId?: number,
   title?: string,
   nutrientId?: number

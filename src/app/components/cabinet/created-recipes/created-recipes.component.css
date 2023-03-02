@@ -35,22 +35,18 @@
   display: flex;
   height: 100%;
   flex-direction: column;
-  /*flex-wrap: wrap;*/
-  /*column-gap: 25px;*/
-  /*row-gap: 30px;*/
-  /*width: fit-content;*/
-  justify-content: center;
-  align-items: center;
-  padding: 50px 20px;
 }
 
 .cabinet-created-recipes-list-recipes-wrapper {
+  height: 100%;
+}
+
+.cabinet-created-recipes-list-recipes {
   display: flex;
   height: 100%;
   flex-wrap: wrap;
   column-gap: 25px;
   row-gap: 30px;
-  /*width: fit-content;*/
   justify-content: center;
   align-items: center;
   padding: 50px 20px;

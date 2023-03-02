@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {StoreService} from "../../../services/store/store.service";
 import {IPageInfo} from "../../../interfaces/pages/IPageInfo";
 import {Router} from "@angular/router";
-import {ISearchDetails} from "../../../interfaces/pages/ISearchDetails";
+import {ISearchDetailsOfRecipes} from "../../../interfaces/pages/ISearchDetailsOfRecipes";
 
 @Component({
   selector: 'app-footer',
@@ -10,7 +10,7 @@ import {ISearchDetails} from "../../../interfaces/pages/ISearchDetails";
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent implements OnInit {
-  searchDetails: ISearchDetails;
+  searchDetails: ISearchDetailsOfRecipes;
   pageInfo: IPageInfo;
   pageSize: number = 10;
 
@@ -25,28 +25,28 @@ export class FooterComponent implements OnInit {
 //======================================================================
   goFirstPage() {
     if (this.pageInfo.currentPage != 0) {
-      this.updatePageInfo(0, this.pageInfo.totalPages, this.pageInfo.totalRecipes);
+      this.updatePageInfo(0, this.pageInfo.totalPages, this.pageInfo.totalElements);
       this.paginateFilter();
     }
   }
 
   goPreviousPage() {
     if (this.pageInfo.currentPage > 0) {
-      this.updatePageInfo(this.pageInfo.currentPage - 1, this.pageInfo.totalPages, this.pageInfo.totalRecipes);
+      this.updatePageInfo(this.pageInfo.currentPage - 1, this.pageInfo.totalPages, this.pageInfo.totalElements);
       this.paginateFilter();
     }
   }
 
   goNextPage() {
     if (this.pageInfo.currentPage < this.pageInfo.totalPages - 1) {
-      this.updatePageInfo(this.pageInfo.currentPage + 1, this.pageInfo.totalPages, this.pageInfo.totalRecipes);
+      this.updatePageInfo(this.pageInfo.currentPage + 1, this.pageInfo.totalPages, this.pageInfo.totalElements);
       this.paginateFilter();
     }
   }
 
   goLastPage() {
     if (this.pageInfo.currentPage != this.pageInfo.totalPages - 1) {
-      this.updatePageInfo(this.pageInfo.totalPages - 1, this.pageInfo.totalPages, this.pageInfo.totalRecipes);
+      this.updatePageInfo(this.pageInfo.totalPages - 1, this.pageInfo.totalPages, this.pageInfo.totalElements);
       this.paginateFilter();
     }
   }
@@ -64,7 +64,7 @@ export class FooterComponent implements OnInit {
     this.storeService.pageInfo.next({
       currentPage: currentPage,
       totalPages: totalPages,
-      totalRecipes: totalRecipes
+      totalElements: totalRecipes
     });
   }
 

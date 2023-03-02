@@ -9,7 +9,7 @@ import {RecipeCategoryService} from "../../../services/fetches/recipes/recipe-ca
 import {IngredientService} from "../../../services/fetches/ingredients/ingredient.service";
 import {NutrientService} from "../../../services/fetches/nutrients/nutrient.service";
 import {IPageInfo} from "../../../interfaces/pages/IPageInfo";
-import {ISearchDetails} from "../../../interfaces/pages/ISearchDetails";
+import {ISearchDetailsOfRecipes} from "../../../interfaces/pages/ISearchDetailsOfRecipes";
 import {Router} from "@angular/router";
 import {IUser} from "../../../interfaces/entities/user/IUser";
 
@@ -24,7 +24,7 @@ export class FavoriteRecipesComponent implements OnInit {
   @Input()
   user: IUser;
 
-  searchDetailsOfFavorite: ISearchDetails;
+  searchDetailsOfFavorite: ISearchDetailsOfRecipes;
   pageInfoOfFavorite: IPageInfo;
   pageSizeOfFavorite: number = 10;
 
@@ -69,7 +69,7 @@ export class FavoriteRecipesComponent implements OnInit {
     this.storeService.pageInfoOfFavorite.next({
       currentPage: 0,
       totalPages: this.pageInfoOfFavorite.totalPages,
-      totalRecipes: this.pageInfoOfFavorite.totalRecipes
+      totalElements: this.pageInfoOfFavorite.totalElements
     });
 
     if (
@@ -95,28 +95,28 @@ export class FavoriteRecipesComponent implements OnInit {
   //========================================
   goFirstPage() {
     if (this.pageInfoOfFavorite.currentPage != 0) {
-      this.updatePageInfo(0, this.pageInfoOfFavorite.totalPages, this.pageInfoOfFavorite.totalRecipes);
+      this.updatePageInfo(0, this.pageInfoOfFavorite.totalPages, this.pageInfoOfFavorite.totalElements);
       this.paginateFilter();
     }
   }
 
   goPreviousPage() {
     if (this.pageInfoOfFavorite.currentPage > 0) {
-      this.updatePageInfo(this.pageInfoOfFavorite.currentPage - 1, this.pageInfoOfFavorite.totalPages, this.pageInfoOfFavorite.totalRecipes);
+      this.updatePageInfo(this.pageInfoOfFavorite.currentPage - 1, this.pageInfoOfFavorite.totalPages, this.pageInfoOfFavorite.totalElements);
       this.paginateFilter();
     }
   }
 
   goNextPage() {
     if (this.pageInfoOfFavorite.currentPage < this.pageInfoOfFavorite.totalPages - 1) {
-      this.updatePageInfo(this.pageInfoOfFavorite.currentPage + 1, this.pageInfoOfFavorite.totalPages, this.pageInfoOfFavorite.totalRecipes);
+      this.updatePageInfo(this.pageInfoOfFavorite.currentPage + 1, this.pageInfoOfFavorite.totalPages, this.pageInfoOfFavorite.totalElements);
       this.paginateFilter();
     }
   }
 
   goLastPage() {
     if (this.pageInfoOfFavorite.currentPage != this.pageInfoOfFavorite.totalPages - 1) {
-      this.updatePageInfo(this.pageInfoOfFavorite.totalPages - 1, this.pageInfoOfFavorite.totalPages, this.pageInfoOfFavorite.totalRecipes);
+      this.updatePageInfo(this.pageInfoOfFavorite.totalPages - 1, this.pageInfoOfFavorite.totalPages, this.pageInfoOfFavorite.totalElements);
       this.paginateFilter();
     }
   }
@@ -134,7 +134,7 @@ export class FavoriteRecipesComponent implements OnInit {
     this.storeService.pageInfoOfFavorite.next({
       currentPage: currentPage,
       totalPages: totalPages,
-      totalRecipes: totalRecipes
+      totalElements: totalRecipes
     });
   }
 

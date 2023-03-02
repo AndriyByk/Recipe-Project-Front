@@ -19,7 +19,7 @@ export class UserPageComponent implements OnInit {
 
   ngOnInit(): void {
 
-    localStorage.getItem('username')?this.urlToRecipe = "/recipe/username":this.urlToRecipe = "/recipe";
+    localStorage.getItem('actualUser')?this.urlToRecipe = "/recipe/username":this.urlToRecipe = "/recipe";
 
     this.url = baseURL + recipeUrl.pictures;
     this.activatedRoute.data.subscribe(({user, createdRecipes}) => {

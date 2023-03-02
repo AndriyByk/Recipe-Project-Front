@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {StoreService} from "../../../services/store/store.service";
 import {UserService} from "../../../services/fetches/users/user.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {IUser} from "../../../interfaces/entities/user/IUser";
 import {baseURL, recipeUrl} from "../../../urls/urls";
 
@@ -13,15 +13,16 @@ import {baseURL, recipeUrl} from "../../../urls/urls";
 export class UserInfoPageComponent implements OnInit {
   private actualUser = 'actualUser';
   private accessTokenKey = 'access';
+  private adminMode = 'admin-mode';
   user: IUser;
   url: string;
   details: boolean;
 
+
   constructor(
     private storeService: StoreService,
     private userService: UserService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute
+    private router: Router
   ) {  }
 
   ngOnInit(): void {
@@ -43,10 +44,6 @@ export class UserInfoPageComponent implements OnInit {
     //     })
     //   }
 
-      this.activatedRoute.data.subscribe(({user}) => {
-        this.user = user;
-
-      })
     // this.activatedRoute.data.subscribe({
     //     next: ({user}) => this.user = user,
     //     error: err => {
@@ -61,11 +58,15 @@ export class UserInfoPageComponent implements OnInit {
     localStorage.removeItem(this.actualUser);
     this.userService.deleteById(this.user.id.toString()).subscribe();
     localStorage.removeItem(this.accessTokenKey);
+    if (localStorage.getItem(this.adminMode)) {
+      localStorage.removeItem(this.adminMode)
+    }
     this.storeService.user.next({
       id : 0,
       name : "",
       lastName : "",
       username : "",
+      roles: [],
       activityTypeDto : {id: 0, name: "", about: ""},
       avatar: "",
       createdRecipes: [],
@@ -81,10 +82,6 @@ export class UserInfoPageComponent implements OnInit {
     })
     this.router.navigate(['recipes'])
   }
-
-  // updateAccount() {
-  //   this.router.navigate(['cabinet/info/update'])
-  // }
 
   showDetails() {
     this.details = !this.details;

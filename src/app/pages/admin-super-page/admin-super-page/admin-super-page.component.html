@@ -1,0 +1,89 @@
+<div class="admin-super-page-wrapper">
+  <div class="admin-super-page-list-of-users-wrapper">
+    <div class="admin-super-page-chosen-user">
+      <div class="admin-super-page-chosen-user-left">
+        <div class="admin-super-page-user-avatar">
+          <img src="{{url + '/' + user.username + '/' + user.avatar}}" alt="user-avatar">
+        </div>
+      </div>
+      <div class="admin-super-page-chosen-user-right">
+        <div class="admin-super-page-chosen-user-right-titles">
+          <div class="admin-super-page-chosen-user-id-title">User id:</div>
+          <div class="admin-super-page-chosen-user-username-title">Username:</div>
+          <div class="admin-super-page-chosen-user-date-of-registration-title">Дата реєстрації:</div>
+          <div class="admin-super-page-chosen-user-chosen-user-roles-title">Наявна роль:</div>
+          <div class="admin-super-page-change-role-form-title">Роль, на яку змінити:</div>
+        </div>
+        <div class="admin-super-page-chosen-user-right-contents">
+          <div class="admin-super-page-chosen-user-id-content">{{user.id}}</div>
+          <div class="admin-super-page-chosen-user-username-content">{{user.username}}</div>
+          <div class="admin-super-page-chosen-user-date-of-registration-content">{{user.dateOfRegistration}}</div>
+          <div class="admin-super-page-chosen-user-chosen-user-roles-content">{{user.roles[0]=='ROLE_ADMIN'?'Адміністратор':user.roles[0]=='ROLE_USER'?'Користувач':'СуперКористувач'}}</div>
+          <div class="admin-super-page-change-role-form-content">
+            <form [formGroup]="form">
+              <div class="admin-super-page-change-role-form-select-wrapper">
+                <label for="admin-super-page-change-role-form-select"></label>
+                <select [(ngModel)]="meme1" id="admin-super-page-change-role-form-select" formControlName="role">
+                  <option [ngValue]="null" selected disabled hidden>Виберіть роль</option>
+                  <option [ngValue]="0">Користувач</option>
+                  <option [ngValue]="1">Адміністратор</option>
+                </select>
+              </div>
+              <div class="admin-super-page-change-role-form-button">
+                <button (click)="submitForm()" type="submit">Змінити роль</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="admin-super-page-search-form">
+      <form [formGroup]="formSearch">
+        <div class="admin-super-page-search-form-username">
+          <label for="admin-super-page-search-form-username">
+            <input id="admin-super-page-search-form-username" [placeholder]="'Введіть username'" formControlName="username">
+          </label>
+        </div>
+        <div class="admin-super-page-search-form-role">
+          <label for="admin-super-page-search-form-role">
+            <select [(ngModel)]="meme2" id="admin-super-page-search-form-role" formControlName="roleSearch">
+              <option [ngValue]="null" selected disabled hidden>Виберіть роль</option>
+              <option [ngValue]="0">Користувач</option>
+              <option [ngValue]="1">Адміністратор</option>
+            </select>
+          </label>
+        </div>
+        <div class="admin-super-page-search-form-button">
+          <button (click)="submitFormSearch()" type="submit">Пошук</button>
+        </div>
+      </form>
+    </div>
+    <div class="admin-super-page-list-of-users" >
+      <div class="admin-super-page-list-of-users-titles">
+        <div class="admin-super-page-user-id-title">user-id</div>
+        <div class="admin-super-page-user-username-title">username</div>
+        <div class="admin-super-page-user-date-of-registration-title">date-of-registration</div>
+      </div>
+      <div class="admin-super-page-list-of-users-contents">
+        <div (click)="changeUser(user)" *ngFor="let user of users" class="admin-super-page-user-wrapper">
+          <div class="admin-super-page-user">
+            <div class="admin-super-page-user-id-content">{{user.id}}</div>
+            <div class="admin-super-page-user-username-content">{{user.username}}</div>
+            <div class="admin-super-page-user-date-of-registration-content">{{user.dateOfRegistration}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="admin-super-page-list-of-users-pagination">
+      <div class="admin-super-page-list-of-users-pagination-wrapper">
+        <div class="admin-super-page-list-of-users-pagination-paging">
+          <button (click)="goFirstPage()" class="admin-super-page-list-of-users-pagination-paging-first-page">|<<</button>
+          <button (click)="goPreviousPage()" class="admin-super-page-list-of-users-pagination-paging-previous-page"><</button>
+          <div class="admin-super-page-list-of-users-pagination-current-page">{{pageInfoUsers.currentPage + 1}}/{{pageInfoUsers.totalPages}}</div>
+          <button (click)="goNextPage()" class="admin-super-page-list-of-users-pagination-paging-next-page">></button>
+          <button (click)="goLastPage()" class="admin-super-page-list-of-users-pagination-paging-last-page">>>|</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
