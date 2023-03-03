@@ -18,7 +18,7 @@
   display: flex;
   padding: 100px 20px;
   flex-direction: column;
-  row-gap: 60px;
+  row-gap: 30px;
   background-color: #ece1cb;
   height: fit-content;
   width: 100%;
@@ -41,7 +41,7 @@
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
   border-left: white medium solid;
-  border-right: white medium solid;
+  /*border-right: white medium solid;*/
 }
 
 .recipe-page-photo {
@@ -351,7 +351,7 @@
   background-color: white;
 
   border-left: white medium solid;
-  border-right: white medium solid;
+  /*border-right: white medium solid;*/
   /*border-radius: 30px;*/
 }
 
@@ -381,10 +381,10 @@
 
   box-shadow: inset #ece1cb 0 0 30px;
   background-color: white;
-  border-bottom-right-radius: 30px;
-  border-bottom-left-radius: 30px;
+  /*border-bottom-right-radius: 30px;*/
+  /*border-bottom-left-radius: 30px;*/
   border-left: white medium solid;
-  border-right: white medium solid;
+  /*border-right: white medium solid;*/
 }
 
 .recipe-nutrients {
@@ -522,3 +522,100 @@
 .recipe-nutrients-titles-percentage {
   width: 100px;
 }
+
+
+/*============ comments ==============*/
+
+.recipe-body-comments {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 50px 50px ;
+
+  width: 70%;
+  min-width: 950px;
+  max-width: 1240px;
+
+  box-shadow: inset #ece1cb 0 0 30px;
+  background-color: white;
+  border-bottom-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+  border-left: white medium solid;
+  /*border-right: white medium solid;*/
+  box-sizing: border-box;
+  row-gap: 30px;
+}
+
+.recipe-body-comments-list-wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.recipe-body-comment {
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+
+  border-left: #ece1cb medium solid;
+  border-bottom: #ece1cb thin solid;
+  box-shadow: #555555 1px 0 2px;
+
+  padding: 20px 50px 30px 50px;
+  box-sizing: border-box;
+}
+
+.recipe-body-comment-top {
+  display: flex;
+  padding-bottom: 10px;
+  box-sizing: border-box;
+  column-gap: 50px;
+  font-family: Lato, serif;
+  border-bottom: #ece1cb medium dotted;
+  justify-content: space-between;
+}
+
+.recipe-body-comment-author-wrapper {
+  color: #555555;
+}
+
+.recipe-body-comment-author:hover {
+  color: #af5858;
+  cursor: pointer;
+}
+
+.recipe-body-comment-date {
+
+}
+
+.recipe-body-comment-bottom {
+  box-sizing: border-box;
+  padding-top: 10px;
+
+}
+
+.recipe-body-comment-body {
+  box-sizing: border-box;
+  font-family: Lato Light, serif;
+
+}
+
+.recipe-body-comments-form {
+  display: flex;
+  column-gap: 30px;
+  justify-content: center;
+}
+
+.recipe-body-comments-form textarea {
+  font-family: Lato Light, serif;
+  width: 60%;
+  padding-left: 50px;
+}
+
+.recipe-body-comments-form button {
+  height: fit-content;
+  font-family: Lato, serif;
+
+}
+
+

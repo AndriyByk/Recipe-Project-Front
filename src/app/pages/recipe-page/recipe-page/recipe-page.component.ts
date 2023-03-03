@@ -10,6 +10,7 @@ import {FormControl, FormGroup} from "@angular/forms";
 import {RecipeService} from "../../../services/fetches/recipes/recipe.service";
 import {StoreService} from "../../../services/store/store.service";
 import {UserService} from "../../../services/fetches/users/user.service";
+import {CommentService} from "../../../services/fetches/comments/comment.service";
 
 @Component({
   selector: 'app-recipe',
@@ -21,6 +22,7 @@ export class RecipePageComponent implements OnInit {
   url: string;
   private actualUser = 'actualUser';
   form: FormGroup;
+  commentForm: FormGroup;
 
   recipe: IRecipe;
   stages: string[];
@@ -36,14 +38,24 @@ export class RecipePageComponent implements OnInit {
     organics: []
   };
 
+  userVerified: boolean = false;
+
   rate: number;
 
   constructor(private activatedRoute: ActivatedRoute,
               private recipeService: RecipeService,
               private router: Router,
               private storeService: StoreService,
-              private userService: UserService) {
+              private userService: UserService,
+              private commentService: CommentService) {
     this.createForm();
+    this.createCommentForm();
+  }
+
+  createCommentForm(): void {
+    this.commentForm = new FormGroup({
+      comment: new FormControl(null)
+    })
   }
 
   createForm(): void {
@@ -57,6 +69,7 @@ export class RecipePageComponent implements OnInit {
     this.username = localStorage.getItem(this.actualUser);
 
     if (this.username) {
+      this.userVerified = true;
       this.activatedRoute.data.subscribe(({user, recipe}) => {
         this.recipe = recipe;
         this.stages = recipe.description.split(".");
@@ -226,5 +239,34 @@ export class RecipePageComponent implements OnInit {
 
   showRateOfRecipe(value: number) {
     this.rate = value;
+  }
+
+  postComment(): void {
+    let data = this.commentForm.getRawValue();
+    const fullDate = this.createDate();
+
+    let formData = new FormData();
+    formData.append('comment', JSON.stringify({
+      date: fullDate,
+      comment: data.comment
+    }));
+    this.commentService.save(data, this.user.id, this.recipe.id, fullDate).subscribe(value => this.recipe = value)
+    this.commentForm.reset();
+  }
+
+  createDate():string {
+    let date1 = new Date();
+    const date: string = [
+      date1.getDate().toString().padStart(2, '0'),
+      (date1.getMonth() + 1).toString().padStart(2, '0'),
+      date1.getFullYear()
+    ].join('-');
+    // час
+    const time: string = [
+      date1.getHours().toString().padStart(2, '0'),
+      date1.getMinutes().toString().padStart(2, '0'),
+      date1.getSeconds().toString().padStart(2, '0')
+    ].join('-');
+    return [date, time].join('_');
   }
 }

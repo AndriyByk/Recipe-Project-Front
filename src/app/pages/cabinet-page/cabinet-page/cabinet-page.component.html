@@ -3,10 +3,10 @@
     <div class="cabinet-links">
       <a [routerLink]="['info']">Інформація про Вас</a>
       <a [routerLink]="['favorite-recipes', pageNumberOfFavorite]"
-         [queryParams]="{pageSize: pageSizeOfFavorite, userId: user.id}">Ваші улюблені рецепти</a>
+         [queryParams]="{pageSize: pageSizeOfFavorite, userId: user.id}" *ngIf="user.roles.includes('ROLE_USER')">Ваші улюблені рецепти</a>
       <a [routerLink]="['created-recipes', pageNumberOfCreated]"
-         [queryParams]="{pageSize: pageSizeOfCreated, userId: user.id}">Створені рецепти</a>
-      <a [routerLink]="['norms']">Норми споживання</a>
+         [queryParams]="{pageSize: pageSizeOfCreated, userId: user.id}" *ngIf="user.roles.includes('ROLE_USER')">Створені рецепти</a>
+      <a [routerLink]="['norms']" *ngIf="user.roles.includes('ROLE_USER')">Норми споживання</a>
       <a [routerLink]="['admin', 0]" [queryParams]="{pageSize: 10}" *ngIf="user.roles.includes('ROLE_ADMIN')">Admin page</a>
       <a [routerLink]="['admin-super', 0]" [queryParams]="{pageSize: 50}" *ngIf="user.roles.includes('ROLE_ADMIN_SUPER')">Super page</a>
     </div>

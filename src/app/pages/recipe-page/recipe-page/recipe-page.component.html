@@ -175,7 +175,8 @@
             <div class="recipe-user-proportions-id">{{organic.idOfNutrient}}</div>
             <div class="recipe-user-proportions-name">{{organic.nutrient}}</div>
             <div class="recipe-user-proportions-category">{{organic.category}}</div>
-            <div class="recipe-user-proportions-recipe-quantity">{{organic.nutrientQuantity}}{{' '}}{{organic.unit}}</div>
+            <div
+              class="recipe-user-proportions-recipe-quantity">{{organic.nutrientQuantity}}{{' '}}{{organic.unit}}</div>
             <div *ngIf="organic.userNorm"
                  class="recipe-user-proportions-norm">{{organic.userNorm}}{{' '}}{{organic.unit}}</div>
             <div *ngIf="organic.percentage" class="recipe-user-proportions-percentage">{{organic.percentage}}%</div>
@@ -188,7 +189,8 @@
             <div class="recipe-user-proportions-id">{{vitamin.idOfNutrient}}</div>
             <div class="recipe-user-proportions-name">{{vitamin.nutrient}}</div>
             <div class="recipe-user-proportions-category">{{vitamin.category}}</div>
-            <div class="recipe-user-proportions-recipe-quantity">{{vitamin.nutrientQuantity}}{{' '}}{{vitamin.unit}}</div>
+            <div
+              class="recipe-user-proportions-recipe-quantity">{{vitamin.nutrientQuantity}}{{' '}}{{vitamin.unit}}</div>
             <div *ngIf="vitamin.userNorm"
                  class="recipe-user-proportions-norm">{{vitamin.userNorm}}{{' '}}{{vitamin.unit}}</div>
             <div *ngIf="vitamin.percentage" class="recipe-user-proportions-percentage">{{vitamin.percentage}}%</div>
@@ -201,7 +203,8 @@
             <div class="recipe-user-proportions-id">{{mineral.idOfNutrient}}</div>
             <div class="recipe-user-proportions-name">{{mineral.nutrient}}</div>
             <div class="recipe-user-proportions-category">{{mineral.category}}</div>
-            <div class="recipe-user-proportions-recipe-quantity">{{mineral.nutrientQuantity}}{{' '}}{{mineral.unit}}</div>
+            <div
+              class="recipe-user-proportions-recipe-quantity">{{mineral.nutrientQuantity}}{{' '}}{{mineral.unit}}</div>
             <div *ngIf="mineral.userNorm"
                  class="recipe-user-proportions-norm">{{mineral.userNorm}}{{' '}}{{mineral.unit}}</div>
             <div *ngIf="mineral.percentage" class="recipe-user-proportions-percentage">{{mineral.percentage}}%</div>
@@ -209,8 +212,42 @@
         </div>
       </div>
     </div>
-    <div class="recipe-body-comments">
+    <div class="recipe-body-comments" *ngIf="userVerified">
 
+      <div class="recipe-body-comments-no-comments" *ngIf="recipe.comments.length == 0">
+        Ще ніхто не коментував цей рецепт.
+      </div>
+
+      <div class="recipe-body-comments-list-wrapper">
+        <div class="recipe-body-comment" *ngFor="let comment of recipe.comments">
+
+          <div class="recipe-body-comment-top">
+            <div class="recipe-body-comment-author-wrapper" [routerLink]="['/user', comment.author.id]">
+              <span class="recipe-body-comment-author">{{comment.author.username}}</span>
+              <span *ngIf="comment.date">
+              <span class="recipe-body-comment-date">{{' ' + comment.date?.slice(0, 10)}}</span>
+              <span
+                class="recipe-body-comment-time">{{' о ' + comment.date?.slice(11, comment.date.length - 3) + ' '}}</span>
+              <span>{{' написа(ла)в:'}}</span>
+                </span>
+            </div>
+          </div>
+
+          <div class="recipe-body-comment-bottom">
+            <div class="recipe-body-comment-body">{{comment.message}}</div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="recipe-body-comments-form-wrapper">
+        <form class="recipe-body-comments-form" [formGroup]="commentForm">
+          <label for="comment-input"></label>
+          <textarea id="comment-input" rows="3" formControlName="comment"
+                    placeholder="Напишіть коментар тут..."></textarea>
+          <button type="submit" (click)="postComment()">Залишити коментар</button>
+        </form>
+      </div>
     </div>
   </div>
 
