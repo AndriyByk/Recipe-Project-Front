@@ -17,13 +17,9 @@ export class RecipesCreatedResolver implements Resolve<IWrapperForRecipes> {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IWrapperForRecipes> | Promise<IWrapperForRecipes> | IWrapperForRecipes {
-    let pageNumber: number = +(route.url[route.url.length-1].toString());
-    if (isNaN(pageNumber)) {
-      pageNumber = 0;
-    }
 
     return this.recipeService.getCreatedAll(
-      pageNumber,
+      route.queryParams['pageNumber'],
       route.queryParams['pageSize'],
       route.queryParams['userId']
     );

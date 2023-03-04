@@ -12,7 +12,7 @@
 
   <!-------------------------------------->
   <div class="user-page-created-recipes">
-
+    <div class="user-page-no-recipes-message" *ngIf="createdRecipes.length == 0">Цей користувач ще не створив жодного рецепта</div>
     <a *ngFor="let recipe of createdRecipes" [routerLink]="[urlToRecipe, recipe.id]">
       <div class="user-page-created-recipe">
 

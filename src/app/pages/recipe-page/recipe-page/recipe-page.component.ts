@@ -20,6 +20,7 @@ import {CommentService} from "../../../services/fetches/comments/comment.service
 export class RecipePageComponent implements OnInit {
 
   url: string;
+  urlToProfile: string = '/user';
   private actualUser = 'actualUser';
   form: FormGroup;
   commentForm: FormGroup;
@@ -223,7 +224,7 @@ export class RecipePageComponent implements OnInit {
   }
 
   saveOrDeleteFavorite(): boolean {
-   return this.user.favoriteRecipes.findIndex(value => value == this.recipe.id) >= 0;
+    return this.user.favoriteRecipes.findIndex(value => value == this.recipe.id) >= 0;
   }
 
   saveToFavorites() {
@@ -243,18 +244,21 @@ export class RecipePageComponent implements OnInit {
 
   postComment(): void {
     let data = this.commentForm.getRawValue();
-    const fullDate = this.createDate();
+    console.log(data);
 
-    let formData = new FormData();
-    formData.append('comment', JSON.stringify({
-      date: fullDate,
-      comment: data.comment
-    }));
-    this.commentService.save(data, this.user.id, this.recipe.id, fullDate).subscribe(value => this.recipe = value)
-    this.commentForm.reset();
+    if (data.comment != '' && data.comment != null) {
+      const fullDate = this.createDate();
+      let formData = new FormData();
+      formData.append('comment', JSON.stringify({
+        date: fullDate,
+        comment: data.comment
+      }));
+      this.commentService.save(data, this.user.id, this.recipe.id, fullDate).subscribe(value => this.recipe = value)
+      this.commentForm.reset();
+    }
   }
 
-  createDate():string {
+  createDate(): string {
     let date1 = new Date();
     const date: string = [
       date1.getDate().toString().padStart(2, '0'),
@@ -268,5 +272,31 @@ export class RecipePageComponent implements OnInit {
       date1.getSeconds().toString().padStart(2, '0')
     ].join('-');
     return [date, time].join('_');
+  }
+
+  showCheckingNav() {
+    let status = document.getElementsByClassName('recipe-page-status-check-uncheck')[0];
+    status.classList.toggle('show-hide-status');
+  }
+
+  changeStatus(recipeId: number) {
+    this.recipeService.changeStatus(recipeId).subscribe(value => this.recipe = value);
+  }
+
+  navigateToProfile(authorId: number) {
+    if (authorId == this.user.id) {
+      this.router.navigate(['/cabinet/info'])
+    } else {
+      this.router.navigate([this.urlToProfile, authorId], {
+        queryParams: {
+          pageSize: 10,
+          userId: authorId,
+          pageNumber: 0
+        }
+      })
+
+    }
+
+
   }
 }

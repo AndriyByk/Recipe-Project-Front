@@ -24,7 +24,7 @@ export class UserPageComponent implements OnInit {
     this.url = baseURL + recipeUrl.pictures;
     this.activatedRoute.data.subscribe(({user, createdRecipes}) => {
       this.user = user;
-      this.createdRecipes = createdRecipes;
+      this.createdRecipes = createdRecipes.recipes;
     });
   }
 }

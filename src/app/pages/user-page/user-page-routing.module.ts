@@ -7,8 +7,12 @@ import {RecipesCreatedResolver} from "../../services/fetches/recipes/recipes-cre
 const routes: Routes = [
   {
     path: ':id', component: UserPageComponent, resolve: {
+      // працює з param id
       user: UserByIdResolver,
-      createdRecipes: RecipesCreatedResolver
+      // працює з query id
+      // ці id дублюються в url... рішення - викинути звідси param id і юзера шукати по query id
+      // або створювати для юзер пейдж окремий резолвер без id
+      createdRecipes: RecipesCreatedResolver // використувується ще в UserCreatedRecipesPageComponent
     }
   }
 ];

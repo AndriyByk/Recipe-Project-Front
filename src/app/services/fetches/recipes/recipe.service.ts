@@ -48,7 +48,7 @@ export class RecipeService {
   getCreatedAll(pageNumber: number,
                 pageSize: number,
                 userId: number): Observable<IWrapperForRecipes> {
-    return this.httpClient.get<IWrapperForRecipes>(`${baseURL}${recipeUrl.recipes}/created/${pageNumber}?pageSize=${pageSize}&userId=${userId}`)
+    return this.httpClient.get<IWrapperForRecipes>(`${baseURL}${recipeUrl.recipes}/created?pageNumber=${pageNumber}&pageSize=${pageSize}&userId=${userId}`)
   }
 
   getCreatedFilteredAndSorted(recipeCategoryId: number,
@@ -136,5 +136,9 @@ export class RecipeService {
 
   rateRecipe(rank: string) {
     return this.httpClient.patch<IRecipe>(`${baseURL}${recipeUrl.recipes}/rate`, rank)
+  }
+
+  changeStatus(recipeId: number) {
+    return this.httpClient.patch<IRecipe>(`${baseURL}${recipeUrl.recipes}/change-status?recipeId=${recipeId}`, 'body')
   }
 }

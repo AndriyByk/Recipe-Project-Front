@@ -42,6 +42,11 @@
   width: 75%;
 }
 
+.user-page-no-recipes-message {
+  width: 75%;
+  padding: 30px 20px;
+}
+
 .user-page-created-recipes a {
   display: flex;
   text-decoration: none;

@@ -4,6 +4,22 @@
     <div class="recipe-body-top">
 
       <div class="recipe-page-photo">
+        <div *ngIf="user.roles.includes('ROLE_ADMIN')" (click)="showCheckingNav()" class="recipe-page-status">
+
+          <div class="recipe-page-status-checked" *ngIf="recipe.status == 'CHECKED' else unchecked">
+            Перевірений!
+          </div>
+          <ng-template #unchecked>
+           <div class="recipe-page-status-unchecked">
+             Неперевірений!
+           </div>
+          </ng-template>
+
+          <div class="recipe-page-status-check-uncheck" (click)="changeStatus(recipe.id)">
+            <span *ngIf="recipe.status == 'CHECKED'">Відправити на доопрацювання</span>
+            <span *ngIf="recipe.status == 'UNCHECKED'">Додати до загального списку</span>
+          </div>
+        </div>
         <div class="recipe-page-photo-content">
           <!--      http://localhost:8080/pictures/[recipe.title]/[recipe.image]  -->
           <img src="{{url + '/' + recipe.dateOfCreation + '/' + recipe.image}}" alt="photo">
@@ -22,12 +38,12 @@
             <span>{{"Автор: "}}</span>
             <div *ngIf="!user || user && (user.id != recipe.author.id) else toCabinet">
               <a class="recipe-author-link-name" [routerLink]="['/user', recipe.author.id]"
-                 [state]="{data: recipe}">{{recipe.author.username}}</a>
+                 [state]="{data: recipe}" [queryParams]="{pageSize: 10, userId: recipe.author.id, pageNumber: 0}">{{recipe.author.username}}</a>
             </div>
 
             <ng-template #toCabinet>
               <a class="recipe-author-link-name"
-                 [routerLink]="['/cabinet/created-recipes']">{{recipe.author.username}}</a>
+                 [routerLink]="['/cabinet/created-recipes']" [queryParams]="{pageSize: 10, userId: user.id, pageNumber: 0}">{{recipe.author.username}}</a>
               <div class="link-to-update-recipe">Це ваш рецепт. Ви можете його
                 <a [routerLink]="['/update-recipe', recipe.id]"> редагувати</a>
               </div>
@@ -222,14 +238,13 @@
         <div class="recipe-body-comment" *ngFor="let comment of recipe.comments">
 
           <div class="recipe-body-comment-top">
-            <div class="recipe-body-comment-author-wrapper" [routerLink]="['/user', comment.author.id]">
-              <span class="recipe-body-comment-author">{{comment.author.username}}</span>
+            <div class="recipe-body-comment-author-wrapper" >
+              <span (click)="navigateToProfile(comment.author.id)" class="recipe-body-comment-author">{{comment.author.username}}</span>
               <span *ngIf="comment.date">
-              <span class="recipe-body-comment-date">{{' ' + comment.date?.slice(0, 10)}}</span>
-              <span
-                class="recipe-body-comment-time">{{' о ' + comment.date?.slice(11, comment.date.length - 3) + ' '}}</span>
-              <span>{{' написа(ла)в:'}}</span>
-                </span>
+                <span class="recipe-body-comment-date">{{' ' + comment.date?.slice(0, 10)}}</span>
+                <span class="recipe-body-comment-time">{{' о ' + comment.date?.slice(11, comment.date.length - 3) + ' '}}</span>
+                <span>{{' написа(-ла)в:'}}</span>
+              </span>
             </div>
           </div>
 
