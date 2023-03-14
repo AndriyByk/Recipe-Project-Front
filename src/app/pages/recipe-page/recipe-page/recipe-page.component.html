@@ -1,10 +1,10 @@
-<div class="recipe">
+<div class="recipe" *ngIf="true" appAutofocus [isScroll]="true">
 
   <div class="recipe-wrapper">
     <div class="recipe-body-top">
 
       <div class="recipe-page-photo">
-        <div *ngIf="user.roles.includes('ROLE_ADMIN')" (click)="showCheckingNav()" class="recipe-page-status">
+        <div *ngIf="user && user.roles.includes('ROLE_ADMIN')" (click)="showCheckingNav()" class="recipe-page-status">
 
           <div class="recipe-page-status-checked" *ngIf="recipe.status == 'CHECKED' else unchecked">
             Перевірений!
@@ -37,8 +37,9 @@
           <div class="recipe-author-link">
             <span>{{"Автор: "}}</span>
             <div *ngIf="!user || user && (user.id != recipe.author.id) else toCabinet">
+<!--              [state]="{data: recipe}"-->
               <a class="recipe-author-link-name" [routerLink]="['/user', recipe.author.id]"
-                 [state]="{data: recipe}" [queryParams]="{pageSize: 10, userId: recipe.author.id, pageNumber: 0}">{{recipe.author.username}}</a>
+                  [queryParams]="{pageSize: 10, userId: recipe.author.id, pageNumber: 0}">{{recipe.author.username}}</a>
             </div>
 
             <ng-template #toCabinet>
@@ -51,7 +52,7 @@
 
           </div>
         </div>
-        <div *ngIf="user else guest">
+        <div *ngIf="user && user.roles[0]!='ROLE_ADMIN' else guest">
           <form id="recipe-form" [formGroup]="form">
             <section id="like" class="rating">
               <input type="radio" id="heart_5" value="5" [checked]="rate >= 5" (click)="showRateOfRecipe(5)"
@@ -71,15 +72,17 @@
               <label for="heart_1" title="One">&#11088;</label>
             </section>
             <button (click)="vote()">Оцінити</button>
-            <div>&#11088;{{recipe.rating}}/{{recipe.ranks.length}}</div>
+            <div id="recipe-ranking-with-user">&#11088;{{recipe.rating}}/{{recipe.ranks.length}}</div>
           </form>
         </div>
 
         <ng-template #guest>
-          <div id="recipe-ranking">&#11088;{{recipe.rating}}/{{recipe.ranks.length}}</div>
+          <div id="recipe-ranking-wrapper">
+            <div id="recipe-ranking">&#11088;{{recipe.rating}}/{{recipe.ranks.length}}</div>
+          </div>
         </ng-template>
 
-        <div *ngIf="username" class="recipe-like-button">
+        <div *ngIf="username && user.roles[0]!='ROLE_ADMIN'" class="recipe-like-button">
           <div class="recipe-like-button-true" *ngIf="saveOrDeleteFavorite() else add">
             <div>
               Цей рецепт у списку улюблених.

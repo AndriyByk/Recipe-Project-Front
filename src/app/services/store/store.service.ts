@@ -127,7 +127,14 @@ export class StoreService {
   pageSizeUsers = new BehaviorSubject<number>(50);
   searchDetailsUsers = new BehaviorSubject<ISearchDetailsUsers>({});
 
-
+  //__________ user-page _______________________
+  pageInfoOfUserCreated = new BehaviorSubject<IPageInfo>({
+    currentPage: 0,
+    totalPages: 0,
+    totalElements: 0
+  })
+  pageNumberOfUserCreated = new BehaviorSubject<number>(0);
+  pageSizeOfUserCreated = new BehaviorSubject<number>(10);
 
   //========== dynamic height of recipes-page ===
   maxHeight = new BehaviorSubject(0);

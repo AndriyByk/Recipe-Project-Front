@@ -11,7 +11,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {RecipesResolver} from "../../services/fetches/recipes/recipes.resolver";
 import {RecipesHeaderComponent} from "../../components/recipes/recipes-header/recipes-header.component";
 import {RecipesByParamsResolver} from "../../services/fetches/recipes/recipes-by-params.resolver";
-import {DynamicHeightDirective} from "../../directives/dynamic-height.directive";
+import {DirectivesModule} from "../../directives/module/directives.module";
 
 
 @NgModule({
@@ -19,8 +19,7 @@ import {DynamicHeightDirective} from "../../directives/dynamic-height.directive"
     RecipesPageComponent,
     RecipeComponent,
     FooterComponent,
-    RecipesHeaderComponent,
-    DynamicHeightDirective
+    RecipesHeaderComponent
   ],
   exports: [
     RecipesPageComponent
@@ -29,7 +28,8 @@ import {DynamicHeightDirective} from "../../directives/dynamic-height.directive"
     CommonModule,
     RecipesPageRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DirectivesModule
   ],
   // чи потрібні тут ресолвери? працювало й без них
   providers: [

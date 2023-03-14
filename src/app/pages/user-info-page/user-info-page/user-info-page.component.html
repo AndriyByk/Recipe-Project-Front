@@ -15,6 +15,9 @@
         <div class="cabinet-user-info-lastname-title">
           Прізвище:
         </div>
+        <div class="cabinet-user-info-role-title">
+          Роль:
+        </div>
         <div class="cabinet-user-info-email-title">
           Електронна скринька:
         </div>
@@ -44,6 +47,9 @@
         </div>
         <div class="cabinet-user-info-lastname-content">
           {{user.lastName}}
+        </div>
+        <div class="cabinet-user-info-role-content">
+          {{user.roles[0] == 'ROLE_USER'? ' Користувач': user.roles[0] == 'ROLE_ADMIN'? ' Адміністратор': ' Супер адміністратор'}}
         </div>
         <div class="cabinet-user-info-email-content">
           {{user.email}}

@@ -1,5 +1,5 @@
 <app-recipes-header></app-recipes-header>
-<div class="recipes-page" id="recipes-page-id" >
+<div class="recipes-page" *ngIf="true" appAutofocus [isScroll]="true" id="recipes-page-id" >
   <div class="recipes-page-message-wrapper" *ngIf="recipes.length==0">
     <div class="recipes-page-message">
       <div class="recipes-page-message-one">

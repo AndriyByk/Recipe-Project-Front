@@ -26,7 +26,7 @@ export class CreatedRecipesComponent implements OnInit {
   user:IUser
 
   searchDetailsOfCreated: ISearchDetailsOfRecipes;
-  pageInfoOfCreated:IPageInfo;
+  pageInfoOfCreated: IPageInfo;
   pageSizeOfCreated: number = 10;
 
   searchForm: FormGroup;

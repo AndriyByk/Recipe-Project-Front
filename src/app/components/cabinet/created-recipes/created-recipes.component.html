@@ -51,7 +51,7 @@
       </div>
     </div>
     <div class="cabinet-created-recipes-list-recipes-wrapper">
-      <div class="cabinet-created-recipes-list-recipes" *ngIf="recipesCreated.length != 0">
+      <div class="cabinet-created-recipes-list-recipes">
         <app-created-recipe class="cabinet-created-recipe-app" *ngFor="let recipeCreated of recipesCreated"
                             [recipeCreated]="recipeCreated"></app-created-recipe>
         <div class="cabinet-link-to-add-recipe">

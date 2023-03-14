@@ -258,14 +258,20 @@
   font-size: 15px;
 }
 
+#recipe-ranking-wrapper {
+  display: flex;
+  justify-content: center;
+  /*align-items: center;*/
+}
+
 #recipe-ranking {
-  background-color: #eaf5de;
+  /*border: #ece1cb thin solid;*/
   padding: 10px;
-  border-top-right-radius: 30px;
-  border-bottom-right-radius: 30px;
+  border-radius: 30px;
   font-weight: bold;
   font-family: "Segoe Print", sans-serif;
   font-size: 15px;
+  width: fit-content;
 }
 
 #recipe-form > button {

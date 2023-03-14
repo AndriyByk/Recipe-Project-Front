@@ -3,7 +3,7 @@ import {Directive, ElementRef, HostListener} from '@angular/core';
 @Directive({
   selector: 'input[dynamic-date-input]'
 })
-export class DynamicDateInputDirectiveDirective {
+export class DynamicDateInputDirective {
 
   private element : ElementRef;
 

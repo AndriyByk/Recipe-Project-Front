@@ -38,7 +38,6 @@ export class HeaderComponent implements OnInit {
     this.storeService.pageSize.next(10);
 
     if (this.verifyAdminMode()) {
-      console.log(this.verifyAdminMode());
       this.url_redirect = 'recipes/all-recipes/admin-mode'
     }
 
@@ -50,11 +49,9 @@ export class HeaderComponent implements OnInit {
   }
 
   logOut() {
-    let access = localStorage.getItem(this.accessTokenKey);
 
+    let access = localStorage.getItem(this.accessTokenKey);
     if (access != null) {
-      console.log("username != null")
-      console.log(access);
       this.authorisationService.deleteTokenFromDB(access).subscribe();
     }
 

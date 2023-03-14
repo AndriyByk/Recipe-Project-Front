@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {baseURL, recipeUrl} from "../../../urls/urls";
 import {IUserShort} from "../../../interfaces/entities/user/IUserShort";
 import {IRecipe} from "../../../interfaces/entities/recipe/IRecipe";
+import {IPageInfo} from "../../../interfaces/pages/IPageInfo";
+import {StoreService} from "../../../services/store/store.service";
 
 @Component({
   selector: 'app-user-page',
@@ -14,8 +16,12 @@ export class UserPageComponent implements OnInit {
   createdRecipes: IRecipe[];
   url: string;
   urlToRecipe: string;
+  pageInfoOfUserCreated: IPageInfo;
+  pageSizeOfUserCreated: number = 10;
 
-  constructor(private activatedRoute: ActivatedRoute) { }
+  constructor(private activatedRoute: ActivatedRoute,
+              private storeService: StoreService,
+              private router: Router) { }
 
   ngOnInit(): void {
 
@@ -25,6 +31,71 @@ export class UserPageComponent implements OnInit {
     this.activatedRoute.data.subscribe(({user, createdRecipes}) => {
       this.user = user;
       this.createdRecipes = createdRecipes.recipes;
+      this.storeService.pageInfoOfUserCreated.next({
+        currentPage: createdRecipes.currentPage,
+        totalPages: createdRecipes.totalPages,
+        totalElements: createdRecipes.totalElements
+      })
+      this.storeService.pageInfoOfUserCreated.subscribe(value => this.pageInfoOfUserCreated = value)
     });
+
+  }
+
+  goFirstPage() {
+    if (this.pageInfoOfUserCreated.currentPage != 0) {
+
+      console.log(this.pageInfoOfUserCreated);
+
+      this.updatePageInfo(0, this.pageInfoOfUserCreated.totalPages, this.pageInfoOfUserCreated.totalElements);
+      this.navigate();
+    }
+  }
+
+  goPreviousPage() {
+    if (this.pageInfoOfUserCreated.currentPage > 0) {
+
+      console.log(this.pageInfoOfUserCreated);
+      this.updatePageInfo(this.pageInfoOfUserCreated.currentPage - 1, this.pageInfoOfUserCreated.totalPages, this.pageInfoOfUserCreated.totalElements);
+      this.navigate();
+    }
+  }
+
+  goNextPage() {
+    if (this.pageInfoOfUserCreated.currentPage < this.pageInfoOfUserCreated.totalPages - 1) {
+
+      console.log(this.pageInfoOfUserCreated);
+      this.updatePageInfo(this.pageInfoOfUserCreated.currentPage + 1, this.pageInfoOfUserCreated.totalPages, this.pageInfoOfUserCreated.totalElements);
+      this.navigate();
+    }
+  }
+
+  goLastPage() {
+    if (this.pageInfoOfUserCreated.currentPage != this.pageInfoOfUserCreated.totalPages - 1) {
+
+      console.log(this.pageInfoOfUserCreated);
+      this.updatePageInfo(this.pageInfoOfUserCreated.totalPages - 1, this.pageInfoOfUserCreated.totalPages, this.pageInfoOfUserCreated.totalElements);
+      this.navigate();
+    }
+  }
+
+//======================================================================
+
+
+  updatePageInfo(currentPage: number, totalPages: number, totalRecipes: number): void {
+    this.storeService.pageInfoOfUserCreated.next({
+      currentPage: currentPage,
+      totalPages: totalPages,
+      totalElements: totalRecipes
+    });
+  }
+
+  navigate() {
+    this.router.navigate(['user', this.user.id], {
+      queryParams: {
+        pageSize: this.pageSizeOfUserCreated,
+        pageNumber: this.pageInfoOfUserCreated.currentPage,
+        userId: this.user.id
+      }
+    })
   }
 }

@@ -6,7 +6,7 @@ import {RecipesCreatedResolver} from "../../services/fetches/recipes/recipes-cre
 
 const routes: Routes = [
   {
-    path: '', component: UserCreatedRecipesPageComponent, resolve: {
+    path: '', component: UserCreatedRecipesPageComponent, runGuardsAndResolvers: 'always', resolve: {
       user: UserByUsernameResolver,
       createdRecipes: RecipesCreatedResolver
     }

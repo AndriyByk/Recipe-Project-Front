@@ -214,13 +214,21 @@ export class RecipePageComponent implements OnInit {
     this.storeService.searchDetails.next({
       recipeCategoryId: id
     })
-
-    this.router.navigate(['recipes/find', 0], {
-      queryParams: {
-        categoryId: id,
-        pageSize: 10
-      }
-    })
+    if (localStorage.getItem('admin-mode') != null) {
+      this.router.navigate(['recipes/find-and-sort/admin-mode', 0], {
+        queryParams: {
+          categoryId: id,
+          pageSize: 10
+        }
+      })
+    } else {
+      this.router.navigate(['recipes/find-and-sort', 0], {
+        queryParams: {
+          categoryId: id,
+          pageSize: 10
+        }
+      })
+    }
   }
 
   saveOrDeleteFavorite(): boolean {

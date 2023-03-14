@@ -3,10 +3,16 @@
     <div class="user-page-avatar">
       <img src="{{url + '/' + user.username + '/' + user.avatar}}" alt="avatar">
     </div>
+    <div class="user-page-username">
+      {{user.username}}
+    </div>
     <div class="user-page-date-of-registration">
       <div>
-        {{'Користувач(-ка) з нами з ' + user.dateOfRegistration}}
+        {{'Користувач(-ка) з нами з '}}<span>{{user.dateOfRegistration}}</span>
       </div>
+    </div>
+    <div class="user-page-role">
+      Роль:<span>{{user.role == 'ROLE_USER'? ' Користувач': user.role == 'ROLE_ADMIN'? ' Адміністратор': ' Супер адміністратор'}}</span>
     </div>
   </div>
 
@@ -46,6 +52,16 @@
         </div>
       </div>
     </a>
-
+    <div class="user-page-created-recipes-pagination">
+      <div class="user-page-created-recipes-pagination-wrapper">
+        <div class="user-page-created-recipes-pagination-paging">
+          <button (click)="goFirstPage()" class="user-page-created-recipes-pagination-paging-first-page">|<<</button>
+          <button (click)="goPreviousPage()" class="user-page-created-recipes-pagination-paging-previous-page"><</button>
+          <div class="user-page-created-recipes-pagination-current-page">{{pageInfoOfUserCreated.currentPage + 1}}/{{pageInfoOfUserCreated.totalPages}}</div>
+          <button (click)="goNextPage()" class="user-page-created-recipes-pagination-paging-next-page">></button>
+          <button (click)="goLastPage()" class="user-page-created-recipes-pagination-paging-last-page">>>|</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
