@@ -1,59 +1,59 @@
-<div class="recipe" *ngIf="true" appAutofocus [isScroll]="true">
+<div class="recipe-page" *ngIf="true" appAutofocus [isScroll]="true">
 
-  <div class="recipe-wrapper">
-    <div class="recipe-body-top">
+  <div class="recipe-page-wrapper">
+    <div class="recipe-page-body-top">
 
       <div class="recipe-page-photo">
         <div *ngIf="user && user.roles.includes('ROLE_ADMIN')" (click)="showCheckingNav()" class="recipe-page-status">
 
-          <div class="recipe-page-status-checked" *ngIf="recipe.status == 'CHECKED' else unchecked">
+          <div class="recipe-page-status-checked font-weight-bold font-f-lato background-color-white" *ngIf="recipe.status == 'CHECKED' else unchecked">
             Перевірений!
           </div>
           <ng-template #unchecked>
-           <div class="recipe-page-status-unchecked">
+           <div class="recipe-page-status-unchecked color-firebrick background-color-white font-f-lato font-weight-bold">
              Неперевірений!
            </div>
           </ng-template>
 
-          <div class="recipe-page-status-check-uncheck" (click)="changeStatus(recipe.id)">
+          <div class="recipe-page-status-check-uncheck background-color-white font-f-lato font-weight-bold" (click)="changeStatus(recipe.id)">
             <span *ngIf="recipe.status == 'CHECKED'">Відправити на доопрацювання</span>
             <span *ngIf="recipe.status == 'UNCHECKED'">Додати до загального списку</span>
           </div>
         </div>
-        <div class="recipe-page-photo-content">
+        <div class="recipe-page-photo-content width-100-per height-100-per display-flex just-cont-cent">
           <!--      http://localhost:8080/pictures/[recipe.title]/[recipe.image]  -->
-          <img src="{{url + '/' + recipe.dateOfCreation + '/' + recipe.image}}" alt="photo">
+          <img class="height-100-per width-auto" src="{{url + '/' + recipe.dateOfCreation + '/' + recipe.image}}" alt="photo">
         </div>
       </div>
 
-      <div class="recipe-info-with-ingredients">
-        <div class="recipe-title">
-          <div class="recipe-title-content">
+      <div class="recipe-page-info-with-ingredients display-flex flex-dir-column just-cont-cent box-sizing-bor-box background-color-transp">
+        <div class="recipe-page-title font-f-segoe-print font-weight-bold display-flex just-cont-cent background-color-white">
+          <div class="recipe-page-title-content">
             {{recipe.title}}
           </div>
         </div>
 
-        <div class="recipe-author">
-          <div class="recipe-author-link">
-            <span>{{"Автор: "}}</span>
+        <div class="recipe-page-author">
+          <div class="recipe-page-author-link">
+            <span class="font-f-segoe-script">{{"Автор: "}}</span>
             <div *ngIf="!user || user && (user.id != recipe.author.id) else toCabinet">
 <!--              [state]="{data: recipe}"-->
-              <a class="recipe-author-link-name" [routerLink]="['/user', recipe.author.id]"
+              <a class="recipe-page-author-link-name font-f-segoe-print color-black font-weight-bold" [routerLink]="['/user', recipe.author.id]"
                   [queryParams]="{pageSize: 10, userId: recipe.author.id, pageNumber: 0}">{{recipe.author.username}}</a>
             </div>
 
             <ng-template #toCabinet>
-              <a class="recipe-author-link-name"
+              <a class="recipe-page-author-link-name font-f-segoe-print color-black font-weight-bold"
                  [routerLink]="['/cabinet/created-recipes']" [queryParams]="{pageSize: 10, userId: user.id, pageNumber: 0}">{{recipe.author.username}}</a>
-              <div class="link-to-update-recipe">Це ваш рецепт. Ви можете його
-                <a [routerLink]="['/update-recipe', recipe.id]"> редагувати</a>
+              <div class="link-to-update-recipe font-f-segoe-script">Це ваш рецепт. Ви можете його
+                <a class="color-black font-weight-bold font-f-segoe-print" [routerLink]="['/update-recipe', recipe.id]"> редагувати</a>
               </div>
             </ng-template>
 
           </div>
         </div>
         <div *ngIf="user && user.roles[0]!='ROLE_ADMIN' else guest">
-          <form id="recipe-form" [formGroup]="form">
+          <form id="recipe-form" class="display-flex just-cont-cent align-item-cent background-color-white" [formGroup]="form">
             <section id="like" class="rating">
               <input type="radio" id="heart_5" value="5" [checked]="rate >= 5" (click)="showRateOfRecipe(5)"
                      formControlName="rate"/>
@@ -71,57 +71,57 @@
                      formControlName="rate"/>
               <label for="heart_1" title="One">&#11088;</label>
             </section>
-            <button (click)="vote()">Оцінити</button>
+            <button class="background-color-white font-f-segoe-print font-weight-bold" (click)="vote()">Оцінити</button>
             <div id="recipe-ranking-with-user">&#11088;{{recipe.rating}}/{{recipe.ranks.length}}</div>
           </form>
         </div>
 
         <ng-template #guest>
-          <div id="recipe-ranking-wrapper">
-            <div id="recipe-ranking">&#11088;{{recipe.rating}}/{{recipe.ranks.length}}</div>
+          <div id="recipe-ranking-wrapper" class="display-flex just-cont-cent">
+            <div id="recipe-ranking" class="width-fit-cont font-f-segoe-print font-weight-bold">&#11088;{{recipe.rating}}/{{recipe.ranks.length}}</div>
           </div>
         </ng-template>
 
-        <div *ngIf="username && user.roles[0]!='ROLE_ADMIN'" class="recipe-like-button">
-          <div class="recipe-like-button-true" *ngIf="saveOrDeleteFavorite() else add">
+        <div *ngIf="username && user.roles[0]!='ROLE_ADMIN'" class="recipe-page-like-button display-flex flex-dir-column just-cont-cent align-item-cent">
+          <div class="recipe-page-like-button-true font-f-segoe-print" *ngIf="saveOrDeleteFavorite() else add">
             <div>
               Цей рецепт у списку улюблених.
             </div>
-            <a (click)="saveToFavorites()">
+            <a class="font-weight-bold" (click)="saveToFavorites()">
               Виключити зі списку
             </a>
           </div>
           <ng-template #add>
-            <a (click)="saveToFavorites()" class="recipe-like-button-false">Додати до улюблених</a>
+            <a (click)="saveToFavorites()" class="recipe-page-like-button-false font-weight-bold font-f-segoe-print">Додати до улюблених</a>
           </ng-template>
         </div>
 
-        <div class="recipe-category">
-          <div (click)="getRecipesByCategoryId(recipe.recipeCategoryDto.id)" class="recipe-category-content">
+        <div class="recipe-page-category font-f-segoe-print font-weight-bold color-black display-flex just-cont-cent">
+          <div (click)="getRecipesByCategoryId(recipe.recipeCategoryDto.id)" class="recipe-page-category-content">
             {{recipe.recipeCategoryDto.name}}
           </div>
         </div>
 
-        <div class="recipe-ingredients">
-          <div class="recipe-ingredients-titles">
-            <div class="recipe-ingredients-titles-ingredient">
+        <div class="recipe-page-ingredients display-flex flex-dir-column background-color-white">
+          <div class="recipe-page-ingredients-titles display-flex just-cont-spac-even font-f-segoe-print font-weight-bold">
+            <div class="recipe-page-ingredients-titles-ingredient display-flex">
               Інгредієнт
             </div>
-            <div class="recipe-ingredients-titles-weight">
+            <div class="recipe-page-ingredients-titles-weight">
               Вага
             </div>
           </div>
-          <div class="recipe-ingredient" *ngFor="let ingredient of recipe.ingredients">
-            <div class="recipe-ingredient-name-content-sign">
+          <div class="recipe-page-ingredient display-flex just-cont-spac-arou font-f-segoe-print font-weight-lighter" *ngFor="let ingredient of recipe.ingredients">
+            <div class="recipe-page-ingredient-name-content-sign">
               {{' + '}}
             </div>
-            <div class="recipe-ingredient-name">
-              <div class="recipe-ingredient-name-content">
+            <div class="recipe-page-ingredient-name display-flex">
+              <div class="recipe-page-ingredient-name-content">
                 {{ingredient.name_ukr}}
               </div>
             </div>
 
-            <div class="recipe-ingredient-weight">
+            <div class="recipe-page-ingredient-weight">
               <div class="recipe-ingredient-weight-content">
                 {{ingredient.weight}}{{' г'}}
               </div>
@@ -131,139 +131,135 @@
       </div>
     </div>
 
-    <div class="recipe-body-middle">
-      <div class="recipe-description">
-        <div class="recipe-description-content" *ngFor="let stage of stages">
+    <div class="recipe-page-body-middle display-flex just-cont-cent box-sizing-bor-box background-color-white">
+      <div class="recipe-page-description display-flex flex-dir-column font-f-segoe-script box-sizing-bor-box">
+        <div class="recipe-page-description-content" *ngFor="let stage of stages">
           <div>{{'- ' + stage}}</div>
         </div>
       </div>
     </div>
 
-    <div class="recipe-body-bottom">
-      <div class="recipe-nutrients">
-        <div class="recipe-nutrients-title">
-          <div class="recipe-nutrients-title-short">
+    <div class="recipe-page-body-bottom display-flex just-cont-cent background-color-white">
+      <div class="recipe-page-nutrients display-flex flex-dir-column width-fit-cont just-cont-cent box-sizing-bor-box">
+        <div class="recipe-page-nutrients-title display-flex flex-dir-column width-fit-cont">
+          <div class="recipe-page-nutrients-title-short font-f-segoe-print font-weight-bold display-flex just-cont-cent width-fit-cont">
             Деталі
           </div>
-          <div class="recipe-nutrients-title-long">
+          <div class="recipe-page-nutrients-title-long display-flex width-fit-cont just-cont-cent color-9a9a9a font-f-segoe-script">
             Детальна інформація про цей рецепт.
           </div>
         </div>
 
-        <div class="recipe-nutrients-titles">
-          <div class="white-space"></div>
-          <div class="recipe-nutrients-titles-no">
+        <div class="recipe-page-nutrients-titles font-f-segoe-print display-flex width-fit-cont box-sizing-bor-box">
+          <div class="white-space just-cont-cent display-flex"></div>
+          <div class="recipe-page-nutrients-titles-no just-cont-cent display-flex">
             №
           </div>
-          <div class="recipe-nutrients-titles-nutrient">
+          <div class="recipe-page-nutrients-titles-nutrient just-cont-cent display-flex">
             Нутрієнт
           </div>
-          <div class="recipe-nutrients-titles-category">
+          <div class="recipe-page-nutrients-titles-category just-cont-cent display-flex">
             Категорія
           </div>
-          <div class="recipe-nutrients-titles-quantity">
+          <div class="recipe-page-nutrients-titles-quantity just-cont-cent display-flex">
             Кількість в 100 грамах
           </div>
-          <div *ngIf="user" class="recipe-nutrients-titles-norm">
+          <div *ngIf="user" class="recipe-page-nutrients-titles-norm just-cont-cent display-flex">
             Ваша норма
           </div>
-          <div *ngIf="user" class="recipe-nutrients-titles-percentage">
+          <div *ngIf="user" class="recipe-page-nutrients-titles-percentage just-cont-cent display-flex">
             Відсотків від Вашої рекомендованої денної норми
           </div>
         </div>
 
-        <div class="recipe-user-proportions">
+        <div class="recipe-page-user-proportions display-flex flex-dir-column font-f-segoe-print width-fit-cont box-sizing-bor-box">
 
-          <div class="recipe-user-proportions-title">Енергія</div>
-          <div class="recipe-user-proportion-energy" *ngFor="let energy of proportions.energy">
+          <div class="recipe-page-user-proportions-title font-weight-bold width-fit-cont">Енергія</div>
+          <div class="recipe-page-user-proportion-energy display-flex width-fit-cont box-sizing-bor-box" *ngFor="let energy of proportions.energy">
             <div class="white-space"></div>
-
-            <div class="recipe-user-proportions-id">{{energy.idOfNutrient}}</div>
-            <div class="recipe-user-proportions-name">{{energy.nutrient}}</div>
-            <div class="recipe-user-proportions-category">{{energy.category}}</div>
-            <div class="recipe-user-proportions-recipe-quantity">{{energy.nutrientQuantity}}{{' '}}{{energy.unit}}</div>
+            <div class="recipe-page-user-proportions-id display-flex just-cont-cent">{{energy.idOfNutrient}}</div>
+            <div class="recipe-page-user-proportions-name display-flex just-cont-cent">{{energy.nutrient}}</div>
+            <div class="recipe-page-user-proportions-category display-flex just-cont-cent">{{energy.category}}</div>
+            <div class="recipe-page-user-proportions-recipe-quantity display-flex just-cont-cent">{{energy.nutrientQuantity}}{{' '}}{{energy.unit}}</div>
             <div *ngIf="energy.userNorm"
-                 class="recipe-user-proportions-norm">{{energy.userNorm}}{{' '}}{{energy.unit}}</div>
-            <div *ngIf="energy.percentage" class="recipe-user-proportions-percentage">{{energy.percentage}}%</div>
+                 class="recipe-page-user-proportions-norm display-flex just-cont-cent">{{energy.userNorm}}{{' '}}{{energy.unit}}</div>
+            <div *ngIf="energy.percentage" class="recipe-page-user-proportions-percentage display-flex just-cont-cent">{{energy.percentage}}%</div>
           </div>
 
-          <div class="recipe-user-proportions-title">Органічні макроелементи</div>
-          <div class="recipe-user-proportion-organics" *ngFor="let organic of proportions.organics">
+          <div class="recipe-page-user-proportions-title font-weight-bold width-fit-cont">Органічні макроелементи</div>
+          <div class="recipe-page-user-proportion-organics display-flex width-fit-cont box-sizing-bor-box" *ngFor="let organic of proportions.organics">
             <div class="white-space"></div>
-
-            <div class="recipe-user-proportions-id">{{organic.idOfNutrient}}</div>
-            <div class="recipe-user-proportions-name">{{organic.nutrient}}</div>
-            <div class="recipe-user-proportions-category">{{organic.category}}</div>
+            <div class="recipe-page-user-proportions-id display-flex just-cont-cent">{{organic.idOfNutrient}}</div>
+            <div class="recipe-page-user-proportions-name display-flex just-cont-cent">{{organic.nutrient}}</div>
+            <div class="recipe-page-user-proportions-category display-flex just-cont-cent">{{organic.category}}</div>
             <div
-              class="recipe-user-proportions-recipe-quantity">{{organic.nutrientQuantity}}{{' '}}{{organic.unit}}</div>
+              class="recipe-page-user-proportions-recipe-quantity display-flex just-cont-cent">{{organic.nutrientQuantity}}{{' '}}{{organic.unit}}</div>
             <div *ngIf="organic.userNorm"
-                 class="recipe-user-proportions-norm">{{organic.userNorm}}{{' '}}{{organic.unit}}</div>
-            <div *ngIf="organic.percentage" class="recipe-user-proportions-percentage">{{organic.percentage}}%</div>
+                 class="recipe-page-user-proportions-norm display-flex just-cont-cent">{{organic.userNorm}}{{' '}}{{organic.unit}}</div>
+            <div *ngIf="organic.percentage" class="recipe-user-proportions-percentage display-flex just-cont-cent">{{organic.percentage}}%</div>
           </div>
 
-          <div class="recipe-user-proportions-title">Вітаміни</div>
-          <div class="recipe-user-proportion-vitamins" *ngFor="let vitamin of proportions.vitamins">
+          <div class="recipe-page-user-proportions-title font-weight-bold width-fit-cont">Вітаміни</div>
+          <div class="recipe-page-user-proportion-vitamins display-flex width-fit-cont box-sizing-bor-box" *ngFor="let vitamin of proportions.vitamins">
             <div class="white-space"></div>
-
-            <div class="recipe-user-proportions-id">{{vitamin.idOfNutrient}}</div>
-            <div class="recipe-user-proportions-name">{{vitamin.nutrient}}</div>
-            <div class="recipe-user-proportions-category">{{vitamin.category}}</div>
+            <div class="recipe-page-user-proportions-id display-flex just-cont-cent">{{vitamin.idOfNutrient}}</div>
+            <div class="recipe-page-user-proportions-name display-flex just-cont-cent">{{vitamin.nutrient}}</div>
+            <div class="recipe-page-user-proportions-category display-flex just-cont-cent">{{vitamin.category}}</div>
             <div
-              class="recipe-user-proportions-recipe-quantity">{{vitamin.nutrientQuantity}}{{' '}}{{vitamin.unit}}</div>
+              class="recipe-page-user-proportions-recipe-quantity display-flex just-cont-cent">{{vitamin.nutrientQuantity}}{{' '}}{{vitamin.unit}}</div>
             <div *ngIf="vitamin.userNorm"
-                 class="recipe-user-proportions-norm">{{vitamin.userNorm}}{{' '}}{{vitamin.unit}}</div>
-            <div *ngIf="vitamin.percentage" class="recipe-user-proportions-percentage">{{vitamin.percentage}}%</div>
+                 class="recipe-page-user-proportions-norm display-flex just-cont-cent">{{vitamin.userNorm}}{{' '}}{{vitamin.unit}}</div>
+            <div *ngIf="vitamin.percentage" class="recipe-page-user-proportions-percentage display-flex just-cont-cent">{{vitamin.percentage}}%</div>
           </div>
 
-          <div class="recipe-user-proportions-title">Мінерали</div>
-          <div class="recipe-user-proportion-minerals" *ngFor="let mineral of proportions.minerals">
+          <div class="recipe-page-user-proportions-title font-weight-bold width-fit-cont">Мінерали</div>
+          <div class="recipe-page-user-proportion-minerals display-flex width-fit-cont box-sizing-bor-box" *ngFor="let mineral of proportions.minerals">
             <div class="white-space"></div>
-
-            <div class="recipe-user-proportions-id">{{mineral.idOfNutrient}}</div>
-            <div class="recipe-user-proportions-name">{{mineral.nutrient}}</div>
-            <div class="recipe-user-proportions-category">{{mineral.category}}</div>
+            <div class="recipe-page-user-proportions-id display-flex just-cont-cent">{{mineral.idOfNutrient}}</div>
+            <div class="recipe-page-user-proportions-name display-flex just-cont-cent">{{mineral.nutrient}}</div>
+            <div class="recipe-page-user-proportions-category display-flex just-cont-cent">{{mineral.category}}</div>
             <div
-              class="recipe-user-proportions-recipe-quantity">{{mineral.nutrientQuantity}}{{' '}}{{mineral.unit}}</div>
+              class="recipe-page-user-proportions-recipe-quantity display-flex just-cont-cent">{{mineral.nutrientQuantity}}{{' '}}{{mineral.unit}}</div>
             <div *ngIf="mineral.userNorm"
-                 class="recipe-user-proportions-norm">{{mineral.userNorm}}{{' '}}{{mineral.unit}}</div>
-            <div *ngIf="mineral.percentage" class="recipe-user-proportions-percentage">{{mineral.percentage}}%</div>
+                 class="recipe-page-user-proportions-norm display-flex just-cont-cent">{{mineral.userNorm}}{{' '}}{{mineral.unit}}</div>
+            <div *ngIf="mineral.percentage" class="recipe-page-user-proportions-percentage display-flex just-cont-cent">{{mineral.percentage}}%</div>
           </div>
         </div>
       </div>
     </div>
-    <div class="recipe-body-comments" *ngIf="userVerified">
+    <div class="recipe-page-body-comments display-flex flex-dir-column just-cont-cent background-color-white box-sizing-bor-box" *ngIf="userVerified">
 
-      <div class="recipe-body-comments-no-comments" *ngIf="recipe.comments.length == 0">
+      <div class="recipe-page-body-comments-no-comments font-f-lato" *ngIf="recipe.comments.length == 0">
         Ще ніхто не коментував цей рецепт.
       </div>
 
-      <div class="recipe-body-comments-list-wrapper">
-        <div class="recipe-body-comment" *ngFor="let comment of recipe.comments">
+      <div class="recipe-page-body-comments-list-wrapper display-flex flex-dir-column">
+        <div class="recipe-page-body-comment display-flex flex-dir-column box-sizing-bor-box" *ngFor="let comment of recipe.comments">
 
-          <div class="recipe-body-comment-top">
-            <div class="recipe-body-comment-author-wrapper" >
-              <span (click)="navigateToProfile(comment.author.id)" class="recipe-body-comment-author">{{comment.author.username}}</span>
+          <div class="recipe-page-body-comment-top display-flex box-sizing-bor-box font-f-lato just-cont-spac-betw">
+            <div class="recipe-page-body-comment-author-wrapper color-555555" >
+              <span (click)="navigateToProfile(comment.author.id)" class="recipe-page-body-comment-author">{{comment.author.username}}</span>
               <span *ngIf="comment.date">
-                <span class="recipe-body-comment-date">{{' ' + comment.date?.slice(0, 10)}}</span>
-                <span class="recipe-body-comment-time">{{' о ' + comment.date?.slice(11, comment.date.length - 3) + ' '}}</span>
+                <span class="recipe-page-body-comment-date">{{' ' + comment.date?.slice(0, 10)}}</span>
+                <span class="recipe-page-body-comment-time">{{' о ' + comment.date?.slice(11, comment.date.length - 3) + ' '}}</span>
                 <span>{{' написа(-ла)в:'}}</span>
               </span>
             </div>
           </div>
 
-          <div class="recipe-body-comment-bottom">
-            <div class="recipe-body-comment-body">{{comment.message}}</div>
+          <div class="recipe-page-body-comment-bottom box-sizing-bor-box">
+            <div class="recipe-page-body-comment-body box-sizing-bor-box font-f-lato-light">{{comment.message}}</div>
           </div>
 
         </div>
       </div>
 
-      <div class="recipe-body-comments-form-wrapper">
-        <form class="recipe-body-comments-form" [formGroup]="commentForm">
+      <div class="recipe-page-body-comments-form-wrapper">
+        <form class="recipe-page-body-comments-form display-flex just-cont-cent" [formGroup]="commentForm">
           <label for="comment-input"></label>
-          <textarea id="comment-input" rows="3" formControlName="comment"
+          <textarea class="font-f-lato-light" id="comment-input" rows="3" formControlName="comment"
                     placeholder="Напишіть коментар тут..."></textarea>
-          <button type="submit" (click)="postComment()">Залишити коментар</button>
+          <button class="height-fit-cont font-f-lato" type="submit" (click)="postComment()">Залишити коментар</button>
         </form>
       </div>
     </div>

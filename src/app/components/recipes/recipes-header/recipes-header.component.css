@@ -2,31 +2,22 @@
   z-index: 1;
   position: fixed;
   top: 70px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
   height: 40px;
   border-top:  white thin solid;
   box-shadow: inset #ece1cb 0 50px 30px;
 }
 
 .header-bottom form {
-  display: flex;
   column-gap: 20px;
 }
 
 .filter-form-inputs {
-  display: flex;
   column-gap: 10px;
-  justify-content: center;
 }
 
 .filter-form-input-title input {
-  font-family: "Segoe Print", sans-serif;
   font-size: 11px;
   border: white thin solid;
-  background-color: white;
 }
 
 .filter-form-input-title input::placeholder {
@@ -34,13 +25,11 @@
 }
 
 .filter-form-input-category select,
-.filter-form-input-nutrient select {
-  font-family: "Segoe Print", sans-serif;
+.filter-form-input-nutrient select,
+.filter-form-input-page-size select {
   font-size: 11px;
   border: white thin solid;
-  background-color: white;
   border-radius: unset;
-  color: dimgrey;
 }
 
 .filter-form-input-category option,
@@ -50,10 +39,8 @@
 
 .filter-form-button button {
   width: 95px;
-  font-family: "Segoe Print", sans-serif;
   font-size: 11px;
   border: white thin solid;
-  background-color: white;
   border-radius: unset;
 }
 

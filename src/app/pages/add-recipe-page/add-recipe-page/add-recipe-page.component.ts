@@ -11,6 +11,7 @@ import {IIngredientCategory} from "../../../interfaces/categories/IIngredientCat
 import {IngredientCategoryService} from "../../../services/fetches/ingredients/ingredient-category.service";
 import {IListOfIngredientsForNewRecipe} from "../../../interfaces/entities/ingredient/IListOfIngredientsForNewRecipe";
 import {StoreService} from "../../../services/store/store.service";
+import {RxwebValidators} from "@rxweb/reactive-form-validators";
 
 @Component({
   selector: 'app-add-recipe',
@@ -60,7 +61,7 @@ export class AddRecipePageComponent implements OnInit {
           weight: new FormControl(null,[Validators.required]),
           category: new FormControl(null, [Validators.required])
         })
-      ], [Validators.required] ),
+      ], [Validators.required, RxwebValidators.unique()] ),
       picture: new FormControl(null, [Validators.required])
     })
   }
@@ -71,9 +72,9 @@ export class AddRecipePageComponent implements OnInit {
 
   addIngredient() {
     this.getIngredients().push(this.formBuilder.group({
-      id: new FormControl(null),
-      weight: new FormControl(null),
-      category: new FormControl(null)
+      id: new FormControl(null,[Validators.required, RxwebValidators.unique()]),
+      weight: new FormControl(null,[Validators.required]),
+      category: new FormControl(null, [Validators.required])
     }))
     this.selectedIngredients.push({listOfIngredients: this.ingredients})
   }

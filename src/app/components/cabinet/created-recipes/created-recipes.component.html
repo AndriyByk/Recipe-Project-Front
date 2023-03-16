@@ -1,5 +1,5 @@
-<div class="cabinet-created-recipes-list">
-  <div class="cabinet-created-recipes-list-title">
+<div class="cabinet-created-recipes-list display-flex flex-dir-column height-100-per background-color-white width-fit-cont">
+  <div class="cabinet-created-recipes-list-title font-f-segoe-script font-weight-bold">
     СТВОРЕНІ РЕЦЕПТИ
   </div>
 
@@ -9,22 +9,22 @@
     </div>
   </div>
 
-  <div class="cabinet-created-recipes-list-content">
+  <div class="display-flex height-100-per flex-dir-column cabinet-created-recipes-list-content">
     <div class="cabinet-created-recipes-navigation">
       <div class="cabinet-created-recipes-search">
-        <div class="cabinet-created-recipes-search-form-wrapper">
-          <form class="cabinet-created-recipes-search-form" [formGroup]="searchForm">
-            <div class="cabinet-created-recipes-search-form-inputs">
+        <div class="width-100-per display-flex align-item-cent just-cont-spac-arou cabinet-created-recipes-search-form-wrapper">
+          <form class="display-flex cabinet-created-recipes-search-form" [formGroup]="searchForm">
+            <div class="display-flex just-cont-cent cabinet-created-recipes-search-form-inputs">
 
               <div class="cabinet-created-recipes-search-form-input-title">
                 <label>
-                  <input type="text" placeholder="Введіть назву рецепта" [defaultValue]="''" formControlName="title">
+                  <input class="font-f-segoe-print background-color-white" type="text" placeholder="Введіть назву рецепта" [defaultValue]="''" formControlName="title">
                 </label>
               </div>
 
               <div class="cabinet-created-recipes-search-form-input-category">
                 <label>
-                  <select [(ngModel)]="meme1" formControlName="recipeCategoryId">
+                  <select class="font-f-segoe-print background-color-white color-dimgrey" [(ngModel)]="meme1" formControlName="recipeCategoryId">
                     <option [ngValue]="null" selected disabled hidden>Категорія рецептів</option>
                     <option [ngValue]="category.id" *ngFor="let category of categories">{{category.name}}</option>
                     <option [ngValue]="0">Категорія відсутня</option>
@@ -34,7 +34,7 @@
 
               <div class="cabinet-created-recipes-search-form-input-nutrient">
                 <label>
-                  <select [(ngModel)]="meme2" formControlName="nutrientId">
+                  <select class="font-f-segoe-print background-color-white color-dimgrey" [(ngModel)]="meme2" formControlName="nutrientId">
                     <option [ngValue]="null" disabled selected hidden>Сортування по нутрієнту</option>
                     <option *ngFor="let nutrient of nutrients"
                             [ngValue]="nutrient.idOfNutrient">{{nutrient.name}}</option>
@@ -42,31 +42,42 @@
                   </select>
                 </label>
               </div>
+
+              <div class="cabinet-created-recipes-search-form-input-page-size">
+                <label>
+                  <select class="font-f-segoe-print color-dimgrey background-color-white" [(ngModel)]="meme3" formControlName="pageSize">
+                    <option [ngValue]="null" disabled selected hidden>Кількість</option>
+                    <option [ngValue]="10">10</option>
+                    <option [ngValue]="20">20</option>
+                    <option [ngValue]="50">50</option>
+                  </select>
+                </label>
+              </div>
             </div>
             <div class="cabinet-created-recipes-search-form-button">
-              <button (click)="submitFilter()" type="submit">Пошук</button>
+              <button class="font-f-segoe-print background-color-ece1cb" (click)="submitFilter()" type="submit">Пошук</button>
             </div>
           </form>
         </div>
       </div>
     </div>
-    <div class="cabinet-created-recipes-list-recipes-wrapper">
-      <div class="cabinet-created-recipes-list-recipes">
+    <div class="height-100-per cabinet-created-recipes-list-recipes-wrapper">
+      <div class="display-flex height-100-per just-cont-cent align-item-cent cabinet-created-recipes-list-recipes">
         <app-created-recipe class="cabinet-created-recipe-app" *ngFor="let recipeCreated of recipesCreated"
                             [recipeCreated]="recipeCreated"></app-created-recipe>
         <div class="cabinet-link-to-add-recipe">
-          <a [routerLink]="['/add-recipe']">+</a>
+          <a class="display-flex box-sizing-bor-box just-cont-cent align-item-cent background-color-white font-f-segoe-print font-weight-bold color-9a9a9a" [routerLink]="['/add-recipe']">+</a>
         </div>
       </div>
     </div>
     <div class="cabinet-created-recipes-pagination">
-      <div class="cabinet-created-recipes-pagination-wrapper">
-        <div class="cabinet-created-recipes-pagination-paging">
-          <button (click)="goFirstPage()" class="cabinet-created-recipes-pagination-paging-first-page">|<<</button>
-          <button (click)="goPreviousPage()" class="cabinet-created-recipes-pagination-paging-previous-page"><</button>
-          <div class="cabinet-created-recipes-pagination-current-page">{{pageInfoOfCreated.currentPage + 1}}/{{pageInfoOfCreated.totalPages}}</div>
-          <button (click)="goNextPage()" class="cabinet-created-recipes-pagination-paging-next-page">></button>
-          <button (click)="goLastPage()" class="cabinet-created-recipes-pagination-paging-last-page">>>|</button>
+      <div class="width-100-per display-flex just-cont-cent align-item-cent cabinet-created-recipes-pagination-wrapper">
+        <div class="display-flex just-cont-spac-arou cabinet-created-recipes-pagination-paging background-color-white">
+          <button (click)="goFirstPage()" class="cabinet-created-recipes-pagination-paging-first-page background-color-transp font-weight-bold">|<<</button>
+          <button (click)="goPreviousPage()" class="cabinet-created-recipes-pagination-paging-previous-page background-color-transp font-weight-bold"><</button>
+          <div class="display-flex cabinet-created-recipes-pagination-current-page align-item-cent">{{pageInfoOfCreated.currentPage + 1}}/{{pageInfoOfCreated.totalPages}}</div>
+          <button (click)="goNextPage()" class="cabinet-created-recipes-pagination-paging-next-page background-color-transp font-weight-bold">></button>
+          <button (click)="goLastPage()" class="cabinet-created-recipes-pagination-paging-last-page background-color-transp font-weight-bold">>>|</button>
         </div>
       </div>
     </div>

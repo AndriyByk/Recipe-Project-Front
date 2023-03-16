@@ -7,63 +7,34 @@
 
 .user-norms-page {
   padding: 160px 20px 10px 20px;
-  width: 100%;
-  height: fit-content;
   min-height: 100%;
-  background-color: #ece1cb;
-  display: flex;
-  box-sizing: border-box;
-  justify-content: center;
 }
 
 .user-norms-page-content {
   width: 70%;
   min-width: 900px;
   max-width: 1240px;
-  height: fit-content;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   box-shadow: inset #ece1cb 0 0 30px;
-  background-color: white;
   border-left: white medium solid;
   border-radius: 30px;
 }
 
 .user-norms-page-title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding: 20px 0 20px 0;
-  font-family: "Segoe Script", sans-serif;
-  font-weight: bold;
   font-size: 25px;
   border-radius: 5px;
   width: 82%;
 }
 
 .user-norms-page-list {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 85%;
 }
 
 .user-norms-page-list-have {
-  display: flex;
-  justify-content: center;
   column-gap: 2%;
-  width: 100%;
-}
-
-.user-norms-page-norms-energy-organics {
-  display: flex;
-  flex-direction: column;
 }
 
 .user-norms-page-norm {
-  display: flex;
-  justify-content: center;
   width: 265px;
 }
 
@@ -72,41 +43,26 @@
 }
 
 .user-norms-page-norm > div {
-  display: flex;
   width: 90%;
-  justify-content: right;
   border-left: #ece1cb solid medium;
   border-radius: 20px;
   border-right: #ece1cb solid medium;
   border-bottom: #ece1cb solid thin;
-  /*background-color: white;*/
 }
 
 .user-norms-page-norm-name {
-  display: flex;
   padding: 10px;
-  justify-content: center;
   width: 135px;
-  box-sizing: border-box;
-  font-family: "Segoe Print", sans-serif;
-  font-weight: bold;
   font-size: 15px;
-  color: #9f653b;
 }
 
 .user-norm-page-norm-quantity {
-  display: flex;
   padding: 10px;
-  justify-content: center;
   width: 115px;
-  box-sizing: border-box;
-  font-family: "Segoe Script", sans-serif;
 }
 
 .user-norms-page-norm-category {
   box-shadow: #ece1cb 0 0 5px;
-  background-color: #ece1cb;
-  font-family: "Segoe Print", sans-serif;
   font-size: 18px;
   border-radius: 5px;
   padding: 5px 0 5px 10px;

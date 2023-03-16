@@ -1,25 +1,15 @@
 .header {
   z-index: 1;
-  display: flex;
-  flex-direction: column;
   padding: 10px 0;
-  align-items: center;
   position: fixed;
   top: 0;
-  width: 100%;
   box-shadow: inset #ece1cb 0 120px 30px;
   border-bottom: white thin solid;
 }
 
 .header-top {
-  display: flex;
-  justify-content: center;
   column-gap: 40px;
   padding-bottom: 10px;
-}
-
-.header-top > div {
-  background-color: white;
 }
 
 .header-admin-mode {
@@ -27,43 +17,19 @@
   z-index: 1000;
   left: 10px;
   top: 10px;
-  font-family: Lato, serif;
-  font-weight: bold;
   font-size: 35px;
-  color: firebrick;
 }
 
 .header-title,
 .header-cabinet-link,
 .header-button-signIn,
 .header-button-signOut {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   padding: 0 10px;
-}
-
-.header-title-div,
-.header-cabinet-link-div,
-.header-button-signIn-div,
-.header-button-signOut-div {
-  font-family: "Segoe Print", sans-serif;
-  font-size: 12px;
-  color: #9a9a9a;
-}
-
-.header-right {
-  display: flex;
-  align-items: center;
 }
 
 .header a {
   text-decoration: none;
-  color: black;
   font-size: 25px;
-  font-weight: bold;
-  font-family: "Segoe Script", sans-serif;
 }
 
 .header a:hover {

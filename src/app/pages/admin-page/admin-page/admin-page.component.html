@@ -1,32 +1,31 @@
-<div class="admin-page-wrapper">
-  <div class="admin-page-title">Неперевірені рецепти</div>
+<div class="admin-page-wrapper display-flex width-100-per flex-dir-column just-cont-cent align-item-cent height-fit-cont background-color-ece1cb box-sizing-bor-box">
 
 <!-------------------------------------->
-  <div class="admin-page-list-of-recipes">
-
-    <a class="admin-page-list-of-recipes-recipe-wrapper" [routerLink]="[urlToRecipe, recipe.id]" *ngFor="let recipe of recipes">
-      <div class="admin-page-list-of-recipes-recipe">
+  <div class="admin-page-list-of-recipes display-flex background-color-white flex-dir-column">
+    <div class="admin-page-title font-f-lato">Неперевірені рецепти</div>
+    <a class="admin-page-list-of-recipes-recipe-wrapper display-flex color-black" [routerLink]="[urlToRecipe, recipe.id]" *ngFor="let recipe of recipes">
+      <div class="admin-page-list-of-recipes-recipe width-100-per box-sizing-bor-box display-flex align-item-cent background-color-white">
 
         <div class="admin-page-list-of-recipes-recipe-left">
           <div class="admin-page-list-of-recipes-recipe-photo">
-            <div class="admin-page-list-of-recipes-recipe-photo-content">
-              <img src="{{url + '/' + recipe.dateOfCreation + '/' + recipe.image}}" alt="photo">
+            <div class="admin-page-list-of-recipes-recipe-photo-content width-100-per display-flex just-cont-cent align-item-cent">
+              <img class="height-auto" src="{{url + '/' + recipe.dateOfCreation + '/' + recipe.image}}" alt="photo">
             </div>
           </div>
         </div>
 
         <div class="admin-page-list-of-recipes-recipe-center">
-          <div class="admin-page-list-of-recipes-recipe-title">
+          <div class="admin-page-list-of-recipes-recipe-title display-flex just-cont-cent font-weight-bold font-f-lato-semibold">
             <div class="admin-page-list-of-recipes-recipe-title-content">{{recipe.title}}</div>
           </div>
-          <div class="admin-page-list-of-recipes-recipe-category">
+          <div class="admin-page-list-of-recipes-recipe-category font-f-lato font-weight-bold display-flex just-cont-cent">
             <div class="admin-page-list-of-recipes-recipe-category-content">{{recipe.recipeCategoryDto.name}}</div>
           </div>
         </div>
 
         <div class="admin-page-list-of-recipes-recipe-right">
-          <div class="admin-page-list-of-recipes-recipe-ingredients">
-            <div class="admin-page-list-of-recipes-recipe-ingredient" *ngFor="let ingredient of recipe.ingredients">
+          <div class="admin-page-list-of-recipes-recipe-ingredients display-flex flex-dir-column just-cont-cent">
+            <div class="admin-page-list-of-recipes-recipe-ingredient display-flex font-f-lato-light" *ngFor="let ingredient of recipe.ingredients">
               <div class="admin-page-list-of-recipes-recipe-ingredient-name">
                 <div class="admin-page-list-of-recipes-recipe-ingredient-name-content">
                   {{ingredient.name_ukr}}
@@ -35,7 +34,7 @@
             </div>
           </div>
         </div>
-        <div class="admin-page-list-of-recipes-recipe-status-wrapper">
+        <div class="admin-page-list-of-recipes-recipe-status-wrapper font-f-lato font-weight-bold color-firebrick">
           <div class="admin-page-list-of-recipes-recipe-status">
             Неперевірений!
           </div>

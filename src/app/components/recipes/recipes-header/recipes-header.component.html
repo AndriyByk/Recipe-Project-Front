@@ -1,16 +1,16 @@
-<div class="header-bottom">
-  <form class="filter-form" [formGroup]="form">
-    <div class="filter-form-inputs">
+<div class="header-bottom width-100-per display-flex align-item-cent just-cont-spac-arou">
+  <form class="filter-form display-flex" [formGroup]="form">
+    <div class="filter-form-inputs display-flex just-cont-cent">
 
       <div class="filter-form-input-title">
         <label>
-          <input type="text" placeholder="Введіть назву рецепта" [defaultValue]="''" formControlName="title">
+          <input class="font-f-segoe-print background-color-white" type="text" placeholder="Введіть назву рецепта" [defaultValue]="''" formControlName="title">
         </label>
       </div>
 
       <div class="filter-form-input-category">
         <label>
-          <select [(ngModel)]="meme1" formControlName="recipeCategoryId">
+          <select class="font-f-segoe-print color-dimgrey background-color-white" [(ngModel)]="meme1" formControlName="recipeCategoryId">
             <option [ngValue]="null" selected disabled hidden>Категорія рецептів</option>
             <option [ngValue]="category.id" *ngFor="let category of categories">{{category.name}}</option>
             <option [ngValue]="0">Категорія відсутня</option>
@@ -20,16 +20,27 @@
 
       <div class="filter-form-input-nutrient">
         <label>
-          <select [(ngModel)]="meme2" formControlName="nutrientId">
+          <select class="font-f-segoe-print color-dimgrey background-color-white" [(ngModel)]="meme2" formControlName="nutrientId">
             <option [ngValue]="null" disabled selected hidden>Сортування по нутрієнту</option>
             <option *ngFor="let nutrient of nutrients" [ngValue]="nutrient.idOfNutrient">{{nutrient.name}}</option>
             <option [ngValue]="0">Категорія відсутня</option>
           </select>
         </label>
       </div>
+
+      <div class="filter-form-input-page-size">
+        <label>
+          <select class="font-f-segoe-print color-dimgrey background-color-white" [(ngModel)]="meme3" formControlName="pageSize">
+            <option [ngValue]="null" disabled selected hidden>Кількість</option>
+            <option [ngValue]="10">10</option>
+            <option [ngValue]="20">20</option>
+            <option [ngValue]="50">50</option>
+          </select>
+        </label>
+      </div>
     </div>
     <div class="filter-form-button">
-      <button (click)="submitFilter()" type="submit">Пошук</button>
+      <button class="font-f-segoe-print background-color-white" (click)="submitFilter()" type="submit">Пошук</button>
     </div>
   </form>
 </div>

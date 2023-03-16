@@ -1,22 +1,22 @@
-<div class="recipe" id="recipe">
-  <a [routerLink]="[link, recipe.id]" [state]="{data: recipe}">
+<div class="recipe height-fit-cont width-100-per box-sizing-bor-box display-flex flex-dir-column align-item-cent background-color-white" id="recipe">
+  <a class="display-flex flex-dir-column just-cont-cent align-item-cent color-black" [routerLink]="[link, recipe.id]" [state]="{data: recipe}">
     <div class="recipe-photo">
-      <div class="recipe-photo-content">
+      <div class="recipe-photo-content display-flex just-cont-cent">
         <img class="recipe-photo-content-img" src="{{url + '/' + recipe.dateOfCreation + '/' + recipe.image}}"
              alt="photo">
       </div>
     </div>
 
-    <div class="recipe-title">
-      <div class="recipe-title-content">{{recipe.title}}</div>
+    <div class="recipe-title display-flex just-cont-cent">
+      <div class="recipe-title-content font-f-lato-semibold">{{recipe.title}}</div>
     </div>
 
-    <div class="recipe-category">
-      <div class="recipe-category-content">{{recipe.recipeCategoryDto.name}}</div>
+    <div class="recipe-category display-flex font-f-lato">
+      <div class="recipe-category-content display-flex just-cont-cent">{{recipe.recipeCategoryDto.name}}</div>
     </div>
 
-    <div class="recipe-ingredients">
-      <div class="recipe-ingredient" *ngFor="let ingredient of recipe.ingredients">
+    <div class="recipe-ingredients display-flex flex-dir-column just-cont-cent">
+      <div class="recipe-ingredient display-flex font-f-lato-light" *ngFor="let ingredient of recipe.ingredients">
         <div class="recipe-ingredient-name">
           <div class="recipe-ingredient-name-content">
             {{ingredient.name}}

@@ -35,6 +35,7 @@ export class FavoriteRecipesComponent implements OnInit {
 
   meme1 = null;
   meme2 = null;
+  meme3 = null;
 
   constructor(private router: Router,
               private storeService: StoreService,
@@ -53,40 +54,63 @@ export class FavoriteRecipesComponent implements OnInit {
 
   private createForm() {
     this.searchForm = new FormGroup({
-      title: new FormControl(null),
-      recipeCategoryId: new FormControl(null),
-      nutrientId: new FormControl(null)
+      title: new FormControl(undefined),
+      recipeCategoryId: new FormControl(0),
+      nutrientId: new FormControl(0),
+      pageSize: new FormControl(10)
     })
   }
 
   submitFilter(): void {
-    this.storeService.searchDetailsOfFavorite.next({})
+    this.storeService.searchDetailsOfFavorite.next({
+      recipeCategoryId: 0,
+      nutrientId: 0,
+      title: undefined,
+      pageSize: 10
+    })
+    this.searchDetailsOfFavorite = {
+      recipeCategoryId: 0,
+      nutrientId: 0,
+      title: undefined,
+      pageSize: 10
+    }
 
     this.searchDetailsOfFavorite = this.searchForm.getRawValue();
     this.storeService.searchDetailsOfFavorite.next(this.searchForm.getRawValue())
-    console.log(this.searchForm.getRawValue());
 
+    // pageInfo
     this.storeService.pageInfoOfFavorite.next({
       currentPage: 0,
-      totalPages: this.pageInfoOfFavorite.totalPages,
-      totalElements: this.pageInfoOfFavorite.totalElements
+      totalPages: 0,
+      totalElements: 0
     });
+    this.pageInfoOfFavorite = {
+      currentPage: 0,
+      totalPages: 0,
+      totalElements: 0
+    };
 
     if (
-      this.searchDetailsOfFavorite.nutrientId ||
-      this.searchDetailsOfFavorite.recipeCategoryId ||
-      this.searchDetailsOfFavorite.title ||
-      this.searchDetailsOfFavorite.recipeCategoryId && this.searchDetailsOfFavorite.title ||
-      this.searchDetailsOfFavorite.recipeCategoryId && this.searchDetailsOfFavorite.nutrientId ||
-      this.searchDetailsOfFavorite.title && this.searchDetailsOfFavorite.nutrientId ||
-      this.searchDetailsOfFavorite.recipeCategoryId && this.searchDetailsOfFavorite.title && this.searchDetailsOfFavorite.nutrientId
-    ) {
+      !(!this.searchDetailsOfFavorite.nutrientId &&
+      !this.searchDetailsOfFavorite.recipeCategoryId &&
+      !this.searchDetailsOfFavorite.title &&
+      !this.searchDetailsOfFavorite.pageSize )
+      ) {
+    // if (
+    //   this.searchDetailsOfFavorite.nutrientId ||
+    //   this.searchDetailsOfFavorite.recipeCategoryId ||
+    //   this.searchDetailsOfFavorite.title ||
+    //   this.searchDetailsOfFavorite.recipeCategoryId && this.searchDetailsOfFavorite.title ||
+    //   this.searchDetailsOfFavorite.recipeCategoryId && this.searchDetailsOfFavorite.nutrientId ||
+    //   this.searchDetailsOfFavorite.title && this.searchDetailsOfFavorite.nutrientId ||
+    //   this.searchDetailsOfFavorite.recipeCategoryId && this.searchDetailsOfFavorite.title && this.searchDetailsOfFavorite.nutrientId
+    // ) {
       this.router.navigate(['cabinet/favorite-recipes', this.pageInfoOfFavorite.currentPage], {
         queryParams: {
           categoryId: this.searchDetailsOfFavorite.recipeCategoryId,
           title: this.searchDetailsOfFavorite.title,
           nutrientId: this.searchDetailsOfFavorite.nutrientId,
-          pageSize: this.pageSizeOfFavorite,
+          pageSize: this.searchDetailsOfFavorite.pageSize,
           userId: this.user.id
         }
       })
@@ -144,7 +168,7 @@ export class FavoriteRecipesComponent implements OnInit {
         categoryId: this.searchDetailsOfFavorite.recipeCategoryId,
         title: this.searchDetailsOfFavorite.title,
         nutrientId: this.searchDetailsOfFavorite.nutrientId,
-        pageSize: this.pageSizeOfFavorite,
+        pageSize: this.searchDetailsOfFavorite.pageSize,
         userId: this.user.id
       }
     })

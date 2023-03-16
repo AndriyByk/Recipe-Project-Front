@@ -3,30 +3,19 @@
 }
 
 .cabinet {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
   row-gap: 20px;
-  width: 100%;
 }
 
 .cabinet-links-wrapper {
   position: fixed;
   top: 70px;
-  display: flex;
-  width: 100%;
   border-top: white thin solid;
   z-index: 1;
 }
 
 .cabinet-links {
-  display: flex;
   padding: 10px;
-  box-sizing: border-box;
-  justify-content: center;
   column-gap: 25px;
-  background-color: #ece1cb;
-  width: 100%;
   z-index: 1;
   border-bottom: white thin solid;
 }
@@ -34,12 +23,8 @@
 .cabinet-links a {
   text-decoration: none;
   font-size: 20px;
-  font-family: "Segoe Print", sans-serif;
-  font-weight: bold;
   box-shadow: inset #ece1cb 0 0 5px;
   padding: 10px;
-  background-color: white;
-  color: black;
 }
 
 .cabinet-links a:hover {
@@ -51,12 +36,5 @@
 }
 
 .cabinet-outlet-wrapper {
-  /*position: fixed;*/
   top: 146px;
-  width: 100%;
-  display: flex;
-  /*padding: 50px;*/
-  box-sizing: border-box;
-  justify-content: center;
-  height: 100%;
 }

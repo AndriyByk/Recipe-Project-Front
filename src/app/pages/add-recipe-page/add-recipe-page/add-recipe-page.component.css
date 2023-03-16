@@ -6,24 +6,11 @@
 }
 
 .add-recipe {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   padding: 70px 20px 60px 20px;
-  background-color: #ece1cb;
 }
 
 .add-recipe-form {
-  border-top: white medium solid;
-  border-bottom: white medium solid;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
   border-radius: 20px;
-  /*text-decoration: #555555;*/
-  /*width: 70%;*/
   row-gap: 20px;
 }
 
@@ -31,18 +18,14 @@
 .add-recipe-form-cooking > label,
 .add-recipe-form-category > label,
 .add-recipe-form-image > label {
-  display: flex;
-  justify-content: center;
   width: 300px;
 }
 
 /* inputs */
 .add-recipe-form input {
-  font-family: "Segoe Print", serif;
   border-radius: 5px;
   border: none;
   box-shadow: white 0 0 10px;
-  background-color: white;
 }
 
 .add-recipe-form-title input,
@@ -62,22 +45,18 @@
 }
 
 .add-recipe-form-cooking textarea {
-  font-family: "Segoe Print", serif;
   border-radius: 5px;
   border: none;
   box-shadow: white 0 0 10px;
-  background-color: white;
   width: 800px;
   font-size: 12px;
 }
 
 .add-recipe-form button {
-  font-family: "Segoe Script", serif;
   font-size: 13px;
   border-radius: 5px;
   border: none;
   box-shadow: white 0 0 10px;
-  background-color: white;
 }
 
 .add-recipe-form-ingredient-add-button button {
@@ -95,50 +74,29 @@
 }
 
 .add-recipe-form select {
-  font-family: "Segoe Print", serif;
   font-size: 13px;
   border-radius: 5px;
   border: none;
   box-shadow: white 0 0 10px;
-  background-color: white;
-}
-
-.add-recipe-form-title,
-.add-recipe-form-cooking,
-.add-recipe-form-category,
-.add-recipe-form-ingredients,
-.add-recipe-form-image {
-  /*padding-bottom: 20px;*/
-  /*margin: 20px 20px 0 20px;*/
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 /*-- ingredients  ---*/
 
 .add-recipe-form-ingredient {
-  display: flex;
   box-shadow: white 0 0 10px;
   border-radius: 5px;
-  background-color: white;
 }
 
 .add-recipe-form-ingredients-list {
   width: 800px;
-  display: flex;
-  flex-direction: column;
 }
 
 .add-recipe-form-ingredient-number {
-  font-family: "Segoe Script", serif;
   width: 10px;
   font-size: 13px;
 }
 
 .add-recipe-form-ingredients-list > div {
-  display: flex;
-  justify-content: space-around;
   padding: 5px 0;
 }
 
@@ -152,7 +110,6 @@
   top: 15px;
   left: -10px;
   width: 50px;
-  font-family: "Segoe Print", serif;
   font-size: 13px;
 }
 
@@ -173,9 +130,6 @@
 /*-------------------------*/
 .add-recipe-form-submit-button {
   height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .add-recipe-form-submit-button button {

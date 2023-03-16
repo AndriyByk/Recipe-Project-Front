@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {baseURL, recipeUrl} from "../../../urls/urls";
 import {IUserShort} from "../../../interfaces/entities/user/IUserShort";
@@ -17,15 +17,16 @@ export class UserPageComponent implements OnInit {
   url: string;
   urlToRecipe: string;
   pageInfoOfUserCreated: IPageInfo;
-  pageSizeOfUserCreated: number = 10;
+  pageSizeOfUserCreated: number;
 
   constructor(private activatedRoute: ActivatedRoute,
               private storeService: StoreService,
-              private router: Router) { }
+              private router: Router) {
+  }
 
   ngOnInit(): void {
 
-    localStorage.getItem('actualUser')?this.urlToRecipe = "/recipe/username":this.urlToRecipe = "/recipe";
+    localStorage.getItem('actualUser') ? this.urlToRecipe = "/recipe/username" : this.urlToRecipe = "/recipe";
 
     this.url = baseURL + recipeUrl.pictures;
     this.activatedRoute.data.subscribe(({user, createdRecipes}) => {
@@ -36,16 +37,14 @@ export class UserPageComponent implements OnInit {
         totalPages: createdRecipes.totalPages,
         totalElements: createdRecipes.totalElements
       })
-      this.storeService.pageInfoOfUserCreated.subscribe(value => this.pageInfoOfUserCreated = value)
+      this.storeService.pageInfoOfUserCreated.subscribe(value => this.pageInfoOfUserCreated = value);
+      this.storeService.pageSizeOfUserCreated.subscribe(value => this.pageSizeOfUserCreated = value);
     });
 
   }
 
   goFirstPage() {
     if (this.pageInfoOfUserCreated.currentPage != 0) {
-
-      console.log(this.pageInfoOfUserCreated);
-
       this.updatePageInfo(0, this.pageInfoOfUserCreated.totalPages, this.pageInfoOfUserCreated.totalElements);
       this.navigate();
     }
@@ -53,8 +52,6 @@ export class UserPageComponent implements OnInit {
 
   goPreviousPage() {
     if (this.pageInfoOfUserCreated.currentPage > 0) {
-
-      console.log(this.pageInfoOfUserCreated);
       this.updatePageInfo(this.pageInfoOfUserCreated.currentPage - 1, this.pageInfoOfUserCreated.totalPages, this.pageInfoOfUserCreated.totalElements);
       this.navigate();
     }
@@ -62,8 +59,6 @@ export class UserPageComponent implements OnInit {
 
   goNextPage() {
     if (this.pageInfoOfUserCreated.currentPage < this.pageInfoOfUserCreated.totalPages - 1) {
-
-      console.log(this.pageInfoOfUserCreated);
       this.updatePageInfo(this.pageInfoOfUserCreated.currentPage + 1, this.pageInfoOfUserCreated.totalPages, this.pageInfoOfUserCreated.totalElements);
       this.navigate();
     }
@@ -71,15 +66,12 @@ export class UserPageComponent implements OnInit {
 
   goLastPage() {
     if (this.pageInfoOfUserCreated.currentPage != this.pageInfoOfUserCreated.totalPages - 1) {
-
-      console.log(this.pageInfoOfUserCreated);
       this.updatePageInfo(this.pageInfoOfUserCreated.totalPages - 1, this.pageInfoOfUserCreated.totalPages, this.pageInfoOfUserCreated.totalElements);
       this.navigate();
     }
   }
 
 //======================================================================
-
 
   updatePageInfo(currentPage: number, totalPages: number, totalRecipes: number): void {
     this.storeService.pageInfoOfUserCreated.next({

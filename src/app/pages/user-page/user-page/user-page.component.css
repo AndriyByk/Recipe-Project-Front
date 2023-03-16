@@ -1,57 +1,24 @@
 .user-page {
-  display: flex;
-  background-color: #ece1cb;
   padding: 100px 20px 60px 20px;
   border: white thin solid;
 }
 
-.user-page-username {
-  font-weight: bold;
-}
-
 .user-page-avatar-and-registration {
   padding: 30px 10px;
-  height: fit-content;
   max-width: 200px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
   row-gap: 10px;
-
-  font-family: "Lato Light", sans-serif;
-  /*font-style: italic;*/
   font-size: 15px;
 }
 
-.user-page-date-of-registration span {
-  font-weight: bold;
-}
-
-.user-page-role span {
-  font-weight: bold;
-}
-
 .user-page-avatar img {
-  height: auto;
   max-height: 300px;
   min-width: 150px;
   max-width: 100%;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.user-page-date-of-registration {
-
 }
 
 /*============================*/
 
 .user-page-created-recipes {
-  display: flex;
-  flex-direction: column;
   row-gap: 10px;
   padding: 30px 20px;
   width: 75%;
@@ -63,20 +30,13 @@
 }
 
 .user-page-created-recipes a {
-  display: flex;
   text-decoration: none;
-  color: black;
 }
 
 .user-page-created-recipe {
   border-radius: 15px;
   box-shadow: 1px 1px 2px #555555;
-  width: 100%;
   padding: 30px 10px;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  background-color: white;
 }
 
 /*==============================*/
@@ -85,10 +45,6 @@
 }
 
 .user-page-created-recipe-photo-content {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   overflow-y: hidden;
   max-height: 200px;
   border-radius: 30%;
@@ -97,49 +53,33 @@
 
 .user-page-created-recipe-photo-content img {
   max-width: 100%;
-  height: auto;
-  box-sizing: border-box;
 }
 
 /*=================================*/
 
 .user-page-created-recipe-title {
-  display: flex;
-  justify-content: center;
-  font: 20px "Lato Semibold", sans-serif;
-  font-weight: bold;
+  font-size: 20px;
   width: 250px;
-
 }
 
 .user-page-created-recipe-category {
-  font-family: Lato, serif;
   font-size: 15px;
-  font-weight: bold;
   padding: 5px 10px;
-  display: flex;
-  justify-content: center;
   border-top: #ece1cb medium dotted;
 }
 /*=====================================*/
 
 .user-page-created-recipe-ingredients {
-  display: flex;
   column-gap: 6px;
   row-gap: 3px;
   flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: center;
   padding: 5px;
   max-height: 150px;
-  /*border-left: #555555 thin dotted;*/
 }
 
 .user-page-created-recipe-ingredient {
-  display: flex;
   column-gap: 10px;
   border-radius: 5px;
-  font-family: Lato Light, serif;
   font-size: 14px;
   padding: 5px 8px;
   border-left: #555555 medium solid;
@@ -148,25 +88,16 @@
 /*=================== paging ================*/
 
 .user-page-created-recipes-pagination-wrapper {
-  width: 100%;
   padding: 0 0 10px 0;
-  /*box-shadow: inset #ece1cb 0 -80px 30px;*/
-  display: flex;
-  justify-content: center;
-  align-items: center;
   min-height: 57px;
 }
 
 .user-page-created-recipes-pagination-paging {
-  display: flex;
-  background-color: white;
   column-gap: 20px;
   width: 30%;
   height: 40px;
   min-width: 330px;
   box-shadow: white 0 10px 12px;
-  /*border-radius: 50%;*/
-  justify-content: space-around;
 }
 
 .user-page-created-recipes-pagination-paging-first-page,
@@ -174,12 +105,9 @@
 .user-page-created-recipes-pagination-paging-next-page,
 .user-page-created-recipes-pagination-paging-last-page {
   border: transparent;
-  background-color: transparent;
   font-size: 25px;
-  font-weight: bold;
   font-family: "SimSun", serif;
   padding: 0 10px;
-  /*border-radius: 20px;*/
   min-width: 50px;
 }
 
@@ -193,8 +121,6 @@
 }
 
 .user-page-created-recipes-pagination-current-page {
-  display: flex;
-  align-items: center;
   font-family: "MV Boli", serif ;
   font-size: 22px;
 }

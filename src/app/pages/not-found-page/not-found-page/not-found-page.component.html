@@ -1,10 +1,10 @@
-<div class="page-not-found">
-  <div>
+<div class="font-f-lato page-not-found-wrapper display-flex flex-dir-column height-100-per width-100-per just-cont-cent align-item-cent">
+  <div class="page-not-found">
     <div>
       Помилка 404 :(
     </div>
     <div>
-      Сторінка не знайдена. <a> Поверніться на головну </a> сторінку
+      Сторінка не знайдена. <a class="color-black font-weight-bold" [routerLink]="['/recipes/all-recipes', 0]" [queryParams]="{pageSize: 10}"> Поверніться на головну </a> сторінку
     </div>
   </div>
 </div>

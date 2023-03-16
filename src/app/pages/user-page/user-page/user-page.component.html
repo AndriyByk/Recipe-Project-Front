@@ -1,47 +1,47 @@
-<div class="user-page">
-  <div class="user-page-avatar-and-registration">
+<div class="user-page display-flex background-color-ece1cb">
+  <div class="user-page-avatar-and-registration height-fit-cont display-flex flex-dir-column just-cont-cent align-item-flex-start font-f-lato-light">
     <div class="user-page-avatar">
-      <img src="{{url + '/' + user.username + '/' + user.avatar}}" alt="avatar">
+      <img class="height-auto box-sizing-bor-box display-flex just-cont-cent align-item-cent" src="{{url + '/' + user.username + '/' + user.avatar}}" alt="avatar">
     </div>
-    <div class="user-page-username">
+    <div class="user-page-username font-weight-bold">
       {{user.username}}
     </div>
     <div class="user-page-date-of-registration">
       <div>
-        {{'Користувач(-ка) з нами з '}}<span>{{user.dateOfRegistration}}</span>
+        {{'Користувач(-ка) з нами з '}}<span class="font-weight-bold">{{user.dateOfRegistration}}</span>
       </div>
     </div>
     <div class="user-page-role">
-      Роль:<span>{{user.role == 'ROLE_USER'? ' Користувач': user.role == 'ROLE_ADMIN'? ' Адміністратор': ' Супер адміністратор'}}</span>
+      Роль:<span class="font-weight-bold">{{user.role == 'ROLE_USER'? ' Користувач': user.role == 'ROLE_ADMIN'? ' Адміністратор': ' Супер адміністратор'}}</span>
     </div>
   </div>
 
   <!-------------------------------------->
-  <div class="user-page-created-recipes">
+  <div class="user-page-created-recipes display-flex flex-dir-column">
     <div class="user-page-no-recipes-message" *ngIf="createdRecipes.length == 0">Цей користувач ще не створив жодного рецепта</div>
-    <a *ngFor="let recipe of createdRecipes" [routerLink]="[urlToRecipe, recipe.id]">
-      <div class="user-page-created-recipe">
+    <a class="display-flex color-black" *ngFor="let recipe of createdRecipes" [routerLink]="[urlToRecipe, recipe.id]">
+      <div class="user-page-created-recipe width-100-per box-sizing-bor-box display-flex align-item-cent background-color-white">
 
         <div class="user-page-created-recipe-left">
           <div class="user-page-created-recipe-photo">
-            <div class="user-page-created-recipe-photo-content">
-              <img src="{{url + '/' + recipe.dateOfCreation + '/' + recipe.image}}" alt="photo">
+            <div class="user-page-created-recipe-photo-content width-100-per display-flex just-cont-cent align-item-cent">
+              <img class="height-auto box-sizing-bor-box" src="{{url + '/' + recipe.dateOfCreation + '/' + recipe.image}}" alt="photo">
             </div>
           </div>
         </div>
 
         <div class="user-page-created-recipe-center">
-          <div class="user-page-created-recipe-title">
+          <div class="user-page-created-recipe-title display-flex just-cont-cent font-f-lato-semibold font-weight-bold">
             <div class="user-page-created-recipe-title-content">{{recipe.title}}</div>
           </div>
-          <div class="user-page-created-recipe-category">
+          <div class="user-page-created-recipe-category font-f-lato font-weight-bold display-flex just-cont-cent">
             <div class="user-page-created-recipe-category-content">{{recipe.recipeCategoryDto.name}}</div>
           </div>
         </div>
 
         <div class="user-page-created-recipe-right">
-          <div class="user-page-created-recipe-ingredients">
-            <div class="user-page-created-recipe-ingredient" *ngFor="let ingredient of recipe.ingredients">
+          <div class="user-page-created-recipe-ingredients display-flex flex-dir-column just-cont-cent">
+            <div class="user-page-created-recipe-ingredient display-flex font-f-lato-light" *ngFor="let ingredient of recipe.ingredients">
               <div class="user-page-created-recipe-ingredient-name">
                 <div class="user-page-created-recipe-ingredient-name-content">
                   {{ingredient.name_ukr}}
@@ -53,13 +53,13 @@
       </div>
     </a>
     <div class="user-page-created-recipes-pagination">
-      <div class="user-page-created-recipes-pagination-wrapper">
-        <div class="user-page-created-recipes-pagination-paging">
-          <button (click)="goFirstPage()" class="user-page-created-recipes-pagination-paging-first-page">|<<</button>
-          <button (click)="goPreviousPage()" class="user-page-created-recipes-pagination-paging-previous-page"><</button>
-          <div class="user-page-created-recipes-pagination-current-page">{{pageInfoOfUserCreated.currentPage + 1}}/{{pageInfoOfUserCreated.totalPages}}</div>
-          <button (click)="goNextPage()" class="user-page-created-recipes-pagination-paging-next-page">></button>
-          <button (click)="goLastPage()" class="user-page-created-recipes-pagination-paging-last-page">>>|</button>
+      <div class="user-page-created-recipes-pagination-wrapper width-100-per display-flex just-cont-cent align-item-cent">
+        <div class="user-page-created-recipes-pagination-paging display-flex background-color-white just-cont-spac-arou">
+          <button (click)="goFirstPage()" class="user-page-created-recipes-pagination-paging-first-page background-color-transp font-weight-bold">|<<</button>
+          <button (click)="goPreviousPage()" class="user-page-created-recipes-pagination-paging-previous-page background-color-transp font-weight-bold"><</button>
+          <div class="user-page-created-recipes-pagination-current-page display-flex align-item-cent">{{pageInfoOfUserCreated.currentPage + 1}}/{{pageInfoOfUserCreated.totalPages}}</div>
+          <button (click)="goNextPage()" class="user-page-created-recipes-pagination-paging-next-page background-color-transp font-weight-bold">></button>
+          <button (click)="goLastPage()" class="user-page-created-recipes-pagination-paging-last-page background-color-transp font-weight-bold">>>|</button>
         </div>
       </div>
     </div>

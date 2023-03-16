@@ -21,6 +21,7 @@ export class RecipesResolver implements Resolve<IWrapperForRecipes> {
     if (isNaN(pageNumber)) {
       pageNumber = 0;
     }
+
     let pageSize = route.queryParams['pageSize'];
     if (!pageSize) {
       pageSize = 10;

@@ -1,78 +1,68 @@
-<div class="user-info-update">
-  <form class="user-info-update-form" [formGroup]="form">
+<div class="user-info-update width-100-per height-100-per">
+  <form class="user-info-update-form display-flex width-100-per height-100-per background-color-ece1cb flex-dir-column align-item-cent box-sizing-bor-box" [formGroup]="form">
 
-    <div class="user-info-update-form-avatar">
-      <label>
-        <div>
+    <div class="user-info-update-form-avatar display-flex just-cont-cent background-color-white">
+      <label class="display-flex">
+        <div class="display-flex font-f-segoe-print">
           Фото профілю:
         </div>
-        <input (change)="onChange($event)" placeholder="Pictures" type="file" id="file" formControlName="avatar">
-<!--        <img [src]="imgSrc " alt="your image" id="user-info-update-form-avatar-preview"/>-->
-
+        <input class="font-weight-bold font-f-segoe-script box-sizing-bor-box background-color-white" (change)="onChange($event)" placeholder="Pictures" type="file" id="file" formControlName="avatar">
       </label>
     </div>
 
-    <div class="user-info-update-form-details">
+    <div class="user-info-update-form-details display-flex just-cont-cent flex-dir-column background-color-white">
       <div class="user-info-update-form-name">
-        <label>
-          <div>
-            Ваше ім'я:
-          </div>
-          <input type="text" formControlName="name">
+        <label class="display-flex just-cont-cent">
+          <div class="display-flex font-f-segoe-print">Ваше ім'я:</div>
+          <input class="font-weight-bold font-f-segoe-script box-sizing-bor-box background-color-white" type="text" formControlName="name">
         </label>
       </div>
       <div class="user-info-update-form-lastname">
-        <label>
-          <div>
-            Прізвище:
-          </div>
-          <input type="text" formControlName="lastName">
+        <label class="display-flex just-cont-cent">
+          <div class="display-flex font-f-segoe-print">Прізвище:</div>
+          <input class="font-weight-bold font-f-segoe-script box-sizing-bor-box background-color-white" type="text" formControlName="lastName">
         </label>
       </div>
       <div class="user-info-update-form-email">
-        <label>
-          <div>
-            Електронна скринька:
-          </div>
-          <input type="text" formControlName="email">
+        <label class="display-flex just-cont-cent">
+          <div class="display-flex font-f-segoe-print">Електронна скринька:</div>
+          <input class="font-weight-bold font-f-segoe-script box-sizing-bor-box background-color-white" type="text" formControlName="email">
         </label>
       </div>
       <div class="user-info-update-form-day-of-birth">
-        <label>
-          <div>
-            День Вашого народження:
-          </div>
-          <input type="date" formControlName="dayOfBirth">
+        <label class="display-flex just-cont-cent">
+          <div class="display-flex font-f-segoe-print">День Вашого народження:</div>
+          <input class="font-weight-bold font-f-segoe-script box-sizing-bor-box background-color-white" type="date" formControlName="dayOfBirth">
         </label>
       </div>
       <div class="user-info-update-form-type-of-activity">
-        <label>
-          <div class="user-info-update-form-type-of-activity-title" (click)="showDetails()">Тип занятості<span>?</span></div>
-          <select formControlName="activityTypeId">
+        <label class="display-flex just-cont-cent">
+          <div class="user-info-update-form-type-of-activity-title display-flex font-f-segoe-print" (click)="showDetails()">Тип занятості<span class="color-9a9a9a">?</span></div>
+          <select class="font-weight-bold font-f-segoe-script box-sizing-bor-box background-color-white" formControlName="activityTypeId">
             <option disabled>Виберіть Ваш тип занятості:</option>
             <option *ngFor="let typeOfActivity of types" [ngValue]="typeOfActivity.id">{{typeOfActivity.name}}</option>
           </select>
         </label>
-        <div *ngIf="details" (click)="showDetails()">
+        <div class="background-color-555555 color-white" *ngIf="details" (click)="showDetails()">
           <div *ngFor="let typeOfActivity of types">{{typeOfActivity.id + ". "}}{{typeOfActivity.about}}</div>
         </div>
       </div>
       <div class="user-info-update-form-height">
-        <label>
-          <div>Ваша висота:</div>
-          <input type="number" formControlName="height">
+        <label class="display-flex just-cont-cent">
+          <div class="display-flex font-f-segoe-print">Ваша висота:</div>
+          <input class="font-weight-bold font-f-segoe-script box-sizing-bor-box background-color-white" type="number" formControlName="height">
         </label>
       </div>
       <div class="user-info-update-form-weight">
-        <label>
-          <div>Ваша вага:</div>
-          <input type="number" formControlName="weight">
+        <label class="display-flex just-cont-cent">
+          <div class="display-flex font-f-segoe-print">Ваша вага:</div>
+          <input class="font-weight-bold font-f-segoe-script box-sizing-bor-box background-color-white" type="number" formControlName="weight">
         </label>
       </div>
       <div class="user-info-update-form-gender">
-        <label>
-          <div class="user-info-update-form-gender">Стать:</div>
-          <select formControlName="genderId">
+        <label class="display-flex just-cont-cent">
+          <div class="user-info-update-form-gender display-flex font-f-segoe-print">Стать:</div>
+          <select class="font-weight-bold font-f-segoe-script box-sizing-bor-box background-color-white" formControlName="genderId">
             <option disabled>Виберіть фізіологічну стать:</option>
             <option *ngFor="let gender of genders" [ngValue]="gender.id">{{gender.gender}}</option>
           </select>
@@ -80,8 +70,8 @@
       </div>
     </div>
 
-    <div class="user-info-update-form-submit-button">
-      <button (click)="update()" type="submit">Оновити</button>
+    <div class="user-info-update-form-submit-button display-flex just-cont-cent background-color-white">
+      <button class="background-color-white font-f-segoe-script font-weight-bold" (click)="update()" type="submit">Оновити</button>
     </div>
   </form>
 </div>

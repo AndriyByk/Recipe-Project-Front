@@ -1,27 +1,26 @@
-<div class="header">
-  <div class="header-top">
+<div class="header display-flex flex-dir-column align-item-cent width-100-per">
+  <div class="header-top display-flex just-cont-cent">
 
-    <div class="header-admin-mode" *ngIf="verifyAdminMode()">
+    <div class="header-admin-mode background-color-white font-f-lato font-weight-bold color-firebrick" *ngIf="verifyAdminMode()">
       ADMIN MODE
     </div>
-    <div class="header-left">
-      <div class="header-title">
-        <a (click)="toMainPage()">Салат-хаб
-        </a>
+    <div class="header-left background-color-white">
+      <div class="header-title display-flex flex-dir-column just-cont-cent align-item-cent">
+        <a class="color-black font-weight-bold font-f-segoe-script" (click)="toMainPage()">Салат-хаб</a>
       </div>
     </div>
 
-    <div class="header-cabinet-link" *ngIf="signedIn">
-      <a [routerLink]="['cabinet/info']">Ваш кабінет</a>
+    <div class="header-cabinet-link display-flex flex-dir-column just-cont-cent align-item-cent background-color-white" *ngIf="signedIn">
+      <a class="color-black font-weight-bold font-f-segoe-script" [routerLink]="['cabinet/info']">Ваш кабінет</a>
     </div>
 
-    <div class="header-right">
+    <div class="header-right display-flex align-item-cent background-color-white">
       <div class="header-buttons">
-        <div class="header-button-signOut" *ngIf="signedIn; else signedOut">
-          <a (click)="logOut()">Вийти</a>
+        <div class="header-button-signOut display-flex flex-dir-column just-cont-cent align-item-cent" *ngIf="signedIn; else signedOut">
+          <a class="color-black font-weight-bold font-f-segoe-script" (click)="logOut()">Вийти</a>
         </div>
-        <ng-template class="header-button-signIn" #signedOut>
-          <a [routerLink]="['sign-in']">Ввійти у профіль</a>
+        <ng-template class="header-button-signIn display-flex flex-dir-column just-cont-cent align-item-cent" #signedOut>
+          <a class="color-black font-weight-bold font-f-segoe-script" [routerLink]="['sign-in']">Ввійти у профіль</a>
         </ng-template>
       </div>
     </div>

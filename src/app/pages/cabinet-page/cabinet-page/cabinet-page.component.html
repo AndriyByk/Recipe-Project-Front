@@ -1,17 +1,17 @@
-<div class="cabinet">
-  <div class="cabinet-links-wrapper">
-    <div class="cabinet-links">
-      <a [routerLink]="['info']">Інформація про Вас</a>
-      <a [routerLink]="['favorite-recipes', pageNumberOfFavorite]"
+<div class="cabinet display-flex height-100-per flex-dir-column width-100-per">
+  <div class="cabinet-links-wrapper display-flex width-100-per">
+    <div class="cabinet-links display-flex just-cont-cent box-sizing-bor-box background-color-ece1cb width-100-per">
+      <a class="font-f-segoe-print font-weight-bold background-color-white color-black" [routerLink]="['info']">Інформація про Вас</a>
+      <a class="font-f-segoe-print font-weight-bold background-color-white color-black" [routerLink]="['favorite-recipes', pageNumberOfFavorite]"
          [queryParams]="{pageSize: pageSizeOfFavorite, userId: user.id}" *ngIf="user.roles.includes('ROLE_USER')">Ваші улюблені рецепти</a>
-      <a [routerLink]="['created-recipes']"
+      <a class="font-f-segoe-print font-weight-bold background-color-white color-black" [routerLink]="['created-recipes']"
          [queryParams]="{pageSize: pageSizeOfCreated, userId: user.id, pageNumber: pageNumberOfCreated}" *ngIf="user.roles.includes('ROLE_USER')">Створені рецепти</a>
-      <a [routerLink]="['norms']" *ngIf="user.roles.includes('ROLE_USER')">Норми споживання</a>
-      <a [routerLink]="['admin', 0]" [queryParams]="{pageSize: 10}" *ngIf="user.roles.includes('ROLE_ADMIN')">Admin page</a>
-      <a [routerLink]="['admin-super', 0]" [queryParams]="{pageSize: 50}" *ngIf="user.roles.includes('ROLE_ADMIN_SUPER')">Super page</a>
+      <a class="font-f-segoe-print font-weight-bold background-color-white color-black" [routerLink]="['norms']" *ngIf="user.roles.includes('ROLE_USER')">Норми споживання</a>
+      <a class="font-f-segoe-print font-weight-bold background-color-white color-black" [routerLink]="['admin', 0]" [queryParams]="{pageSize: 10}" *ngIf="user.roles.includes('ROLE_ADMIN')">Admin page</a>
+      <a class="font-f-segoe-print font-weight-bold background-color-white color-black" [routerLink]="['admin-super', 0]" [queryParams]="{pageSize: 50}" *ngIf="user.roles.includes('ROLE_ADMIN_SUPER')">Super page</a>
     </div>
   </div>
-  <div class="cabinet-outlet-wrapper">
+  <div class="cabinet-outlet-wrapper width-100-per display-flex box-sizing-bor-box just-cont-cent height-100-per">
     <router-outlet></router-outlet>
   </div>
 </div>

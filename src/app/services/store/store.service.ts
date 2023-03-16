@@ -94,7 +94,12 @@ export class StoreService {
     totalElements: 0
   });
   pageSize = new BehaviorSubject<number>(10);
-  searchDetails = new BehaviorSubject<ISearchDetailsOfRecipes>({});
+  searchDetails = new BehaviorSubject<ISearchDetailsOfRecipes>({
+    recipeCategoryId: 0,
+    nutrientId: 0,
+    title: undefined,
+    pageSize: 10
+  });
 
   //__________ cabinet _______________________
   //.......... created .......................
@@ -105,7 +110,12 @@ export class StoreService {
   })
   pageNumberOfCreated = new BehaviorSubject<number>(0);
   pageSizeOfCreated = new BehaviorSubject<number>(10);
-  searchDetailsOfCreated = new BehaviorSubject<ISearchDetailsOfRecipes>({});
+  searchDetailsOfCreated = new BehaviorSubject<ISearchDetailsOfRecipes>({
+    recipeCategoryId: 0,
+    nutrientId: 0,
+    title: undefined,
+    pageSize: 10
+  });
 
   //.......... favorite ......................
   pageInfoOfFavorite = new BehaviorSubject<IPageInfo>({
@@ -115,7 +125,12 @@ export class StoreService {
   })
   pageNumberOfFavorite = new BehaviorSubject<number>(0);
   pageSizeOfFavorite = new BehaviorSubject<number>(10);
-  searchDetailsOfFavorite = new BehaviorSubject<ISearchDetailsOfRecipes>({});
+  searchDetailsOfFavorite = new BehaviorSubject<ISearchDetailsOfRecipes>({
+    recipeCategoryId: 0,
+    nutrientId: 0,
+    title: undefined,
+    pageSize: 10
+  });
 
   //.......... users .........................
   pageInfoUsers = new BehaviorSubject<IPageInfo>({

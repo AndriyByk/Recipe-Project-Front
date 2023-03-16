@@ -1,36 +1,28 @@
-<div class="update-recipe display-flex">
+<div class="update-recipe display-flex flex-dir-column just-cont-cent align-item-cent">
 
-  <div class="update-recipe-title display-flex">[Редагування рецепту:]</div>
+  <div class="update-recipe-title display-flex font-f-segoe-print font-weight-bold color-d9ccb3 just-cont-cent">[Редагування рецепту:]</div>
 
-  <form class="update-recipe-form display-flex" [formGroup]="form">
+  <form class="update-recipe-form display-flex flex-dir-column" [formGroup]="form">
 
-<!--    <div class="update-recipe-form-title">-->
-<!--      <label>-->
-<!--&lt;!&ndash;        <div class="update-recipe-form-title-name">Назва рецепта</div>&ndash;&gt;-->
-<!--        <div>-->
-<!--          <input type="text" formControlName="title" placeholder="Назва рецепта">-->
-<!--        </div>-->
-<!--      </label>-->
-<!--    </div>-->
     <div class="update-recipe-form-title display-flex">
-      <div class="update-recipe-form-title-title">Назва:</div>
-      <div class="update-recipe-form-title-content display-flex">{{recipe.title}}</div>
+      <div class="update-recipe-form-title-title font-f-segoe-print font-weight-bold background-color-d9ccb3">Назва:</div>
+      <div class="update-recipe-form-title-content display-flex just-cont-cent font-f-segoe-script background-color-fcf2e1">{{recipe.title}}</div>
     </div>
 
     <div class="update-recipe-form-cooking">
       <label class="display-flex">
-        <div class="update-recipe-form-cooking-name">Спосіб приготування:</div>
+        <div class="update-recipe-form-cooking-name font-f-segoe-print font-weight-bold background-color-d9ccb3">Спосіб приготування:</div>
         <div class="update-recipe-form-cooking-input display-flex">
-          <textarea class="display-flex" rows="4" type="text" formControlName="description" placeholder="Спосіб приготування"></textarea>
+          <textarea class="display-flex box-sizing-bor-box" rows="4" type="text" formControlName="description" placeholder="Спосіб приготування"></textarea>
         </div>
       </label>
     </div>
 
     <div class="update-recipe-form-category">
       <label class="display-flex">
-        <div class="update-recipe-form-category-title display-flex">Категорія рецепта</div>
-        <div class="update-recipe-form-category-select display-flex">
-          <select class="display-flex" formControlName="recipeCategoryId">
+        <div class="update-recipe-form-category-title display-flex font-f-segoe-print font-weight-bold background-color-d9ccb3">Категорія рецепта</div>
+        <div class="update-recipe-form-category-select display-flex just-cont-cent background-color-fcf2e1">
+          <select class="display-flex background-color-fcf2e1 font-f-segoe-script" formControlName="recipeCategoryId">
             <option disabled>Виберіть категорію рецепта</option>
             <option *ngFor="let category of categories" [ngValue]="category.id">{{category.name}}</option>
           </select>
@@ -40,23 +32,23 @@
 
 
     <div class="update-recipe-form-ingredients display-flex">
-      <div class="update-recipe-form-ingredients-title">Інгредієнти:</div>
+      <div class="update-recipe-form-ingredients-title font-f-segoe-print font-weight-bold background-color-d9ccb3">Інгредієнти:</div>
 
-      <div class="update-recipe-form-ingredients-list display-flex" formArrayName="rawIngredientWithWeights">
+      <div class="update-recipe-form-ingredients-list display-flex flex-dir-column background-color-fcf2e1 just-cont-cent" formArrayName="rawIngredientWithWeights">
 
-        <div class="update-recipe-form-ingredient-titles display-flex">
-          <div class="update-recipe-form-ingredient-number-title">№</div>
+        <div class="update-recipe-form-ingredient-titles display-flex font-f-segoe-print">
+          <div class="update-recipe-form-ingredient-number-title font-f-segoe-print">№</div>
           <div class="update-recipe-form-ingredient-category-title">Категорія</div>
           <div class="update-recipe-form-ingredient-id-title">Інгредієнт</div>
           <div class="update-recipe-form-ingredient-weight-title">Вага</div>
         </div>
 
         <div class="update-recipe-form-ingredient display-flex" *ngFor="let ingredient of getIngredients().controls; let i=index" [formGroupName]="i">
-          <div class="update-recipe-form-ingredient-number">{{i+1}}</div>
+          <div class="update-recipe-form-ingredient-number font-f-segoe-print">{{i+1}}</div>
 
           <div class="update-recipe-form-ingredient-category">
             <label>
-              <select #mySelect formControlName="category" (change)="select(mySelect.value, i)">
+              <select class="font-f-segoe-print background-color-fcf2e1" #mySelect formControlName="category" (change)="select(mySelect.value, i)">
                 <option [ngValue]="null" disabled>Виберіть категорію інгредієнта</option>
                 <option *ngFor="let category of ingredientCategories"
                         [ngValue]="category.id">{{category.name}}</option>
@@ -64,9 +56,9 @@
             </label>
           </div>
 
-          <div class="update-recipe-form-ingredient-id">
+          <div class="update-recipe-form-ingredient-id ">
             <label>
-              <select formControlName="id" required>
+              <select class="font-f-segoe-print background-color-fcf2e1" formControlName="id" required>
                 <option [ngValue]="null" disabled>Виберіть інгредієнт</option>
                 <option *ngFor="let ingredient of selectedIngredients[i].listOfIngredients"
                         [ngValue]="ingredient.id">{{ingredient.name_ukr}}</option>
@@ -77,27 +69,26 @@
           <div class="update-recipe-form-ingredient-weight">
             <label>
               <div class="update-recipe-form-ingredient-weight-input">
-                <input type="number" formControlName="weight" placeholder="Вага">
+                <input class="font-f-segoe-print background-color-fcf2e1" type="number" formControlName="weight" placeholder="Вага">
               </div>
             </label>
           </div>
 
-          <div class="update-recipe-form-ingredient-delete-button display-flex">
-            <button *ngIf="getIngredients().controls.length > 1" type="button" (click)="removeIngredient(i)">x</button>
+          <div class="update-recipe-form-ingredient-delete-button display-flex just-cont-flex-end">
+            <button class="height-100-per color-black background-color-fcf2e1 font-weight-bold font-f-segoe-print" *ngIf="getIngredients().controls.length > 1" type="button" (click)="removeIngredient(i)">x</button>
           </div>
         </div>
-        <div class="update-recipe-form-ingredient-add-button display-flex">
-          <button type="button" (click)="addIngredient()">{{"+ + +"}}</button>
+        <div class="update-recipe-form-ingredient-add-button display-flex just-cont-flex-start">
+          <button class="height-100-per font-f-segoe-print font-weight-bold color-black background-color-fcf2e1" type="button" (click)="addIngredient()">{{"+ + +"}}</button>
         </div>
-
       </div>
     </div>
 
     <div class="update-recipe-form-image">
       <label class="display-flex">
-        <div class="update-recipe-form-picture-title">Picture</div>
-        <div class="update-recipe-form-picture-input display-flex">
-          <input class="display-flex" (change)="onChange($event)" placeholder="Picture" type="file"
+        <div class="update-recipe-form-picture-title font-f-segoe-print font-weight-bold background-color-d9ccb3">Picture</div>
+        <div class="update-recipe-form-picture-input display-flex just-cont-cent background-color-fcf2e1">
+          <input class="display-flex font-f-segoe-print background-color-fcf2e1" (change)="onChange($event)" placeholder="Picture" type="file"
                  formControlName="picture">
         </div>
       </label>
@@ -105,6 +96,6 @@
   </form>
 
   <div class="update-recipe-form-button">
-    <button [disabled]="form.invalid" (click)="submit()" type="submit">Зберегти</button>
+    <button class="font-f-segoe-print font-weight-bold background-color-fcf2e1" [disabled]="form.invalid" (click)="submit()" type="submit">Зберегти</button>
   </div>
 </div>

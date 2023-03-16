@@ -1,85 +1,85 @@
-<div class="cabinet-user-info-wrapper">
-  <div class="cabinet-user-info">
+<div class="cabinet-user-info-wrapper background-color-ece1cb width-100-per height-100-per display-flex just-cont-cent align-item-cent box-sizing-bor-box">
+  <div class="cabinet-user-info display-flex background-color-white just-cont-cent align-item-cent">
 
-    <div class="cabinet-user-info-avatar">
-      <div class="cabinet-user-info-avatar-content">
-        <img src="{{url + '/' + user.username + '/' + user.avatar}}" alt="avatar">
+    <div class="cabinet-user-info-avatar display-flex just-cont-cent">
+      <div class="cabinet-user-info-avatar-content width-100-per">
+        <img class="width-100-per" src="{{url + '/' + user.username + '/' + user.avatar}}" alt="avatar">
       </div>
     </div>
 
-    <div class="cabinet-user-info-details">
-      <div class="cabinet-user-info-titles">
-        <div class="cabinet-user-info-name-title">
+    <div class="cabinet-user-info-details display-flex just-cont-spac-arou">
+      <div class="cabinet-user-info-titles display-flex flex-dir-column">
+        <div class="cabinet-user-info-name-title display-flex just-cont-cent font-f-segoe-print">
           Ваше ім'я:
         </div>
-        <div class="cabinet-user-info-lastname-title">
+        <div class="cabinet-user-info-lastname-title display-flex just-cont-cent font-f-segoe-print">
           Прізвище:
         </div>
-        <div class="cabinet-user-info-role-title">
+        <div class="cabinet-user-info-role-title display-flex just-cont-cent font-f-segoe-print">
           Роль:
         </div>
-        <div class="cabinet-user-info-email-title">
+        <div class="cabinet-user-info-email-title display-flex just-cont-cent font-f-segoe-print">
           Електронна скринька:
         </div>
-        <div class="cabinet-user-info-dayOfBirth-title">
+        <div class="cabinet-user-info-dayOfBirth-title display-flex just-cont-cent font-f-segoe-print">
           День народження:
         </div>
-        <div class="cabinet-user-info-type-of-activity-title">
+        <div class="cabinet-user-info-type-of-activity-title display-flex just-cont-cent font-f-segoe-print">
           Рід занятості:
         </div>
-        <div class="cabinet-user-info-height-title">
+        <div class="cabinet-user-info-height-title display-flex just-cont-cent font-f-segoe-print">
           Ваша висота:
         </div>
-        <div class="cabinet-user-info-weight-title">
+        <div class="cabinet-user-info-weight-title display-flex just-cont-cent font-f-segoe-print">
           Ваша вага:
         </div>
-        <div class="cabinet-user-info-gender-title">
+        <div class="cabinet-user-info-gender-title display-flex just-cont-cent font-f-segoe-print">
           Стать:
         </div>
-        <div class="cabinet-user-info-links-title">
+        <div class="cabinet-user-info-links-title display-flex just-cont-cent font-f-segoe-print">
           Керування профілем:
         </div>
       </div>
 
-      <div class="cabinet-user-info-contents">
-        <div class="cabinet-user-info-name-content">
+      <div class="cabinet-user-info-contents display-flex flex-dir-column">
+        <div class="cabinet-user-info-name-content font-weight-bold font-f-segoe-script">
           {{user.name}}
         </div>
-        <div class="cabinet-user-info-lastname-content">
+        <div class="cabinet-user-info-lastname-content font-weight-bold font-f-segoe-script">
           {{user.lastName}}
         </div>
-        <div class="cabinet-user-info-role-content">
+        <div class="cabinet-user-info-role-content font-weight-bold font-f-segoe-script">
           {{user.roles[0] == 'ROLE_USER'? ' Користувач': user.roles[0] == 'ROLE_ADMIN'? ' Адміністратор': ' Супер адміністратор'}}
         </div>
-        <div class="cabinet-user-info-email-content">
+        <div class="cabinet-user-info-email-content font-weight-bold font-f-segoe-script">
           {{user.email}}
         </div>
-        <div class="cabinet-user-info-dayOfBirth-content">
+        <div class="cabinet-user-info-dayOfBirth-content font-weight-bold font-f-segoe-script">
           {{user.dayOfBirth}}
         </div>
-        <div class="cabinet-user-info-type-of-activity-content">
-          <div class="cabinet-user-info-type-of-activity-content-name" (click)="showDetails()">
-            {{user.activityTypeDto.name + " категорія"}}<span>{{" "}}?</span>
+        <div class="cabinet-user-info-type-of-activity-content display-flex flex-dir-column">
+          <div class="cabinet-user-info-type-of-activity-content-name font-weight-bold font-f-segoe-script" (click)="showDetails()">
+            {{user.activityTypeDto.name + " категорія"}}<span class="color-9a9a9a">{{" "}}?</span>
           </div>
-          <div *ngIf="details" (click)="showDetails()" class="cabinet-user-info-type-of-activity-content-about">
+          <div *ngIf="details" (click)="showDetails()" class="cabinet-user-info-type-of-activity-content-about background-color-555555 color-white">
             {{user.activityTypeDto.about}}
           </div>
         </div>
-        <div class="cabinet-user-info-height-content">
+        <div class="cabinet-user-info-height-content font-weight-bold font-f-segoe-script">
           {{user.height}}
         </div>
-        <div class="cabinet-user-info-weight-content">
+        <div class="cabinet-user-info-weight-content font-weight-bold font-f-segoe-script">
           {{user.weight}}
         </div>
-        <div class="cabinet-user-info-gender-content">
+        <div class="cabinet-user-info-gender-content font-weight-bold font-f-segoe-script">
           {{user.genderDto.gender}}
         </div>
-        <div class="cabinet-user-info-links-content">
+        <div class="cabinet-user-info-links-content font-weight-bold font-f-segoe-script display-flex flex-dir-column background-color-white height-fit-cont">
           <div class="cabinet-user-info-link-to-update-account">
-            <a [routerLink]="['/cabinet/info/update']" [state]="{data: user}">Змінити інформацію про себе</a>
+            <a class="color-black font-weight-bold font-f-segoe-script" [routerLink]="['/cabinet/info/update']" [state]="{data: user}">Змінити інформацію про себе</a>
           </div>
           <div class="cabinet-user-info-link-to-delete-account">
-            <a (click)="deleteAccount()">Видалити акаунт і всі персональні дані</a>
+            <a class="color-black font-weight-bold font-f-segoe-script" (click)="deleteAccount()">Видалити акаунт і всі персональні дані</a>
           </div>
         </div>
       </div>

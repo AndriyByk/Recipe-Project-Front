@@ -1,18 +1,18 @@
-<div class="cabinet-created-recipe">
-  <a [routerLink]="['/recipe/username', recipeCreated.id]">
+<div class="cabinet-created-recipe display-flex flex-dir-column">
+  <a class="color-black" [routerLink]="['/recipe/username', recipeCreated.id]">
     <div class="cabinet-created-recipe-photo">
-      <div class="cabinet-created-recipe-photo-content">
-        <img src="{{url + '/' + recipeCreated.dateOfCreation + '/' + recipeCreated.image}}" alt="photo">
+      <div class="cabinet-created-recipe-photo-content display-flex width-100-per just-cont-cent align-item-cent">
+        <img class="display-flex height-auto box-sizing-bor-box just-cont-cent align-item-cent" src="{{url + '/' + recipeCreated.dateOfCreation + '/' + recipeCreated.image}}" alt="photo">
       </div>
     </div>
 
-    <div class="cabinet-created-recipe-title">
+    <div class="cabinet-created-recipe-title font-weight-bold font-f-segoe-print">
       <div>
         {{recipeCreated.title}}
       </div>
     </div>
 
-    <div class="cabinet-created-recipe-category">
+    <div class="cabinet-created-recipe-category display-flex just-cont-cent font-f-segoe-script">
       <div>
         {{recipeCreated.recipeCategoryDto.name}}
       </div>

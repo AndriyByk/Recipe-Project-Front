@@ -10,3 +10,175 @@ html {
   height: 100%;
   width: 100%;
 }
+
+/* flex */
+.display-flex {
+  display: flex;
+}
+
+.just-cont-cent {
+  justify-content: center;
+}
+
+.just-cont-flex-start {
+  justify-content: flex-start;
+}
+
+.just-cont-flex-end {
+  justify-content: flex-end;
+}
+
+.just-cont-spac-arou {
+  justify-content: space-around;
+}
+
+.just-cont-spac-betw {
+  justify-content: space-between;
+}
+
+.just-cont-spac-even {
+  justify-content: space-evenly;
+}
+
+.align-item-cent {
+  align-items: center;
+}
+
+.align-item-flex-end {
+  align-items: flex-end;
+}
+
+.align-item-flex-start {
+  align-items: flex-start;
+}
+
+.flex-dir-column {
+  flex-direction: column;
+}
+
+.flex-dir-row {
+  flex-direction: row;
+}
+
+.width-100-per {
+  width: 100%;
+}
+
+.width-auto {
+  width: auto;
+}
+
+.width-fit-cont {
+  width: fit-content;
+}
+
+.height-100-per {
+  height: 100%;
+}
+
+.height-auto {
+  height: auto;
+}
+
+.height-fit-cont {
+  height: fit-content;
+}
+
+.box-sizing-bor-box {
+  box-sizing: border-box;
+}
+
+/* colours */
+
+.color-black {
+  color: black;
+}
+
+.color-dimgrey {
+  color: dimgrey;
+}
+
+.color-firebrick {
+  color: firebrick;
+}
+
+.color-9a9a9a {
+  color: #9a9a9a;
+}
+
+.color-555555 {
+  color: #555555;
+}
+
+.color-c8c8c8 {
+  color: #c8c8c8;
+}
+
+.color-white {
+  color: white;
+}
+.color-d9ccb3 {
+  color: #d9ccb3;
+}
+
+.color-9f653b {
+  color: #9f653b;
+}
+
+.background-color-white {
+  background-color: white;
+}
+
+.background-color-transp {
+  background-color: transparent;
+}
+
+.background-color-ece1cb {
+  background-color: #ece1cb;
+}
+
+.background-color-fcf2e1 {
+  background-color: #fcf2e1;
+}
+
+.background-color-d9ccb3 {
+  background-color: #d9ccb3;
+}
+
+.background-color-555555 {
+  background-color: #555555;
+}
+
+/* fonts */
+
+.font-f-segoe-print {
+  font-family: "Segoe Print", sans-serif;
+}
+
+.font-f-segoe-script {
+  font-family: "Segoe Script", sans-serif;
+}
+
+.font-f-lato-semibold {
+  font-family: "Lato Semibold", sans-serif;
+}
+
+.font-f-lato {
+  font-family: Lato, sans-serif;
+}
+
+.font-f-lato-light {
+  font-family: "Lato Light", sans-serif;
+}
+
+.font-f-lucida-grande {
+  font-family: "Lucida Grande", sans-serif;
+}
+
+.font-weight-bold {
+  font-weight: bold;
+}
+
+.font-weight-lighter {
+  font-weight: lighter;
+}

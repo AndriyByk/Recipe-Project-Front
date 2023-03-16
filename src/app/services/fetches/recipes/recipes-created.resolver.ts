@@ -17,10 +17,14 @@ export class RecipesCreatedResolver implements Resolve<IWrapperForRecipes> {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IWrapperForRecipes> | Promise<IWrapperForRecipes> | IWrapperForRecipes {
+    let pageSize = route.queryParams['pageSize'];
+    if (!pageSize) {
+      pageSize = 10;
+    }
 
     return this.recipeService.getCreatedAll(
       route.queryParams['pageNumber'],
-      route.queryParams['pageSize'],
+      pageSize,
       route.queryParams['userId']
     );
   }

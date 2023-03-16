@@ -27,7 +27,7 @@ export class CreatedRecipesComponent implements OnInit {
 
   searchDetailsOfCreated: ISearchDetailsOfRecipes;
   pageInfoOfCreated: IPageInfo;
-  pageSizeOfCreated: number = 10;
+  // pageSizeOfCreated: number = 10;
 
   searchForm: FormGroup;
   categories: IRecipeCategory[];
@@ -36,6 +36,7 @@ export class CreatedRecipesComponent implements OnInit {
 
   meme1 = null;
   meme2 = null;
+  meme3 = null;
 
   constructor(private router: Router,
               private storeService: StoreService,
@@ -55,23 +56,40 @@ export class CreatedRecipesComponent implements OnInit {
 
   private createForm() {
     this.searchForm = new FormGroup({
-      title: new FormControl(null),
-      recipeCategoryId: new FormControl(null),
-      nutrientId: new FormControl(null)
+      title: new FormControl(undefined),
+      recipeCategoryId: new FormControl(0),
+      nutrientId: new FormControl(0),
+      pageSize: new FormControl(10)
     })
   }
 
   submitFilter(): void {
-    this.storeService.searchDetailsOfCreated.next({})
+    this.storeService.searchDetailsOfCreated.next({
+      recipeCategoryId: 0,
+      nutrientId: 0,
+      title: undefined,
+      pageSize: 10
+    });
+    this.searchDetailsOfCreated = {
+      recipeCategoryId: 0,
+      nutrientId: 0,
+      title: undefined,
+      pageSize: 10
+    };
 
     this.searchDetailsOfCreated = this.searchForm.getRawValue();
     this.storeService.searchDetailsOfCreated.next(this.searchForm.getRawValue())
 
     this.storeService.pageInfoOfCreated.next({
       currentPage: 0,
-      totalPages: this.pageInfoOfCreated.totalPages,
-      totalElements: this.pageInfoOfCreated.totalElements
+      totalPages: 0,
+      totalElements: 0
     });
+    this.pageInfoOfCreated = {
+      currentPage: 0,
+      totalPages: 0,
+      totalElements: 0
+    }
 
     if (
       this.searchDetailsOfCreated.nutrientId ||
@@ -87,7 +105,7 @@ export class CreatedRecipesComponent implements OnInit {
           categoryId: this.searchDetailsOfCreated.recipeCategoryId,
           title: this.searchDetailsOfCreated.title,
           nutrientId: this.searchDetailsOfCreated.nutrientId,
-          pageSize: this.searchDetailsOfCreated,
+          pageSize: this.searchDetailsOfCreated.pageSize,
           userId: this.user.id
         }
       })
@@ -147,7 +165,7 @@ export class CreatedRecipesComponent implements OnInit {
         categoryId: this.searchDetailsOfCreated.recipeCategoryId,
         title: this.searchDetailsOfCreated.title,
         nutrientId: this.searchDetailsOfCreated.nutrientId,
-        pageSize: this.pageSizeOfCreated,
+        pageSize: this.searchDetailsOfCreated.pageSize,
         userId: this.user.id
       }
     })

@@ -1,19 +1,19 @@
 <app-recipes-header></app-recipes-header>
-<div class="recipes-page" *ngIf="true" appAutofocus [isScroll]="true" id="recipes-page-id" >
-  <div class="recipes-page-message-wrapper" *ngIf="recipes.length==0">
-    <div class="recipes-page-message">
-      <div class="recipes-page-message-one">
+<div class="recipes-page display-flex flex-dir-column background-color-white align-item-cent box-sizing-bor-box just-cont-cent" *ngIf="true" appAutofocus [isScroll]="true" id="recipes-page-id" >
+  <div class="recipes-page-message-wrapper display-flex just-cont-cent align-item-cent height-100-per" *ngIf="recipes.length==0">
+    <div class="recipes-page-message display-flex flex-dir-column just-cont-cent align-item-cent">
+      <div class="recipes-page-message-one font-f-segoe-print">
         За вашим пошуком жодного рецепта:(
       </div>
-      <div class="recipes-page-message-two">
-        Розширте пошук, або<span (click)="returnToAll()">{{' '}}поверніться до загального списку</span>
+      <div class="recipes-page-message-two font-f-segoe-print">
+        Розширте пошук, або<span class="font-weight-bold" (click)="returnToAll()">{{' '}}поверніться до загального списку</span>
       </div>
     </div>
   </div>
-  <div id="recipes-page-list">
+  <div id="recipes-page-list" class="display-flex">
 <!--    помилка: як заставити директиву працювати щоразу (при зміні номеру сторінки) при рірендері дітей але лише один раз, а не в кожній дитині -->
 <!--    директива має коригувати висоту батька залежно від довжин дітей -->
-    <app-recipe appDynamicHeight class="recipe-component" *ngFor="let recipe of recipes" [recipe]="recipe"></app-recipe>
+    <app-recipe appDynamicHeight class="recipe-component display-flex" *ngFor="let recipe of recipes" [recipe]="recipe"></app-recipe>
   </div>
 </div>
 <app-footer></app-footer>

@@ -9,75 +9,42 @@
 /*===================================*/
 
 .cabinet-favorite-recipes-list {
-  background-color: white;
   border-radius: 30px;
-  display: flex;
-  flex-direction: column;
-
-  height: 100%;
   row-gap: 30px;
-
-  width: fit-content;
   max-width: 70%;
   min-width: 900px;
-
   padding: 50px 20px;
   box-shadow: inset #ece1cb 0 0 30px;
   border-left: white medium solid;
 }
 
 .cabinet-created-recipes-list-title {
-  font-family: "Segoe Script", serif;
   font-size: 20px;
   padding-left: 20px;
-  font-weight: bold;
 }
 
 .cabinet-favorite-recipes-list-title {
-  font-family: "Segoe Script", serif;
   font-size: 15px;
-  display: flex;
-  justify-content: center;
-}
-
-.cabinet-favorite-recipes-list-content {
-  display: flex;
-  flex-direction: column;
 }
 
 /*---------------search-form--------------------------*/
 
 .cabinet-favorite-recipes-search-form-wrapper {
-  /*z-index: 1;*/
-  /*position: fixed;*/
-  /*top: 70px;*/
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
   height: 40px;
-  /*border-bottom: #ece1cb thin solid;*/
-  /*box-shadow: inset #ece1cb 0 50px 30px;*/
 }
 
 .cabinet-favorite-recipes-search-form {
-  display: flex;
   column-gap: 20px;
 }
 
 .cabinet-favorite-recipes-search-form-inputs {
-  display: flex;
   column-gap: 10px;
-  justify-content: center;
 }
 
 .cabinet-favorite-recipes-search-form-inputs input {
-  font-family: "Segoe Print", sans-serif;
   font-size: 11px;
   border: white thin solid;
   border-bottom: #ece1cb thin solid;
-
-  background-color: white;
 }
 
 .cabinet-favorite-recipes-search-form-inputs input::placeholder {
@@ -85,14 +52,12 @@
 }
 
 .cabinet-favorite-recipes-search-form-input-category select,
-.cabinet-favorite-recipes-search-form-input-nutrient select {
-  font-family: "Segoe Print", sans-serif;
+.cabinet-favorite-recipes-search-form-input-nutrient select,
+.cabinet-favorite-recipes-search-form-input-page-size select {
   font-size: 11px;
   border: white thin solid;
   border-bottom: #ece1cb thin solid;
-  background-color: white;
   border-radius: unset;
-  color: dimgrey;
 }
 
 .cabinet-favorite-recipes-search-form-input-category option,
@@ -102,10 +67,8 @@
 
 .cabinet-favorite-recipes-search-form-button button {
   width: 95px;
-  font-family: "Segoe Print", sans-serif;
   font-size: 11px;
   border: white thin solid;
-  background-color: #ece1cb;
   border-radius: unset;
 }
 
@@ -113,30 +76,20 @@
   cursor: pointer;
   color: firebrick;
 }
+
 /*-----------------paging------------------------*/
 
-
-
 .cabinet-favorite-recipes-pagination-wrapper {
-  width: 100%;
   padding: 0 0 10px 0;
-  /*box-shadow: inset #ece1cb 0 -80px 30px;*/
-  display: flex;
-  justify-content: center;
-  align-items: center;
   min-height: 57px;
 }
 
 .cabinet-favorite-recipes-pagination-paging {
-  display: flex;
-  background-color: white;
   column-gap: 20px;
   width: 30%;
   height: 40px;
   min-width: 330px;
   box-shadow: white 0 10px 12px;
-  /*border-radius: 50%;*/
-  justify-content: space-around;
 }
 
 .cabinet-favorite-recipes-pagination-paging-first-page,
@@ -144,12 +97,9 @@
 .cabinet-favorite-recipes-pagination-paging-next-page,
 .cabinet-favorite-recipes-pagination-paging-last-page {
   border: transparent;
-  background-color: transparent;
   font-size: 25px;
-  font-weight: bold;
   font-family: "SimSun", serif;
   padding: 0 10px;
-  /*border-radius: 20px;*/
   min-width: 50px;
 }
 
@@ -163,8 +113,6 @@
 }
 
 .cabinet-favorite-recipes-pagination-current-page {
-  display: flex;
-  align-items: center;
   font-family: "MV Boli", serif ;
   font-size: 22px;
 }
@@ -172,32 +120,22 @@
 /*-----------------------------------------*/
 
 .cabinet-favorite-recipes-list-recipes {
-  display: flex;
-  justify-content: center;
-  height: 100%;
   flex-wrap: wrap;
   column-gap: 25px;
   row-gap: 30px;
-  width: fit-content;
   min-width: 60%;
   padding: 50px 20px;
-  align-items: center;
 }
 
 .cabinet-favorite-recipes-list-link {
-  display: flex;
   min-width: 60%;
   height: 30px;
   padding: 10px 20px;
-  justify-content: center;
-  align-items: center;
 }
 
 .cabinet-favorite-recipes-list-link a {
-  font-family: "Segoe Script", serif;
   font-size: 15px;
   text-decoration: none;
-  color: black;
 }
 
 .cabinet-favorite-recipes-list-link a:hover {

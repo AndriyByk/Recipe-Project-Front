@@ -19,7 +19,7 @@ import {Router} from "@angular/router";
 export class RecipesHeaderComponent implements OnInit {
   searchDetails: ISearchDetailsOfRecipes;
   pageInfo: IPageInfo;
-  pageSize: number = 10;
+  // pageSize: number = 10;
 
   form: FormGroup;
   categories: IRecipeCategory[];
@@ -31,6 +31,7 @@ export class RecipesHeaderComponent implements OnInit {
 
   meme1 = null;
   meme2 = null;
+  meme3 = null;
 
   constructor(private router: Router,
               private storeService: StoreService,
@@ -49,31 +50,66 @@ export class RecipesHeaderComponent implements OnInit {
 
   private createForm() {
     this.form = new FormGroup({
-      title: new FormControl(null),
-      recipeCategoryId: new FormControl(null),
-      nutrientId: new FormControl(null)
+      title: new FormControl(undefined),
+      recipeCategoryId: new FormControl(0),
+      nutrientId: new FormControl(0),
+      pageSize: new FormControl(10)
     })
   }
 
   submitFilter(): void {
-    this.storeService.searchDetails.next({});
-    this.searchDetails = this.form.getRawValue();
+    this.storeService.searchDetails.next({
+      recipeCategoryId: 0,
+      nutrientId: 0,
+      title: undefined,
+      pageSize: 10
+    });
+    this.storeService.searchDetails.subscribe(value => this.searchDetails = value);
+
+    console.log(this.form.getRawValue());
+
     this.storeService.searchDetails.next(this.form.getRawValue());
+    this.storeService.searchDetails.subscribe(value => this.searchDetails = value);
+
+    // this.searchDetails = this.form.getRawValue();
 
     this.storeService.pageInfo.next({
       currentPage: 0,
-      totalPages: this.pageInfo.totalPages,
-      totalElements: this.pageInfo.totalElements
+      totalPages: 0,
+      totalElements: 0
     });
+    this.pageInfo = {
+      currentPage: 0,
+      totalPages: 0,
+      totalElements: 0
+    };
 
+    // if (
+    //   this.searchDetails.nutrientId ||
+    //   this.searchDetails.recipeCategoryId ||
+    //   this.searchDetails.title ||
+    //   this.searchDetails.pageSize ||
+    //
+    //   this.searchDetails.recipeCategoryId && this.searchDetails.title ||
+    //   this.searchDetails.recipeCategoryId && this.searchDetails.nutrientId ||
+    //   this.searchDetails.recipeCategoryId && this.searchDetails.pageSize ||
+    //   this.searchDetails.title && this.searchDetails.nutrientId ||
+    //   this.searchDetails.title && this.searchDetails.pageSize ||
+    //   this.searchDetails.nutrientId && this.searchDetails.pageSize ||
+    //
+    //   this.searchDetails.recipeCategoryId && this.searchDetails.title && this.searchDetails.pageSize ||
+    //   this.searchDetails.recipeCategoryId && this.searchDetails.title && this.searchDetails.nutrientId ||
+    //   this.searchDetails.recipeCategoryId && this.searchDetails.pageSize && this.searchDetails.nutrientId ||
+    //
+    //   this.searchDetails.title && this.searchDetails.pageSize && this.searchDetails.nutrientId
+    //
+    //
+    // ) {
     if (
-      this.searchDetails.nutrientId ||
-      this.searchDetails.recipeCategoryId ||
-      this.searchDetails.title ||
-      this.searchDetails.recipeCategoryId && this.searchDetails.title ||
-      this.searchDetails.recipeCategoryId && this.searchDetails.nutrientId ||
-      this.searchDetails.title && this.searchDetails.nutrientId ||
-      this.searchDetails.recipeCategoryId && this.searchDetails.title && this.searchDetails.nutrientId
+      !(!this.searchDetails.nutrientId &&
+      !this.searchDetails.recipeCategoryId &&
+      !this.searchDetails.title &&
+      !this.searchDetails.pageSize)
     ) {
       if (localStorage.getItem(this.adminMode)) {
         this.url_redirect = 'recipes/find-and-sort/admin-mode';
@@ -83,7 +119,7 @@ export class RecipesHeaderComponent implements OnInit {
           categoryId: this.searchDetails.recipeCategoryId,
           title: this.searchDetails.title,
           nutrientId: this.searchDetails.nutrientId,
-          pageSize: this.pageSize
+          pageSize: this.searchDetails.pageSize
         }
       })
     }

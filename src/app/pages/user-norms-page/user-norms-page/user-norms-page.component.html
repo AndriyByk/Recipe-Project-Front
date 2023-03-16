@@ -1,50 +1,50 @@
-<div class="user-norms-page">
-  <div class="user-norms-page-content">
+<div class="user-norms-page width-100-per height-fit-cont background-color-ece1cb display-flex box-sizing-bor-box just-cont-cent">
+  <div class="user-norms-page-content height-fit-cont display-flex flex-dir-column align-item-cent background-color-white">
 
-    <div class="user-norms-page-title">
+    <div class="user-norms-page-title display-flex just-cont-cent align-item-cent font-f-segoe-script font-weight-bold ">
       Ваші денні норми мікро- і макроелементів:
     </div>
 
-    <div class="user-norms-page-list">
+    <div class="user-norms-page-list display-flex just-cont-cent align-item-cent">
 
-      <div class="user-norms-page-list-have" *ngIf="user.userNorms.length > 0 else elseBlock1">
-        <div class="user-norms-page-norms-energy-organics">
+      <div class="user-norms-page-list-have display-flex just-cont-cent width-100-per" *ngIf="user.userNorms.length > 0 else elseBlock1">
+        <div class="user-norms-page-norms-energy-organics display-flex flex-dir-column">
           <div class="user-norms-page-norms">
-            <div class="user-norms-page-norm-category">Енергія:</div>
-            <div class="user-norms-page-norm" *ngFor="let norm of normsSorted.energy">
-              <div>
-                <div class="user-norms-page-norm-name">{{norm.ukrNameOfNutrient}}</div>
-                <div class="user-norm-page-norm-quantity">{{norm.quantity}}{{' ' + norm.unit}}</div>
+            <div class="user-norms-page-norm-category background-color-ece1cb font-f-segoe-print color-white">Енергія:</div>
+            <div class="user-norms-page-norm display-flex just-cont-cent" *ngFor="let norm of normsSorted.energy">
+              <div class="display-flex just-cont-flex-end">
+                <div class="user-norms-page-norm-name display-flex just-cont-cent box-sizing-bor-box font-f-segoe-print font-weight-bold color-9f653b">{{norm.ukrNameOfNutrient}}</div>
+                <div class="user-norm-page-norm-quantity display-flex just-cont-cent box-sizing-bor-box font-f-segoe-script">{{norm.quantity}}{{' ' + norm.unit}}</div>
               </div>
             </div>
           </div>
           <div class="user-norms-page-norms">
-            <div class="user-norms-page-norm-category">Органічні макроелементи:</div>
-            <div class="user-norms-page-norm" *ngFor="let norm of normsSorted.organics">
-              <div>
-                <div class="user-norms-page-norm-name">{{norm.ukrNameOfNutrient}}</div>
-                <div class="user-norm-page-norm-quantity">{{norm.quantity}}{{' ' + norm.unit}}</div>
+            <div class="user-norms-page-norm-category background-color-ece1cb font-f-segoe-print color-white">Органічні макроелементи:</div>
+            <div class="user-norms-page-norm display-flex just-cont-cent" *ngFor="let norm of normsSorted.organics">
+              <div class="display-flex just-cont-flex-end">
+                <div class="user-norms-page-norm-name display-flex just-cont-cent box-sizing-bor-box font-f-segoe-print font-weight-bold color-9f653b">{{norm.ukrNameOfNutrient}}</div>
+                <div class="user-norm-page-norm-quantity display-flex just-cont-cent box-sizing-bor-box font-f-segoe-script">{{norm.quantity}}{{' ' + norm.unit}}</div>
               </div>
             </div>
           </div>
         </div>
 
         <div class="user-norms-page-norms">
-          <div class="user-norms-page-norm-category">Вітаміни:</div>
-          <div class="user-norms-page-norm" *ngFor="let norm of normsSorted.vitamins">
-            <div>
-              <div class="user-norms-page-norm-name">{{norm.ukrNameOfNutrient}}</div>
-              <div class="user-norm-page-norm-quantity">{{norm.quantity}}{{' ' + norm.unit}}</div>
+          <div class="user-norms-page-norm-category background-color-ece1cb font-f-segoe-print color-white">Вітаміни:</div>
+          <div class="user-norms-page-norm display-flex just-cont-cent" *ngFor="let norm of normsSorted.vitamins">
+            <div class="display-flex just-cont-flex-end">
+              <div class="user-norms-page-norm-name display-flex just-cont-cent box-sizing-bor-box font-f-segoe-print font-weight-bold color-9f653b">{{norm.ukrNameOfNutrient}}</div>
+              <div class="user-norm-page-norm-quantity display-flex just-cont-cent box-sizing-bor-box font-f-segoe-script">{{norm.quantity}}{{' ' + norm.unit}}</div>
             </div>
           </div>
         </div>
 
         <div class="user-norms-page-norms">
-          <div class="user-norms-page-norm-category">Мінерали:</div>
-          <div class="user-norms-page-norm" *ngFor="let norm of normsSorted.minerals">
-            <div>
-              <div class="user-norms-page-norm-name">{{norm.ukrNameOfNutrient}}</div>
-              <div class="user-norm-page-norm-quantity">{{norm.quantity}}{{' ' + norm.unit}}</div>
+          <div class="user-norms-page-norm-category background-color-ece1cb font-f-segoe-print color-white">Мінерали:</div>
+          <div class="user-norms-page-norm display-flex just-cont-cent" *ngFor="let norm of normsSorted.minerals">
+            <div class="display-flex just-cont-flex-end">
+              <div class="user-norms-page-norm-name display-flex just-cont-cent box-sizing-bor-box font-f-segoe-print font-weight-bold color-9f653b">{{norm.ukrNameOfNutrient}}</div>
+              <div class="user-norm-page-norm-quantity display-flex just-cont-cent box-sizing-bor-box font-f-segoe-script">{{norm.quantity}}{{' ' + norm.unit}}</div>
             </div>
           </div>
         </div>
@@ -52,9 +52,9 @@
 
       <ng-template class="user-norms-page-list-already" #elseBlock1>
         <div class="user-norms-page-list-already-have" *ngIf="norms; else elseBlock2">
-          <div class="user-norms-page-norm" *ngFor="let norm of norms">
-            <div class="user-norms-page-norm-name">{{norm.ukrNameOfNutrient}}</div>
-            <div class="user-norm-page-norm-quantity">{{norm.quantity}}{{' ' + norm.unit}}</div>
+          <div class="user-norms-page-norm display-flex just-cont-cent" *ngFor="let norm of norms">
+            <div class="user-norms-page-norm-name display-flex just-cont-cent box-sizing-bor-box font-f-segoe-print font-weight-bold color-9f653b">{{norm.ukrNameOfNutrient}}</div>
+            <div class="user-norm-page-norm-quantity display-flex just-cont-cent box-sizing-bor-box font-f-segoe-script">{{norm.quantity}}{{' ' + norm.unit}}</div>
           </div>
         </div>
       </ng-template>

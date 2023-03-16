@@ -1,13 +1,14 @@
 .page-not-found {
-flex-direction: column;
-  display: flex;
-  height: 100%;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-}
-
-.page-not-found > div {
   height: 300px;
   width: 500px;
+  font-size: 20px;
+}
+
+.page-not-found a {
+  text-decoration: none;
+}
+
+.page-not-found a:hover {
+  color: firebrick;
+  cursor: pointer;
 }

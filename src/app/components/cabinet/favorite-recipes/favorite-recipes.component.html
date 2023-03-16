@@ -1,29 +1,29 @@
-<div class="cabinet-favorite-recipes-list">
-  <div class="cabinet-created-recipes-list-title">
+<div class="cabinet-favorite-recipes-list display-flex flex-dir-column height-100-per width-fit-cont background-color-white">
+  <div class="cabinet-created-recipes-list-title font-weight-bold font-f-segoe-script">
     УЛЮБЛЕНІ РЕЦЕПТИ
   </div>
-  <div class="cabinet-favorite-recipes-list-title" *ngIf="recipesFavorite.length == 0">
+  <div class="cabinet-favorite-recipes-list-title display-flex just-cont-cent font-f-segoe-script" *ngIf="recipesFavorite.length == 0">
     <div>
       Ви ще не вподобали жодного рецепта:(
     </div>
   </div>
 
-  <div class="cabinet-favorite-recipes-list-content">
+  <div class="cabinet-favorite-recipes-list-content display-flex flex-dir-column">
     <div class="cabinet-favorite-recipes-navigation">
       <div class="cabinet-favorite-recipes-search">
-        <div class="cabinet-favorite-recipes-search-form-wrapper">
-          <form class="cabinet-favorite-recipes-search-form" [formGroup]="searchForm">
-            <div class="cabinet-favorite-recipes-search-form-inputs">
+        <div class="cabinet-favorite-recipes-search-form-wrapper width-100-per display-flex align-item-cent just-cont-spac-arou">
+          <form class="cabinet-favorite-recipes-search-form display-flex" [formGroup]="searchForm">
+            <div class="cabinet-favorite-recipes-search-form-inputs display-flex just-cont-cent">
 
               <div class="cabinet-favorite-recipes-search-form-input-title">
                 <label>
-                  <input type="text" placeholder="Введіть назву рецепта" [defaultValue]="''" formControlName="title">
+                  <input class="font-f-segoe-print background-color-white" type="text" placeholder="Введіть назву рецепта" [defaultValue]="''" formControlName="title">
                 </label>
               </div>
 
               <div class="cabinet-favorite-recipes-search-form-input-category">
                 <label>
-                  <select [(ngModel)]="meme1" formControlName="recipeCategoryId">
+                  <select class="font-f-segoe-print background-color-white color-dimgrey" [(ngModel)]="meme1" formControlName="recipeCategoryId">
                     <option [ngValue]="null" selected disabled hidden>Категорія рецептів</option>
                     <option [ngValue]="category.id" *ngFor="let category of categories">{{category.name}}</option>
                     <option [ngValue]="0">Категорія відсутня</option>
@@ -33,7 +33,7 @@
 
               <div class="cabinet-favorite-recipes-search-form-input-nutrient">
                 <label>
-                  <select [(ngModel)]="meme2" formControlName="nutrientId">
+                  <select class="font-f-segoe-print background-color-white color-dimgrey" [(ngModel)]="meme2" formControlName="nutrientId">
                     <option [ngValue]="null" disabled selected hidden>Сортування по нутрієнту</option>
                     <option *ngFor="let nutrient of nutrients"
                             [ngValue]="nutrient.idOfNutrient">{{nutrient.name}}</option>
@@ -41,9 +41,19 @@
                   </select>
                 </label>
               </div>
+              <div class="cabinet-favorite-recipes-search-form-input-page-size">
+                <label>
+                  <select class="font-f-segoe-print color-dimgrey background-color-white" [(ngModel)]="meme3" formControlName="pageSize">
+                    <option [ngValue]="null" disabled selected hidden>Кількість</option>
+                    <option [ngValue]="10">10</option>
+                    <option [ngValue]="20">20</option>
+                    <option [ngValue]="50">50</option>
+                  </select>
+                </label>
+              </div>
             </div>
             <div class="cabinet-favorite-recipes-search-form-button">
-              <button (click)="submitFilter()" type="submit">Пошук</button>
+              <button class="background-color-ece1cb font-f-segoe-print" (click)="submitFilter()" type="submit">Пошук</button>
             </div>
           </form>
         </div>
@@ -51,23 +61,23 @@
 
     </div>
 
-    <div class="cabinet-favorite-recipes-list-recipes" *ngIf="recipesFavorite.length != 0">
+    <div class="cabinet-favorite-recipes-list-recipes display-flex just-cont-cent height-100-per width-fit-cont align-item-cent" *ngIf="recipesFavorite.length != 0">
       <app-favorite-recipe class="cabinet-favorite-recipe-app" *ngFor="let recipeFavorite of recipesFavorite"
                            [recipeFavorite]="recipeFavorite"></app-favorite-recipe>
     </div>
     <div class="cabinet-favorite-recipes-pagination">
-      <div class="cabinet-favorite-recipes-pagination-wrapper">
-        <div class="cabinet-favorite-recipes-pagination-paging">
-          <button (click)="goFirstPage()" class="cabinet-favorite-recipes-pagination-paging-first-page">|<<</button>
-          <button (click)="goPreviousPage()" class="cabinet-favorite-recipes-pagination-paging-previous-page"><</button>
-          <div class="cabinet-favorite-recipes-pagination-current-page">{{pageInfoOfFavorite.currentPage + 1}}/{{pageInfoOfFavorite.totalPages}}</div>
-          <button (click)="goNextPage()" class="cabinet-favorite-recipes-pagination-paging-next-page">></button>
-          <button (click)="goLastPage()" class="cabinet-favorite-recipes-pagination-paging-last-page">>>|</button>
+      <div class="cabinet-favorite-recipes-pagination-wrapper width-100-per display-flex just-cont-cent align-item-cent">
+        <div class="cabinet-favorite-recipes-pagination-paging display-flex just-cont-spac-arou background-color-white">
+          <button (click)="goFirstPage()" class="cabinet-favorite-recipes-pagination-paging-first-page background-color-transp font-weight-bold">|<<</button>
+          <button (click)="goPreviousPage()" class="cabinet-favorite-recipes-pagination-paging-previous-page background-color-transp font-weight-bold"><</button>
+          <div class="cabinet-favorite-recipes-pagination-current-page display-flex align-item-cent">{{pageInfoOfFavorite.currentPage + 1}}/{{pageInfoOfFavorite.totalPages}}</div>
+          <button (click)="goNextPage()" class="cabinet-favorite-recipes-pagination-paging-next-page background-color-transp font-weight-bold">></button>
+          <button (click)="goLastPage()" class="cabinet-favorite-recipes-pagination-paging-last-page background-color-transp font-weight-bold">>>|</button>
         </div>
       </div>
     </div>
-    <div class="cabinet-favorite-recipes-list-link">
-      <a [routerLink]="['/recipes/allRecipes']" [queryParams]="{pageSize: 10, pageNumber:0}">Перейти до загального
+    <div class="cabinet-favorite-recipes-list-link display-flex just-cont-cent align-item-cent">
+      <a class="font-f-segoe-script color-black" [routerLink]="['/recipes/all-recipes', 0]" [queryParams]="{pageSize: 10}">Перейти до загального
         списку рецептів</a>
     </div>
   </div>

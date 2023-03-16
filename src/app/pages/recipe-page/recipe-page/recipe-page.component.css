@@ -1,20 +1,11 @@
-/* жирний  "Franklin Gothic Medium"*/
-/* писаний акуратний "Gabriola"       */
-/* писаний незрозумілий "Mistral"*/
-/* писаний широкий "Monotype Corsiva"*/
-/* писаний "Segoe Print"*/
-
-
-/*=============================*/
-
-.recipe {
+.recipe-page {
   display: flex;
   width: 100%;
   height: 100%;
   justify-content: center;
 }
 
-.recipe-wrapper {
+.recipe-page-wrapper {
   display: flex;
   padding: 100px 20px;
   flex-direction: column;
@@ -25,15 +16,10 @@
   align-items: center;
 }
 
-.recipe-body-top {
-  /*max-width: 1240px;*/
-  /*width: 80%;*/
-  /*min-width: 900px;*/
-
+.recipe-page-body-top {
   width: 70%;
   min-width: 900px;
   max-width: 1240px;
-
   display: flex;
   justify-content: center;
   box-shadow: inset #ece1cb 0 0 30px;
@@ -41,7 +27,6 @@
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
   border-left: white medium solid;
-  /*border-right: white medium solid;*/
 }
 
 .recipe-page-photo {
@@ -56,7 +41,6 @@
 
 /*========= status =========*/
 
-
 .recipe-page-status {
   position: absolute;
   left: 20px;
@@ -67,92 +51,62 @@
   cursor: pointer;
 }
 
-/* toggle */
 .recipe-page-status-check-uncheck {
   display: none;
-  background-color: white;
-  font-family: Lato, serif;
-  font-weight: bold;
   font-size: 25px;
 }
 
+/* toggle */
 .show-hide-status {
   display: flex;
 }
 
 .recipe-page-status-checked {
   color: darkseagreen;
-  background-color: white;
-  font-family: Lato, serif;
-  font-weight: bold;
   font-size: 28px;
 }
 
 .recipe-page-status-unchecked {
-  color: firebrick;
-  background-color: white;
-  font-family: Lato, serif;
-  font-weight: bold;
   font-size: 28px;
 }
 
 /*==========================*/
 
 .recipe-page-photo-content {
-  /*box-sizing: border-box;*/
-  width: 100%;
-  height: 100%;
   overflow: hidden;
   max-width: 65vw;
-  display: flex;
-  justify-content: center;
 }
 
-.recipe-page-photo img {
+.recipe-page-photo-content img {
   max-width: 800px;
-  height: 100%;
-  width: auto;
-  /*box-sizing: border-box;*/
 }
 
 /*-----------title--------------*/
 
-.recipe-info-with-ingredients {
+.recipe-page-info-with-ingredients {
   min-height: fit-content;
   flex-grow: 1;
-  display: flex;
-  flex-direction: column;
   row-gap: 15px;
-  justify-content: center;
   padding: 30px;
-  box-sizing: border-box;
-  background-color: transparent;
 }
 
-.recipe-title {
-  font: 25px "Segoe Print";
-  font-weight: bold;
-  /*text-shadow: 5px 0 5px gray;*/
-  display: flex;
-  justify-content: center;
-  background-color: white;
+.recipe-page-title {
+  font-size: 25px;
   border-radius: 15px;
 }
 
 /*---------author-------------*/
 
-.recipe-author-link span {
-  font: 15px "Segoe Script";
+.recipe-page-author-link span {
+  font-size: 15px;
 }
 
-.recipe-author-link-name {
-  font: 17px "Segoe Print";
-  font-weight: bold;
+.recipe-page-author-link-name {
+  font-size: 17px;
   text-decoration: none;
-  color: black;
 }
 
-.recipe-author-link-name:hover {
+.recipe-page-author-link-name:hover {
   color: firebrick;
   cursor: pointer;
 }
@@ -160,15 +114,12 @@
 /*---------update-----------*/
 
 .link-to-update-recipe {
-  font: 15px "Segoe Script";
+  font-size: 15px;
 }
 
 .link-to-update-recipe a {
-  color: black;
-  font-weight: bold;
   text-decoration: none;
   font-size: 17px;
-  font-family: "Segoe Print", sans-serif;
 }
 
 .link-to-update-recipe a:hover {
@@ -178,7 +129,6 @@
 /*-----------rating--------------*/
 
 .rating {
-  /*position: absolute;*/
   top: 0;
   left: 0;
   right: 0;
@@ -186,15 +136,11 @@
   width: 150px;
   height: 30px;
   padding: 5px 10px;
-  /*margin: auto;*/
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
   background: #FFF;
   display: block;
   overflow: hidden;
-
-  /*unicode-bidi: bidi-override;*/
-  /*direction: rtl;*/
 }
 
 .rating:not(:checked) > input {
@@ -206,7 +152,7 @@
 }
 
 #like:not(:checked) > label {
-  cursor:pointer;
+  cursor: pointer;
   float: right;
   width: 30px;
   height: 30px;
@@ -240,16 +186,11 @@
 /*-----------------------------*/
 
 #recipe-form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   border-radius: 30px;
-  background-color: #FFF;
   padding: 5px 0;
 }
 
-#recipe-form > div {
-  /*background-color: #eaf5de;*/
+#recipe-ranking-with-user {
   padding: 10px;
   border-top-right-radius: 30px;
   border-bottom-right-radius: 30px;
@@ -258,31 +199,18 @@
   font-size: 15px;
 }
 
-#recipe-ranking-wrapper {
-  display: flex;
-  justify-content: center;
-  /*align-items: center;*/
-}
-
 #recipe-ranking {
-  /*border: #ece1cb thin solid;*/
   padding: 10px;
   border-radius: 30px;
-  font-weight: bold;
-  font-family: "Segoe Print", sans-serif;
   font-size: 15px;
-  width: fit-content;
 }
 
 #recipe-form > button {
   height: 40px;
   width: 80px;
   border-radius: 30px;
-  background-color: #FFF;
   padding: 5px 10px;
   border: none;
-  font-family: "Segoe Print", sans-serif;
-  font-weight: bold;
 }
 
 #recipe-form > button:hover {
@@ -291,386 +219,223 @@
 
 /*------------like-button------------------*/
 
-.recipe-like-button {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.recipe-page-like-button {
   height: 50px;
 }
 
-.recipe-like-button-true,
-.recipe-like-button-false {
-  font: 12px "Segoe Print";
+.recipe-page-like-button-true,
+.recipe-page-like-button-false {
+  font-size: 12px;
 }
 
-.recipe-like-button-true a,
-.recipe-like-button-false {
-  font-weight: bold;
-}
-
-.recipe-like-button-true a:hover,
-.recipe-like-button-false:hover{
+.recipe-page-like-button-true a:hover,
+.recipe-page-like-button-false:hover{
   color: firebrick;
   cursor: pointer;
 }
 
 /*----------category-----------------*/
 
-.recipe-category {
-  /*background-color: #ade59d;*/
-  font: 15px "Segoe Print";
+.recipe-page-category {
+  font-size: 15px;
   font-style: normal;
-  font-weight: bold;
-  color: black;
   margin: 7px 85px;
-  display: flex;
-  justify-content: center;
   text-decoration: none;
 }
 
-.recipe-category-content:hover {
+.recipe-page-category-content:hover {
   color: firebrick;
   cursor: pointer;
 }
 
 /*-------ingredients--------------*/
 
-.recipe-ingredients {
-  display: flex;
-  flex-direction: column;
+.recipe-page-ingredients {
   row-gap: 5px;
   padding: 5px 10px;
   border-radius: 15px;
-  background-color: white;
 }
 
-.recipe-ingredients-titles {
-  display: flex;
-  justify-content: space-evenly;
-  font-family: "Segoe Print", sans-serif;
-  font-weight: bold;
+.recipe-page-ingredients-titles {
   column-gap: 10px;
 }
 
-.recipe-ingredients-titles-ingredient {
+.recipe-page-ingredients-titles-ingredient {
   width: 190px;
-  display: flex;
 }
 
-.recipe-ingredients-titles-weight,
-.recipe-ingredient-weight {
+.recipe-page-ingredients-titles-weight,
+.recipe-page-ingredient-weight {
   width: 70px;
 }
 
-.recipe-ingredient {
-  display: flex;
-  justify-content: space-around;
-  font-family: "Segoe Print", sans-serif;
-  font-weight: lighter;
-}
-
-.recipe-ingredient-name-content-sign {
-  width: 10px;
-}
-
-.recipe-ingredient-name {
-  width: 190px;
-  display: flex;
-}
-
-.recipe-ingredient {
-  display: flex;
+.recipe-page-ingredient {
   column-gap: 10px;
 }
 
+.recipe-page-ingredient-name-content-sign {
+  width: 10px;
+}
+
+.recipe-page-ingredient-name {
+  width: 190px;
+}
+
 /*===========================*/
 
-.recipe-body-middle {
-  display: flex;
-  justify-content: center;
-
-
+.recipe-page-body-middle {
   width: 70%;
   max-width: 1240px;
   min-width: 900px;
-
   padding: 50px;
-  box-sizing: border-box;
-
   box-shadow: inset #ece1cb 0 0 30px;
-  background-color: white;
-
   border-left: white medium solid;
-  /*border-right: white medium solid;*/
-  /*border-radius: 30px;*/
 }
 
-.recipe-description {
-  display: flex;
-  flex-direction: column;
+.recipe-page-description {
   row-gap: 5px;
   flex-grow: 1;
   font-size: 18px;
-  font-family: "Segoe Script", sans-serif;
-  /*border-radius: 20px;*/
   padding: 30px;
-  box-sizing: border-box;
-  /*border-left: white thin solid;*/
 }
 
 /*===========================*/
 
-.recipe-body-bottom {
-  display: flex;
-  justify-content: center;
+.recipe-page-body-bottom {
   padding: 50px 0 ;
-
   width: 70%;
   min-width: 950px;
   max-width: 1240px;
-
   box-shadow: inset #ece1cb 0 0 30px;
-  background-color: white;
-  /*border-bottom-right-radius: 30px;*/
-  /*border-bottom-left-radius: 30px;*/
   border-left: white medium solid;
-  /*border-right: white medium solid;*/
 }
 
-.recipe-nutrients {
-  display: flex;
-  flex-direction: column;
+.recipe-page-nutrients {
   row-gap: 5px;
   padding: 5px 10px;
-  width: fit-content;
-  justify-content: center;
   border-radius: 40px;
-  /*border: black solid thin;*/
-  box-sizing: border-box;
 }
 
 /*------------------*/
-.recipe-nutrients-title {
-  display: flex;
-  flex-direction: column;
-  width: fit-content;
-}
 
-.recipe-nutrients-title-short {
-  font-family: "Segoe Print", sans-serif;
+.recipe-page-nutrients-title-short {
   font-size: 25px;
-  font-weight: bold;
-  display: flex;
-  justify-content: center;
-  width: fit-content;
 }
 
-.recipe-nutrients-title-long {
-  font-family: "Segoe Script", sans-serif;
+.recipe-page-nutrients-title-long {
   font-size: 20px;
-  color: #9a9a9a;
-  display: flex;
-  justify-content: center;
-  width: fit-content;
 }
 
 /*------------------*/
 
-.recipe-nutrients-titles {
-  display: flex;
-  font: 12px "Segoe Print";
-  /*padding-left: 5%;*/
+.recipe-page-nutrients-titles {
+  font-size: 12px;
   border-bottom: black dotted thin;
   column-gap: 1%;
-  width: fit-content;
-  box-sizing: border-box;
 }
 
 .white-space {
   width: 5vw;
 }
 
-.recipe-nutrients-titles > div {
-  display: flex;
-  justify-content: center;
-}
-
 /*------------------*/
 
-/*.recipe-nutrient {*/
-/*  display: flex;*/
-/*  column-gap: 10px;*/
-/*}*/
-
-.recipe-user-proportions {
-  display: flex;
+.recipe-page-user-proportions {
   flex-wrap: wrap;
-  flex-direction: column;
-  font: 12px "Segoe Print";
-  width: fit-content;
-  box-sizing: border-box;
-
+  font-size: 12px;
 }
 
-.recipe-user-proportions-title {
+.recipe-page-user-proportions-title {
   padding: 10px 0 10px 0;
   font-size: 17px;
-  font-weight: bold;
-  width: fit-content;
 }
 
-.recipe-user-proportion-energy,
-.recipe-user-proportion-organics,
-.recipe-user-proportion-vitamins,
-.recipe-user-proportion-minerals {
-  display: flex;
-  /*padding-left: 5%;*/
+.recipe-page-user-proportion-energy,
+.recipe-page-user-proportion-organics,
+.recipe-page-user-proportion-vitamins,
+.recipe-page-user-proportion-minerals {
   column-gap: 1%;
-  width: fit-content;
-  box-sizing: border-box;
-
-}
-
-.recipe-user-proportions-id,
-.recipe-user-proportions-name,
-.recipe-user-proportions-category,
-.recipe-user-proportions-recipe-quantity,
-.recipe-user-proportions-norm,
-.recipe-user-proportions-percentage {
-  display: flex;
-  justify-content: center;
 }
 
 /*______ width ________*/
 
-.recipe-user-proportions-id,
-.recipe-nutrients-titles-no {
+.recipe-page-user-proportions-id,
+.recipe-page-nutrients-titles-no {
   width: 50px;
 }
 
-.recipe-user-proportions-name,
-.recipe-nutrients-titles-nutrient {
+.recipe-page-user-proportions-name,
+.recipe-page-nutrients-titles-nutrient {
   width: 200px;
 }
 
-.recipe-user-proportions-category,
-.recipe-nutrients-titles-category {
+.recipe-page-user-proportions-category,
+.recipe-page-nutrients-titles-category {
   width: 150px;
 }
 
-.recipe-user-proportions-recipe-quantity,
-.recipe-nutrients-titles-quantity {
+.recipe-page-user-proportions-recipe-quantity,
+.recipe-page-nutrients-titles-quantity {
   width: 250px;
 }
 
-.recipe-user-proportions-norm,
-.recipe-nutrients-titles-norm {
+.recipe-page-user-proportions-norm,
+.recipe-page-nutrients-titles-norm {
   width: 140px;
 }
 
-.recipe-user-proportions-percentage,
-.recipe-nutrients-titles-percentage {
+.recipe-page-user-proportions-percentage,
+.recipe-page-nutrients-titles-percentage {
   width: 100px;
 }
 
 
 /*============ comments ==============*/
 
-.recipe-body-comments {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.recipe-page-body-comments {
   padding: 50px 50px ;
-
   width: 70%;
   min-width: 950px;
   max-width: 1240px;
-
   box-shadow: inset #ece1cb 0 0 30px;
-  background-color: white;
   border-bottom-right-radius: 30px;
   border-bottom-left-radius: 30px;
   border-left: white medium solid;
-  /*border-right: white medium solid;*/
-  box-sizing: border-box;
   row-gap: 30px;
 }
 
-.recipe-body-comments-no-comments {
-  font-family: Lato Light, serif;
-}
-
-.recipe-body-comments-list-wrapper {
-  display: flex;
-  flex-direction: column;
+.recipe-page-body-comments-list-wrapper {
   row-gap: 10px;
 }
 
-.recipe-body-comment {
+.recipe-page-body-comment {
   border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-
   border-left: #ece1cb medium solid;
   border-bottom: #ece1cb thin solid;
   box-shadow: #555555 1px 0 2px;
-
   padding: 20px 50px 30px 50px;
-  box-sizing: border-box;
 }
 
-.recipe-body-comment-top {
-  display: flex;
+.recipe-page-body-comment-top {
   padding-bottom: 10px;
-  box-sizing: border-box;
   column-gap: 50px;
-  font-family: Lato, serif;
   border-bottom: #ece1cb medium dotted;
-  justify-content: space-between;
 }
 
-.recipe-body-comment-author-wrapper {
-  color: #555555;
-}
-
-.recipe-body-comment-author:hover {
+.recipe-page-body-comment-author:hover {
   color: #af5858;
   cursor: pointer;
 }
 
-.recipe-body-comment-date {
-
-}
-
-.recipe-body-comment-bottom {
-  box-sizing: border-box;
+.recipe-page-body-comment-bottom {
   padding-top: 10px;
-
 }
 
-.recipe-body-comment-body {
-  box-sizing: border-box;
-  font-family: Lato Light, serif;
-
-}
-
-.recipe-body-comments-form {
-  display: flex;
+.recipe-page-body-comments-form {
   column-gap: 30px;
-  justify-content: center;
 }
 
-.recipe-body-comments-form textarea {
-  font-family: Lato Light, serif;
+.recipe-page-body-comments-form textarea {
   width: 60%;
   padding-left: 50px;
 }
-
-.recipe-body-comments-form button {
-  height: fit-content;
-  font-family: Lato, serif;
-
-}
-
-

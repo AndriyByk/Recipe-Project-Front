@@ -1,18 +1,18 @@
-<div class="cabinet-favourite-recipe">
-  <a [routerLink]="['/recipe/username', recipeFavorite.id]">
+<div class="display-flex flex-dir-column cabinet-favourite-recipe">
+  <a class="color-black" [routerLink]="['/recipe/username', recipeFavorite.id]">
     <div class="cabinet-favourite-recipe-photo">
-      <div class="cabinet-favourite-recipe-photo-content">
-        <img src="{{url + '/' + recipeFavorite.dateOfCreation + '/' + recipeFavorite.image}}" alt="photo">
+      <div class="width-100-per display-flex just-cont-cent align-item-cent cabinet-favourite-recipe-photo-content">
+        <img class="height-auto box-sizing-bor-box display-flex just-cont-cent align-item-cent" src="{{url + '/' + recipeFavorite.dateOfCreation + '/' + recipeFavorite.image}}" alt="photo">
       </div>
     </div>
 
-    <div class="cabinet-favourite-recipe-title">
+    <div class="cabinet-favourite-recipe-title font-weight-bold font-f-segoe-print">
       <div>
         {{recipeFavorite.title}}
       </div>
     </div>
 
-    <div class="cabinet-favourite-recipe-category">
+    <div class="just-cont-cent display-flex cabinet-favourite-recipe-category font-f-segoe-script">
       <div>
         {{recipeFavorite.recipeCategoryDto.name}}
       </div>

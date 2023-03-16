@@ -1,25 +1,13 @@
-.display-flex {
-  display: flex;
-}
-
 .update-recipe {
-  flex-direction: column;
-  justify-content: center;
   padding: 110px 50px;
   row-gap: 20px;
-  align-items: center;
 }
 
 .update-recipe-title {
-  font-family: "Segoe Print", sans-serif;
   font-size: 25px;
-  font-weight: bold;
-  color: #d9ccb3;
-  justify-content: center;
 }
 
 .update-recipe-form {
-  flex-direction: column;
   row-gap: 12px;
   width: 80%;
 }
@@ -27,11 +15,8 @@
 .update-recipe-form-title-content {
   border-bottom-right-radius: 10px;
   border-top-right-radius: 10px;
-  background-color: #fcf2e1;
-  font-family: "Segoe Script", sans-serif;
   font-size: 20px;
   flex-grow: 1;
-  justify-content: center;
 }
 
 .update-recipe-form-title-title,
@@ -40,10 +25,7 @@
 .update-recipe-form-ingredients-title,
 .update-recipe-form-picture-title {
   width: 200px;
-  font-family: "Segoe Print", sans-serif;
   font-size: 15px;
-  font-weight: bold;
-  background-color: #d9ccb3;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   padding-left: 10px;
@@ -58,48 +40,40 @@
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   border: #fcf2e1 solid medium;
-  box-sizing: border-box;
 }
 
 .update-recipe-form-category-select {
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   flex-grow: 1;
-  background-color: #fcf2e1;
   padding: 5px;
-  justify-content: center;
 }
 
 .update-recipe-form-category-select select {
   width: 50%;
   border: none;
-  background-color: #fcf2e1;
   padding: 0 5px;
-  font-family: "Segoe Script", sans-serif;
   font-size: 15px;
 }
 
 .update-recipe-form-category-select select:hover {
   background-color: #ece1cb;
   transition-duration: 0.1s;
-
 }
 
 .update-recipe-form-ingredients-list {
-  flex-direction: column;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   flex-grow: 1;
-  background-color: #fcf2e1;
   padding: 5px;
-  justify-content: center;
   row-gap: 5px;
 }
+
 /*--------------------------------------*/
+
 .update-recipe-form-ingredient-number-title,
 .update-recipe-form-ingredient-number {
   width: 2%;
-  font-family: "Segoe Print", sans-serif;
   font-size: 15px;
 }
 
@@ -110,12 +84,11 @@
 
 .update-recipe-form-ingredient-category select {
   width: 90%;
-  font-family: "Segoe Print", sans-serif;
   font-size: 13px;
   border: none;
   border-radius: unset;
-  background-color: #fcf2e1;
 }
+
 .update-recipe-form-ingredient-category select:hover {
   transition-duration: 0.1s;
   background-color: #ece1cb;
@@ -128,11 +101,9 @@
 
 .update-recipe-form-ingredient-id select {
   width: 90%;
-  font-family: "Segoe Print", sans-serif;
   font-size: 13px;
   border: none;
   border-radius: unset;
-  background-color: #fcf2e1;
 }
 
 .update-recipe-form-ingredient-id select:hover {
@@ -147,13 +118,12 @@
 
 .update-recipe-form-ingredient-delete-button {
   width: 5%;
-  justify-content: end;
-
 }
+
 /*-----------------------------------------*/
+
 .update-recipe-form-ingredient-titles {
   column-gap: 5px;
-  font-family: "Segoe Print", sans-serif;
   font-size: 15px;
 }
 
@@ -177,13 +147,8 @@
 
 .update-recipe-form-ingredient-delete-button button {
   border: none;
-  height: 100%;
-  color: black;
   width: 30px;
-  background-color: #fcf2e1;
   font-size: 15px;
-  font-weight: bold;
-  font-family: "Segoe Print", sans-serif;
 }
 
 .update-recipe-form-ingredient-delete-button button:hover {
@@ -191,7 +156,6 @@
 }
 
 .update-recipe-form-ingredient-add-button {
-  justify-content: start;
   height: 25px;
 }
 
@@ -200,12 +164,7 @@
   margin-left: 4%;
   border: none;
   border-radius: unset;
-  height: 100%;
-  font-family: "Segoe Print", sans-serif;
   font-size: 15px;
-  font-weight: bold;
-  color: black;
-  background-color: #fcf2e1;
 }
 
 .update-recipe-form-ingredient-add-button button:hover {
@@ -214,28 +173,21 @@
 
 .update-recipe-form-picture-input {
   padding: 5px;
-  justify-content: center;
   flex-grow: 1;
-  background-color: #fcf2e1;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
 }
 
 .update-recipe-form-picture-input input {
-  font-family: "Segoe Print", sans-serif;
   font-size: 14px;
   width: 30%;
-  background-color: #fcf2e1;
   padding-left: 40px;
 }
 
 
 .update-recipe-form-button button {
   border-radius: 20px;
-  font-family: "Segoe Print", sans-serif;
   font-size: 25px;
-  font-weight: bold;
   padding: 10px 20px;
   border: none;
-  background-color: #fcf2e1;
 }

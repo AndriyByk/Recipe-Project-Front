@@ -22,20 +22,25 @@ export class RecipesByParamsResolver implements Resolve<IWrapperForRecipes> {
       pageNumber = 0;
     }
 
+    let pageSize = route.queryParams['pageSize'];
+    if (!pageSize) {
+      pageSize = 10;
+    }
+
     if (localStorage.getItem('admin-mode') != null) {
       return this.recipeService.getFilteredAndSortedInAdminMode(
         route.queryParams['categoryId'],
         route.queryParams['title'],
         route.queryParams['nutrientId'],
         pageNumber,
-        route.queryParams['pageSize'])
+        pageSize)
     } else {
       return this.recipeService.getFilteredAndSorted(
         route.queryParams['categoryId'],
         route.queryParams['title'],
         route.queryParams['nutrientId'],
         pageNumber,
-        route.queryParams['pageSize'])
+        pageSize)
     }
   }
 }

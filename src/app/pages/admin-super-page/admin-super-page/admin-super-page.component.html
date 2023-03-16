@@ -1,26 +1,26 @@
-<div class="admin-super-page-wrapper">
-  <div class="admin-super-page-list-of-users-wrapper">
-    <div class="admin-super-page-chosen-user">
-      <div class="admin-super-page-chosen-user-left">
-        <div class="admin-super-page-user-avatar">
-          <img src="{{url + '/' + user.username + '/' + user.avatar}}" alt="user-avatar">
+<div class="admin-super-page-wrapper display-flex width-100-per just-cont-cent height-fit-cont background-color-ece1cb box-sizing-bor-box">
+  <div class="admin-super-page-list-of-users-wrapper display-flex width-fit-cont flex-dir-column height-fit-cont background-color-white">
+    <div class="admin-super-page-chosen-user display-flex">
+      <div class="admin-super-page-chosen-user-left display-flex align-item-cent just-cont-cent">
+        <div class="admin-super-page-user-avatar display-flex width-100-per just-cont-cent align-item-cent">
+          <img class="height-100-per width-auto" src="{{url + '/' + user.username + '/' + user.avatar}}" alt="user-avatar">
         </div>
       </div>
-      <div class="admin-super-page-chosen-user-right">
-        <div class="admin-super-page-chosen-user-right-titles">
-          <div class="admin-super-page-chosen-user-id-title">User id:</div>
-          <div class="admin-super-page-chosen-user-username-title">Username:</div>
-          <div class="admin-super-page-chosen-user-date-of-registration-title">Дата реєстрації:</div>
-          <div class="admin-super-page-chosen-user-chosen-user-roles-title">Наявна роль:</div>
-          <div class="admin-super-page-change-role-form-title">Роль, на яку змінити:</div>
+      <div class="admin-super-page-chosen-user-right display-flex">
+        <div class="admin-super-page-chosen-user-right-titles display-flex flex-dir-column just-cont-cent">
+          <div class="admin-super-page-chosen-user-id-title display-flex just-cont-cent">User id:</div>
+          <div class="admin-super-page-chosen-user-username-title display-flex just-cont-cent">Username:</div>
+          <div class="admin-super-page-chosen-user-date-of-registration-title display-flex just-cont-cent">Дата реєстрації:</div>
+          <div class="admin-super-page-chosen-user-chosen-user-roles-title display-flex just-cont-cent">Наявна роль:</div>
+          <div class="admin-super-page-change-role-form-title display-flex just-cont-cent">Роль, на яку змінити:</div>
         </div>
-        <div class="admin-super-page-chosen-user-right-contents">
+        <div class="admin-super-page-chosen-user-right-contents display-flex flex-dir-column just-cont-cent">
           <div class="admin-super-page-chosen-user-id-content">{{user.id}}</div>
           <div class="admin-super-page-chosen-user-username-content">{{user.username}}</div>
           <div class="admin-super-page-chosen-user-date-of-registration-content">{{user.dateOfRegistration}}</div>
           <div class="admin-super-page-chosen-user-chosen-user-roles-content">{{user.roles[0]=='ROLE_ADMIN'?'Адміністратор':user.roles[0]=='ROLE_USER'?'Користувач':'СуперКористувач'}}</div>
           <div class="admin-super-page-change-role-form-content">
-            <form [formGroup]="form">
+            <form class="display-flex" [formGroup]="form">
               <div class="admin-super-page-change-role-form-select-wrapper">
                 <label for="admin-super-page-change-role-form-select"></label>
                 <select [(ngModel)]="meme1" id="admin-super-page-change-role-form-select" formControlName="role">
@@ -37,16 +37,16 @@
         </div>
       </div>
     </div>
-    <div class="admin-super-page-search-form">
-      <form [formGroup]="formSearch">
+    <div class="admin-super-page-search-form box-sizing-bor-box width-100-per">
+      <form class="width-100-per display-flex just-cont-cent" [formGroup]="formSearch">
         <div class="admin-super-page-search-form-username">
-          <label for="admin-super-page-search-form-username">
-            <input id="admin-super-page-search-form-username" [placeholder]="'Введіть username'" formControlName="username">
+          <label class="width-100-per" for="admin-super-page-search-form-username">
+            <input class="width-100-per" id="admin-super-page-search-form-username" [placeholder]="'Введіть username'" formControlName="username">
           </label>
         </div>
         <div class="admin-super-page-search-form-role">
-          <label for="admin-super-page-search-form-role">
-            <select [(ngModel)]="meme2" id="admin-super-page-search-form-role" formControlName="roleSearch">
+          <label class="width-100-per" for="admin-super-page-search-form-role">
+            <select class="width-100-per" [(ngModel)]="meme2" id="admin-super-page-search-form-role" formControlName="roleSearch">
               <option [ngValue]="null" selected disabled hidden>Виберіть роль</option>
               <option [ngValue]="0">Користувач</option>
               <option [ngValue]="1">Адміністратор</option>
@@ -54,19 +54,19 @@
           </label>
         </div>
         <div class="admin-super-page-search-form-button">
-          <button (click)="submitFormSearch()" type="submit">Пошук</button>
+          <button class="width-100-per" (click)="submitFormSearch()" type="submit">Пошук</button>
         </div>
       </form>
     </div>
-    <div class="admin-super-page-list-of-users" >
-      <div class="admin-super-page-list-of-users-titles">
+    <div class="admin-super-page-list-of-users display-flex flex-dir-column align-item-cent" >
+      <div class="admin-super-page-list-of-users-titles display-flex">
         <div class="admin-super-page-user-id-title">user-id</div>
         <div class="admin-super-page-user-username-title">username</div>
         <div class="admin-super-page-user-date-of-registration-title">date-of-registration</div>
       </div>
-      <div class="admin-super-page-list-of-users-contents">
+      <div class="admin-super-page-list-of-users-contents display-flex flex-dir-column">
         <div (click)="changeUser(user)" *ngFor="let user of users" class="admin-super-page-user-wrapper">
-          <div class="admin-super-page-user">
+          <div class="admin-super-page-user display-flex">
             <div class="admin-super-page-user-id-content">{{user.id}}</div>
             <div class="admin-super-page-user-username-content">{{user.username}}</div>
             <div class="admin-super-page-user-date-of-registration-content">{{user.dateOfRegistration}}</div>
@@ -75,13 +75,13 @@
       </div>
     </div>
     <div class="admin-super-page-list-of-users-pagination">
-      <div class="admin-super-page-list-of-users-pagination-wrapper">
-        <div class="admin-super-page-list-of-users-pagination-paging">
-          <button (click)="goFirstPage()" class="admin-super-page-list-of-users-pagination-paging-first-page">|<<</button>
-          <button (click)="goPreviousPage()" class="admin-super-page-list-of-users-pagination-paging-previous-page"><</button>
-          <div class="admin-super-page-list-of-users-pagination-current-page">{{pageInfoUsers.currentPage + 1}}/{{pageInfoUsers.totalPages}}</div>
-          <button (click)="goNextPage()" class="admin-super-page-list-of-users-pagination-paging-next-page">></button>
-          <button (click)="goLastPage()" class="admin-super-page-list-of-users-pagination-paging-last-page">>>|</button>
+      <div class="admin-super-page-list-of-users-pagination-wrapper width-100-per display-flex just-cont-cent align-item-cent">
+        <div class="admin-super-page-list-of-users-pagination-paging display-flex background-color-white just-cont-spac-arou">
+          <button (click)="goFirstPage()" class="admin-super-page-list-of-users-pagination-paging-first-page background-color-transp font-weight-bold">|<<</button>
+          <button (click)="goPreviousPage()" class="admin-super-page-list-of-users-pagination-paging-previous-page background-color-transp font-weight-bold"><</button>
+          <div class="admin-super-page-list-of-users-pagination-current-page display-flex align-item-cent">{{pageInfoUsers.currentPage + 1}}/{{pageInfoUsers.totalPages}}</div>
+          <button (click)="goNextPage()" class="admin-super-page-list-of-users-pagination-paging-next-page background-color-transp font-weight-bold">></button>
+          <button (click)="goLastPage()" class="admin-super-page-list-of-users-pagination-paging-last-page background-color-transp font-weight-bold">>>|</button>
         </div>
       </div>
     </div>

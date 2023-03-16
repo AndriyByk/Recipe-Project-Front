@@ -4,40 +4,17 @@
   height: 100%;
 }
 
-.sign-in {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #ece1cb;
-  flex-direction: column;
-}
-
-.sign-in-form > div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.sign-in-form-links {
-  display: flex;
-}
-
 label {
   margin: 10px;
 }
 
-form input {
+.sign-in-form input {
   width: 330px;
   height: 35px;
   border-radius: 5px;
   padding: 20px;
   font-size: 15px;
-  /*box-shadow: #555555 0 0 15px;*/
   border: 0;
-  color: #9a9a9a;
-  font-family: "Lucida Grande", sans-serif;
 }
 
 .sign-in-form-link-to-sign-up {
@@ -45,24 +22,17 @@ form input {
 }
 
 .sign-in-form-links-submit-button {
-  /*display: flex;*/
   margin: 20px 0;
 }
 
 .sign-in-form-links-submit-button button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background-color: #ade59d;
   padding: 20px;
   width: 110px;
   height: 25px;
-  /*border-radius: 10px;*/
   font-size: 15px;
   border: 0;
   box-shadow: #555555 0 0 1px;
-  color: black;
-  font-weight: bold;
 }
 
 .sign-in-form-links-submit-button button:disabled {

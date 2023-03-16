@@ -1,99 +1,99 @@
-<div class="sign-up">
+<div class="sign-up width-100-per height-100-per display-flex just-cont-cent align-item-cent background-color-ece1cb flex-dir-column">
 
   <form class="sign-up-form" [formGroup]="form">
 
-    <div class="sign-up-form-name">
-      <label>
-        <input type="text" placeholder="Ім'я" formControlName="name">
+    <div class="sign-up-form-name display-flex flex-dir-column align-item-cent">
+      <label class="background-color-white">
+        <input class="color-9a9a9a font-f-lucida-grande" type="text" placeholder="Ім'я" formControlName="name">
       </label>
     </div>
 
-    <div class="sign-up-form-lastname">
-      <label>
-        <input type="text" placeholder="Прізвище" formControlName="lastName">
+    <div class="sign-up-form-lastname display-flex flex-dir-column align-item-cent">
+      <label class="background-color-white">
+        <input class="color-9a9a9a font-f-lucida-grande" type="text" placeholder="Прізвище" formControlName="lastName">
       </label>
     </div>
 
-    <div class="sign-up-form-email">
-      <label>
-        <input type="email" placeholder="Електронна скринька" formControlName="email">
+    <div class="sign-up-form-email display-flex flex-dir-column align-item-cent">
+      <label class="background-color-white">
+        <input class="color-9a9a9a font-f-lucida-grande" type="email" placeholder="Електронна скринька" formControlName="email">
       </label>
     </div>
 
-    <div class="sign-up-form-day-of-birth">
-      <label>
-        <input type="text" placeholder="Дата вашого народження" dynamic-date-input formControlName="dayOfBirth">
+    <div class="sign-up-form-day-of-birth display-flex flex-dir-column align-item-cent">
+      <label class="background-color-white">
+        <input class="color-9a9a9a font-f-lucida-grande" type="text" placeholder="Дата вашого народження" dynamic-date-input formControlName="dayOfBirth">
       </label>
     </div>
 
-    <div class="sign-up-form-type-of-activity">
-      <label>
-        <select formControlName="activityTypeId">
+    <div class="sign-up-form-type-of-activity display-flex flex-dir-column align-item-cent">
+      <label class="background-color-white">
+        <select class="background-color-white font-f-lucida-grande color-c8c8c8" formControlName="activityTypeId">
           <option [ngValue]="null" disabled>Виберіть тип занятості</option>
           <option *ngFor="let typeOfActivity of types" [ngValue]="typeOfActivity.id">{{typeOfActivity.name}}</option>
         </select>
         <div class="popup" (click)="openPopUp()">
-          <div class="popup-title">Детальніше</div>
-          <div class="popuptext" id="myPopup">
+          <div class="popup-title color-c8c8c8">Детальніше</div>
+          <div class="popuptext color-white" id="myPopup">
             <div *ngFor="let typeOfActivity of types">{{typeOfActivity.id + ". "}}{{typeOfActivity.about}}</div>
           </div>
         </div>
       </label>
     </div>
 
-    <div class="sign-up-form-avatar">
-      <label>
-        <div class="sign-up-form-avatar-title">Фото профілю</div>
-        <input (change)="onChange($event)" type="file" formControlName="avatar">
+    <div class="sign-up-form-avatar display-flex flex-dir-column align-item-cent">
+      <label class="background-color-white">
+        <div class="sign-up-form-avatar-title color-c8c8c8 font-f-lucida-grande">Фото профілю</div>
+        <input class="color-9a9a9a font-f-lucida-grande" (change)="onChange($event)" type="file" formControlName="avatar">
       </label>
     </div>
 
-    <div class="sign-up-form-height">
-      <label>
-        <input type="number" placeholder="Ваш зріст" formControlName="height">
+    <div class="sign-up-form-height display-flex flex-dir-column align-item-cent">
+      <label class="background-color-white">
+        <input class="color-9a9a9a font-f-lucida-grande" type="number" placeholder="Ваш зріст" formControlName="height">
       </label>
     </div>
 
-    <div class="sign-up-form-weight">
-      <label>
-        <input type="number" placeholder="Ваша вага" formControlName="weight">
+    <div class="sign-up-form-weight display-flex flex-dir-column align-item-cent">
+      <label class="background-color-white">
+        <input class="color-9a9a9a font-f-lucida-grande" type="number" placeholder="Ваша вага" formControlName="weight">
       </label>
     </div>
 
-    <div class="sign-up-form-gender">
-      <label>
-        <select formControlName="genderId">
+    <div class="sign-up-form-gender display-flex flex-dir-column align-item-cent">
+      <label class="background-color-white">
+        <select class="font-f-lucida-grande color-c8c8c8 background-color-white" formControlName="genderId">
           <option [ngValue]="null" disabled>Виберіть фізіологічну стать</option>
           <option *ngFor="let gender of genders" [ngValue]="gender.id">{{gender.gender}}</option>
         </select>
       </label>
     </div>
 
-    <div class="sign-up-form-username">
-      <label>
-        <input type="text" placeholder="Ім'я користувача (логін)" formControlName="username">
+    <div class="sign-up-form-username display-flex flex-dir-column align-item-cent">
+      <label class="background-color-white">
+        <input class="color-9a9a9a font-f-lucida-grande" type="text" placeholder="Ім'я користувача (логін)" formControlName="username">
       </label>
     </div>
 
-    <div *ngIf="userNameError">{{userNameError}}</div>
+    <div class="display-flex flex-dir-column align-item-cent" *ngIf="userNameError">{{userNameError}}</div>
 
-    <div class="sign-up-form-password">
-      <label>
-        <input type="password" placeholder="Пароль" formControlName="password">
+    <div class="sign-up-form-password display-flex flex-dir-column align-item-cent">
+      <label class="background-color-white">
+        <input class="color-9a9a9a font-f-lucida-grande" type="password" placeholder="Пароль" formControlName="password">
       </label>
     </div>
 
-    <div class="sign-up-form-confirm-password">
-      <label>
-        <input type="password" placeholder="Підтвердіть пароль" formControlName="confirmPassword">
+    <div class="sign-up-form-confirm-password display-flex flex-dir-column align-item-cent">
+      <label class="background-color-white">
+        <input class="color-9a9a9a font-f-lucida-grande" type="password" placeholder="Підтвердіть пароль" formControlName="confirmPassword">
       </label>
     </div>
 
-    <div *ngIf="form.errors">{{form.errors['notSame']}}</div>
+    <div class="display-flex flex-dir-column align-item-cent" *ngIf="form.errors">{{form.errors['notSame']}}</div>
 
-    <div class="sign-up-form-submit-button">
+    <div class="sign-up-form-submit-button display-flex flex-dir-column align-item-cent">
       <div class="sign-up-form-submit-button-label">
-        <button [disabled]="form.invalid" (click)="register()" type="submit">Зареєструватись</button>
+        <button class="display-flex just-cont-cent align-item-cent color-black" [disabled]="form.invalid" (click)="register()" type="submit">Зареєструватись</button>
       </div>
     </div>
 

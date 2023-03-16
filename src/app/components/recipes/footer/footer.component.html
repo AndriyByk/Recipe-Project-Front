@@ -1,12 +1,12 @@
-<div class="footer">
-  <div class="paging-wrapper">
+<div class="footer width-100-per display-flex align-item-flex-end background-color-transp">
+  <div class="paging-wrapper width-100-per display-flex just-cont-cent align-item-cent">
 
-    <div class="paging">
-      <button (click)="goFirstPage()" class="paging-first-page">|<<</button>
-      <button (click)="goPreviousPage()" class="paging-previous-page"><</button>
-      <div class="paging-current-page">{{pageInfo.currentPage+1}}/{{pageInfo.totalPages}}</div>
-      <button (click)="goNextPage()" class="paging-next-page">></button>
-      <button (click)="goLastPage()" class="paging-last-page">>>|</button>
+    <div class="paging display-flex just-cont-spac-arou">
+      <button (click)="goFirstPage()" class="paging-first-page background-color-transp font-weight-bold">|<<</button>
+      <button (click)="goPreviousPage()" class="paging-previous-page background-color-transp font-weight-bold"><</button>
+      <div class="paging-current-page display-flex align-item-cent">{{pageInfo.currentPage+1}}/{{pageInfo.totalPages}}</div>
+      <button (click)="goNextPage()" class="paging-next-page background-color-transp font-weight-bold">></button>
+      <button (click)="goLastPage()" class="paging-last-page background-color-transp font-weight-bold">>>|</button>
     </div>
 
   </div>

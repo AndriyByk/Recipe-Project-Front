@@ -27,12 +27,17 @@ export class RecipesFavoriteResolver implements Resolve<IWrapperForRecipes> {
       pageNumber = 0;
     }
 
+    let pageSize = route.queryParams['pageSize'];
+    if (!pageSize) {
+      pageSize = 10;
+    }
+
     return this.recipeService.getFavoriteFilteredAndSorted(
       route.queryParams['categoryId'],
       route.queryParams['title'],
       route.queryParams['nutrientId'],
       pageNumber,
-      route.queryParams['pageSize'],
+      pageSize,
       route.queryParams['userId']
     );
   }

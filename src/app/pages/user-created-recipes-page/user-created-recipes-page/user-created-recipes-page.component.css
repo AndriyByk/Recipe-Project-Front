@@ -6,12 +6,7 @@
 }
 
 .cabinet-created-recipes {
-  display: flex;
-  width: 100%;
   padding: 160px 20px 60px 20px;
-  justify-content: center;
-  height: fit-content;
-  background-color: #ece1cb;
   /*----------------------*
   min-height: 100vh; &
   box-sizing: border-box; - синхронізуються - важливо!
@@ -20,11 +15,4 @@
   min-height: 100vh;
   box-sizing: border-box;
   /*---------------------*/
-}
-
-.cabinet-created-recipes-all {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  height: fit-content;
 }

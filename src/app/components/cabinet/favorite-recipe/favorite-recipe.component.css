@@ -4,8 +4,6 @@
 }
 
 .cabinet-favourite-recipe {
-  display: flex;
-  flex-direction: column;
   border-radius: 3px;
   width: 200px;
   height: 250px;
@@ -20,15 +18,10 @@
 
 .cabinet-favourite-recipe a {
   text-decoration: none;
-  color: black;
 }
 /*============================*/
 
 .cabinet-favourite-recipe-photo-content {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   overflow-y: hidden;
   max-height: 150px;
   max-width: 200px;
@@ -36,29 +29,18 @@
   border-top-right-radius: 3px;
 }
 
-
 .cabinet-favourite-recipe-photo-content img {
-  height: auto;
   max-width: 100%;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .cabinet-favourite-recipe-title {
   padding: 5px;
   font-size: 15px;
-  font-weight: bold;
-  font-family: "Segoe Print", serif;
 }
 
 .cabinet-favourite-recipe-category {
   font-style: italic;
-  font-family: "Segoe Script", serif;
   font-size: 12px;
   padding: 5px;
-  display: flex;
-  justify-content: center;
 }
 

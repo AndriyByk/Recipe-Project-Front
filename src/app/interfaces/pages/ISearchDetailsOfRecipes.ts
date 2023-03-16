@@ -1,5 +1,6 @@
 export interface ISearchDetailsOfRecipes {
   recipeCategoryId?: number,
   title?: string,
-  nutrientId?: number
+  nutrientId?: number,
+  pageSize?: number
 }

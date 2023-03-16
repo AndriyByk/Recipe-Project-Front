@@ -1,35 +1,29 @@
-<div class="add-recipe">
-  <div>
-    Важливо не додавати інгредієнтів, які повторюються! Бо буде валити
-    <!--      javax.persistence.EntityExistsException:-->
-    <!--      A different object with the same identifier value was already associated with the session :-->
-    <!--      [com.example.recipe_project.models.entity.entities.Weight#com.example.recipe_project.models.entity.ids.WeightId@706737b3]-->
-  </div>
+<div class="add-recipe display-flex width-100-per height-100-per flex-dir-column align-item-cent background-color-ece1cb">
 
-  <form class="add-recipe-form" [formGroup]="form">
+  <form class="add-recipe-form width-100-per display-flex flex-dir-column" [formGroup]="form">
 
-    <div class="add-recipe-form-title">
-      <label>
+    <div class="add-recipe-form-title display-flex flex-dir-column align-item-cent">
+      <label class="display-flex just-cont-cent">
         <div class="add-recipe-form-title-input">
-          <input type="text" formControlName="title" placeholder="Назва рецепта">
+          <input class="font-f-segoe-print background-color-white" type="text" formControlName="title" placeholder="Назва рецепта">
         </div>
       </label>
     </div>
 
 
-    <div class="add-recipe-form-cooking">
-      <label>
+    <div class="add-recipe-form-cooking display-flex flex-dir-column align-item-cent">
+      <label class="display-flex just-cont-cent">
         <div class="add-recipe-form-cooking-input">
-          <textarea rows="5" formControlName="description" placeholder="Спосіб приготування"></textarea>
+          <textarea class="font-f-segoe-print background-color-white" rows="5" formControlName="description" placeholder="Спосіб приготування"></textarea>
         </div>
       </label>
     </div>
 
 
-    <div class="add-recipe-form-category">
-      <label>
+    <div class="add-recipe-form-category display-flex flex-dir-column align-item-cent">
+      <label class="display-flex just-cont-cent">
         <div class="add-recipe-form-category-select">
-          <select formControlName="recipeCategoryId">
+          <select class="font-f-segoe-print background-color-white" formControlName="recipeCategoryId">
             <option [ngValue]="null" disabled>Виберіть категорію рецепта</option>
             <option *ngFor="let category of categories" [ngValue]="category.id">{{category.name}}</option>
           </select>
@@ -38,17 +32,17 @@
     </div>
 
 
-    <div class="add-recipe-form-ingredients">
-      <div class="add-recipe-form-ingredients-list" formArrayName="rawIngredientWithWeights">
+    <div class="add-recipe-form-ingredients display-flex flex-dir-column align-item-cent">
+      <div class="add-recipe-form-ingredients-list display-flex flex-dir-column" formArrayName="rawIngredientWithWeights">
 
 
 
-        <div class="add-recipe-form-ingredient" *ngFor="let ingredient of getIngredients().controls; let i=index"
+        <div class="add-recipe-form-ingredient display-flex background-color-white just-cont-spac-arou" *ngFor="let ingredient of getIngredients().controls; let i=index"
              [formGroupName]="i">
-          <div class="add-recipe-form-ingredient-number">{{i + 1}}</div>
+          <div class="add-recipe-form-ingredient-number font-f-segoe-script">{{i + 1}}</div>
           <div class="add-recipe-form-ingredient-category">
             <label>
-              <select #mySelect formControlName="category" (change)="select(mySelect.value, i)">
+              <select class="font-f-segoe-print background-color-white" #mySelect formControlName="category" (change)="select(mySelect.value, i)">
                 <option [ngValue]="null" disabled>Виберіть категорію інгредієнта</option>
                 <option *ngFor="let category of ingredientCategories"
                         [ngValue]="category.name">{{category.name}}</option>
@@ -58,7 +52,7 @@
 
           <div class="add-recipe-form-ingredient-ingredient">
             <label>
-              <select formControlName="id">
+              <select class="font-f-segoe-print background-color-white"  formControlName="id">
                 <option [ngValue]="null" disabled>Виберіть інгредієнт</option>
                 <option *ngFor="let ingredient of selectedIngredients[i].listOfIngredients"
                         [ngValue]="ingredient.id">{{ingredient.name_ukr}}</option>
@@ -69,37 +63,36 @@
           <div class="add-recipe-form-ingredient-weight">
             <label>
               <div class="add-recipe-form-ingredient-weight-input">
-                <input type="number" placeholder="Вага" formControlName="weight">
+                <input class="font-f-segoe-print" type="number" placeholder="Вага" formControlName="weight">
               </div>
             </label>
           </div>
 
           <div class="add-recipe-form-ingredient-delete-button">
-            <button *ngIf="getIngredients().controls.length > 1" type="button" (click)="removeIngredient(i)">Видалити</button>
+            <button class="font-f-segoe-script background-color-white" *ngIf="getIngredients().controls.length > 1" type="button" (click)="removeIngredient(i)">Видалити</button>
           </div>
         </div>
 
-        <div class="add-recipe-form-ingredient-add-button">
-          <button type="button" (click)="addIngredient()">+ Додати інгредієнт</button>
+        <div class="add-recipe-form-ingredient-add-button display-flex just-cont-spac-arou">
+          <button class="font-f-segoe-script background-color-white" type="button" (click)="addIngredient()">+ Додати інгредієнт</button>
         </div>
 
       </div>
     </div>
 
 
-    <div class="add-recipe-form-image">
-      <label>
-        <div class="add-recipe-form-image-title">Фото</div>
+    <div class="add-recipe-form-image display-flex flex-dir-column align-item-cent">
+      <label class="display-flex just-cont-cent">
+        <div class="add-recipe-form-image-title font-f-segoe-print">Фото</div>
         <div class="add-recipe-form-image-input">
-          <input (change)="onChange($event)" placeholder="Picture" type="file"
+          <input class="font-f-segoe-print background-color-white" (change)="onChange($event)" placeholder="Picture" type="file"
                  formControlName="picture">
         </div>
       </label>
     </div>
 
-    <div class="add-recipe-form-submit-button">
-      <button (click)="submit()" [disabled]="form.invalid" type="submit">Додати новий рецепт</button>
-      <!--    <button [disabled]="form.invalid" (click)="submit()" type="submit">Додати новий рецепт</button>-->
+    <div class="add-recipe-form-submit-button display-flex just-cont-cent align-item-cent">
+      <button class="font-f-segoe-script background-color-white" (click)="submit()" [disabled]="form.invalid" type="submit">Додати новий рецепт</button>
     </div>
   </form>
 </div>
