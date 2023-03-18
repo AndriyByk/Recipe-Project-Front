@@ -41,5 +41,17 @@
         </div>
       </div>
     </a>
+
+    <div class="admin-page-pagination">
+      <div class="admin-page-pagination-wrapper width-100-per display-flex just-cont-cent align-item-cent">
+        <div class="admin-page-pagination-paging display-flex just-cont-spac-arou background-color-white">
+          <button (click)="goFirstPage()" class="admin-page-pagination-paging-first-page background-color-transp font-weight-bold">|<<</button>
+          <button (click)="goPreviousPage()" class="admin-page-pagination-paging-previous-page background-color-transp font-weight-bold"><</button>
+          <div class="admin-page-pagination-current-page display-flex align-item-cent">{{pageInfoUnchecked.currentPage + 1}}/{{pageInfoUnchecked.totalPages}}</div>
+          <button (click)="goNextPage()" class="admin-page-pagination-paging-next-page background-color-transp font-weight-bold">></button>
+          <button (click)="goLastPage()" class="admin-page-pagination-paging-last-page background-color-transp font-weight-bold">>>|</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

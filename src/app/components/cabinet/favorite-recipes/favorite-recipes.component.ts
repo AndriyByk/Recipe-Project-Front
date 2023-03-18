@@ -26,7 +26,6 @@ export class FavoriteRecipesComponent implements OnInit {
 
   searchDetailsOfFavorite: ISearchDetailsOfRecipes;
   pageInfoOfFavorite: IPageInfo;
-  pageSizeOfFavorite: number = 10;
 
   searchForm: FormGroup;
   categories: IRecipeCategory[];

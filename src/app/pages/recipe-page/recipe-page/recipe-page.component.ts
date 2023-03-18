@@ -40,6 +40,7 @@ export class RecipePageComponent implements OnInit {
   };
 
   userVerified: boolean = false;
+  adminMode: boolean = false;
 
   rate: number;
 
@@ -66,6 +67,9 @@ export class RecipePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (localStorage.getItem('admin-mode') != null) {
+      this.adminMode = true;
+    }
     this.url = baseURL + recipeUrl.pictures;
     this.username = localStorage.getItem(this.actualUser);
 
@@ -214,7 +218,7 @@ export class RecipePageComponent implements OnInit {
     this.storeService.searchDetails.next({
       recipeCategoryId: id
     })
-    if (localStorage.getItem('admin-mode') != null) {
+    if (this.adminMode) {
       this.router.navigate(['recipes/find-and-sort/admin-mode', 0], {
         queryParams: {
           categoryId: id,
@@ -306,5 +310,11 @@ export class RecipePageComponent implements OnInit {
     }
 
 
+  }
+
+  deleteComment(commentId: number, authorId: number, recipeId: number) {
+    if (this.user.id == authorId || this.adminMode) {
+      this.commentService.delete(commentId, recipeId).subscribe(value => this.recipe = value)
+    }
   }
 }

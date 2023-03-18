@@ -245,6 +245,7 @@
                 <span>{{' написа(-ла)в:'}}</span>
               </span>
             </div>
+            <div *ngIf="comment.author.id == user.id || adminMode" class="recipe-page-body-comment-delete color-9a9a9a font-f-lato-semibold" (click)="deleteComment(comment.id, comment.author.id, recipe.id)">x</div>
           </div>
 
           <div class="recipe-page-body-comment-bottom box-sizing-bor-box">

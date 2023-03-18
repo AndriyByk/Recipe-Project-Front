@@ -14,5 +14,8 @@ export class CommentService {
   save(comment: FormData, userId: number, recipeId: number, date: string): Observable<IRecipe> {
     return this.httpClient.post<IRecipe>(`${baseURL}${recipeUrl.comments}?userId=${userId}&recipeId=${recipeId}&date=${date}`, comment);
   }
+  delete(commentId : number, recipeId: number): Observable<IRecipe> {
+    return this.httpClient.delete<IRecipe>(`${baseURL}${recipeUrl.comments}?commentId=${commentId}&recipeId=${recipeId}`)
+  }
 
 }

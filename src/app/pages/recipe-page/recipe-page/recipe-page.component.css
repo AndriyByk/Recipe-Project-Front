@@ -427,6 +427,18 @@
   cursor: pointer;
 }
 
+.recipe-page-body-comment-delete {
+  font-size: 17px;
+  border: #c8c8c8 thin dotted;
+  border-radius: 50%;
+  padding: 0 5px;
+}
+
+.recipe-page-body-comment-delete:hover {
+  color: firebrick;
+  cursor: pointer;
+}
+
 .recipe-page-body-comment-bottom {
   padding-top: 10px;
 }

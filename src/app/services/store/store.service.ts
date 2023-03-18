@@ -151,6 +151,16 @@ export class StoreService {
   pageNumberOfUserCreated = new BehaviorSubject<number>(0);
   pageSizeOfUserCreated = new BehaviorSubject<number>(10);
 
+  //__________ unchecked-recipes _______________
+  pageInfoUnchecked = new BehaviorSubject<IPageInfo>({
+    currentPage: 0,
+    totalPages: 0,
+    totalElements: 0
+  })
+  pageNumberUnchecked = new BehaviorSubject<number>(0);
+  pageSizeUnchecked = new BehaviorSubject<number>(10);
+
+
   //========== dynamic height of recipes-page ===
   maxHeight = new BehaviorSubject(0);
 

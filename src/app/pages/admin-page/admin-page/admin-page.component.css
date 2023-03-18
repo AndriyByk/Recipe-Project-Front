@@ -83,3 +83,44 @@
   padding: 5px 8px;
   border-left: #555555 medium solid;
 }
+
+
+/*-----------------paging------------------------*/
+
+.admin-page-pagination-wrapper {
+  padding: 0 0 10px 0;
+  min-height: 57px;
+}
+
+.admin-page-pagination-paging {
+  column-gap: 20px;
+  width: 30%;
+  height: 40px;
+  min-width: 330px;
+  box-shadow: white 0 10px 12px;
+}
+
+.admin-page-pagination-paging-first-page,
+.admin-page-pagination-paging-previous-page,
+.admin-page-pagination-paging-next-page,
+.admin-page-pagination-paging-last-page {
+  border: transparent;
+  font-size: 25px;
+  font-family: "SimSun", serif;
+  padding: 0 10px;
+  min-width: 50px;
+}
+
+.admin-page-pagination-paging-first-page:hover,
+.admin-page-pagination-paging-previous-page:hover,
+.admin-page-pagination-paging-next-page:hover,
+.admin-page-pagination-paging-last-page:hover {
+  color: firebrick;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.admin-page-pagination-current-page {
+  font-family: "MV Boli", serif ;
+  font-size: 22px;
+}
