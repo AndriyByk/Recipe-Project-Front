@@ -17,7 +17,6 @@ export class MainInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const isAuthorized = this.authorisationService.isAuthorizedUser();
-    // next.handle(request)
     if (isAuthorized) {
       request = this.addToken(request, this.authorisationService.getToken())
     }
@@ -28,6 +27,9 @@ export class MainInterceptor implements HttpInterceptor {
         if (response && response.error && response.status === 401) {
           this.authorisationService.deleteToken();
           this.router.navigate(['sign-in']);
+        } else if (response && response.error && response.status === 403) {
+          this.authorisationService.deleteToken();
+          this.router.navigate(['forbidden-page']);
         }
         return throwError(() => new Error("token is invalid/expired"))
       })

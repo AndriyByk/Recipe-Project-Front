@@ -20,8 +20,6 @@ const routes: Routes = [
   {
     path: '', redirectTo: '/recipes/all-recipes/0', pathMatch: 'full'
   }
-
-
 ];
 
 @NgModule({

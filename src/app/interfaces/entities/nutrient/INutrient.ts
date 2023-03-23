@@ -7,7 +7,4 @@ export interface INutrient {
   unit: string;
   categoryDto: INutrientCategory;
   quantity: number;
-  // одиниці вимірювання:
-  // units: string;
-
 }

@@ -20,7 +20,6 @@ import {NutrientService} from "../../../services/fetches/nutrients/nutrient.serv
 })
 export class CreatedRecipesComponent implements OnInit {
 
-  // @Input()
   recipesCreated: IRecipe[];
   @Input()
   user:IUser
@@ -89,15 +88,11 @@ export class CreatedRecipesComponent implements OnInit {
       totalPages: 0,
       totalElements: 0
     }
-
     if (
-      this.searchDetailsOfCreated.nutrientId ||
-      this.searchDetailsOfCreated.recipeCategoryId ||
-      this.searchDetailsOfCreated.title ||
-      this.searchDetailsOfCreated.recipeCategoryId && this.searchDetailsOfCreated.title ||
-      this.searchDetailsOfCreated.recipeCategoryId && this.searchDetailsOfCreated.nutrientId ||
-      this.searchDetailsOfCreated.title && this.searchDetailsOfCreated.nutrientId ||
-      this.searchDetailsOfCreated.recipeCategoryId && this.searchDetailsOfCreated.title && this.searchDetailsOfCreated.nutrientId
+      !(!this.searchDetailsOfCreated.nutrientId &&
+        !this.searchDetailsOfCreated.recipeCategoryId &&
+        !this.searchDetailsOfCreated.title &&
+        !this.searchDetailsOfCreated.pageSize )
     ) {
       this.router.navigate(['cabinet/created-recipes', this.pageInfoOfCreated.currentPage], {
         queryParams: {

@@ -12,6 +12,9 @@ import {IngredientCategoryService} from "../../../services/fetches/ingredients/i
 import {IListOfIngredientsForNewRecipe} from "../../../interfaces/entities/ingredient/IListOfIngredientsForNewRecipe";
 import {StoreService} from "../../../services/store/store.service";
 import {RxwebValidators} from "@rxweb/reactive-form-validators";
+import {IUser} from "../../../interfaces/entities/user/IUser";
+import {UserService} from "../../../services/fetches/users/user.service";
+import {IRecipe} from "../../../interfaces/entities/recipe/IRecipe";
 
 @Component({
   selector: 'app-add-recipe',
@@ -22,6 +25,10 @@ export class AddRecipePageComponent implements OnInit {
   form: FormGroup;
   categories: IRecipeCategory[];
   ingredients: IIngredient[];
+
+  createdRecipes: IRecipe[];
+
+  user: IUser;
 
   selectedIngredients: IListOfIngredientsForNewRecipe[] = [];
   ingredientCategories: IIngredientCategory[];
@@ -35,7 +42,8 @@ export class AddRecipePageComponent implements OnInit {
               private router: Router,
               private formBuilder: FormBuilder,
               private activatedRoute: ActivatedRoute,
-              private storeService: StoreService) {
+              private storeService: StoreService,
+              private userService: UserService) {
     this.createForm();
   }
 
@@ -44,10 +52,17 @@ export class AddRecipePageComponent implements OnInit {
       this.ingredients = ingredients;
       this.ingredientCategories = ingredientCategories;
       this.categories = categories;
+
+      let username = localStorage.getItem(this.actualUser);
+      if (username) {
+        this.userService.getByUsername(username).subscribe(value => this.user = value);
+      }
       this.selectedIngredients.push({
         listOfIngredients: this.ingredients
       })
     });
+
+    this.storeService.createdRecipes.subscribe(value => this.createdRecipes = value);
   }
 
   createForm(): void {
@@ -58,10 +73,10 @@ export class AddRecipePageComponent implements OnInit {
       rawIngredientWithWeights: new FormArray([
         new FormGroup({
           id: new FormControl(null, [Validators.required]),
-          weight: new FormControl(null,[Validators.required]),
+          weight: new FormControl(null, [Validators.required]),
           category: new FormControl(null, [Validators.required])
         })
-      ], [Validators.required, RxwebValidators.unique()] ),
+      ], [Validators.required, RxwebValidators.unique()]),
       picture: new FormControl(null, [Validators.required])
     })
   }
@@ -72,8 +87,8 @@ export class AddRecipePageComponent implements OnInit {
 
   addIngredient() {
     this.getIngredients().push(this.formBuilder.group({
-      id: new FormControl(null,[Validators.required, RxwebValidators.unique()]),
-      weight: new FormControl(null,[Validators.required]),
+      id: new FormControl(null, [Validators.required, RxwebValidators.unique()]),
+      weight: new FormControl(null, [Validators.required]),
       category: new FormControl(null, [Validators.required])
     }))
     this.selectedIngredients.push({listOfIngredients: this.ingredients})
@@ -118,7 +133,7 @@ export class AddRecipePageComponent implements OnInit {
     let date1 = new Date();
     const date: string = [
       date1.getDate().toString().padStart(2, '0'),
-      (date1.getMonth()+1).toString().padStart(2, '0'),
+      (date1.getMonth() + 1).toString().padStart(2, '0'),
       date1.getFullYear()
     ].join('-');
     // час
@@ -129,7 +144,7 @@ export class AddRecipePageComponent implements OnInit {
     ].join('-');
     const fullDate: string = [date, time].join('_');
 
-    let recipe : IRecipeForPost = {
+    let recipe: IRecipeForPost = {
       title: rawValue.title,
       description: rawValue.description,
       dateOfCreation: fullDate,
@@ -139,11 +154,16 @@ export class AddRecipePageComponent implements OnInit {
 
     let ourRecipe = JSON.stringify(recipe);
     formData.append('recipe', ourRecipe);
-    let user = localStorage.getItem(this.actualUser);
-    if (user) {
-      this.recipeService.save(formData, user).subscribe(value => this.storeService.createdRecipes.next(value));
-      this.router.navigate(['/cabinet/created-recipes']);
-    }
+
+    this.recipeService.save(formData, this.user.username).subscribe(value => this.createdRecipes.push(value));
+    this.storeService.createdRecipes.next(this.createdRecipes);
+    this.router.navigate(['/cabinet/created-recipes'], {
+      queryParams: {
+        pageSize: 10,
+        userId: this.user.id,
+        pageNumber: 0
+      }
+    });
   }
 
   select(category: string, i: number) {

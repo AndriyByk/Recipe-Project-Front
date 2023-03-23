@@ -256,8 +256,6 @@ export class RecipePageComponent implements OnInit {
 
   postComment(): void {
     let data = this.commentForm.getRawValue();
-    console.log(data);
-
     if (data.comment != '' && data.comment != null) {
       const fullDate = this.createDate();
       let formData = new FormData();

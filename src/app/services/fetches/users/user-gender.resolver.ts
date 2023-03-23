@@ -19,6 +19,4 @@ export class UserGenderResolver implements Resolve<IGender[]> {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IGender[]> | Promise<IGender[]> | IGender[] {
     return this.userGenderService.getAll();
   }
-
-
 }

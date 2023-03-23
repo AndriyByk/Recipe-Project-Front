@@ -19,6 +19,4 @@ export class IngredientCategoriesResolver implements Resolve<IIngredientCategory
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IIngredientCategory[]> | Promise<IIngredientCategory[]> | IIngredientCategory[] {
     return this.ingredientCategoryService.getAll();
   }
-
-
 }

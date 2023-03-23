@@ -97,7 +97,6 @@ export class AdminSuperPageComponent implements OnInit {
 
   changeUser(user: IUser) {
     this.user = user;
-    // this.storeService.chosenUser.next(user);
   }
 
 

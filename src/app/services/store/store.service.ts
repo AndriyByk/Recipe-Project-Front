@@ -138,8 +138,6 @@ export class StoreService {
     totalPages: 0,
     totalElements: 0
   });
-  pageNumberUsers = new BehaviorSubject<number>(0);
-  pageSizeUsers = new BehaviorSubject<number>(50);
   searchDetailsUsers = new BehaviorSubject<ISearchDetailsUsers>({});
 
   //__________ user-page _______________________
@@ -148,7 +146,6 @@ export class StoreService {
     totalPages: 0,
     totalElements: 0
   })
-  pageNumberOfUserCreated = new BehaviorSubject<number>(0);
   pageSizeOfUserCreated = new BehaviorSubject<number>(10);
 
   //__________ unchecked-recipes _______________
@@ -157,7 +154,6 @@ export class StoreService {
     totalPages: 0,
     totalElements: 0
   })
-  pageNumberUnchecked = new BehaviorSubject<number>(0);
   pageSizeUnchecked = new BehaviorSubject<number>(10);
 
 

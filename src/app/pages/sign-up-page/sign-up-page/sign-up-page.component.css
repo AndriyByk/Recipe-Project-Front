@@ -99,7 +99,6 @@ label {
   color: black;
 }
 
-/* The actual popup */
 .popup .popuptext {
   visibility: hidden;
   width: 300px;
@@ -114,7 +113,6 @@ label {
   margin-left: 0;
 }
 
-/* Popup arrow */
 .popup .popuptext::after {
   content: "";
   position: absolute;

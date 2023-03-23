@@ -46,7 +46,6 @@ export class SignInPageComponent implements OnInit {
         this.router.navigate(['cabinet/info']);
       } else {
         this.userNameOrPasswordError = error;
-        console.log(this.userNameOrPasswordError);
       }
     });
   }

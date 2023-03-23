@@ -13,23 +13,15 @@ export class UserService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getAll(pageNumber: number,
-         pageSize: number): Observable<IUser[]> {
+  getAll(pageNumber: number, pageSize: number): Observable<IUser[]> {
     return this.httpClient.get<IUser[]>(`${baseURL}${recipeUrl.users}/${pageNumber}?pageSize=${pageSize}`)
   }
 
-  getChosen(pageNumber: number,
-            pageSize: number,
-            username: string,
-            role: number): Observable<IUser[]> {
+  getChosen(pageNumber: number, pageSize: number, username: string, role: number): Observable<IUser[]> {
     return this.httpClient.get<IUser[]>(`${baseURL}${recipeUrl.users}/chosen/${pageNumber}?pageSize=${pageSize}&username=${username}&role=${role}`)
   }
 
-  changeRole(
-    pageNumber: number,
-    pageSize: number,
-    userId: number,
-    role: number): Observable<IUser[]> {
+  changeRole(pageNumber: number, pageSize: number, userId: number, role: number): Observable<IUser[]> {
     return this.httpClient.patch<IUser[]>(`${baseURL}${recipeUrl.users}/${userId}?role=${role}&pageNumber=${pageNumber}&pageSize=${pageSize}`, "body")
   }
 
@@ -44,11 +36,6 @@ export class UserService {
   deleteById(id: string): Observable<void> {
     return this.httpClient.delete<void>(`${baseURL}${recipeUrl.users}/${id}`)
   }
-
-  // не використовується - якщо розкоментовувати - треба додати до секюріті на беку
-  // updateById(id: string, userForUpdate: Partial<IUser>): Observable<IUser> {
-  //   return this.httpClient.patch<IUser>(`${baseURL}${recipeUrl.users}/${id}`, userForUpdate);
-  // }
 
   updateByUsername(username: string, user: FormData): Observable<IUser> {
     return this.httpClient.patch<IUser>(`${baseURL}${recipeUrl.user}/${username}`, user);

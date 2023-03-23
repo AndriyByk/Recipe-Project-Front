@@ -92,8 +92,8 @@ export class RecipeService {
     return this.httpClient.get<IRecipe>(`${baseURL}${recipeUrl.recipes}/${id}`)
   }
 
-  save(recipe: FormData, username: string): Observable<IRecipe[]> {
-    return this.httpClient.post<IRecipe[]>(`${baseURL}${recipeUrl.recipes}/${username}`, recipe);
+  save(recipe: FormData, username: string): Observable<IRecipe> {
+    return this.httpClient.post<IRecipe>(`${baseURL}${recipeUrl.recipes}/${username}`, recipe);
   }
 
   updateRecipe(formData: FormData, id: number) {

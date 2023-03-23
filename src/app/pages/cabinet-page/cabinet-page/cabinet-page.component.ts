@@ -19,7 +19,6 @@ export class CabinetPageComponent implements OnInit {
 
   private adminMode = 'admin-mode';
 
-
   constructor(private storeService: StoreService,
               private userService:UserService,
               private activatedRoute: ActivatedRoute) { }

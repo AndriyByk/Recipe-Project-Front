@@ -1,0 +1,10 @@
+<div class="background-color-ece1cb font-f-lato page-forbidden-wrapper display-flex flex-dir-column height-100-per width-100-per just-cont-cent align-item-cent">
+  <div class="page-forbidden display-flex flex-dir-column just-cont-cent">
+    <div>
+      Помилка 403 :(
+    </div>
+    <div>
+      Сторінка не дозволена. <a class="color-black font-weight-bold" [routerLink]="['/recipes/all-recipes', 0]" [queryParams]="{pageSize: 10}"> Поверніться на головну </a> сторінку, або <a [routerLink]="['/sign-in']" class="color-black font-weight-bold"> увійдіть</a> у свій профіль.
+    </div>
+  </div>
+</div>

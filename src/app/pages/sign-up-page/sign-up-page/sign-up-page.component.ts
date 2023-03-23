@@ -65,7 +65,6 @@ export class SignUpPageComponent implements OnInit {
     formData.append('pageNumber', '1');
     formData.append('pageSize', '5');
     delete rawValue.avatar;
-    console.log(rawValue);
     let ourUser = JSON.stringify(rawValue);
 
     formData.append('user', ourUser);
@@ -89,13 +88,13 @@ export class SignUpPageComponent implements OnInit {
     let extensionAllowed: any = {"png": true, "jpeg": true, "jpg": true};
     let file = e.target.files[0];
     if (file.size / 1024 / 1024 > 10) {
-      alert("File size should be less than 10MB")
+      alert("Розмір фото має бути меншим за 10MB")
       return;
     }
     if (extensionAllowed) {
       let nam = file.name.split('.').pop();
       if (!extensionAllowed[nam]) {
-        alert("Please upload " + Object.keys(extensionAllowed) + " file.")
+        alert("Будь ласка, завантажуйте файл типу " + Object.keys(extensionAllowed) + "!")
         return;
       }
     }

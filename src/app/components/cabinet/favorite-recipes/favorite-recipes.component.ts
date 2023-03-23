@@ -95,15 +95,6 @@ export class FavoriteRecipesComponent implements OnInit {
       !this.searchDetailsOfFavorite.title &&
       !this.searchDetailsOfFavorite.pageSize )
       ) {
-    // if (
-    //   this.searchDetailsOfFavorite.nutrientId ||
-    //   this.searchDetailsOfFavorite.recipeCategoryId ||
-    //   this.searchDetailsOfFavorite.title ||
-    //   this.searchDetailsOfFavorite.recipeCategoryId && this.searchDetailsOfFavorite.title ||
-    //   this.searchDetailsOfFavorite.recipeCategoryId && this.searchDetailsOfFavorite.nutrientId ||
-    //   this.searchDetailsOfFavorite.title && this.searchDetailsOfFavorite.nutrientId ||
-    //   this.searchDetailsOfFavorite.recipeCategoryId && this.searchDetailsOfFavorite.title && this.searchDetailsOfFavorite.nutrientId
-    // ) {
       this.router.navigate(['cabinet/favorite-recipes', this.pageInfoOfFavorite.currentPage], {
         queryParams: {
           categoryId: this.searchDetailsOfFavorite.recipeCategoryId,

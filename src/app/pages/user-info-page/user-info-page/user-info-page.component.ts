@@ -18,7 +18,6 @@ export class UserInfoPageComponent implements OnInit {
   url: string;
   details: boolean;
 
-
   constructor(
     private storeService: StoreService,
     private userService: UserService,
@@ -29,28 +28,6 @@ export class UserInfoPageComponent implements OnInit {
     this.storeService.user.subscribe(value => this.user = value)
     this.url = baseURL + recipeUrl.pictures;
     this.details = false;
-    // прийшлось видалити, бо після оновлення даних юзера в юзер-інфо-апдейт дані кешувались
-    // і показувало старе, хоча в базі даних оновилось
-    // let {data} = history.state;
-    // if (data != undefined) {
-    //   this.user = data;
-    //   this.storeService.user.next(data)
-    // } else {
-    //   let username = localStorage.getItem("actualUser");
-    //   if (username != null) {
-    //     this.userService.getByUsername(username).subscribe(value => {
-    //       this.user = value;
-    //       this.storeService.user.next(value)
-    //     })
-    //   }
-
-    // this.activatedRoute.data.subscribe({
-    //     next: ({user}) => this.user = user,
-    //     error: err => {
-    //       console.log(err)},
-    //     complete () { }},
-    //   )
-    // }
   }
 
   deleteAccount() {

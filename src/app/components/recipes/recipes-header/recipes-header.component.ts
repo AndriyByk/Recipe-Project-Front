@@ -19,7 +19,6 @@ import {Router} from "@angular/router";
 export class RecipesHeaderComponent implements OnInit {
   searchDetails: ISearchDetailsOfRecipes;
   pageInfo: IPageInfo;
-  // pageSize: number = 10;
 
   form: FormGroup;
   categories: IRecipeCategory[];
@@ -71,8 +70,6 @@ export class RecipesHeaderComponent implements OnInit {
     this.storeService.searchDetails.next(this.form.getRawValue());
     this.storeService.searchDetails.subscribe(value => this.searchDetails = value);
 
-    // this.searchDetails = this.form.getRawValue();
-
     this.storeService.pageInfo.next({
       currentPage: 0,
       totalPages: 0,
@@ -84,27 +81,6 @@ export class RecipesHeaderComponent implements OnInit {
       totalElements: 0
     };
 
-    // if (
-    //   this.searchDetails.nutrientId ||
-    //   this.searchDetails.recipeCategoryId ||
-    //   this.searchDetails.title ||
-    //   this.searchDetails.pageSize ||
-    //
-    //   this.searchDetails.recipeCategoryId && this.searchDetails.title ||
-    //   this.searchDetails.recipeCategoryId && this.searchDetails.nutrientId ||
-    //   this.searchDetails.recipeCategoryId && this.searchDetails.pageSize ||
-    //   this.searchDetails.title && this.searchDetails.nutrientId ||
-    //   this.searchDetails.title && this.searchDetails.pageSize ||
-    //   this.searchDetails.nutrientId && this.searchDetails.pageSize ||
-    //
-    //   this.searchDetails.recipeCategoryId && this.searchDetails.title && this.searchDetails.pageSize ||
-    //   this.searchDetails.recipeCategoryId && this.searchDetails.title && this.searchDetails.nutrientId ||
-    //   this.searchDetails.recipeCategoryId && this.searchDetails.pageSize && this.searchDetails.nutrientId ||
-    //
-    //   this.searchDetails.title && this.searchDetails.pageSize && this.searchDetails.nutrientId
-    //
-    //
-    // ) {
     if (
       !(!this.searchDetails.nutrientId &&
       !this.searchDetails.recipeCategoryId &&
@@ -123,10 +99,5 @@ export class RecipesHeaderComponent implements OnInit {
         }
       })
     }
-    // для пошуку всіх (нефільтрованих) рецептів - слід скористатись головною кнопкою-логотипом
-    // else if ((this.searchDetails.recipeCategoryId == 0) && (this.searchDetails.nutrientId == 0) ||
-    //   this.searchDetails.recipeCategoryId == 0 || this.searchDetails.nutrientId == 0) {
-    //   this.router.navigate(['recipes/allRecipes', 0])
-    // }
   }
 }

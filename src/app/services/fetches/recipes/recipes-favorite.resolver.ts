@@ -17,11 +17,6 @@ export class RecipesFavoriteResolver implements Resolve<IWrapperForRecipes> {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IWrapperForRecipes> | Promise<IWrapperForRecipes> | IWrapperForRecipes {
-    // вхідна урла:
-    // /cabinet/favorite-recipes/${pageNumber}?pageSize=${pageSize}&userId=${userId}
-    // вихідна урла:
-    // /recipes/favorite/${pageNumber}?pageSize=${pageSize}&userId=${userId}
-
     let pageNumber: number = +(route.url[route.url.length-1].toString());
     if (isNaN(pageNumber)) {
       pageNumber = 0;

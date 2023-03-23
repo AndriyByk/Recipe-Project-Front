@@ -10,9 +10,10 @@ const routes: Routes = [
       // працює з param id
       user: UserByIdResolver,
       // працює з query id
-      // ці id дублюються в url... рішення - викинути звідси param id і юзера шукати по query id
-      // або створювати для юзер пейдж окремий резолвер без id
-      createdRecipes: RecipesCreatedResolver // використувується ще в UserCreatedRecipesPageComponent
+      // ці id дублюються в url... рішення -
+      // 1) викинути звідси param id і юзера шукати по query id або
+      // 2) створювати для юзер пейдж окремий резолвер без id
+      createdRecipes: RecipesCreatedResolver // ! використувується ще в UserCreatedRecipesPageComponent
     }
   }
 ];

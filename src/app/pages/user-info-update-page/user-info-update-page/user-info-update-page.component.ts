@@ -19,7 +19,6 @@ export class UserInfoUpdatePageComponent implements OnInit {
   genders: IGender[];
   private actualUser = 'actualUser';
   details: boolean;
-  imgSrc: string | ArrayBuffer | null;
 
   constructor(private route: ActivatedRoute,
               private userService: UserService,
@@ -53,7 +52,6 @@ export class UserInfoUpdatePageComponent implements OnInit {
   onChange(e: any) {
     let extensionAllowed: any = {"png": true, "jpeg": true, "jpg": true};
 
-
     let files = (e.target as HTMLInputElement).files;
     if (files) {
     let file = files[0];
@@ -72,17 +70,6 @@ export class UserInfoUpdatePageComponent implements OnInit {
       }
 
       this.form.controls["avatar"].setValue(file);
-
-      // picture preview - непрацюючий код...
-
-      // if (e.target.files && file) {
-      //   let reader = new FileReader();
-      //   reader.onload = e => {
-      //     console.log(reader.result);
-      //     this.imgSrc = reader.result as string;
-      //   }
-      //   reader.readAsDataURL(file);
-      // }
     }
   }
 

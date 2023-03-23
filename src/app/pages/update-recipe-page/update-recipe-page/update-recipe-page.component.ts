@@ -75,35 +75,6 @@ export class UpdateRecipePageComponent implements OnInit {
         listOfIngredients: this.ingredients.filter(value => value.ingredientCategoryDto.id == this.recipe.ingredients[i].ingredientCategoryDto.id)
       }
     }
-
-    // this.form = new FormGroup({
-    //   // змінювати назву не можна, бо прийдеться змінювати і назву папки на беку,
-    //   // а ще по назві відбувається індексація в одній з таблиць
-    //   // title: new FormControl(this.recipe.title, [Validators.required]),
-    //   description: new FormControl(this.recipe.description, [Validators.required]),
-    //   recipeCategoryId: new FormControl(this.recipe.recipeCategoryDto.id, [Validators.required]),
-    //   ingredientId1: new FormControl(this.recipe.ingredients[0].id),
-    //   ingredientWeight1: new FormControl(this.recipe.ingredients[0].weight),
-    //   ingredientId2: new FormControl(this.recipe.ingredients[1].id),
-    //   ingredientWeight2: new FormControl(this.recipe.ingredients[1].weight),
-    //   ingredientId3: new FormControl(this.recipe.ingredients[2].id),
-    //   ingredientWeight3: new FormControl(this.recipe.ingredients[2].weight),
-    //   ingredientId4: new FormControl(this.recipe.ingredients[3].id),
-    //   ingredientWeight4: new FormControl(this.recipe.ingredients[3].weight),
-    //   ingredientId5: new FormControl(this.recipe.ingredients[4].id),
-    //   ingredientWeight5: new FormControl(this.recipe.ingredients[4].weight),
-    //   ingredientId6: new FormControl(this.recipe.ingredients[5].id),
-    //   ingredientWeight6: new FormControl(this.recipe.ingredients[5].weight),
-    //   ingredientId7: new FormControl(this.recipe.ingredients[6].id),
-    //   ingredientWeight7: new FormControl(this.recipe.ingredients[6].weight),
-    //   ingredientId8: new FormControl(this.recipe.ingredients[7].id),
-    //   ingredientWeight8: new FormControl(this.recipe.ingredients[7].weight),
-    //   ingredientId9: new FormControl(this.recipe.ingredients[8].id),
-    //   ingredientWeight9: new FormControl(this.recipe.ingredients[8].weight),
-    //   ingredientId10: new FormControl(this.recipe.ingredients[9].id),
-    //   ingredientWeight10: new FormControl(this.recipe.ingredients[9].weight),
-    //   picture: new FormControl(null)
-    // })
   }
 
   getIngredients() {
@@ -158,49 +129,6 @@ export class UpdateRecipePageComponent implements OnInit {
       description: rawValue.description,
       recipeCategoryId: rawValue.recipeCategoryId,
       rawIngredientWithWeights: rawValue.rawIngredientWithWeights
-
-        // [
-        // {
-        //   weight: rawValue.ingredientWeight1,
-        //   id: rawValue.ingredientId1
-        // },
-        // {
-        //   weight: rawValue.ingredientWeight2,
-        //   id: rawValue.ingredientId2
-        // },
-        // {
-        //   weight: rawValue.ingredientWeight3,
-        //   id: rawValue.ingredientId3
-        // },
-        // {
-        //   weight: rawValue.ingredientWeight4,
-        //   id: rawValue.ingredientId4
-        // },
-        // {
-        //   weight: rawValue.ingredientWeight5,
-        //   id: rawValue.ingredientId5
-        // },
-        // {
-        //   weight: rawValue.ingredientWeight6,
-        //   id: rawValue.ingredientId6
-        // },
-        // {
-        //   weight: rawValue.ingredientWeight7,
-        //   id: rawValue.ingredientId7
-        // },
-        // {
-        //   weight: rawValue.ingredientWeight8,
-        //   id: rawValue.ingredientId8
-        // },
-        // {
-        //   weight: rawValue.ingredientWeight9,
-        //   id: rawValue.ingredientId9
-        // },
-        // {
-        //   weight: rawValue.ingredientWeight10,
-        //   id: rawValue.ingredientId10
-        // }
-      // ]
     }
 
     delete rawValue.picture;

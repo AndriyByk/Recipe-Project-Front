@@ -25,9 +25,7 @@ import {ReactiveFormsModule} from "@angular/forms";
       useClass: MainInterceptor
     }
   ],
-    exports: [
-
-    ],
+    exports: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {

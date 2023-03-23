@@ -8,9 +8,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {RecipeService} from "../../services/fetches/recipes/recipe.service";
 import {FooterComponent} from "../../components/recipes/footer/footer.component";
 import {ReactiveFormsModule} from "@angular/forms";
-import {RecipesResolver} from "../../services/fetches/recipes/recipes.resolver";
 import {RecipesHeaderComponent} from "../../components/recipes/recipes-header/recipes-header.component";
-import {RecipesByParamsResolver} from "../../services/fetches/recipes/recipes-by-params.resolver";
 import {DirectivesModule} from "../../directives/module/directives.module";
 
 
@@ -31,11 +29,8 @@ import {DirectivesModule} from "../../directives/module/directives.module";
     ReactiveFormsModule,
     DirectivesModule
   ],
-  // чи потрібні тут ресолвери? працювало й без них
   providers: [
-    RecipeService,
-    RecipesResolver,
-    RecipesByParamsResolver
+    RecipeService
   ]
 })
 export class RecipesPageModule {

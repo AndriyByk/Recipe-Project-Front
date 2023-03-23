@@ -30,7 +30,6 @@ export class DynamicHeightDirective implements AfterViewInit, OnDestroy {
     let sum: number = 0;
     if (listOfRecipes.length > 1) {
       sum = this.calcHeightOfRecipesInOneColumn(listOfRecipes);
-      // console.log(sum);
       ourHeight = this.calcHeightOfRecipesInTwoColumns(sum, listOfRecipes);
     } else {
       ourHeight = this.calcHeightOfRecipesInOneColumn(listOfRecipes);
@@ -60,7 +59,6 @@ export class DynamicHeightDirective implements AfterViewInit, OnDestroy {
       } else {
         if (heightFromStart < heightFromEnd) {
           heightFromStart = heightFromStart + elements[i].getBoundingClientRect().height + 10;
-          // console.log(i + " == start == " + heightFromStart)
           if (i==j) {
             maxHeight = Math.max(heightFromStart, heightFromEnd)
             break;
@@ -68,7 +66,6 @@ export class DynamicHeightDirective implements AfterViewInit, OnDestroy {
           i++;
         } else {
           heightFromEnd = heightFromEnd + elements[j].getBoundingClientRect().height + 10;
-          // console.log(j + " -----end------ " + heightFromEnd)
           if (i==j) {
             maxHeight = Math.max(heightFromStart, heightFromEnd)
             break;

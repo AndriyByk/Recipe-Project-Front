@@ -37,7 +37,6 @@
           <div class="recipe-page-author-link">
             <span class="font-f-segoe-script">{{"Автор: "}}</span>
             <div *ngIf="!user || user && (user.id != recipe.author.id) else toCabinet">
-<!--              [state]="{data: recipe}"-->
               <a class="recipe-page-author-link-name font-f-segoe-print color-black font-weight-bold" [routerLink]="['/user', recipe.author.id]"
                   [queryParams]="{pageSize: 10, userId: recipe.author.id, pageNumber: 0}">{{recipe.author.username}}</a>
             </div>
