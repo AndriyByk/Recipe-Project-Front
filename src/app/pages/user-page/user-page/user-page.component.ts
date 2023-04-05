@@ -14,7 +14,11 @@ import {StoreService} from "../../../services/store/store.service";
 export class UserPageComponent implements OnInit {
   user: IUserShort;
   createdRecipes: IRecipe[];
-  url: string;
+
+  // url: string;
+  fullImagePath_avatar: string;
+  fullImagePath_recipe: string;
+
   urlToRecipe: string;
   pageInfoOfUserCreated: IPageInfo;
   pageSizeOfUserCreated: number;
@@ -28,7 +32,10 @@ export class UserPageComponent implements OnInit {
 
     localStorage.getItem('actualUser') ? this.urlToRecipe = "/recipe/username" : this.urlToRecipe = "/recipe";
 
-    this.url = baseURL + recipeUrl.pictures;
+    // this.url = baseURL + recipeUrl.pictures;
+    this.fullImagePath_recipe = '/assets/pictures/recipe.jpg';
+    this.fullImagePath_avatar = '/assets/pictures/avatar_female.png';
+
     this.activatedRoute.data.subscribe(({user, createdRecipes}) => {
       this.user = user;
       this.createdRecipes = createdRecipes.recipes;

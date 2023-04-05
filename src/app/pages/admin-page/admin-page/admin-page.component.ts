@@ -14,7 +14,9 @@ import {IPageInfo} from "../../../interfaces/pages/IPageInfo";
 export class AdminPageComponent implements OnInit {
   recipes: IRecipe[];
   urlToRecipe: string;
-  url: string;
+
+  // url: string;
+  fullImagePath: string;
 
   pageInfoUnchecked: IPageInfo;
   pageSizeUnchecked: number;
@@ -29,7 +31,10 @@ export class AdminPageComponent implements OnInit {
     this.storeService.pageInfoUnchecked.subscribe(value => this.pageInfoUnchecked = value);
     this.storeService.pageSizeUnchecked.subscribe(value => this.pageSizeUnchecked = value);
     localStorage.getItem('actualUser')?this.urlToRecipe = "/recipe/username":this.urlToRecipe = "/recipe";
-    this.url = baseURL + recipeUrl.pictures;
+
+    // for deploy
+    // this.url = baseURL + recipeUrl.pictures;
+    this.fullImagePath = '/assets/pictures/avatar_female.png';
 
     this.activatedRoute.data.subscribe(({uncheckedRecipes})=> {
       this.recipes = uncheckedRecipes.recipes;

@@ -136,7 +136,7 @@ export class UpdateRecipePageComponent implements OnInit {
     formData.append('recipe', ourRecipe);
 
     this.recipeService.updateRecipe(formData, this.recipe.id).subscribe();
-    this.router.navigate(['/recipe', this.recipe.id]);
+    this.router.navigate(['/recipe/username', this.recipe.id]);
   }
 
   select(category: string, i: number) {

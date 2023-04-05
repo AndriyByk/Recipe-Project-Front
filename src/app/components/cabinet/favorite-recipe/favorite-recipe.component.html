@@ -2,7 +2,8 @@
   <a class="color-black" [routerLink]="['/recipe/username', recipeFavorite.id]">
     <div class="cabinet-favourite-recipe-photo">
       <div class="width-100-per display-flex just-cont-cent align-item-cent cabinet-favourite-recipe-photo-content">
-        <img class="height-auto box-sizing-bor-box display-flex just-cont-cent align-item-cent" src="{{url + '/' + recipeFavorite.dateOfCreation + '/' + recipeFavorite.image}}" alt="photo">
+<!--        <img class="height-auto box-sizing-bor-box display-flex just-cont-cent align-item-cent" src="{{url + '/' + recipeFavorite.dateOfCreation + '/' + recipeFavorite.image}}" alt="photo">-->
+        <img class="height-auto box-sizing-bor-box display-flex just-cont-cent align-item-cent" src="{{fullImagePath}}" alt="photo">
       </div>
     </div>
 

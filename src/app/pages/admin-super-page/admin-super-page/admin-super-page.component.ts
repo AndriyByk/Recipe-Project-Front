@@ -16,7 +16,10 @@ import {ISearchDetailsUsers} from "../../../interfaces/pages/ISearchDetailsUsers
 export class AdminSuperPageComponent implements OnInit {
   users: IUser[];
   user: IUser;
-  url: string;
+
+  // url: string;
+  fullImagePath: string;
+
   meme1 = null;
   meme2 = null;
   form: FormGroup;
@@ -43,7 +46,15 @@ export class AdminSuperPageComponent implements OnInit {
         totalElements: users.totalElements
       })
     });
-    this.url = baseURL + recipeUrl.pictures;
+
+    // for deploy
+    // this.url = baseURL + recipeUrl.pictures;
+    if (this.user.genderDto.gender == 'чоловік') {
+      this.fullImagePath = '/assets/pictures/avatar_male.jpg';
+    } else {
+      this.fullImagePath = '/assets/pictures/avatar_female.png';
+    }
+
     this.storeService.pageInfoUsers.subscribe(value => this.pageInfoUsers = value)
   }
 

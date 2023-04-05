@@ -2,7 +2,8 @@
   <a class="color-black" [routerLink]="['/recipe/username', recipeCreated.id]">
     <div class="cabinet-created-recipe-photo">
       <div class="cabinet-created-recipe-photo-content display-flex width-100-per just-cont-cent align-item-cent">
-        <img class="display-flex height-auto box-sizing-bor-box just-cont-cent align-item-cent" src="{{url + '/' + recipeCreated.dateOfCreation + '/' + recipeCreated.image}}" alt="photo">
+<!--        <img class="display-flex height-auto box-sizing-bor-box just-cont-cent align-item-cent" src="{{url + '/' + recipeCreated.dateOfCreation + '/' + recipeCreated.image}}" alt="photo">-->
+        <img class="display-flex height-auto box-sizing-bor-box just-cont-cent align-item-cent" src="{{fullImagePath}}" alt="photo">
       </div>
     </div>
 

@@ -1,7 +1,8 @@
 <div class="user-page display-flex background-color-ece1cb">
   <div class="user-page-avatar-and-registration height-fit-cont display-flex flex-dir-column just-cont-cent align-item-flex-start font-f-lato-light">
     <div class="user-page-avatar">
-      <img class="height-auto box-sizing-bor-box display-flex just-cont-cent align-item-cent" src="{{url + '/' + user.username + '/' + user.avatar}}" alt="avatar">
+<!--      <img class="height-auto box-sizing-bor-box display-flex just-cont-cent align-item-cent" src="{{url + '/' + user.username + '/' + user.avatar}}" alt="avatar">-->
+      <img class="height-auto box-sizing-bor-box display-flex just-cont-cent align-item-cent" src="{{fullImagePath_avatar}}" alt="avatar">
     </div>
     <div class="user-page-username font-weight-bold">
       {{user.username}}
@@ -25,7 +26,8 @@
         <div class="user-page-created-recipe-left">
           <div class="user-page-created-recipe-photo">
             <div class="user-page-created-recipe-photo-content width-100-per display-flex just-cont-cent align-item-cent">
-              <img class="height-auto box-sizing-bor-box" src="{{url + '/' + recipe.dateOfCreation + '/' + recipe.image}}" alt="photo">
+<!--              <img class="height-auto box-sizing-bor-box" src="{{url + '/' + recipe.dateOfCreation + '/' + recipe.image}}" alt="photo">-->
+              <img class="height-auto box-sizing-bor-box" src="{{fullImagePath_recipe}}" alt="photo">
             </div>
           </div>
         </div>

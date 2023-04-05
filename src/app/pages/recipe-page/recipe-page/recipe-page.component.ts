@@ -19,7 +19,9 @@ import {CommentService} from "../../../services/fetches/comments/comment.service
 })
 export class RecipePageComponent implements OnInit {
 
-  url: string;
+  // url: string;
+  fullImagePath: string;
+
   urlToProfile: string = '/user';
   private actualUser = 'actualUser';
   form: FormGroup;
@@ -70,7 +72,10 @@ export class RecipePageComponent implements OnInit {
     if (localStorage.getItem('admin-mode') != null) {
       this.adminMode = true;
     }
-    this.url = baseURL + recipeUrl.pictures;
+
+    // this.url = baseURL + recipeUrl.pictures;
+    this.fullImagePath = '/assets/pictures/recipe.jpg';
+
     this.username = localStorage.getItem(this.actualUser);
 
     if (this.username) {

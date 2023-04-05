@@ -2,8 +2,9 @@
   <a class="display-flex flex-dir-column just-cont-cent align-item-cent color-black" [routerLink]="[link, recipe.id]" [state]="{data: recipe}">
     <div class="recipe-photo">
       <div class="recipe-photo-content display-flex just-cont-cent">
-        <img class="recipe-photo-content-img" src="{{url + '/' + recipe.dateOfCreation + '/' + recipe.image}}"
-             alt="photo">
+<!--        <img class="recipe-photo-content-img" src="{{url + '/' + recipe.dateOfCreation + '/' + recipe.image}}"-->
+<!--             alt="photo">-->
+        <img class="recipe-photo-content-img" src="{{fullImagePath}}" alt="photo">
       </div>
     </div>
 

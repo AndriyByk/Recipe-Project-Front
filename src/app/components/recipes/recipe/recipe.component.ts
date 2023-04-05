@@ -16,12 +16,14 @@ export class RecipeComponent implements OnInit {
   username: string | null;
   link: string;
 
+  fullImagePath: string;
+
   constructor() {
   }
 
   ngOnInit(): void {
-    this.url = baseURL + recipeUrl.pictures;
-
+    // this.url = baseURL + recipeUrl.pictures;
+    this.fullImagePath = '/assets/pictures/recipe.jpg'
     this.username = localStorage.getItem(this.actualUser);
     if (this.username != null && this.username!='') {
       this.link = '/recipe/username';

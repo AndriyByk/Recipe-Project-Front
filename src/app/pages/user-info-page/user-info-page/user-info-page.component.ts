@@ -15,7 +15,10 @@ export class UserInfoPageComponent implements OnInit {
   private accessTokenKey = 'access';
   private adminMode = 'admin-mode';
   user: IUser;
-  url: string;
+
+  // url: string;
+  fullImagePath: string;
+
   details: boolean;
 
   constructor(
@@ -26,7 +29,15 @@ export class UserInfoPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.storeService.user.subscribe(value => this.user = value)
-    this.url = baseURL + recipeUrl.pictures;
+
+    // for deploy
+    // this.url = baseURL + recipeUrl.pictures;
+    if (this.user.genderDto.gender == 'чоловік') {
+      this.fullImagePath = '/assets/pictures/avatar_male.jpg';
+    } else {
+      this.fullImagePath = '/assets/pictures/avatar_female.png';
+    }
+
     this.details = false;
   }
 

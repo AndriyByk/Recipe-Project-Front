@@ -10,12 +10,16 @@ import {baseURL, recipeUrl} from "../../../urls/urls";
 export class CreatedRecipeComponent implements OnInit {
   @Input()
   recipeCreated: IRecipe;
-  url: string;
+
+  // url: string;
+  fullImagePath: string;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.url = baseURL + recipeUrl.pictures;
+    // for deploy
+    this.fullImagePath = '/assets/pictures/recipe.jpg'
+    // this.url = baseURL + recipeUrl.pictures;
   }
 
 }
