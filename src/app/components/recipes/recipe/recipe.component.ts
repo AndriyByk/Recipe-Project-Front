@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {IRecipe} from "../../../interfaces/entities/recipe/IRecipe";
-import {baseURL, recipeUrl} from "../../../urls/urls";
+// import {baseURL, recipeUrl} from "../../../urls/urls";
 
 @Component({
   selector: 'app-recipe',

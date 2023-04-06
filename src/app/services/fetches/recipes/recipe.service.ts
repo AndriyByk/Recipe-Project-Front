@@ -1,11 +1,12 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {baseURL, recipeUrl} from "../../../urls/urls";
+import {recipeUrl} from "../../../urls/urls";
 import {IRecipe} from "../../../interfaces/entities/recipe/IRecipe";
 import {StoreService} from "../../store/store.service";
 import {IPageInfo} from "../../../interfaces/pages/IPageInfo";
 import {IWrapperForRecipes} from "../../../interfaces/entities/recipe/IWrapperForRecipes";
+import {environment} from "../../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class RecipeService {
 
   private pageSize: number;
   private pageInfo: IPageInfo;
+  baseURL = environment.baseURL;
 
   constructor(private httpClient: HttpClient,
               private storeService: StoreService) {
@@ -24,31 +26,31 @@ export class RecipeService {
   getAll(
     pageNumber: number,
     pageSize: number): Observable<IWrapperForRecipes> {
-    return this.httpClient.get<IWrapperForRecipes>(`${baseURL}${recipeUrl.recipes}/allRecipes/${pageNumber}?pageSize=${pageSize}`)
+    return this.httpClient.get<IWrapperForRecipes>(`${this.baseURL}${recipeUrl.recipes}/allRecipes/${pageNumber}?pageSize=${pageSize}`)
   }
 
   getAllInAdminMode(
     pageNumber: number,
     pageSize: number): Observable<IWrapperForRecipes> {
-    return this.httpClient.get<IWrapperForRecipes>(`${baseURL}${recipeUrl.recipes}/allRecipes/admin-mode/${pageNumber}?pageSize=${pageSize}&checked=undefined`)
+    return this.httpClient.get<IWrapperForRecipes>(`${this.baseURL}${recipeUrl.recipes}/allRecipes/admin-mode/${pageNumber}?pageSize=${pageSize}&checked=undefined`)
   }
 
   getAllUncheckedInAdminMode(
     pageNumber: number,
     pageSize: number): Observable<IWrapperForRecipes> {
-    return this.httpClient.get<IWrapperForRecipes>(`${baseURL}${recipeUrl.recipes}/allRecipes/admin-mode/${pageNumber}?pageSize=${pageSize}&checked=false`)
+    return this.httpClient.get<IWrapperForRecipes>(`${this.baseURL}${recipeUrl.recipes}/allRecipes/admin-mode/${pageNumber}?pageSize=${pageSize}&checked=false`)
   }
 
   getAllCheckedInAdminMode(
     pageNumber: number,
     pageSize: number): Observable<IWrapperForRecipes> {
-    return this.httpClient.get<IWrapperForRecipes>(`${baseURL}${recipeUrl.recipes}/allRecipes/admin-mode/${pageNumber}?pageSize=${pageSize}&checked=true`)
+    return this.httpClient.get<IWrapperForRecipes>(`${this.baseURL}${recipeUrl.recipes}/allRecipes/admin-mode/${pageNumber}?pageSize=${pageSize}&checked=true`)
   }
 
   getCreatedAll(pageNumber: number,
                 pageSize: number,
                 userId: number): Observable<IWrapperForRecipes> {
-    return this.httpClient.get<IWrapperForRecipes>(`${baseURL}${recipeUrl.recipes}/created?pageNumber=${pageNumber}&pageSize=${pageSize}&userId=${userId}`)
+    return this.httpClient.get<IWrapperForRecipes>(`${this.baseURL}${recipeUrl.recipes}/created?pageNumber=${pageNumber}&pageSize=${pageSize}&userId=${userId}`)
   }
 
   getCreatedFilteredAndSorted(recipeCategoryId: number,
@@ -63,13 +65,13 @@ export class RecipeService {
     if (nutrientId == undefined) {
       nutrientId = 0;
     }
-    return this.httpClient.get<IWrapperForRecipes>(`${baseURL}${recipeUrl.recipes}/created/find-and-sort/${pageNumber}?nutrientId=${nutrientId}&categoryId=${recipeCategoryId}&title=${title}&pageSize=${pageSize}&userId=${userId}`)
+    return this.httpClient.get<IWrapperForRecipes>(`${this.baseURL}${recipeUrl.recipes}/created/find-and-sort/${pageNumber}?nutrientId=${nutrientId}&categoryId=${recipeCategoryId}&title=${title}&pageSize=${pageSize}&userId=${userId}`)
   }
 
   getFavoriteAll(pageNumber: number,
                  pageSize: number,
                  userId: number): Observable<IWrapperForRecipes> {
-    return this.httpClient.get<IWrapperForRecipes>(`${baseURL}${recipeUrl.recipes}/favorite/${pageNumber}?pageSize=${pageSize}&userId=${userId}`)
+    return this.httpClient.get<IWrapperForRecipes>(`${this.baseURL}${recipeUrl.recipes}/favorite/${pageNumber}?pageSize=${pageSize}&userId=${userId}`)
   }
 
   getFavoriteFilteredAndSorted(recipeCategoryId: number,
@@ -84,20 +86,20 @@ export class RecipeService {
     if (nutrientId == undefined) {
       nutrientId = 0;
     }
-    return this.httpClient.get<IWrapperForRecipes>(`${baseURL}${recipeUrl.recipes}/favorite/find-and-sort/${pageNumber}?nutrientId=${nutrientId}&categoryId=${recipeCategoryId}&title=${title}&pageSize=${pageSize}&userId=${userId}`)
+    return this.httpClient.get<IWrapperForRecipes>(`${this.baseURL}${recipeUrl.recipes}/favorite/find-and-sort/${pageNumber}?nutrientId=${nutrientId}&categoryId=${recipeCategoryId}&title=${title}&pageSize=${pageSize}&userId=${userId}`)
 
   }
 
   getById(id: number): Observable<IRecipe> {
-    return this.httpClient.get<IRecipe>(`${baseURL}${recipeUrl.recipes}/${id}`)
+    return this.httpClient.get<IRecipe>(`${this.baseURL}${recipeUrl.recipes}/${id}`)
   }
 
   save(recipe: FormData, username: string): Observable<IRecipe> {
-    return this.httpClient.post<IRecipe>(`${baseURL}${recipeUrl.recipes}/${username}`, recipe);
+    return this.httpClient.post<IRecipe>(`${this.baseURL}${recipeUrl.recipes}/${username}`, recipe);
   }
 
   updateRecipe(formData: FormData, id: number) {
-    return this.httpClient.patch<IRecipe>(`${baseURL}${recipeUrl.recipes}/${id}`, formData)
+    return this.httpClient.patch<IRecipe>(`${this.baseURL}${recipeUrl.recipes}/${id}`, formData)
   }
 
   getFilteredAndSorted(
@@ -114,7 +116,7 @@ export class RecipeService {
     if (nutrientId == undefined) {
       nutrientId = 0;
     }
-    return this.httpClient.get<IWrapperForRecipes>(`${baseURL}${recipeUrl.recipes}/find-and-sort/${pageNumber}?nutrientId=${nutrientId}&categoryId=${recipeCategoryId}&title=${title}&pageSize=${pageSize}`)
+    return this.httpClient.get<IWrapperForRecipes>(`${this.baseURL}${recipeUrl.recipes}/find-and-sort/${pageNumber}?nutrientId=${nutrientId}&categoryId=${recipeCategoryId}&title=${title}&pageSize=${pageSize}`)
   }
 
   getFilteredAndSortedInAdminMode(
@@ -131,14 +133,14 @@ export class RecipeService {
     if (nutrientId == undefined) {
       nutrientId = 0;
     }
-    return this.httpClient.get<IWrapperForRecipes>(`${baseURL}${recipeUrl.recipes}/find-and-sort/admin-mode/${pageNumber}?nutrientId=${nutrientId}&categoryId=${recipeCategoryId}&title=${title}&pageSize=${pageSize}`)
+    return this.httpClient.get<IWrapperForRecipes>(`${this.baseURL}${recipeUrl.recipes}/find-and-sort/admin-mode/${pageNumber}?nutrientId=${nutrientId}&categoryId=${recipeCategoryId}&title=${title}&pageSize=${pageSize}`)
   }
 
   rateRecipe(rank: string) {
-    return this.httpClient.patch<IRecipe>(`${baseURL}${recipeUrl.recipes}/rate`, rank)
+    return this.httpClient.patch<IRecipe>(`${this.baseURL}${recipeUrl.recipes}/rate`, rank)
   }
 
   changeStatus(recipeId: number) {
-    return this.httpClient.patch<IRecipe>(`${baseURL}${recipeUrl.recipes}/change-status?recipeId=${recipeId}`, 'body')
+    return this.httpClient.patch<IRecipe>(`${this.baseURL}${recipeUrl.recipes}/change-status?recipeId=${recipeId}`, 'body')
   }
 }

@@ -1,4 +1,7 @@
-export const baseURL = "http://localhost:8080";
+// export const baseURL = "http://localhost:8080";
+// for deploy to heroku
+// export const baseURL = "http://localhost:8080";
+
 
 export const recipeUrl = {
   recipes: '/recipes',

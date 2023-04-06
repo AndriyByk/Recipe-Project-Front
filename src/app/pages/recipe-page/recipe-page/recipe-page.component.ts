@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {IRecipe} from "../../../interfaces/entities/recipe/IRecipe";
 import {ActivatedRoute, Router} from "@angular/router";
-import {baseURL, recipeUrl} from "../../../urls/urls";
+// import {baseURL, recipeUrl} from "../../../urls/urls";
 import {IUser} from "../../../interfaces/entities/user/IUser";
 import {INorm} from "../../../interfaces/entities/user/INorm";
 import {INutrientDto} from "../../../interfaces/entities/nutrient/INutrientDto";

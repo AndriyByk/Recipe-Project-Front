@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {IRecipe} from "../../../interfaces/entities/recipe/IRecipe";
 import {StoreService} from "../../../services/store/store.service";
-import {baseURL, recipeUrl} from "../../../urls/urls";
+// import {baseURL, recipeUrl} from "../../../urls/urls";
 import {IPageInfo} from "../../../interfaces/pages/IPageInfo";
 
 

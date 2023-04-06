@@ -3,7 +3,7 @@ import {StoreService} from "../../../services/store/store.service";
 import {UserService} from "../../../services/fetches/users/user.service";
 import {Router} from "@angular/router";
 import {IUser} from "../../../interfaces/entities/user/IUser";
-import {baseURL, recipeUrl} from "../../../urls/urls";
+// import {baseURL, recipeUrl} from "../../../urls/urls";
 
 @Component({
   selector: 'app-user-info-page',

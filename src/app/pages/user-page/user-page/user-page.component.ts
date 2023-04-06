@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {baseURL, recipeUrl} from "../../../urls/urls";
+// import {baseURL, recipeUrl} from "../../../urls/urls";
 import {IUserShort} from "../../../interfaces/entities/user/IUserShort";
 import {IRecipe} from "../../../interfaces/entities/recipe/IRecipe";
 import {IPageInfo} from "../../../interfaces/pages/IPageInfo";
