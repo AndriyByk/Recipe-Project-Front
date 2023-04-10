@@ -62,14 +62,11 @@ export class SignUpPageComponent implements OnInit {
 
     let formData = new FormData();
     formData.append('avatar', this.form.get('avatar')?.value);
-    formData.append('pageNumber', '1');
-    formData.append('pageSize', '5');
     delete rawValue.avatar;
     let ourUser = JSON.stringify(rawValue);
 
     formData.append('user', ourUser);
     this.authorisationService.register(formData).subscribe({
-      // на контролері на беку можна змінити метод пост на войд: повертати шось не обов'язково
       next: () => this.router.navigate(['sign-in']),
       error: error => this.userNameError = error.error.username[0]
     });

@@ -213,8 +213,6 @@ export class RecipePageComponent implements OnInit {
         userId: userId,
         rate: rate
       }
-      let formData = new FormData();
-      formData.append('rate', JSON.stringify(rateObject))
       this.recipeService.rateRecipe(JSON.stringify(rateObject)).subscribe(value => this.recipe = value)
     }
   }

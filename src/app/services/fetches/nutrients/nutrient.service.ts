@@ -17,7 +17,7 @@ export class NutrientService {
     return this.httpClient.get<INutrient[]>(`${this.baseURL}${recipeUrl.nutrients}`)
   }
 
-  getById(id: number) : Observable<INutrient> {
-    return this.httpClient.get<INutrient>(`${this.baseURL}${recipeUrl.nutrients}/${id}?`)
-  }
+  // getById(id: number) : Observable<INutrient> {
+  //   return this.httpClient.get<INutrient>(`${this.baseURL}${recipeUrl.nutrients}/${id}?`)
+  // }
 }

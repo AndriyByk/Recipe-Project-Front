@@ -17,7 +17,7 @@ export class IngredientService {
     return this.httpClient.get<IIngredient[]>(`${this.baseURL}${recipeUrl.ingredients}`)
   }
 
-  getById(id: number) : Observable<IIngredient> {
-    return this.httpClient.get<IIngredient>(`${this.baseURL}${recipeUrl.ingredients}/${id}?`)
-  }
+  // getById(id: number) : Observable<IIngredient> {
+  //   return this.httpClient.get<IIngredient>(`${this.baseURL}${recipeUrl.ingredients}/${id}?`)
+  // }
 }

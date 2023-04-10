@@ -22,6 +22,7 @@ export class UsersResolver implements Resolve<IUser[]> {
     if (isNaN(pageNumber)) {
       pageNumber = 0;
     }
+
     let pageSize = route.queryParams['pageSize'];
     if (!pageSize) {
       pageSize = 10;
@@ -31,12 +32,11 @@ export class UsersResolver implements Resolve<IUser[]> {
     if (!role) {
       role = 100;
     }
+
     return this.userService.getChosen(
       pageNumber,
       pageSize,
       route.queryParams['username'],
       role);
   }
-
-
 }

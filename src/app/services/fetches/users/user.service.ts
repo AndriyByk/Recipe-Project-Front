@@ -15,9 +15,9 @@ export class UserService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getAll(pageNumber: number, pageSize: number): Observable<IUser[]> {
-    return this.httpClient.get<IUser[]>(`${this.baseURL}${recipeUrl.users}/${pageNumber}?pageSize=${pageSize}`)
-  }
+  // getAll(pageNumber: number, pageSize: number): Observable<IUser[]> {
+  //   return this.httpClient.get<IUser[]>(`${this.baseURL}${recipeUrl.users}/${pageNumber}?pageSize=${pageSize}`)
+  // }
 
   getChosen(pageNumber: number, pageSize: number, username: string, role: number): Observable<IUser[]> {
     return this.httpClient.get<IUser[]>(`${this.baseURL}${recipeUrl.users}/chosen/${pageNumber}?pageSize=${pageSize}&username=${username}&role=${role}`)

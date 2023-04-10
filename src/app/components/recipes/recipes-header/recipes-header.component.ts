@@ -65,8 +65,6 @@ export class RecipesHeaderComponent implements OnInit {
     });
     this.storeService.searchDetails.subscribe(value => this.searchDetails = value);
 
-    console.log(this.form.getRawValue());
-
     this.storeService.searchDetails.next(this.form.getRawValue());
     this.storeService.searchDetails.subscribe(value => this.searchDetails = value);
 
