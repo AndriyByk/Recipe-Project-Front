@@ -3,10 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "heroku-postbuild": "ng build --prod && npm install -g http-server-spa",
+    "heroku-postbuild": "ng build && npm install express path --save",
     "test": "ng test",
     "watch": "ng build --watch --configuration development",
-    "start": "http-server-spa dist/recipe-hub-frontend index.html $PORT"
+    "start": "node server.js"
   },
   "private": true,
   "dependencies": {
