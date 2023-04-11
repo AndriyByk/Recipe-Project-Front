@@ -6,7 +6,8 @@
     "build": "ng build",
     "test": "ng test",
     "watch": "ng build --watch --configuration development",
-    "start": "node server.js"
+    "start": "node server.js",
+    "postinstall": "ng build --aot -prod"
   },
   "private": true,
   "dependencies": {
