@@ -77,7 +77,7 @@ export class AddRecipePageComponent implements OnInit {
           category: new FormControl(null, [Validators.required])
         })
       ], [Validators.required, RxwebValidators.unique()]),
-      picture: new FormControl(null, [Validators.required])
+      // picture: new FormControl(null, [Validators.required])
     })
   }
 
@@ -128,7 +128,8 @@ export class AddRecipePageComponent implements OnInit {
 
     // час створення рецепта
     let formData = new FormData();
-    formData.append('picture', this.form.get('picture')?.value);
+    // commented for deploy
+    // formData.append('picture', this.form.get('picture')?.value);
     // дата
     let date1 = new Date();
     const date: string = [

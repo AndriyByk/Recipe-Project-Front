@@ -85,8 +85,10 @@
       <label class="display-flex just-cont-cent">
         <div class="add-recipe-form-image-title font-f-segoe-print">Фото</div>
         <div class="add-recipe-form-image-input">
-          <input class="font-f-segoe-print background-color-white" (change)="onChange($event)" placeholder="Picture" type="file"
+
+          <input class="font-f-segoe-print background-color-white" placeholder="Picture" type="file"
                  formControlName="picture">
+<!--         ^^ ^^ (change)="onChange($event)" ^^ ^^  -->
         </div>
       </label>
     </div>

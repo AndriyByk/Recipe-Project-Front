@@ -58,7 +58,7 @@ export class UpdateRecipePageComponent implements OnInit {
           category: new FormControl(this.recipe.ingredients[0].ingredientCategoryDto.id)
         })
       ]),
-      picture: new FormControl(null, [Validators.required])
+      // picture: new FormControl(null, [Validators.required])
     })
 
     this.selectedIngredients[0] = {
@@ -123,7 +123,7 @@ export class UpdateRecipePageComponent implements OnInit {
     }
 
     let formData = new FormData();
-    formData.append('picture', this.form.get('picture')?.value);
+    // formData.append('picture', this.form.get('picture')?.value);
 
     let recipe: IRecipeForUpdate = {
       description: rawValue.description,
@@ -131,7 +131,7 @@ export class UpdateRecipePageComponent implements OnInit {
       rawIngredientWithWeights: rawValue.rawIngredientWithWeights
     }
 
-    delete rawValue.picture;
+    // delete rawValue.picture;
     let ourRecipe = JSON.stringify(recipe);
     formData.append('recipe', ourRecipe);
 

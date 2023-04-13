@@ -88,8 +88,9 @@
       <label class="display-flex">
         <div class="update-recipe-form-picture-title font-f-segoe-print font-weight-bold background-color-d9ccb3">Picture</div>
         <div class="update-recipe-form-picture-input display-flex just-cont-cent background-color-fcf2e1">
-          <input class="display-flex font-f-segoe-print background-color-fcf2e1" (change)="onChange($event)" placeholder="Picture" type="file"
+          <input class="display-flex font-f-segoe-print background-color-fcf2e1" placeholder="Picture" type="file"
                  formControlName="picture">
+<!--          ^^ (change)="onChange($event)" ^^  -->
         </div>
       </label>
     </div>

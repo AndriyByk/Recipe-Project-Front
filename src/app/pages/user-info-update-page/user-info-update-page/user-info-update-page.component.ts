@@ -37,7 +37,7 @@ export class UserInfoUpdatePageComponent implements OnInit {
 
   createForm(): void {
     this.form = new FormGroup({
-      avatar: new FormControl(null),
+      // avatar: new FormControl(null),
       name: new FormControl(this.user.name),
       lastName: new FormControl(this.user.lastName),
       email: new FormControl(this.user.email),
@@ -76,10 +76,10 @@ export class UserInfoUpdatePageComponent implements OnInit {
   update() {
     let rawValue = this.form.getRawValue();
     let formData = new FormData();
-    if (rawValue.avatar) {
-      formData.append('avatar', this.form.get('avatar')?.value);
-    }
-    delete rawValue.avatar;
+    // if (rawValue.avatar) {
+    //   formData.append('avatar', this.form.get('avatar')?.value);
+    // }
+    // delete rawValue.avatar;
     let ourUser = JSON.stringify(rawValue);
     formData.append('user', ourUser);
 

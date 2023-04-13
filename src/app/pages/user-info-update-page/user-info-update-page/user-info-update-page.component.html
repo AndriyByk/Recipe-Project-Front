@@ -6,7 +6,8 @@
         <div class="display-flex font-f-segoe-print">
           Фото профілю:
         </div>
-        <input class="font-weight-bold font-f-segoe-script box-sizing-bor-box background-color-white" (change)="onChange($event)" placeholder="Pictures" type="file" id="file" formControlName="avatar">
+        <input class="font-weight-bold font-f-segoe-script box-sizing-bor-box background-color-white" placeholder="Pictures" type="file" id="file" formControlName="avatar">
+<!--       ^^ (change)="onChange($event)" ^^ -->
       </label>
     </div>
 
@@ -63,7 +64,7 @@
         <label class="display-flex just-cont-cent">
           <div class="user-info-update-form-gender display-flex font-f-segoe-print">Стать:</div>
           <select class="font-weight-bold font-f-segoe-script box-sizing-bor-box background-color-white" formControlName="genderId">
-            <option disabled>Виберіть фізіологічну стать:</option>
+            <option disabled>Виберіть стать:</option>
             <option *ngFor="let gender of genders" [ngValue]="gender.id">{{gender.gender}}</option>
           </select>
         </label>

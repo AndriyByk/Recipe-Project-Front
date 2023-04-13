@@ -32,7 +32,7 @@ export class SignUpPageComponent implements OnInit {
 
   createForm(): void {
     this.form = new FormGroup({
-      avatar: new FormControl(null),
+      // avatar: new FormControl(null),
       name: new FormControl(null),
       lastName: new FormControl(null),
       email: new FormControl(null),
@@ -61,8 +61,8 @@ export class SignUpPageComponent implements OnInit {
     rawValue.dateOfRegistration = date.replace('/', '-');
 
     let formData = new FormData();
-    formData.append('avatar', this.form.get('avatar')?.value);
-    delete rawValue.avatar;
+    // formData.append('avatar', this.form.get('avatar')?.value);
+    // delete rawValue.avatar;
     let ourUser = JSON.stringify(rawValue);
 
     formData.append('user', ourUser);

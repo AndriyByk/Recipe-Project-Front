@@ -6,21 +6,21 @@
     </div>
     <div class="header-left background-color-white">
       <div class="header-title display-flex flex-dir-column just-cont-cent align-item-cent">
-        <a class="color-black font-weight-bold font-f-segoe-script" (click)="toMainPage()">Салат-хаб</a>
+        <a class="color-black font-weight-bold font-f-segoe-script" (click)="toMainPage()">САЛАТ-ХАБ</a>
       </div>
     </div>
 
     <div class="header-cabinet-link display-flex flex-dir-column just-cont-cent align-item-cent background-color-white" *ngIf="signedIn">
-      <a class="color-black font-weight-bold font-f-segoe-script" [routerLink]="['cabinet/info']">Ваш кабінет</a>
+      <a class="color-black font-weight-bold font-f-segoe-script" [routerLink]="['cabinet/info']">ВАШ КАБІНЕТ</a>
     </div>
 
     <div class="header-right display-flex align-item-cent background-color-white">
       <div class="header-buttons">
         <div class="header-button-signOut display-flex flex-dir-column just-cont-cent align-item-cent" *ngIf="signedIn; else signedOut">
-          <a class="color-black font-weight-bold font-f-segoe-script" (click)="logOut()">Вийти</a>
+          <a class="color-black font-weight-bold font-f-segoe-script" (click)="logOut()">ВИЙТИ</a>
         </div>
         <ng-template class="header-button-signIn display-flex flex-dir-column just-cont-cent align-item-cent" #signedOut>
-          <a class="color-black font-weight-bold font-f-segoe-script" [routerLink]="['sign-in']">Ввійти у профіль</a>
+          <a class="color-black font-weight-bold font-f-segoe-script" [routerLink]="['sign-in']">ВВІЙТИ У ПРОФІЛЬ</a>
         </ng-template>
       </div>
     </div>
