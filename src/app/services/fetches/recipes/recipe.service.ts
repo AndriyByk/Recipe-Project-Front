@@ -98,6 +98,10 @@ export class RecipeService {
     return this.httpClient.post<IRecipe>(`${this.baseURL}${recipeUrl.recipes}/${username}`, recipe);
   }
 
+  delete(id: number): Observable<String> {
+    return this.httpClient.delete<String>(`${this.baseURL}${recipeUrl.recipes}/${id}`);
+  }
+
   updateRecipe(formData: FormData, id: number) {
     return this.httpClient.patch<IRecipe>(`${this.baseURL}${recipeUrl.recipes}/${id}`, formData)
   }

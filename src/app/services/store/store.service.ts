@@ -156,7 +156,6 @@ export class StoreService {
   })
   pageSizeUnchecked = new BehaviorSubject<number>(10);
 
-
   //========== dynamic height of recipes-page ===
   maxHeight = new BehaviorSubject(0);
 

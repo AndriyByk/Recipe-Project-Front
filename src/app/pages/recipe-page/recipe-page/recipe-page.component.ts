@@ -78,85 +78,19 @@ export class RecipePageComponent implements OnInit {
 
     this.username = localStorage.getItem(this.actualUser);
 
-    if (this.username) {
+    if (this.username ) {
       this.userVerified = true;
       this.activatedRoute.data.subscribe(({user, recipe}) => {
         this.recipe = recipe;
         this.stages = recipe.description.split(".");
+
         this.user = user;
         this.getRateOfRecipe(this.user.id, this.recipe.id);
-        for (let j = 0, i = 0; j < recipe.quantitiesPer100.length; j++) {
-          if (j == 0) {
-            this.proportions.energy.push({
-              idOfNutrient: recipe.quantitiesPer100[j].nutrientDto.idOfNutrient,
-              nutrient: recipe.quantitiesPer100[j].nutrientDto.name,
-              percentage: Math.ceil(Math.ceil(recipe.quantitiesPer100[j].nutrientDto.quantity / user.userNorms[i].quantity * 1000) / 10),
-              category: recipe.quantitiesPer100[j].nutrientDto.categoryDto.name,
-              userNorm: user.userNorms[i].quantity,
-              nutrientQuantity: recipe.quantitiesPer100[j].nutrientDto.quantity,
-              unit: recipe.quantitiesPer100[j].nutrientDto.unit
-            });
-            // лічильник "і" змінюється лише для тих нутрієнтів, де є норми
-            // є медіумом між масивом норм і
-            i++;
-          } else if (j == 1 || j == 2 || j == 6) {
-            this.proportions.organics.push({
-              idOfNutrient: recipe.quantitiesPer100[j].nutrientDto.idOfNutrient,
-              nutrient: recipe.quantitiesPer100[j].nutrientDto.name,
-              percentage: Math.ceil(Math.ceil(recipe.quantitiesPer100[j].nutrientDto.quantity / user.userNorms[i].quantity * 1000) / 10),
-              category: recipe.quantitiesPer100[j].nutrientDto.categoryDto.name,
-              userNorm: user.userNorms[i].quantity,
-              nutrientQuantity: recipe.quantitiesPer100[j].nutrientDto.quantity,
-              unit: recipe.quantitiesPer100[j].nutrientDto.unit
-            });
-            i++;
-          } else if ((j > 2 && j < 6) || (j > 6 && j < 9)) {
-            this.proportions.organics.push({
-              idOfNutrient: recipe.quantitiesPer100[j].nutrientDto.idOfNutrient,
-              nutrient: recipe.quantitiesPer100[j].nutrientDto.name,
-              category: recipe.quantitiesPer100[j].nutrientDto.categoryDto.name,
-              nutrientQuantity: recipe.quantitiesPer100[j].nutrientDto.quantity,
-              unit: recipe.quantitiesPer100[j].nutrientDto.unit
-            });
-          } else if ((j >= 9 && j < 13) || j > 13 && j < 22) {
-            this.proportions.vitamins.push({
-              idOfNutrient: recipe.quantitiesPer100[j].nutrientDto.idOfNutrient,
-              nutrient: recipe.quantitiesPer100[j].nutrientDto.name,
-              percentage: Math.ceil(Math.ceil(recipe.quantities[j].nutrientDto.quantity / user.userNorms[i].quantity * 1000) / 10),
-              category: recipe.quantitiesPer100[j].nutrientDto.categoryDto.name,
-              userNorm: user.userNorms[i].quantity,
-              nutrientQuantity: recipe.quantitiesPer100[j].nutrientDto.quantity,
-              unit: recipe.quantitiesPer100[j].nutrientDto.unit
-            })
-            i++;
-          } else if (j == 13) {
-            this.proportions.vitamins.push({
-              idOfNutrient: recipe.quantitiesPer100[j].nutrientDto.idOfNutrient,
-              nutrient: recipe.quantitiesPer100[j].nutrientDto.name,
-              category: recipe.quantitiesPer100[j].nutrientDto.categoryDto.name,
-              nutrientQuantity: recipe.quantitiesPer100[j].nutrientDto.quantity,
-              unit: recipe.quantitiesPer100[j].nutrientDto.unit
-            })
-          } else if (j >= 22 && j < 25) {
-            this.proportions.minerals.push({
-              idOfNutrient: recipe.quantitiesPer100[j].nutrientDto.idOfNutrient,
-              nutrient: recipe.quantitiesPer100[j].nutrientDto.name,
-              category: recipe.quantitiesPer100[j].nutrientDto.categoryDto.name,
-              nutrientQuantity: recipe.quantitiesPer100[j].nutrientDto.quantity,
-              unit: recipe.quantitiesPer100[j].nutrientDto.unit
-            })
-          } else if (j > 24) {
-            this.proportions.minerals.push({
-              idOfNutrient: recipe.quantitiesPer100[j].nutrientDto.idOfNutrient,
-              nutrient: recipe.quantitiesPer100[j].nutrientDto.name,
-              percentage: Math.ceil(Math.ceil(recipe.quantities[j].nutrientDto.quantity / user.userNorms[i].quantity * 1000) / 10),
-              category: recipe.quantitiesPer100[j].nutrientDto.categoryDto.name,
-              userNorm: user.userNorms[i].quantity,
-              nutrientQuantity: recipe.quantitiesPer100[j].nutrientDto.quantity,
-              unit: recipe.quantitiesPer100[j].nutrientDto.unit
-            })
-            i++;
-          }
+
+        if (user.userNorms.length > 0) {
+          this.fillWithUserInfo(recipe, user);
+        } else {
+          this.fillWithoutUser(recipe);
         }
       })
     } else {
@@ -164,42 +98,122 @@ export class RecipePageComponent implements OnInit {
         this.recipe = recipe;
         this.stages = recipe.description.split(".");
 
-        for (let j = 0; j < recipe.quantities.length; j++) {
-          if (j == 0) {
-            this.proportions.energy.push({
-              idOfNutrient: recipe.quantitiesPer100[j].nutrientDto.idOfNutrient,
-              nutrient: recipe.quantitiesPer100[j].nutrientDto.name,
-              category: recipe.quantitiesPer100[j].nutrientDto.categoryDto.name,
-              nutrientQuantity: recipe.quantitiesPer100[j].nutrientDto.quantity,
-              unit: recipe.quantitiesPer100[j].nutrientDto.unit
-            });
-          } else if (j >= 1 && j < 9) {
-            this.proportions.organics.push({
-              idOfNutrient: recipe.quantitiesPer100[j].nutrientDto.idOfNutrient,
-              nutrient: recipe.quantitiesPer100[j].nutrientDto.name,
-              category: recipe.quantitiesPer100[j].nutrientDto.categoryDto.name,
-              nutrientQuantity: recipe.quantitiesPer100[j].nutrientDto.quantity,
-              unit: recipe.quantitiesPer100[j].nutrientDto.unit
-            });
-          } else if (j >= 9 && j < 22) {
-            this.proportions.vitamins.push({
-              idOfNutrient: recipe.quantities[j].nutrientDto.idOfNutrient,
-              nutrient: recipe.quantities[j].nutrientDto.name,
-              category: recipe.quantities[j].nutrientDto.categoryDto.name,
-              nutrientQuantity: recipe.quantities[j].nutrientDto.quantity,
-              unit: recipe.quantities[j].nutrientDto.unit
-            });
-          } else if (j >= 22) {
-            this.proportions.minerals.push({
-              idOfNutrient: recipe.quantitiesPer100[j].nutrientDto.idOfNutrient,
-              nutrient: recipe.quantitiesPer100[j].nutrientDto.name,
-              category: recipe.quantitiesPer100[j].nutrientDto.categoryDto.name,
-              nutrientQuantity: recipe.quantitiesPer100[j].nutrientDto.quantity,
-              unit: recipe.quantitiesPer100[j].nutrientDto.unit
-            });
-          }
-        }
+        this.fillWithoutUser(recipe);
       })
+    }
+  }
+
+  private fillWithoutUser(recipe: IRecipe) {
+    for (let j = 0; j < recipe.quantities.length; j++) {
+      if (j == 0) {
+        this.proportions.energy.push({
+          idOfNutrient: recipe.quantitiesPer100[j].nutrientDto.idOfNutrient,
+          nutrient: recipe.quantitiesPer100[j].nutrientDto.name,
+          category: recipe.quantitiesPer100[j].nutrientDto.categoryDto.name,
+          nutrientQuantity: recipe.quantitiesPer100[j].nutrientDto.quantity,
+          unit: recipe.quantitiesPer100[j].nutrientDto.unit
+        });
+      } else if (j >= 1 && j < 9) {
+        this.proportions.organics.push({
+          idOfNutrient: recipe.quantitiesPer100[j].nutrientDto.idOfNutrient,
+          nutrient: recipe.quantitiesPer100[j].nutrientDto.name,
+          category: recipe.quantitiesPer100[j].nutrientDto.categoryDto.name,
+          nutrientQuantity: recipe.quantitiesPer100[j].nutrientDto.quantity,
+          unit: recipe.quantitiesPer100[j].nutrientDto.unit
+        });
+      } else if (j >= 9 && j < 22) {
+        this.proportions.vitamins.push({
+          idOfNutrient: recipe.quantities[j].nutrientDto.idOfNutrient,
+          nutrient: recipe.quantities[j].nutrientDto.name,
+          category: recipe.quantities[j].nutrientDto.categoryDto.name,
+          nutrientQuantity: recipe.quantities[j].nutrientDto.quantity,
+          unit: recipe.quantities[j].nutrientDto.unit
+        });
+      } else if (j >= 22) {
+        this.proportions.minerals.push({
+          idOfNutrient: recipe.quantitiesPer100[j].nutrientDto.idOfNutrient,
+          nutrient: recipe.quantitiesPer100[j].nutrientDto.name,
+          category: recipe.quantitiesPer100[j].nutrientDto.categoryDto.name,
+          nutrientQuantity: recipe.quantitiesPer100[j].nutrientDto.quantity,
+          unit: recipe.quantitiesPer100[j].nutrientDto.unit
+        });
+      }
+    }
+  }
+
+  private fillWithUserInfo(recipe: IRecipe, user: IUser) {
+    for (let j = 0, i = 0; j < recipe.quantitiesPer100.length; j++) {
+      if (j == 0) {
+        this.proportions.energy.push({
+          idOfNutrient: recipe.quantitiesPer100[j].nutrientDto.idOfNutrient,
+          nutrient: recipe.quantitiesPer100[j].nutrientDto.name,
+          percentage: Math.ceil(Math.ceil(recipe.quantitiesPer100[j].nutrientDto.quantity / user.userNorms[i].quantity * 1000) / 10),
+          category: recipe.quantitiesPer100[j].nutrientDto.categoryDto.name,
+          userNorm: user.userNorms[i].quantity,
+          nutrientQuantity: recipe.quantitiesPer100[j].nutrientDto.quantity,
+          unit: recipe.quantitiesPer100[j].nutrientDto.unit
+        });
+        // лічильник "і" змінюється лише для тих нутрієнтів, де є норми
+        // є медіумом між масивом норм і
+        i++;
+      } else if (j == 1 || j == 2 || j == 6) {
+        this.proportions.organics.push({
+          idOfNutrient: recipe.quantitiesPer100[j].nutrientDto.idOfNutrient,
+          nutrient: recipe.quantitiesPer100[j].nutrientDto.name,
+          percentage: Math.ceil(Math.ceil(recipe.quantitiesPer100[j].nutrientDto.quantity / user.userNorms[i].quantity * 1000) / 10),
+          category: recipe.quantitiesPer100[j].nutrientDto.categoryDto.name,
+          userNorm: user.userNorms[i].quantity,
+          nutrientQuantity: recipe.quantitiesPer100[j].nutrientDto.quantity,
+          unit: recipe.quantitiesPer100[j].nutrientDto.unit
+        });
+        i++;
+      } else if ((j > 2 && j < 6) || (j > 6 && j < 9)) {
+        this.proportions.organics.push({
+          idOfNutrient: recipe.quantitiesPer100[j].nutrientDto.idOfNutrient,
+          nutrient: recipe.quantitiesPer100[j].nutrientDto.name,
+          category: recipe.quantitiesPer100[j].nutrientDto.categoryDto.name,
+          nutrientQuantity: recipe.quantitiesPer100[j].nutrientDto.quantity,
+          unit: recipe.quantitiesPer100[j].nutrientDto.unit
+        });
+      } else if ((j >= 9 && j < 13) || j > 13 && j < 22) {
+        this.proportions.vitamins.push({
+          idOfNutrient: recipe.quantitiesPer100[j].nutrientDto.idOfNutrient,
+          nutrient: recipe.quantitiesPer100[j].nutrientDto.name,
+          percentage: Math.ceil(Math.ceil(recipe.quantities[j].nutrientDto.quantity / user.userNorms[i].quantity * 1000) / 10),
+          category: recipe.quantitiesPer100[j].nutrientDto.categoryDto.name,
+          userNorm: user.userNorms[i].quantity,
+          nutrientQuantity: recipe.quantitiesPer100[j].nutrientDto.quantity,
+          unit: recipe.quantitiesPer100[j].nutrientDto.unit
+        })
+        i++;
+      } else if (j == 13) {
+        this.proportions.vitamins.push({
+          idOfNutrient: recipe.quantitiesPer100[j].nutrientDto.idOfNutrient,
+          nutrient: recipe.quantitiesPer100[j].nutrientDto.name,
+          category: recipe.quantitiesPer100[j].nutrientDto.categoryDto.name,
+          nutrientQuantity: recipe.quantitiesPer100[j].nutrientDto.quantity,
+          unit: recipe.quantitiesPer100[j].nutrientDto.unit
+        })
+      } else if (j >= 22 && j < 25) {
+        this.proportions.minerals.push({
+          idOfNutrient: recipe.quantitiesPer100[j].nutrientDto.idOfNutrient,
+          nutrient: recipe.quantitiesPer100[j].nutrientDto.name,
+          category: recipe.quantitiesPer100[j].nutrientDto.categoryDto.name,
+          nutrientQuantity: recipe.quantitiesPer100[j].nutrientDto.quantity,
+          unit: recipe.quantitiesPer100[j].nutrientDto.unit
+        })
+      } else if (j > 24) {
+        this.proportions.minerals.push({
+          idOfNutrient: recipe.quantitiesPer100[j].nutrientDto.idOfNutrient,
+          nutrient: recipe.quantitiesPer100[j].nutrientDto.name,
+          percentage: Math.ceil(Math.ceil(recipe.quantities[j].nutrientDto.quantity / user.userNorms[i].quantity * 1000) / 10),
+          category: recipe.quantitiesPer100[j].nutrientDto.categoryDto.name,
+          userNorm: user.userNorms[i].quantity,
+          nutrientQuantity: recipe.quantitiesPer100[j].nutrientDto.quantity,
+          unit: recipe.quantitiesPer100[j].nutrientDto.unit
+        })
+        i++;
+      }
     }
   }
 
@@ -247,7 +261,6 @@ export class RecipePageComponent implements OnInit {
       this.userService.updateFavoriteRecipes(this.username, this.recipe.id.toString()).subscribe(value => this.user = value);
     }
   }
-
 
   private getRateOfRecipe(userId: number, recipeId: number) {
     return this.userService.getRateById(userId, recipeId).subscribe(value => this.rate = value);
@@ -307,15 +320,25 @@ export class RecipePageComponent implements OnInit {
           pageNumber: 0
         }
       })
-
     }
-
-
   }
 
   deleteComment(commentId: number, authorId: number, recipeId: number) {
     if (this.user.id == authorId || this.adminMode) {
       this.commentService.delete(commentId, recipeId).subscribe(value => this.recipe = value)
     }
+  }
+
+  deleteRecipe(id: number) {
+    this.recipeService.delete(id).subscribe(() => {
+      this.storeService.searchDetails.next({});
+      this.storeService.pageSize.next(10);
+
+      this.router.navigate(['recipes/all-recipes/admin-mode', 0], {
+        queryParams: {
+          pageSize: 10
+        }
+      });
+    });
   }
 }

@@ -7,6 +7,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {RecipeByIdResolver} from "../../services/fetches/recipes/recipe-by-id.resolver";
 import {RecipeCategoriesResolver} from "../../services/fetches/recipes/recipe-categories.resolver";
 import {IngredientCategoriesResolver} from "../../services/fetches/ingredients/ingredient-categories.resolver";
+import {DirectivesModule} from "../../directives/module/directives.module";
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import {IngredientCategoriesResolver} from "../../services/fetches/ingredients/i
   imports: [
     CommonModule,
     UpdateRecipePageRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DirectivesModule
   ],
   providers: [
     RecipeByIdResolver,

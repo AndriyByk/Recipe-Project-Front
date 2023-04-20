@@ -19,6 +19,9 @@
             <span *ngIf="recipe.status == 'CHECKED'">Відправити на доопрацювання</span>
             <span *ngIf="recipe.status == 'UNCHECKED'">Додати до загального списку</span>
           </div>
+          <div class="recipe-page-delete-recipe" (click)="deleteRecipe(recipe.id)">
+            Видалити цей рецепт остаточно
+          </div>
         </div>
         <div class="recipe-page-photo-content width-100-per height-100-per display-flex just-cont-cent">
 <!--          <img class="height-100-per width-auto" src="{{url + '/' + recipe.dateOfCreation + '/' + recipe.image}}" alt="photo">-->
@@ -176,13 +179,13 @@
           <div class="recipe-page-user-proportions-title font-weight-bold width-fit-cont">Енергія</div>
           <div class="recipe-page-user-proportion-energy display-flex width-fit-cont box-sizing-bor-box" *ngFor="let energy of proportions.energy">
             <div class="white-space"></div>
-            <div class="recipe-page-user-proportions-id display-flex just-cont-cent">{{energy.idOfNutrient}}</div>
-            <div class="recipe-page-user-proportions-name display-flex just-cont-cent">{{energy.nutrient}}</div>
-            <div class="recipe-page-user-proportions-category display-flex just-cont-cent">{{energy.category}}</div>
-            <div class="recipe-page-user-proportions-recipe-quantity display-flex just-cont-cent">{{energy.nutrientQuantity}}{{' '}}{{energy.unit}}</div>
+            <div class="recipe-page-user-proportions-id display-flex just-cont-cent">{{energy?.idOfNutrient}}</div>
+            <div class="recipe-page-user-proportions-name display-flex just-cont-cent">{{energy?.nutrient}}</div>
+            <div class="recipe-page-user-proportions-category display-flex just-cont-cent">{{energy?.category}}</div>
+            <div class="recipe-page-user-proportions-recipe-quantity display-flex just-cont-cent">{{energy?.nutrientQuantity}}{{' '}}{{energy.unit}}</div>
             <div *ngIf="energy.userNorm"
-                 class="recipe-page-user-proportions-norm display-flex just-cont-cent">{{energy.userNorm}}{{' '}}{{energy.unit}}</div>
-            <div *ngIf="energy.percentage" class="recipe-page-user-proportions-percentage display-flex just-cont-cent">{{energy.percentage}}%</div>
+                 class="recipe-page-user-proportions-norm display-flex just-cont-cent">{{energy?.userNorm}}{{' '}}{{energy?.unit}}</div>
+            <div *ngIf="energy.percentage" class="recipe-page-user-proportions-percentage display-flex just-cont-cent">{{energy?.percentage}}%</div>
           </div>
 
           <div class="recipe-page-user-proportions-title font-weight-bold width-fit-cont">Органічні макроелементи</div>

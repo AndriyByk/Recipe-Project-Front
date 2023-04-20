@@ -1,4 +1,4 @@
-<div class="add-recipe display-flex width-100-per height-100-per flex-dir-column align-item-cent background-color-ece1cb">
+<div class="add-recipe display-flex width-100-per flex-dir-column align-item-cent background-color-ece1cb">
 
   <form class="add-recipe-form width-100-per display-flex flex-dir-column" [formGroup]="form">
 
@@ -86,9 +86,8 @@
         <div class="add-recipe-form-image-title font-f-segoe-print">Фото</div>
         <div class="add-recipe-form-image-input">
 
-          <input class="font-f-segoe-print background-color-white" placeholder="Picture" type="file"
-                 formControlName="picture">
-<!--         ^^ ^^ (change)="onChange($event)" ^^ ^^  -->
+          <input class="font-f-segoe-print background-color-white" placeholder="Picture" type="file">
+<!--         ^^ ^^ (change)="onChange($event)" formControlName="picture" ^^ ^^  -->
         </div>
       </label>
     </div>
